@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	"time"
 
 	"github.com/syumai/jevyoumean/internal/helptext"
 )
@@ -21,9 +20,18 @@ var candidates = []helptext.Command{
 
 // serve stubs the TypeSafe endpoint. answerFn receives the request
 // questions so tests can answer per question id (used by sharding).
+// The client's transport is rerouted by httptest.NewTestServer, so
+// requests still target the real production URL — and the handler can
+// assert on it.
 func serve(t *testing.T, answerFn func(map[string]Question) map[string]answer, check func(*testing.T, request)) *Client {
 	t.Helper()
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := httptest.NewTestServer(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPost || r.Host != "api.typesafe.ai" || r.URL.Path != "/v1/systemone" {
+			t.Errorf("unexpected request target: %s https://%s%s", r.Method, r.Host, r.URL.Path)
+		}
+		if r.TLS == nil {
+			t.Error("expected HTTPS request")
+		}
 		if r.Header.Get("Authorization") != "Bearer test-key" {
 			t.Errorf("missing bearer token")
 		}
@@ -40,12 +48,7 @@ func serve(t *testing.T, answerFn func(map[string]Question) map[string]answer, c
 			"answers": answerFn(req.Questions),
 		})
 	}))
-	t.Cleanup(srv.Close)
-	return &Client{
-		APIKey:     "test-key",
-		Endpoint:   srv.URL,
-		HTTPClient: &http.Client{Timeout: 5 * time.Second},
-	}
+	return &Client{APIKey: "test-key", HTTPClient: srv.Client()}
 }
 
 func choiceAns(choice string, confidence float64, probs map[string]float64) answer {
@@ -136,22 +139,19 @@ func TestSuggestSharding(t *testing.T) {
 }
 
 func TestSuggestAPIError(t *testing.T) {
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusInternalServerError)
-	}))
-	t.Cleanup(srv.Close)
-	client := &Client{APIKey: "k", Endpoint: srv.URL, HTTPClient: &http.Client{Timeout: time.Second}}
+	// A nil handler serves 500 to every request.
+	srv := httptest.NewTestServer(t, nil)
+	client := &Client{APIKey: "k", HTTPClient: srv.Client()}
 	if _, err := client.Suggest(context.Background(), state(), candidates); err == nil {
 		t.Fatal("expected error")
 	}
 }
 
 func TestValidateKeyUnauthorized(t *testing.T) {
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := httptest.NewTestServer(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusUnauthorized)
 	}))
-	t.Cleanup(srv.Close)
-	client := &Client{APIKey: "bad", Endpoint: srv.URL, HTTPClient: &http.Client{Timeout: time.Second}}
+	client := &Client{APIKey: "bad", HTTPClient: srv.Client()}
 	if err := client.ValidateKey(context.Background()); err != ErrUnauthorized {
 		t.Fatalf("expected ErrUnauthorized, got %v", err)
 	}
@@ -159,7 +159,7 @@ func TestValidateKeyUnauthorized(t *testing.T) {
 
 func TestRetryOn429(t *testing.T) {
 	var calls int
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := httptest.NewTestServer(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		calls++
 		if calls == 1 {
 			w.WriteHeader(http.StatusTooManyRequests)
@@ -173,8 +173,7 @@ func TestRetryOn429(t *testing.T) {
 			},
 		})
 	}))
-	t.Cleanup(srv.Close)
-	client := &Client{APIKey: "k", Endpoint: srv.URL, HTTPClient: &http.Client{Timeout: 5 * time.Second}}
+	client := &Client{APIKey: "k", HTTPClient: srv.Client()}
 	ans, err := client.Suggest(context.Background(), state(), candidates)
 	if err != nil {
 		t.Fatal(err)

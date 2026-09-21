@@ -6,18 +6,48 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	"time"
 )
 
-// serveRaw returns a Client pointed at a stub that writes body verbatim.
+// serveRaw returns a Client whose transport is rerouted to a stub that
+// writes body verbatim. Requests still target the real production URL.
 func serveRaw(t *testing.T, body string) *Client {
 	t.Helper()
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := httptest.NewTestServer(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.Write([]byte(body))
 	}))
-	t.Cleanup(srv.Close)
-	return &Client{APIKey: "k", Endpoint: srv.URL, HTTPClient: &http.Client{Timeout: 5 * time.Second}}
+	return &Client{APIKey: "k", HTTPClient: srv.Client()}
+}
+
+// TestProductionEndpoint proves the client really sends requests to
+// the TypeSafe URL — the in-memory transport reroutes the network, not
+// the request URL, so host, method, path and TLS all stay testable.
+func TestProductionEndpoint(t *testing.T) {
+	mux := http.NewServeMux()
+	mux.HandleFunc("POST api.typesafe.ai/v1/systemone", func(w http.ResponseWriter, r *http.Request) {
+		if r.TLS == nil {
+			t.Error("expected HTTPS request")
+		}
+		if r.URL.RawQuery != "" {
+			t.Errorf("unexpected query: %q", r.URL.RawQuery)
+		}
+		json.NewEncoder(w).Encode(map[string]any{
+			"model": "jev-1.13.0",
+			"answers": map[string]any{
+				"intended": map[string]any{"type": "choice", "choice": "view", "confidence": 0.9,
+					"probabilities": map[string]float64{"view": 0.9, "__none__": 0.1}},
+			},
+		})
+	})
+	srv := httptest.NewTestServer(t, mux)
+	client := &Client{APIKey: "k", HTTPClient: srv.Client()}
+	ans, err := client.Suggest(context.Background(), state(), candidates)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if ans == nil || ans.Choice != "view" {
+		t.Fatalf("unexpected answer: %+v", ans)
+	}
 }
 
 // validResponse answers "view" correctly for the candidates fixture.

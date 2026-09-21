@@ -136,7 +136,10 @@ func testEnv(t *testing.T, apiURL string) []string {
 	return env
 }
 
-// jevStub serves canned Jev answers and counts requests.
+// jevStub serves canned Jev answers and counts requests. These tests
+// exec the jym binary, so the stub must be a real loopback server —
+// httptest.NewTestServer's in-memory network cannot cross a process
+// boundary.
 type jevStub struct {
 	srv    *httptest.Server
 	calls  int
