@@ -96,6 +96,75 @@ The most commonly used git commands are:
 	}
 }
 
+// git help -a output: multiple sections, some without the word
+// "command" in the header and some listing non-command interfaces.
+func TestParseGitHelpAll(t *testing.T) {
+	out := `See 'git help <command>' to read about a specific subcommand
+
+Main Porcelain Commands
+   add                     Add file contents to the index
+   commit                  Record changes to the repository
+   status                  Show the working tree status
+
+Ancillary Commands / Manipulators
+   config                  Get and set repository or global options
+   remote                  Manage set of tracked repositories
+   reflog                  Manage reflog information
+
+Interacting with Others
+   archimport              Import a GNU Arch repository into Git
+   svn                     Bidirectional operation between a Subversion repository and Git
+
+User-facing repository, command and file interfaces
+   attributes              Defining attributes per path
+   hooks                   Hooks used by Git
+   ignore                  Specifies intentionally untracked files to ignore
+
+External commands
+   lfs
+   wt
+`
+	cmds := Parse(out)
+	for _, want := range []string{"add", "status", "config", "remote", "reflog", "archimport", "svn", "lfs"} {
+		if !has(cmds, want) {
+			t.Fatalf("missing command %q in %v", want, names(cmds))
+		}
+	}
+	// Interface sections document concepts, not runnable commands.
+	for _, unwanted := range []string{"attributes", "hooks", "ignore"} {
+		if has(cmds, unwanted) {
+			t.Fatalf("interface doc %q leaked into commands %v", unwanted, names(cmds))
+		}
+	}
+}
+
+// A stray two-column block under an unrecognized header with only one
+// entry is not a command section.
+func TestParseTentativeSingleEntryRejected(t *testing.T) {
+	out := `Some text.
+
+See also
+   config   an example line
+`
+	if cmds := Parse(out); has(cmds, "config") {
+		t.Fatalf("single tentative entry should be rejected, got %v", names(cmds))
+	}
+}
+
+// But two or more entries under an unrecognized header do form a section.
+func TestParseTentativeSection(t *testing.T) {
+	out := `Some text.
+
+Plugins
+   alpha    First plugin
+   beta     Second plugin
+`
+	cmds := Parse(out)
+	if !has(cmds, "alpha") || !has(cmds, "beta") {
+		t.Fatalf("missing tentative commands in %v", names(cmds))
+	}
+}
+
 // kubectl-style output: parenthesized section headers.
 func TestParseKubectlStyle(t *testing.T) {
 	out := `kubectl controls the Kubernetes cluster manager.

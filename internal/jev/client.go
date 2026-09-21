@@ -11,6 +11,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"math"
 	"net/http"
 	"time"
 )
@@ -118,6 +119,15 @@ func (c *Client) Ask(ctx context.Context, state any, questions map[string]Questi
 	if err := json.Unmarshal(respBody, &decoded); err != nil {
 		return nil, fmt.Errorf("TypeSafe API: malformed response: %w", err)
 	}
+	for id, a := range decoded.Answers {
+		q, ok := questions[id]
+		if !ok || a.Type != "choice" {
+			continue
+		}
+		if err := validateChoice(a, q.Criteria); err != nil {
+			return nil, fmt.Errorf("TypeSafe API: invalid %q answer: %w", id, err)
+		}
+	}
 	out := make(map[string]ChoiceAnswer, len(decoded.Answers))
 	for id, a := range decoded.Answers {
 		out[id] = ChoiceAnswer{
@@ -127,6 +137,46 @@ func (c *Client) Ask(ctx context.Context, state any, questions map[string]Questi
 		}
 	}
 	return out, nil
+}
+
+// validateChoice rejects malformed choice answers before they can drive
+// command suggestions: every probability key must be one of the criteria
+// we sent (which already includes __none__), all values must be finite
+// numbers in [0,1], and choice must be a top-scoring option.
+func validateChoice(a answer, criteria map[string]any) error {
+	if a.Choice == "" {
+		return errors.New("empty choice")
+	}
+	if _, ok := criteria[a.Choice]; !ok {
+		return fmt.Errorf("choice %q not among criteria", a.Choice)
+	}
+	if !finite01(a.Confidence) {
+		return fmt.Errorf("confidence out of range: %v", a.Confidence)
+	}
+	maxP := -1.0
+	for k, p := range a.Probabilities {
+		if _, ok := criteria[k]; !ok {
+			return fmt.Errorf("probability key %q not among criteria", k)
+		}
+		if !finite01(p) {
+			return fmt.Errorf("probability out of range for %q: %v", k, p)
+		}
+		if p > maxP {
+			maxP = p
+		}
+	}
+	p, ok := a.Probabilities[a.Choice]
+	if !ok {
+		return errors.New("choice missing from probabilities")
+	}
+	if p != maxP {
+		return fmt.Errorf("choice %q (%.2f) is not the argmax (%.2f)", a.Choice, p, maxP)
+	}
+	return nil
+}
+
+func finite01(f float64) bool {
+	return !math.IsNaN(f) && !math.IsInf(f, 0) && f >= 0 && f <= 1
 }
 
 type httpError struct {

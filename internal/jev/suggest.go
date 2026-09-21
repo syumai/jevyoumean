@@ -34,12 +34,19 @@ func FilterArgs(args []string, mode string) []string {
 	case "all":
 		return append([]string{}, args...)
 	case "flags":
+		// Flag names only, never values. --name=value truncates at "=";
+		// a single-dash token longer than one letter is ambiguous —
+		// "-abc" may be combined flags, but "-psecret" is likely an
+		// option with an attached value — so it is dropped entirely.
 		var out []string
 		for _, a := range args {
-			if strings.HasPrefix(a, "-") {
-				if i := strings.IndexByte(a, '='); i >= 0 {
-					a = a[:i]
-				}
+			if !strings.HasPrefix(a, "-") {
+				continue
+			}
+			if i := strings.IndexByte(a, '='); i >= 0 {
+				a = a[:i]
+			}
+			if strings.HasPrefix(a, "--") || len(a) <= 2 {
 				out = append(out, a)
 			}
 		}

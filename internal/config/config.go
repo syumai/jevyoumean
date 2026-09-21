@@ -9,6 +9,7 @@ package config
 import (
 	"errors"
 	"fmt"
+	"math"
 	"os"
 	"path/filepath"
 	"time"
@@ -111,7 +112,55 @@ func Path() (string, error) {
 	return filepath.Join(dir, "config.toml"), nil
 }
 
-// Load reads the configuration file. A missing file yields the defaults.
+// Validation bounds. Timeout stays short because a human is waiting;
+// MaxDepth stays small because deeper walks multiply help invocations.
+const (
+	maxTimeoutMS = 60_000
+	maxMaxDepth  = 10
+)
+
+// Validate checks every setting that could weaken safety or privacy:
+// mode and context_args must be known values, thresholds and timeout
+// must be finite numbers in their documented ranges, and depth limits
+// stay bounded. An invalid config is rejected wholesale rather than
+// partially applied.
+func (c *Config) Validate() error {
+	switch c.Mode {
+	case "prompt", "hint", "auto":
+	default:
+		return fmt.Errorf("invalid mode %q (want prompt, hint or auto)", c.Mode)
+	}
+	switch c.ContextArgs {
+	case "none", "flags", "all":
+	default:
+		return fmt.Errorf("invalid context_args %q (want none, flags or all)", c.ContextArgs)
+	}
+	for name, v := range map[string]float64{
+		"suggest_threshold":  c.SuggestThreshold,
+		"auto_run_threshold": c.AutoRunThreshold,
+		"min_confidence":     c.MinConfidence,
+	} {
+		if math.IsNaN(v) || math.IsInf(v, 0) || v < 0 || v > 1 {
+			return fmt.Errorf("invalid %s %v (want a finite number in [0,1])", name, v)
+		}
+	}
+	if c.TimeoutMS <= 0 || c.TimeoutMS > maxTimeoutMS {
+		return fmt.Errorf("invalid timeout_ms %d (want 1..%d)", c.TimeoutMS, maxTimeoutMS)
+	}
+	if c.MaxDepth < 0 || c.MaxDepth > maxMaxDepth {
+		return fmt.Errorf("invalid max_depth %d (want 0..%d)", c.MaxDepth, maxMaxDepth)
+	}
+	for name, cc := range c.Commands {
+		if cc.MaxDepth < 0 || cc.MaxDepth > maxMaxDepth {
+			return fmt.Errorf("invalid commands.%s.max_depth %d (want 0..%d)", name, cc.MaxDepth, maxMaxDepth)
+		}
+	}
+	return nil
+}
+
+// Load reads the configuration file. A missing file yields the
+// defaults; a file that decodes but fails validation is rejected so a
+// bad value can never silently change behavior.
 func Load() (*Config, error) {
 	cfg := Default()
 	path, err := Path()
@@ -124,12 +173,16 @@ func Load() (*Config, error) {
 		}
 		return cfg, fmt.Errorf("load config: %w", err)
 	}
+	if err := cfg.Validate(); err != nil {
+		return Default(), fmt.Errorf("invalid config: %w", err)
+	}
 	return cfg, nil
 }
 
 // ApplyEnv overlays the JYM_* environment overrides onto cfg.
 func (c *Config) ApplyEnv() {
-	if v := os.Getenv("JYM_MODE"); v != "" {
+	switch v := os.Getenv("JYM_MODE"); v {
+	case "prompt", "hint", "auto":
 		c.Mode = v
 	}
 	if v := os.Getenv("JYM_DEBUG"); v != "" && v != "0" {

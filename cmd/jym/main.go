@@ -208,8 +208,11 @@ func wrap(inv invocation) int {
 
 	store := cache.Open()
 	if inv.refresh {
-		store.Invalidate(inv.wrapped[0])
-		logf("cache invalidated for %s", inv.wrapped[0])
+		// Invalidate by the resolved executable's basename — never the
+		// raw user-supplied name — so a path like ../x cannot reach
+		// outside the cache directory.
+		store.Invalidate(exe)
+		logf("cache invalidated for %s", exe)
 	}
 
 	apiKey, keySource := creds.Resolve()
@@ -272,16 +275,21 @@ func wrap(inv invocation) int {
 	}
 	if !jevOK {
 		// No key, or Jev failed: try offline edit-distance matching.
-		// When Jev answered (even __none__) its verdict stands.
+		// When Jev answered (even __none__) its verdict stands. Offline
+		// guesses are weaker than Jev's, so mode "auto" still prompts —
+		// only a validated Jev answer may auto-run.
 		if m := fallback.Suggest(det.unknown, det.candidates, decide.MaxCandidates); len(m) > 0 {
 			offline = true
 			for _, match := range m {
 				cands = append(cands, decide.Candidate{Name: match.Name})
 			}
-			if stdinTTY {
-				action = decide.Prompt
-			} else {
+			switch {
+			case !stdinTTY:
 				action = decide.Hint
+			case cfg.Mode == "hint":
+				action = decide.Hint
+			default:
+				action = decide.Prompt
 			}
 		}
 	}

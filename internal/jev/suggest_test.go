@@ -97,20 +97,29 @@ func TestSuggestSharding(t *testing.T) {
 	client := serve(t, func(qs map[string]Question) map[string]answer {
 		phase++
 		out := map[string]answer{}
-		for id := range qs {
-			if id == "intended" {
-				// Phase 2: final choice over shard winners.
-				out[id] = choiceAns("view", 0.9, map[string]float64{"view": 0.9, "cmd007": 0.08, NoneOption: 0.02})
-				continue
-			}
-			// Phase 1: each shard votes for "view" if present, else a local name.
-			pick := "cmd000"
-			for name := range qs[id].Criteria {
-				if name == "view" {
-					pick = "view"
+		for id, q := range qs {
+			var pick string
+			for name := range q.Criteria {
+				if name == NoneOption {
+					continue
+				}
+				if pick == "" || name == "view" {
+					pick = name
 				}
 			}
-			out[id] = choiceAns(pick, 0.9, map[string]float64{pick: 0.9, NoneOption: 0.1})
+			probs := map[string]float64{pick: 0.9, NoneOption: 0.1}
+			if id == "intended" {
+				// Phase 2: final choice over shard winners.
+				probs[pick] = 0.9
+				probs[NoneOption] = 0.02
+				for name := range q.Criteria {
+					if name != pick && name != NoneOption {
+						probs[name] = 0.08
+						break
+					}
+				}
+			}
+			out[id] = choiceAns(pick, 0.9, probs)
 		}
 		return out
 	}, nil)
@@ -188,5 +197,34 @@ func TestFilterArgs(t *testing.T) {
 	}
 	if got := FilterArgs(args, "all"); len(got) != 4 {
 		t.Fatalf("all: %v", got)
+	}
+}
+
+// TestFilterArgsPrivacy pins the "flag names only, never values"
+// promise: attached values must never reach the API, whether written
+// --flag=value, -pvalue or -p value.
+func TestFilterArgsPrivacy(t *testing.T) {
+	cases := []struct {
+		in   []string
+		want []string
+	}{
+		{[]string{"--token=secret"}, []string{"--token"}},
+		{[]string{"--token", "secret"}, []string{"--token"}}, // value is a positional arg, dropped
+		{[]string{"-psecret"}, nil},                          // ambiguous attached value, dropped
+		{[]string{"-p", "secret"}, []string{"-p"}},
+		{[]string{"-v"}, []string{"-v"}},
+		{[]string{"-abc"}, nil}, // combined shorts are ambiguous too
+		{[]string{"pos", "--json", "-n", "5"}, []string{"--json", "-n"}},
+	}
+	for _, c := range cases {
+		got := FilterArgs(c.in, "flags")
+		if len(got) != len(c.want) {
+			t.Fatalf("flags %v: got %v, want %v", c.in, got, c.want)
+		}
+		for i := range got {
+			if got[i] != c.want[i] {
+				t.Fatalf("flags %v: got %v, want %v", c.in, got, c.want)
+			}
+		}
 	}
 }

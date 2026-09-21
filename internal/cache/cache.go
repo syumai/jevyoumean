@@ -127,14 +127,34 @@ func (c *Cache) Save(e *Entry, helpArgs []string) {
 	e.FetchedAt = time.Now().Unix()
 	level := strings.Join(e.Path, "\x00")
 	dir := c.cmdDir(e.Executable)
-	if err := os.MkdirAll(dir, 0o755); err != nil {
+	if err := os.MkdirAll(dir, 0o700); err != nil {
 		return
 	}
 	data, err := json.MarshalIndent(e, "", "  ")
 	if err != nil {
 		return
 	}
-	_ = os.WriteFile(c.file(e.Executable, key(e.Executable, st, level, helpArgs)), data, 0o644)
+	// Atomic write via temp+rename so a crash cannot leave a
+	// half-written cache file behind.
+	target := c.file(e.Executable, key(e.Executable, st, level, helpArgs))
+	tmp, err := os.CreateTemp(dir, ".tmp-*")
+	if err != nil {
+		return
+	}
+	if _, err := tmp.Write(data); err == nil {
+		err = tmp.Close()
+	} else {
+		tmp.Close()
+	}
+	if err != nil {
+		os.Remove(tmp.Name())
+		return
+	}
+	if err := os.Rename(tmp.Name(), target); err != nil {
+		os.Remove(tmp.Name())
+		return
+	}
+	_ = os.Chmod(target, 0o600)
 	c.prune(dir)
 }
 
@@ -148,12 +168,17 @@ func (c *Cache) AddLearned(e *Entry, token string, helpArgs []string) {
 }
 
 // Invalidate removes every cached level for the named command
-// (--refresh). name is the command's base name.
+// (--refresh). The name is reduced to its last path element so a
+// user-supplied value can never escape the cache directory.
 func (c *Cache) Invalidate(name string) {
 	if c.dir == "" {
 		return
 	}
-	_ = os.RemoveAll(filepath.Join(c.dir, name))
+	base := filepath.Base(name)
+	if base == "." || base == ".." || base == string(filepath.Separator) {
+		return
+	}
+	_ = os.RemoveAll(filepath.Join(c.dir, base))
 }
 
 // ClearAll removes the whole cache (--cache-clear).

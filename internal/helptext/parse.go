@@ -39,49 +39,97 @@ var namePattern = regexp.MustCompile(`^[A-Za-z0-9][A-Za-z0-9._-]*$`)
 
 // Parse extracts subcommands from help output. An empty result means
 // "cannot judge": the output had no recognizable command listing.
+//
+// Two section styles are recognized. Known headers (a column-0 line
+// containing "command") commit however many entries follow. Any other
+// non-indented line is a tentative header (e.g. git's "Interacting with
+// Others") and commits only when at least two entry lines follow, which
+// keeps single stray columns from becoming commands. Headers mentioning
+// "interface" are skipped: git lists file-format/protocol entries there
+// that are not runnable commands.
 func Parse(output string) []Command {
-	var cmds []Command
-	seen := map[string]bool{}
+	var cmds, pending []Command
+	seen, sectionSeen := map[string]bool{}, map[string]bool{}
 	inSection := false
-	sawHeader := false
+	tentative := false
+	sawKnownHeader := false
 	entryIndent := -1
+
+	startSection := func(tent bool) {
+		pending = nil
+		sectionSeen = map[string]bool{}
+		inSection, tentative = true, tent
+		if !tent {
+			sawKnownHeader = true
+		}
+		entryIndent = -1
+	}
+	flush := func() {
+		min := 1
+		if tentative {
+			min = 2
+		}
+		if len(pending) >= min {
+			for _, c := range pending {
+				cmds = appendCommand(cmds, seen,
+					append([]string{c.Name}, c.Aliases...), c.Description)
+			}
+		}
+		pending = nil
+		inSection = false
+	}
+
 	for _, line := range strings.Split(output, "\n") {
 		line = strings.TrimRight(line, "\r")
 		if isSectionHeader(line) {
-			inSection = true
-			sawHeader = true
-			entryIndent = -1
+			flush()
+			startSection(false)
+			continue
+		}
+		if indentation(line) == 0 {
+			// Every other non-indented line is a tentative header.
+			flush()
+			if s := strings.ToLower(strings.TrimSpace(line)); s != "" &&
+				!strings.Contains(s, "interface") {
+				startSection(true)
+			}
 			continue
 		}
 		if !inSection {
 			continue
 		}
-		if strings.TrimSpace(line) == "" {
-			inSection = false
-			continue
-		}
 		names, desc, indent, ok := parseEntry(line)
 		if !ok {
 			// A deeper-indented line is probably a wrapped description.
-			if lineIndent := indentation(line); entryIndent >= 0 && lineIndent > entryIndent && len(cmds) > 0 {
-				last := &cmds[len(cmds)-1]
+			if lineIndent := indentation(line); entryIndent >= 0 && lineIndent > entryIndent && len(pending) > 0 {
+				last := &pending[len(pending)-1]
 				last.Description = strings.TrimSpace(last.Description + " " + strings.TrimSpace(line))
 				continue
 			}
-			inSection = false
+			flush()
 			continue
 		}
 		if entryIndent < 0 {
 			entryIndent = indent
 		}
-		cmds = appendCommand(cmds, seen, names, desc)
+		pending = appendCommand(pending, sectionSeen, names, desc)
 	}
-	if len(cmds) > 0 || sawHeader {
+	flush()
+	if len(cmds) > 0 {
 		return cmds
 	}
-	// Fallback: no section header found, so scan every line for
-	// two-column "name   description" entries.
-	return parseLoose(output)
+	// Fallback: when no recognized command section existed at all, scan
+	// every line for two-column "name   description" entries. A known
+	// header that yielded nothing means "cannot judge", so loose scan
+	// is skipped. Like tentative sections, a single stray line is not
+	// enough.
+	if sawKnownHeader {
+		return nil
+	}
+	if loose := parseLoose(output); len(loose) >= 2 {
+		return loose
+	}
+	return nil
 }
 
 // appendCommand registers a parsed entry, deduplicating by name and
@@ -125,6 +173,13 @@ func indentation(line string) int {
 
 // isSectionHeader reports whether line introduces a command listing
 // section. Headers are never indented; command entries always are.
+// Both bare ("CORE COMMANDS") and colon-terminated ("Available
+// Commands:", "The most commonly used git commands are:") forms match,
+// as long as the line contains the plural "commands" — the singular is
+// avoided so placeholders like "<command>" in usage lines do not count;
+// a real singular header still wins through the tentative rule.
+// Sections about "interfaces" are excluded: they document concepts,
+// not runnable subcommands.
 func isSectionHeader(line string) bool {
 	if indentation(line) != 0 {
 		return false
@@ -133,19 +188,14 @@ func isSectionHeader(line string) bool {
 	if s == "" {
 		return false
 	}
-	hasColon := strings.HasSuffix(s, ":")
 	lower := strings.ToLower(strings.TrimSuffix(s, ":"))
 	if i := strings.Index(lower, "("); i >= 0 {
 		lower = strings.TrimSpace(lower[:i])
 	}
-	if !hasColon {
-		return lower == "command" || lower == "commands" || lower == "subcommands" ||
-			strings.HasSuffix(lower, " command") || strings.HasSuffix(lower, " commands") ||
-			strings.HasSuffix(lower, " subcommands")
-	}
-	// A colon-terminated header mentioning commands, e.g. git's
-	// "The most commonly used git commands are:".
-	return strings.Contains(lower, "command")
+	// The plural word is required so placeholders like "<command>" in
+	// usage lines do not count. Singular headers still win through the
+	// tentative-section rule when two or more entries follow.
+	return strings.Contains(lower, "commands") && !strings.Contains(lower, "interface")
 }
 
 // parseEntry extracts a "names <sep> description" entry line and returns

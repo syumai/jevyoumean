@@ -68,17 +68,22 @@ func run(path string, noCache bool) int {
 	store := cache.Open()
 	ctx := context.Background()
 
-	var jevHit, jevFP, jevMiss, fbHit, fbFP, fbMiss int
+	var jevHit, jevFP, jevMiss, jevTotal, jevSkipped, fbHit, fbFP, fbMiss int
 	var latencies []time.Duration
 	for _, c := range cases {
 		exe, err := resolve.LookPath(c.command)
 		if err != nil {
 			fmt.Printf("%-10s %-12s SKIP: %v\n", c.command, c.typed, err)
+			jevSkipped++
 			continue
 		}
 		cmds := commands(ctx, store, exe, cfg, c.command, noCache)
 
+		// jevRan records whether Jev actually answered this case — an
+		// API error, missing key or empty candidate list is a skip, not
+		// a result, and stays out of the accuracy denominator.
 		jevPred := ""
+		jevRan := false
 		var lat time.Duration
 		if client != nil && len(cmds) > 0 {
 			start := time.Now()
@@ -90,13 +95,16 @@ func run(path string, noCache bool) int {
 			latencies = append(latencies, lat)
 			if err != nil {
 				fmt.Printf("%-10s %-12s JEV ERROR: %v\n", c.command, c.typed, err)
-			} else if action, cands := decide.Decide(decide.Config{
-				Mode:             "prompt",
-				SuggestThreshold: cfg.SuggestThreshold,
-				MinConfidence:    cfg.MinConfidence,
-				Interactive:      true,
-			}, ans); action != decide.PassThrough && len(cands) > 0 {
-				jevPred = cands[0].Name
+			} else {
+				jevRan = true
+				if action, cands := decide.Decide(decide.Config{
+					Mode:             "prompt",
+					SuggestThreshold: cfg.SuggestThreshold,
+					MinConfidence:    cfg.MinConfidence,
+					Interactive:      true,
+				}, ans); action != decide.PassThrough && len(cands) > 0 {
+					jevPred = cands[0].Name
+				}
 			}
 		}
 		fbPred := ""
@@ -104,14 +112,25 @@ func run(path string, noCache bool) int {
 			fbPred = m[0].Name
 		}
 
-		jevHit, jevFP, jevMiss = tally(jevPred, c.expected, jevHit, jevFP, jevMiss)
+		if jevRan {
+			jevTotal++
+			jevHit, jevFP, jevMiss = tally(jevPred, c.expected, jevHit, jevFP, jevMiss)
+		} else {
+			jevSkipped++
+		}
 		fbHit, fbFP, fbMiss = tally(fbPred, c.expected, fbHit, fbFP, fbMiss)
 		fmt.Printf("%-10s typed=%-14s expected=%-12s jev=%-12s fallback=%-12s %s\n",
 			c.command, c.typed, orDash(c.expected), orDash(jevPred), orDash(fbPred), lat.Round(time.Millisecond))
 	}
 
 	n := len(cases)
-	fmt.Printf("\njev:      %d/%d correct, %d false suggestions, %d misses\n", jevHit, n, jevFP, jevMiss)
+	if jevSkipped > 0 {
+		fmt.Printf("\njev:      %d/%d correct, %d false suggestions, %d misses (%d skipped)\n",
+			jevHit, jevTotal, jevFP, jevMiss, jevSkipped)
+	} else {
+		fmt.Printf("\njev:      %d/%d correct, %d false suggestions, %d misses\n",
+			jevHit, jevTotal, jevFP, jevMiss)
+	}
 	fmt.Printf("fallback: %d/%d correct, %d false suggestions, %d misses\n", fbHit, n, fbFP, fbMiss)
 	if len(latencies) > 0 {
 		sort.Slice(latencies, func(i, j int) bool { return latencies[i] < latencies[j] })
