@@ -1,4 +1,4 @@
-package help
+package helptext
 
 import (
 	"testing"
@@ -14,7 +14,7 @@ func names(cmds []Command) []string {
 
 func has(cmds []Command, name string) bool {
 	for _, c := range cmds {
-		if c.Name == name {
+		if c.Matches(name) {
 			return true
 		}
 	}
@@ -116,8 +116,8 @@ Basic Commands (Intermediate):
 	}
 }
 
-// No command section means "cannot judge", not "no subcommands".
-func TestParseNoSection(t *testing.T) {
+// No recognizable listing at all means "cannot judge".
+func TestParseNoCommands(t *testing.T) {
 	out := `Usage: tool [options]
 
 Options:
@@ -138,8 +138,8 @@ func TestParseRejectsProse(t *testing.T) {
 	}
 }
 
-// Alias lists collapse to the first name.
-func TestParseAliasList(t *testing.T) {
+// Comma alias lists expand so every spelling is valid.
+func TestParseCommaAliases(t *testing.T) {
 	out := `Commands:
   add, a    Add something
 `
@@ -147,7 +147,43 @@ func TestParseAliasList(t *testing.T) {
 	if len(cmds) != 1 || cmds[0].Name != "add" {
 		t.Fatalf("unexpected commands: %+v", cmds)
 	}
+	if !has(cmds, "a") || !has(cmds, "add") {
+		t.Fatalf("alias not registered: %+v", cmds[0])
+	}
 	if cmds[0].Description != "Add something" {
 		t.Fatalf("unexpected description: %q", cmds[0].Description)
+	}
+}
+
+// Pipe alias lists ("rm|del") expand the same way.
+func TestParsePipeAliases(t *testing.T) {
+	out := `Commands:
+  rm|del    Remove something
+`
+	cmds := Parse(out)
+	if len(cmds) != 1 || cmds[0].Name != "rm" {
+		t.Fatalf("unexpected commands: %+v", cmds)
+	}
+	if !has(cmds, "del") {
+		t.Fatalf("alias not registered: %+v", cmds[0])
+	}
+}
+
+// Without a section header the loose scan still picks up two-column
+// entries while skipping flags and placeholders.
+func TestParseLooseFallback(t *testing.T) {
+	out := `Usage: mytool <command> [options]
+
+  build     Build the project
+  deploy    Deploy the project
+  -v        verbose flag
+  <arg>     placeholder-ish line
+`
+	cmds := Parse(out)
+	if !has(cmds, "build") || !has(cmds, "deploy") {
+		t.Fatalf("missing commands in %v", names(cmds))
+	}
+	if has(cmds, "-v") || has(cmds, "<arg>") {
+		t.Fatalf("flag/placeholder leaked into %v", names(cmds))
 	}
 }

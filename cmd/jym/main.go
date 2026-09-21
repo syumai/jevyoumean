@@ -1,14 +1,17 @@
-// Command jym wraps arbitrary CLI commands. When the user enters a
-// subcommand that the target CLI does not document, jym asks Jev for a
-// semantic "Did you mean?" suggestion using the names and descriptions
-// found in the target's --help output.
+// Command jym wraps arbitrary CLI commands. When the user types a
+// subcommand the target CLI does not document, jym asks Jev (TypeSafe's
+// System One model) for a semantic "Did you mean?" suggestion using the
+// names and descriptions found in the target's help output.
 //
-//	jym [--debug] -- <command> [args...]
-//	jym auth <status|set|remove>
+//	jym [jym-flags] <command> [args...]
+//
+// jym has no subcommands of its own; management operations are flags so
+// wrapped commands can use any name.
 package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"os"
 	"sort"
@@ -19,16 +22,18 @@ import (
 
 	"github.com/syumai/jevyoumean/internal/cache"
 	"github.com/syumai/jevyoumean/internal/config"
-	"github.com/syumai/jevyoumean/internal/help"
+	"github.com/syumai/jevyoumean/internal/creds"
+	"github.com/syumai/jevyoumean/internal/decide"
+	"github.com/syumai/jevyoumean/internal/fallback"
+	"github.com/syumai/jevyoumean/internal/helptext"
 	"github.com/syumai/jevyoumean/internal/jev"
+	"github.com/syumai/jevyoumean/internal/resolve"
 	"github.com/syumai/jevyoumean/internal/runner"
+	"github.com/syumai/jevyoumean/internal/ui"
 )
 
 // version is set via -ldflags "-X main.version=..." at release time.
 var version = "dev"
-
-// maxDepth bounds nested subcommand detection (gh -> pr -> view).
-const maxDepth = 3
 
 func main() {
 	os.Exit(run(os.Args[1:]))
@@ -36,35 +41,50 @@ func main() {
 
 type invocation struct {
 	debug   bool
-	sub     string   // jym's own subcommand: "auth", "help", "version"
+	explain bool
+	refresh bool
+	sub     string   // jym's own operation: "help", "version", "setup", "doctor", "cache-clear", "print-mise", "completion"
 	subArgs []string // arguments to sub
-	wrapped []string // target command argv (nil when sub is set)
+	wrapped []string // target command argv
 }
 
-// parseArgs splits jym's own arguments from the wrapped command line.
-// Everything after "--" is the target command; without "--", the first
-// non-flag argument either names a jym subcommand (auth, help, version)
-// or begins the target command line.
+// parseArgs separates jym's flags from the wrapped command line.
+// Everything after "--" is the target command; otherwise the first
+// non-flag argument begins it.
 func parseArgs(args []string) (invocation, error) {
 	var inv invocation
-	for i, a := range args {
+	for i := 0; i < len(args); i++ {
+		a := args[i]
 		if a == "--" {
 			inv.wrapped = args[i+1:]
 			return inv, nil
 		}
 		if !strings.HasPrefix(a, "-") {
-			switch a {
-			case "auth", "help", "version":
-				inv.sub = a
-				inv.subArgs = args[i+1:]
-			default:
-				inv.wrapped = args[i:]
-			}
+			inv.wrapped = args[i:]
 			return inv, nil
 		}
 		switch a {
 		case "--debug":
 			inv.debug = true
+		case "--explain":
+			inv.explain = true
+		case "--refresh":
+			inv.refresh = true
+		case "--setup":
+			inv.sub = "setup"
+		case "--doctor":
+			inv.sub = "doctor"
+		case "--cache-clear":
+			inv.sub = "cache-clear"
+		case "--print-mise":
+			inv.sub, inv.subArgs = "print-mise", args[i+1:]
+			return inv, nil
+		case "--completion":
+			if i+1 >= len(args) {
+				return inv, errors.New("--completion requires a shell: bash, zsh or fish")
+			}
+			inv.sub, inv.subArgs = "completion", args[i+1:i+2]
+			return inv, nil
 		case "-h", "--help":
 			inv.sub = "help"
 			return inv, nil
@@ -72,7 +92,7 @@ func parseArgs(args []string) (invocation, error) {
 			inv.sub = "version"
 			return inv, nil
 		default:
-			return inv, fmt.Errorf("unknown option: %s", a)
+			return inv, fmt.Errorf("unknown flag: %s", a)
 		}
 	}
 	return inv, nil
@@ -92,10 +112,20 @@ func run(args []string) int {
 	case "version":
 		fmt.Println("jym " + version)
 		return 0
-	case "auth":
-		return runAuth(inv.subArgs)
+	case "setup":
+		return runSetup()
+	case "doctor":
+		return runDoctor()
+	case "cache-clear":
+		cache.Open().ClearAll()
+		fmt.Println("cache cleared")
+		return 0
+	case "print-mise":
+		return printMise(inv.subArgs)
+	case "completion":
+		return printCompletion(inv.subArgs[0])
 	}
-	if inv.sub != "" || len(inv.wrapped) == 0 {
+	if len(inv.wrapped) == 0 {
 		usage()
 		return 2
 	}
@@ -106,45 +136,44 @@ func usage() {
 	fmt.Fprint(os.Stderr, `jym - semantic "Did you mean?" for any CLI, powered by Jev
 
 Usage:
-  jym [--debug] -- <command> [args...]
-  jym [--debug] <command> [args...]
-  jym auth <status|set|remove>
-  jym help
-  jym version
+  jym [flags] -- <command> [args...]
+  jym [flags] <command> [args...]
 
-Options:
-  --debug   Print debug output to stderr (also JYM_DEBUG=1)
+Flags:
+  --setup                  Configure the TypeSafe API key interactively
+  --explain                Show extraction, request, response and decision without executing
+  --refresh                Discard the target command's help cache and refetch
+  --cache-clear            Remove the whole help cache
+  --print-mise <cmd>...    Print a [shell_alias] snippet for mise.toml
+  --completion <shell>     Print a completion script (bash, zsh, fish)
+  --doctor                 Diagnose key, API reachability, cache and TTY
+  --debug                  Print debug output to stderr (also JYM_DEBUG=1)
+  --help                   Show this help
+  --version                Show version
 
 Environment:
-  TYPESAFE_API_KEY  TypeSafe API key (overrides the config file)
+  TYPESAFE_API_KEY  TypeSafe API key (overrides the credentials file)
+  JYM_CONFIG        Alternate config file path
+  JYM_MODE          Override mode (prompt, hint, auto)
   JYM_DEBUG         Enable debug output
   JYM_API_ENDPOINT  Override the TypeSafe API endpoint (testing)
-  XDG_CONFIG_HOME   Config directory override
-  XDG_CACHE_HOME    Cache directory override
 `)
 }
 
-func debugEnabled(flag bool, cfg *config.Config) bool {
-	if flag {
-		return true
-	}
-	if v := os.Getenv("JYM_DEBUG"); v != "" && v != "0" {
-		return true
-	}
-	return cfg != nil && cfg.Debug
-}
-
-// wrap resolves the target command, checks its argument vector against
-// the documented subcommand tree, optionally asks Jev for a suggestion,
-// and finally executes the original command unchanged.
+// wrap resolves the target command, checks its arguments against the
+// documented subcommand tree, optionally asks Jev for a suggestion, and
+// executes a command line — always a real command, corrected or not.
 func wrap(inv invocation) int {
 	cfg, cfgErr := config.Load()
 	if cfgErr != nil {
 		cfg = config.Default()
 	}
-	debug := debugEnabled(inv.debug, cfg)
+	cfg.ApplyEnv()
+	if inv.debug {
+		cfg.Debug = true
+	}
 	logf := func(format string, a ...any) {
-		if debug {
+		if cfg.Debug {
 			fmt.Fprintf(os.Stderr, "[jym] "+format+"\n", a...)
 		}
 	}
@@ -152,238 +181,324 @@ func wrap(inv invocation) int {
 		logf("config error: %v", cfgErr)
 	}
 
-	apiKey := os.Getenv("TYPESAFE_API_KEY")
-	if apiKey == "" {
-		apiKey = cfg.APIKey
-	}
-	if apiKey == "" && term.IsTerminal(int(os.Stdin.Fd())) {
-		apiKey = firstRunSetup()
-	}
-	if apiKey == "" {
-		logf("no API key configured; suggestions disabled")
-	}
-
-	exe, err := runner.LookPath(inv.wrapped[0])
+	exe, err := resolve.LookPath(inv.wrapped[0])
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "jym: executable not found: %s\n", inv.wrapped[0])
+		fmt.Fprintf(os.Stderr, "jym: %v\n", err)
 		return 127
 	}
 	logf("executable: %s", exe)
 
-	store := cache.Open()
-	defer store.Flush()
-	disc := &help.Discoverer{Store: store}
+	passthrough := func() int {
+		return runner.Replace(inv.wrapped[0], exe, inv.wrapped[1:])
+	}
 
-	ctx := context.Background()
-	unknown, path, candidates, trailing := detect(ctx, disc, exe, inv.wrapped[1:], logf)
-	if unknown != "" {
-		logf("unknown subcommand: %s", unknown)
-		fmt.Fprintf(os.Stderr, "\nUnknown subcommand %q.\n", unknown)
-		if apiKey != "" {
-			suggest(ctx, cfg, apiKey, inv.wrapped[0], unknown, path, candidates, trailing, logf)
+	// Recursion guard: a jym-inside-jym invocation never intervenes.
+	if resolve.Depth() >= resolve.MaxDepth {
+		return passthrough()
+	}
+
+	// Never intervene in non-interactive contexts (scripts, CI, pipes):
+	// if stderr is not a terminal there is no one to show a suggestion to.
+	stderrTTY := term.IsTerminal(int(os.Stderr.Fd()))
+	stdinTTY := term.IsTerminal(int(os.Stdin.Fd()))
+	if !stderrTTY && !inv.explain {
+		return passthrough()
+	}
+	logf("tty: stdin=%v stderr=%v", stdinTTY, stderrTTY)
+
+	store := cache.Open()
+	if inv.refresh {
+		store.Invalidate(inv.wrapped[0])
+		logf("cache invalidated for %s", inv.wrapped[0])
+	}
+
+	apiKey, keySource := creds.Resolve()
+	if apiKey == "" && stdinTTY && !inv.explain {
+		if st, err := creds.LoadState(); err == nil && !st.SetupDeclined {
+			apiKey = firstRunSetup(cfg)
 		}
 	}
-	return runner.Run(exe, inv.wrapped[1:])
+	if apiKey == "" {
+		logf("no API key configured; offline matching only")
+	} else {
+		logf("API key source: %s", keySource)
+	}
+
+	det := detect(context.Background(), cfg, store, exe, inv.wrapped[0], inv.wrapped[1:], logf)
+	if det.unknown == "" {
+		if inv.explain {
+			printExplain(det)
+			return 0
+		}
+		return passthrough()
+	}
+
+	if inv.explain {
+		return runExplain(cfg, apiKey, inv.wrapped[0], det)
+	}
+
+	// A suggestion path: Jev when a key exists, edit distance otherwise.
+	var (
+		action  decide.Action
+		cands   []decide.Candidate
+		offline bool
+		jevOK   bool
+	)
+	if apiKey != "" {
+		client := newClient(cfg, apiKey)
+		state := jev.State{
+			Command:        inv.wrapped[0],
+			SubcommandPath: det.path,
+			Typed:          det.unknown,
+			Arguments:      jev.FilterArgs(det.trailing, cfg.ContextArgs),
+		}
+		start := time.Now()
+		ans, err := client.Suggest(context.Background(), state, det.candidates)
+		logf("jev latency: %dms", time.Since(start).Milliseconds())
+		if err != nil {
+			logf("jev request failed: %v", err)
+		} else if ans != nil {
+			jevOK = true
+			logAnswer(ans, logf)
+			action, cands = decide.Decide(decide.Config{
+				Mode:             cfg.Mode,
+				SuggestThreshold: cfg.SuggestThreshold,
+				AutoRunThreshold: cfg.AutoRunThreshold,
+				MinConfidence:    cfg.MinConfidence,
+				Interactive:      stdinTTY,
+				Denylist:         denylist(cfg),
+			}, ans)
+		}
+	}
+	if !jevOK {
+		// No key, or Jev failed: try offline edit-distance matching.
+		// When Jev answered (even __none__) its verdict stands.
+		if m := fallback.Suggest(det.unknown, det.candidates, decide.MaxCandidates); len(m) > 0 {
+			offline = true
+			for _, match := range m {
+				cands = append(cands, decide.Candidate{Name: match.Name})
+			}
+			if stdinTTY {
+				action = decide.Prompt
+			} else {
+				action = decide.Hint
+			}
+		}
+	}
+
+	switch action {
+	case decide.PassThrough:
+		return passthrough()
+	case decide.AutoRun:
+		corrected := correctedArgs(inv.wrapped[1:], det, cands[0].Name)
+		ui.ShowAutoRun(os.Stderr, ui.JoinCmd(append([]string{inv.wrapped[0]}, corrected...)...), cands[0].P)
+		return runner.Replace(inv.wrapped[0], exe, corrected)
+	case decide.Hint:
+		showSuggestion(det, inv.wrapped, cands, offline, false)
+		if offline {
+			ui.ShowOfflineNote(os.Stderr)
+		}
+		return passthrough()
+	default: // decide.Prompt
+		showSuggestion(det, inv.wrapped, cands, offline, true)
+		choice, err := ui.Prompt(os.Stdin, os.Stderr, len(cands))
+		if err != nil {
+			logf("prompt error: %v", err)
+			return passthrough()
+		}
+		switch {
+		case choice == int(ui.Cancel):
+			return 127
+		case choice == int(ui.RunAsTyped):
+			// Child execution so the exit code can be observed for learning.
+			code := runner.Run(inv.wrapped[0], exe, inv.wrapped[1:])
+			if code == 0 && det.entry != nil {
+				store.AddLearned(det.entry, det.unknown, helpArgsOf(cfg, inv.wrapped[0]))
+			}
+			return code
+		default:
+			corrected := correctedArgs(inv.wrapped[1:], det, cands[choice-1].Name)
+			return runner.Replace(inv.wrapped[0], exe, corrected)
+		}
+	}
 }
 
-// detect walks argv alongside the documented command tree and reports
-// the first non-option argument that is not a documented subcommand.
-// Every ambiguity resolves toward "no opinion": jym prefers missing a
-// suggestion over misjudging a valid command.
-func detect(ctx context.Context, d *help.Discoverer, exe string, args []string, logf func(string, ...any)) (unknown string, path []string, candidates []help.Command, trailing []string) {
+// detection is the outcome of walking argv against the command tree.
+type detection struct {
+	unknown    string             // first undocumented token ("" = all good)
+	path       []string           // matched subcommand path above it
+	trailing   []string           // args following the unknown token
+	candidates []helptext.Command // documented subcommands at that level
+	entry      *cache.Entry       // cache entry at the unknown level
+	levels     []levelInfo        // per-level detail for --explain
+}
+
+type levelInfo struct {
+	command string // "gh pr"
+	source  string // "cache" or "fetched"
+	checked string // token inspected at this level
+	found   bool
+	count   int
+}
+
+func helpArgsOf(cfg *config.Config, name string) []string {
+	return cfg.Command(name).HelpArgs
+}
+
+// detect walks the argument vector level by level. Per the design, any
+// flag before the first positional token ends detection (the token may
+// be a flag value), and so do "help", a leaf level, a learned token, an
+// extra_subcommands entry and a plugin executable named <cmd>-<token>.
+// When in doubt jym keeps quiet: false negatives beat false positives.
+func detect(ctx context.Context, cfg *config.Config, store *cache.Cache, exe, cmdName string, args []string, logf func(string, ...any)) detection {
+	var det detection
+	cmdCfg := cfg.Command(cmdName)
+	maxDepth := cfg.MaxDepth
+	if cmdCfg.MaxDepth > 0 {
+		maxDepth = cmdCfg.MaxDepth
+	}
 	remaining := args
 	for depth := 0; depth < maxDepth; depth++ {
-		idx, arg, ambiguous := firstPositional(remaining)
-		if idx < 0 {
-			return "", nil, nil, nil
+		if len(remaining) == 0 || strings.HasPrefix(remaining[0], "-") || remaining[0] == "help" {
+			return det
 		}
-		if arg == "help" {
-			// `cmd help` is a meta-command nearly everywhere.
-			return "", nil, nil, nil
+		token := remaining[0]
+		cmds, entry, source, err := commandsAt(ctx, store, exe, det.path, cmdCfg.HelpArgs)
+		lvl := levelInfo{
+			command: strings.Join(append([]string{cmdName}, det.path...), " "),
+			source:  source,
+			checked: token,
+			count:   len(cmds),
 		}
-		cmds, err := d.Commands(ctx, exe, path)
 		if err != nil {
-			logf("help discovery failed for %q: %v", exe+" "+strings.Join(path, " "), err)
-			return "", nil, nil, nil
+			logf("help discovery failed for %q: %v", lvl.command, err)
+			det.levels = append(det.levels, lvl)
+			return det
 		}
 		if len(cmds) == 0 {
-			// No documented subcommands at this level; remaining
-			// arguments are positional data, not subcommands.
-			return "", nil, nil, nil
+			// Leaf or unparseable help: cannot judge this level.
+			det.levels = append(det.levels, lvl)
+			return det
 		}
-		found := false
-		for _, c := range cmds {
-			if c.Name == arg {
-				found = true
-				break
-			}
-		}
-		if !found {
-			if ambiguous {
-				// The argument follows a bare flag, so it may be a
-				// flag value rather than a subcommand.
-				logf("argument %q may be a flag value; skipping detection", arg)
-				return "", nil, nil, nil
-			}
-			return arg, path, cmds, remaining[idx+1:]
-		}
-		logf("command path: %s -> %s", exe, strings.Join(append(append([]string{}, path...), arg), " -> "))
-		path = append(path, arg)
-		remaining = remaining[idx+1:]
-	}
-	return "", nil, nil, nil
-}
-
-// firstPositional returns the index and value of the first argument that
-// may be a subcommand. ambiguous reports whether the argument directly
-// follows a bare flag, in which case it may be the flag's value.
-func firstPositional(args []string) (idx int, arg string, ambiguous bool) {
-	for i, a := range args {
-		if a == "--" {
-			// Everything after -- is positional data.
-			return -1, "", false
-		}
-		if strings.HasPrefix(a, "-") {
-			if strings.Contains(a, "=") {
-				continue // --flag=value is self-contained
-			}
-			if i+1 < len(args) && !strings.HasPrefix(args[i+1], "-") {
-				return i + 1, args[i+1], true
-			}
+		lvl.found = matchCommand(cmds, token)
+		det.levels = append(det.levels, lvl)
+		if lvl.found || entry.HasLearned(token) || contains(cmdCfg.ExtraSubcommands, token) {
+			det.path = append(det.path, token)
+			remaining = remaining[1:]
+			logf("command path: %s", strings.Join(append([]string{cmdName}, det.path...), " -> "))
 			continue
 		}
-		return i, a, false
-	}
-	return -1, "", false
-}
-
-// suggest asks Jev for a recommendation and prints it. All failures are
-// reported on stderr only in debug mode; a failed suggestion must never
-// change the wrapped command's behavior.
-func suggest(ctx context.Context, cfg *config.Config, apiKey, cmdName, unknown string, path []string, candidates []help.Command, trailing []string, logf func(string, ...any)) {
-	logf("candidates:")
-	for _, c := range candidates {
-		logf("  %-12s %s", c.Name, c.Description)
-	}
-
-	client := jev.NewClient(apiKey, cfg.Timeout.Duration)
-	client.Endpoint = os.Getenv("JYM_API_ENDPOINT") // empty means default
-	state := jev.State{
-		Command:         strings.Join(append([]string{cmdName}, path...), " "),
-		InputSubcommand: unknown,
-		Arguments:       trailing,
-	}
-
-	start := time.Now()
-	sug, ans, err := client.Suggest(ctx, state, candidates, cfg.MinProbability, cfg.MinConfidence)
-	latency := time.Since(start)
-	if err != nil {
-		logf("jev request failed: %v", err)
-		return
-	}
-	if ans != nil {
-		logf("jev:")
-		keys := make([]string, 0, len(ans.Probabilities))
-		for k := range ans.Probabilities {
-			keys = append(keys, k)
-		}
-		sort.Strings(keys)
-		for _, k := range keys {
-			logf("  %-12s %.2f", k, ans.Probabilities[k])
-		}
-		logf("confidence: %.2f", ans.Confidence)
-		logf("latency: %dms", latency.Milliseconds())
-	}
-	if sug != nil {
-		fmt.Fprintf(os.Stderr, "\nDid you mean %q?\n", sug.Command)
-	} else {
-		logf("no suggestion met the thresholds (min_probability=%.2f, min_confidence=%.2f)", cfg.MinProbability, cfg.MinConfidence)
-	}
-}
-
-// firstRunSetup interactively asks for a TypeSafe API key once and stores
-// it in the local configuration. It returns the key for immediate use.
-func firstRunSetup() string {
-	fmt.Fprint(os.Stderr, "\njym needs a TypeSafe API key to use Jev.\n\nTypeSafe API key: ")
-	keyBytes, err := term.ReadPassword(int(os.Stdin.Fd()))
-	fmt.Fprintln(os.Stderr)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "jym: setup skipped: %v\n", err)
-		return ""
-	}
-	key := strings.TrimSpace(string(keyBytes))
-	if key == "" {
-		fmt.Fprintln(os.Stderr, "jym: no API key provided; continuing without suggestions.")
-		return ""
-	}
-	if err := config.SetAPIKey(key); err != nil {
-		fmt.Fprintf(os.Stderr, "jym: could not save API key: %v\n", err)
-		return key // still usable for this run
-	}
-	fmt.Fprintln(os.Stderr, "\n✓ API key saved.")
-	return key
-}
-
-// runAuth implements `jym auth status|set|remove`.
-func runAuth(args []string) int {
-	if len(args) == 0 {
-		authUsage()
-		return 2
-	}
-	switch args[0] {
-	case "status":
-		configured := os.Getenv("TYPESAFE_API_KEY") != ""
-		if !configured {
-			if cfg, err := config.Load(); err == nil {
-				configured = cfg.APIKey != ""
+		if len(det.path) == 0 {
+			// Plugin convention: an executable named <cmd>-<token>.
+			if _, err := resolve.LookPath(cmdName + "-" + token); err == nil {
+				logf("%q resolved via plugin executable %s-%s", token, cmdName, token)
+				return det
 			}
 		}
-		if configured {
-			fmt.Println("API key: configured")
-		} else {
-			fmt.Println("API key: not configured")
+		det.unknown, det.trailing, det.candidates, det.entry = token, remaining[1:], cmds, entry
+		return det
+	}
+	return det
+}
+
+// commandsAt returns the documented subcommands at a command path, from
+// cache or by fetching help. A freshly fetched level is cached including
+// its is_leaf marker.
+func commandsAt(ctx context.Context, store *cache.Cache, exe string, path, helpArgs []string) ([]helptext.Command, *cache.Entry, string, error) {
+	if e, ok := store.Load(exe, path, helpArgs); ok {
+		if e.IsLeaf {
+			return nil, e, "cache", nil
 		}
-		return 0
-	case "set":
-		if !term.IsTerminal(int(os.Stdin.Fd())) {
-			fmt.Fprintln(os.Stderr, "jym: auth set requires a terminal")
-			return 1
+		return e.Subcommands, e, "cache", nil
+	}
+	cmds, err := helptext.Fetch(ctx, exe, path, helpArgs)
+	if err != nil {
+		return nil, nil, "", err
+	}
+	e := &cache.Entry{
+		Executable:  exe,
+		Path:        append([]string{}, path...),
+		IsLeaf:      len(cmds) == 0,
+		Subcommands: cmds,
+	}
+	store.Save(e, helpArgs)
+	return cmds, e, "fetched", nil
+}
+
+func matchCommand(cmds []helptext.Command, token string) bool {
+	for _, c := range cmds {
+		if c.Matches(token) {
+			return true
 		}
-		fmt.Fprint(os.Stderr, "TypeSafe API key: ")
-		keyBytes, err := term.ReadPassword(int(os.Stdin.Fd()))
-		fmt.Fprintln(os.Stderr)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "jym: %v\n", err)
-			return 1
+	}
+	return false
+}
+
+func contains(list []string, s string) bool {
+	for _, v := range list {
+		if v == s {
+			return true
 		}
-		key := strings.TrimSpace(string(keyBytes))
-		if key == "" {
-			fmt.Fprintln(os.Stderr, "jym: empty API key")
-			return 1
-		}
-		if err := config.SetAPIKey(key); err != nil {
-			fmt.Fprintf(os.Stderr, "jym: %v\n", err)
-			return 1
-		}
-		fmt.Fprintln(os.Stderr, "API key saved.")
-		return 0
-	case "remove":
-		if err := config.RemoveAPIKey(); err != nil {
-			fmt.Fprintf(os.Stderr, "jym: %v\n", err)
-			return 1
-		}
-		fmt.Println("API key removed")
-		return 0
-	default:
-		authUsage()
-		return 2
+	}
+	return false
+}
+
+func denylist(cfg *config.Config) map[string]bool {
+	set := make(map[string]bool, len(decide.DefaultDenylist)+len(cfg.Denylist))
+	for k := range decide.DefaultDenylist {
+		set[k] = true
+	}
+	for _, k := range cfg.Denylist {
+		set[k] = true
+	}
+	return set
+}
+
+func newClient(cfg *config.Config, apiKey string) *jev.Client {
+	c := jev.NewClient(apiKey, cfg.Timeout())
+	c.Model = cfg.Model
+	c.Endpoint = os.Getenv("JYM_API_ENDPOINT") // empty means default
+	return c
+}
+
+// showSuggestion renders the candidate list; render maps a candidate
+// name to the full corrected command line.
+func showSuggestion(det detection, wrapped []string, cands []decide.Candidate, offline, prompt bool) {
+	names := make([]string, len(cands))
+	probs := make([]float64, len(cands))
+	for i, c := range cands {
+		names[i], probs[i] = c.Name, c.P
+	}
+	context := strings.Join(append([]string{wrapped[0]}, det.path...), " ")
+	render := func(name string) string {
+		return ui.JoinCmd(append([]string{wrapped[0]}, correctedArgs(wrapped[1:], det, name)...)...)
+	}
+	if prompt {
+		ui.ShowPrompt(os.Stderr, det.unknown, context, names, probs, render, offline)
+	} else {
+		ui.ShowHint(os.Stderr, det.unknown, context, names, probs, render, offline)
 	}
 }
 
-func authUsage() {
-	fmt.Fprint(os.Stderr, `Usage:
-  jym auth status   Show whether an API key is configured
-  jym auth set      Prompt for and store a TypeSafe API key
-  jym auth remove   Remove the stored API key
-`)
+// correctedArgs replaces the unknown token with the chosen subcommand.
+// The unknown token sits exactly at position len(det.path): detection
+// bails on any flag before a candidate, so the matched args are exactly
+// the path.
+func correctedArgs(args []string, det detection, choice string) []string {
+	out := append([]string{}, args...)
+	out[len(det.path)] = choice
+	return out
+}
+
+func logAnswer(ans *jev.ChoiceAnswer, logf func(string, ...any)) {
+	logf("jev:")
+	keys := make([]string, 0, len(ans.Probabilities))
+	for k := range ans.Probabilities {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+	for _, k := range keys {
+		logf("  %-14s %.2f", k, ans.Probabilities[k])
+	}
+	logf("confidence: %.2f", ans.Confidence)
 }

@@ -1,0 +1,13 @@
+# command	typed	expected    (empty expected = must not suggest)
+git	stauts	status
+git	chekout	checkout
+git	remove	rm
+git	undo	restore
+gh	vie	view
+kubectl	del	delete
+kubectl	gt	get
+docker	psx	ps
+docker	exe	exec
+git	banana	
+gh	xyz	
+kubectl	qwerty	

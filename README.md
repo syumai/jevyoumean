@@ -1,25 +1,21 @@
 # jevyoumean / `jym`
 
 `jym` wraps any CLI command. When you enter a subcommand the CLI does not
-document, it reads the CLI's `--help` output and asks
-[Jev](https://typesafe.ai) — TypeSafe's System One model — for a semantic
-`Did you mean?` suggestion.
+document, it reads the CLI's help output and asks
+[Jev](https://typesafe.ai) — TypeSafe's System One model — which
+documented subcommand you most likely meant.
 
 ```console
-$ jym -- gh pr vie
-
-Unknown subcommand "vie".
-
-Did you mean "view"?
+$ git remove foo.txt          # actually an alias for: jym git remove foo.txt
+jym: "remove" is not a git subcommand. Did you mean?
+  1) git rm foo.txt   0.93
+  [Enter] run 1   [o] run as typed   [n] cancel
 ```
 
-Unlike a conventional edit-distance `Did you mean?`, `jym` matches on
-*intent*: it hands Jev the candidate subcommand names plus their help
-descriptions. `show` and `view` share no characters worth mentioning, but
-Jev knows they mean the same thing.
-
-This is a small experiment: can semantic distance replace edit distance
-for CLI "Did you mean?" suggestions?
+Unlike an edit-distance `Did you mean?`, `jym` matches on *intent*: it
+hands Jev the candidate subcommand names plus their help descriptions.
+`remove → rm`, `list → ps`, `undo → restore` are close in meaning but far
+in spelling — that is the gap this experiment targets.
 
 ## Install
 
@@ -35,140 +31,165 @@ $ jym -- gh pr view 123
 $ jym -- kubectl delete pod foo
 ```
 
-The `--` separator is recommended but optional (`jym git switch main`
-also works). Use `--` whenever the target command's name collides with
-jym's own subcommands (`auth`, `help`, `version`).
+The `--` separator is optional but recommended. `jym` itself has no
+subcommands — management operations are flags, so wrapping a command
+named `auth` or `setup` never collides.
 
 The intended use is as a project-local shell alias, e.g. with
 [mise](https://mise.jdx.dev):
 
 ```toml
+# mise.toml
 [shell_alias]
-gh = "jym -- gh"
+git = "jym -- git"
+gh  = "jym -- gh"
 kubectl = "jym -- kubectl"
 ```
 
-`jym` resolves the target with `exec.LookPath`, so the alias never
-recursively expands.
+`jym --print-mise git gh kubectl` emits that snippet. `jym` resolves the
+target with a PATH lookup, so the alias never recursively expands (a shim
+or symlink to `jym` is skipped, and `JYM_DEPTH` breaks any residual
+loop).
 
-## First-run setup
+mise shell aliases only apply in `mise activate`d interactive shells —
+which is exactly where `jym` intervenes anyway.
 
-On first run without a configured key, `jym` asks for a TypeSafe API key
-(input is not echoed):
+## Flags
 
-```console
-$ jym -- gh pr view 123
-
-jym needs a TypeSafe API key to use Jev.
-
-TypeSafe API key: **************
-
-✓ API key saved.
-```
-
-The key is looked up in this order:
-
-1. `TYPESAFE_API_KEY` environment variable
-2. `jym`'s local configuration file
-
-```console
-$ jym auth status    # API key: configured
-$ jym auth set       # prompt and store
-$ jym auth remove    # delete the stored key
-```
+| Flag                       | Action                                                        |
+| -------------------------- | ------------------------------------------------------------- |
+| `--setup`                  | Prompt for and store the TypeSafe API key (verified, hidden)  |
+| `--explain`                | Show extraction, Jev request/response and decision; no exec   |
+| `--refresh`                | Discard the wrapped command's help cache and refetch          |
+| `--cache-clear`            | Remove the whole help cache                                   |
+| `--print-mise <cmd>...`    | Print a `[shell_alias]` snippet for mise.toml                 |
+| `--completion <shell>`     | Print a delegating completion script (bash, zsh, fish)        |
+| `--doctor`                 | Diagnose key, API reachability, cache and TTY state           |
+| `--debug`                  | Debug output on stderr (also `JYM_DEBUG=1`)                   |
+| `--version`, `--help`      |                                                               |
 
 ## How it works
 
-Jev is only called when needed — a valid command never triggers a
-network request:
+Check-first, never run-first: `jym` inspects the argument vector against
+the documented subcommand tree *before* executing, so side effects can
+never run twice.
 
-1. `jym -- gh pr view 123` → resolve `gh` → `gh --help` says `pr` exists
-   → `gh pr --help` says `view` exists → `exec gh pr view 123`. No
-   network access.
-2. `jym -- gh pur request` → `pur` is not documented → Jev `Choice` over
-   the documented candidates (plus a mandatory `__none__` escape hatch)
-   → `Did you mean "repo"?` if the answer clears the thresholds.
+1. **Gate** — if stderr is not a TTY (scripts, CI, pipes), or `JYM_DEPTH`
+   shows jym inside jym, the command executes untouched.
+2. **Detect** — the first non-flag argument is the subcommand candidate.
+   If flags precede it (the token may be a flag value), jym passes
+   through. A match recurses into `<cmd> <sub> --help` (depth limit:
+   `max_depth`, default 2). Tokens confirmed before ("learned"),
+   configured `extra_subcommands`, and `<cmd>-<token>` plugin
+   executables count as valid.
+3. **Ask** — only for an unknown token, `jym` sends one Jev `Choice`
+   question whose criteria are the candidate names + help descriptions +
+   a mandatory `__none__` escape hatch. More than 254 candidates shard
+   into a two-phase choice.
+4. **Decide** — by mode:
+   - `prompt` (default): list up to 3 candidates ≥ `suggest_threshold`,
+     wait for one key — `Enter`/`1`-`3` run the corrected command, `o`
+     runs as typed, `n`/`Esc`/`Ctrl-C` cancel (exit 127).
+   - `hint`: print the list, run as typed.
+   - `auto`: run the correction only when p ≥ `auto_run_threshold` and
+     the winner is not denylisted (`rm`, `delete`, `destroy`, `reset`,
+     `push`, ...); otherwise fall back to prompt.
+   - Without a TTY stdin, `prompt`/`auto` degrade to `hint`.
+5. **Execute** — on Unix via `syscall.Exec` (native signals, TTY, exit
+   codes, job control); elsewhere via a child process with the exit code
+   propagated.
 
-`jym` only recommends; it never auto-corrects. The original command is
-always executed unchanged, so the target CLI still prints its own error
-and exit code.
+Jev is only called on the unknown-subcommand path — valid commands never
+touch the network. The hot path is one cached JSON read, well under 5ms.
 
-## Subcommand detection
+## Offline fallback
 
-The first non-option argument is treated as the subcommand, recursively
-(depth limit: 3). Heuristics apply: `--flag=value` is self-contained, a
-bare flag makes the next argument ambiguous (it may be a flag value), and
-`--` ends option parsing. When in doubt, `jym` keeps quiet — false
-negatives are preferred over false positives.
+Without an API key or on API failure, `jym` falls back to edit-distance
+matching (edit distance ≤ 2 or ≤ len/3, plus prefix matches),
+shown without probabilities and marked `(offline)`. When Jev answers —
+even `__none__` — its verdict stands and no fallback runs.
 
-Help parsing is heuristic: sections like `Commands:`,
-`Available Commands:`, `CORE COMMANDS`, `Subcommands:` are recognized,
-with both `name   description` and `name:   description` entry formats.
+"Run as typed" on a command that then exits 0 records the token as
+`learned` in the cache, so undocumented-but-valid subcommands (private
+aliases, plugins) stop prompting.
 
-## Cache
+## First-run setup
 
-Parsed help output is cached under `~/.cache/jevyoumean/`
-(`$XDG_CACHE_HOME/jevyoumean`), keyed by executable path and mtime. A
-reinstalled or upgraded CLI automatically invalidates the cache.
+On the first interactive run without a key, `jym` offers setup once
+(input hidden, verified with a minimal API call, Enter to skip).
+Skipping is recorded in `$XDG_STATE_HOME/jym/state.json` and never
+re-asked; `jym --setup` re-runs it anytime.
+
+Key resolution order:
+
+1. `TYPESAFE_API_KEY` environment variable
+2. `$XDG_CONFIG_HOME/jym/credentials.toml` (mode `0600`)
 
 ## Configuration
 
-`$XDG_CONFIG_HOME/jevyoumean/config.toml` (or
-`~/.config/jevyoumean/config.toml` on macOS), file mode `0600`:
+`$XDG_CONFIG_HOME/jym/config.toml` (or `~/.config/jym/config.toml`;
+`JYM_CONFIG` overrides the path so mise `[env]` can switch per project):
 
 ```toml
-api_key = "..."
-min_probability = 0.60
-min_confidence  = 0.50
-timeout         = "1s"
-debug           = false
+mode = "prompt"              # prompt | hint | auto
+suggest_threshold = 0.30
+auto_run_threshold = 0.95
+min_confidence    = 0.50     # Jev answer confidence gate
+timeout_ms        = 1500
+max_depth         = 2        # nested subcommand inspection depth
+context_args      = "none"   # none | flags | all — args sent to the API
+model             = "jev-latest"
+debug             = false
+denylist          = []       # additional subcommands never auto-run
+
+[commands.git]
+help_args = ["help", "-a"]         # git --help omits most subcommands
+extra_subcommands = ["co", "br"]   # your aliases, never prompted on
+
+[commands.kubectl]
+max_depth = 3
 ```
 
-| Setting           | Default | Meaning                                        |
-| ----------------- | ------- | ---------------------------------------------- |
-| `min_probability` | `0.60`  | Minimum probability of Jev's top choice        |
-| `min_confidence`  | `0.50`  | Minimum overall confidence of the answer       |
-| `timeout`         | `1s`    | Client-side timeout for the TypeSafe API       |
+Environment overrides: `JYM_MODE`, `JYM_DEBUG`, `JYM_API_ENDPOINT`
+(endpoint override, for tests).
 
-If `__none__` wins or the thresholds are not met, no suggestion is shown.
-If the API call fails or times out, the suggestion is silently skipped —
-a broken `jym` must never break the wrapped command.
+## Cache
 
-## Debug mode
+`$XDG_CACHE_HOME/jym/<command>/<key>.json`, keyed by resolved executable
+path + mtime + size + subcommand path + `help_args`. Entries carry
+`fetched_at` (7-day TTL), `is_leaf`, `subcommands` and `learned`.
+A rebuilt binary invalidates automatically; corruption is ignored —
+the cache is fail-open.
+
+## Privacy
+
+Sent to the TypeSafe API: the command name, subcommand path, the mistyped
+token, and the candidate subcommand names + descriptions. Arguments are
+not sent by default (`context_args = "none"`); `flags` sends flag names
+only, `all` sends everything. Note that wrapping an internal CLI sends
+its subcommand structure to TypeSafe.
+
+## Evaluation
+
+`jym-eval` measures the experiment — semantic vs. edit-distance matching:
 
 ```console
-$ JYM_DEBUG=1 jym -- gh pr show 123
-# or
-$ jym --debug -- gh pr show 123
+$ cat evals.tsv
+gh	vie	view
+kubectl	del	delete
+git	banana	            # empty expected = should NOT suggest
+$ jym-eval evals.tsv
 ```
 
-```text
-[jym] executable: /opt/homebrew/bin/gh
-[jym] command path: gh -> pr
-[jym] unknown subcommand: show
-[jym] candidates:
-[jym]   checkout     Check out a pull request
-[jym]   view         View a pull request
-[jym] jev:
-[jym]   __none__     0.01
-[jym]   view         0.91
-[jym] confidence: 0.86
-[jym] latency: 112ms
-```
-
-`JYM_API_ENDPOINT` overrides the API endpoint (useful for tests).
+Each row is `command <TAB> typed <TAB> expected`. The report shows
+correct/false-suggestion/miss counts for Jev and for the fallback, plus
+latency percentiles.
 
 ## Scope
 
-Implemented: single Go binary, `jym -- command`, first-run API key setup,
-`TYPESAFE_API_KEY`, TypeSafe HTTP API + Jev `Choice`, `--help`
-introspection, common help formats, nested subcommand detection, cache,
-configurable thresholds, `__none__`, debug output, stdio and exit-code
-passthrough.
-
-Deliberately not implemented: shell completion, auto-correction, full CLI
-grammar parsing, option/argument typo correction, natural-language
-command generation, OS keychain integration.
+Not implemented (by design): flag/argument correction, command-name
+correction (`gti`→`git`), intervention in non-interactive environments,
+natural-language command generation, OS keychain integration.
 
 ## License
 

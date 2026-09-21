@@ -1,8 +1,12 @@
-// Package config loads and saves jym's local configuration file.
+// Package config loads jym's configuration file.
+//
+// The file lives at $XDG_CONFIG_HOME/jym/config.toml (or
+// ~/.config/jym/config.toml). JYM_CONFIG points at an alternate file,
+// which lets mise switch settings per project via [env]. Settings are
+// never read implicitly from repository files.
 package config
 
 import (
-	"bytes"
 	"errors"
 	"fmt"
 	"os"
@@ -12,61 +16,99 @@ import (
 	"github.com/BurntSushi/toml"
 )
 
-// Default values for the recommendation policy and the Jev client.
+// Default values for the decision policy and the Jev client.
 const (
-	DefaultMinProbability = 0.60
-	DefaultMinConfidence  = 0.50
-	DefaultTimeout        = time.Second
+	DefaultMode             = "prompt"
+	DefaultSuggestThreshold = 0.30
+	DefaultAutoRunThreshold = 0.95
+	DefaultMinConfidence    = 0.50
+	DefaultTimeoutMS        = 1500
+	DefaultMaxDepth         = 2
+	DefaultContextArgs      = "none"
+	DefaultModel            = "jev-latest"
 )
 
-// Duration is a time.Duration that marshals to a TOML string such as "1s".
-type Duration struct {
-	time.Duration
+// CommandConfig holds per-command overrides keyed by command name.
+type CommandConfig struct {
+	HelpArgs         []string `toml:"help_args"`
+	ExtraSubcommands []string `toml:"extra_subcommands"`
+	MaxDepth         int      `toml:"max_depth"` // 0 means inherit the global value
 }
 
-// UnmarshalText parses a duration string like "1s" or "500ms".
-func (d *Duration) UnmarshalText(text []byte) error {
-	v, err := time.ParseDuration(string(text))
-	if err != nil {
-		return err
-	}
-	d.Duration = v
-	return nil
-}
-
-// MarshalText renders the duration using time.Duration.String.
-func (d Duration) MarshalText() ([]byte, error) {
-	return []byte(d.String()), nil
-}
-
-// Config holds jym's local configuration.
+// Config holds jym's configuration.
 type Config struct {
-	APIKey         string   `toml:"api_key"`
-	MinProbability float64  `toml:"min_probability"`
-	MinConfidence  float64  `toml:"min_confidence"`
-	Timeout        Duration `toml:"timeout"`
-	Debug          bool     `toml:"debug"`
+	Mode             string   `toml:"mode"`
+	SuggestThreshold float64  `toml:"suggest_threshold"`
+	AutoRunThreshold float64  `toml:"auto_run_threshold"`
+	MinConfidence    float64  `toml:"min_confidence"`
+	TimeoutMS        int      `toml:"timeout_ms"`
+	MaxDepth         int      `toml:"max_depth"`
+	ContextArgs      string   `toml:"context_args"`
+	Model            string   `toml:"model"`
+	Debug            bool     `toml:"debug"`
+	Denylist         []string `toml:"denylist"` // added to the built-in denylist
+
+	Commands map[string]CommandConfig `toml:"commands"`
 }
 
-// Default returns a Config with the documented default policy.
+// Default returns a Config with the documented defaults.
 func Default() *Config {
 	return &Config{
-		MinProbability: DefaultMinProbability,
-		MinConfidence:  DefaultMinConfidence,
-		Timeout:        Duration{DefaultTimeout},
+		Mode:             DefaultMode,
+		SuggestThreshold: DefaultSuggestThreshold,
+		AutoRunThreshold: DefaultAutoRunThreshold,
+		MinConfidence:    DefaultMinConfidence,
+		TimeoutMS:        DefaultTimeoutMS,
+		MaxDepth:         DefaultMaxDepth,
+		ContextArgs:      DefaultContextArgs,
+		Model:            DefaultModel,
+		Commands:         map[string]CommandConfig{},
 	}
 }
 
-// Path returns the configuration file path, preferring XDG_CONFIG_HOME.
-func Path() (string, error) {
+// Timeout returns the configured client-side API timeout.
+func (c *Config) Timeout() time.Duration {
+	return time.Duration(c.TimeoutMS) * time.Millisecond
+}
+
+// BuiltinCommands holds shipped per-command overrides. git's --help
+// lists only the most common subcommands, so it uses `help -a` instead.
+var BuiltinCommands = map[string]CommandConfig{
+	"git": {HelpArgs: []string{"help", "-a"}},
+}
+
+// Command returns the per-command overrides for name: user config first,
+// then the shipped builtins.
+func (c *Config) Command(name string) CommandConfig {
+	if cc, ok := c.Commands[name]; ok {
+		return cc
+	}
+	return BuiltinCommands[name]
+}
+
+// Dir returns the configuration directory, preferring XDG_CONFIG_HOME.
+func Dir() (string, error) {
 	if xdg := os.Getenv("XDG_CONFIG_HOME"); xdg != "" {
-		return filepath.Join(xdg, "jevyoumean", "config.toml"), nil
+		return filepath.Join(xdg, "jym"), nil
 	}
 	home, err := os.UserHomeDir()
 	if err != nil {
 		return "", err
 	}
-	return filepath.Join(home, ".config", "jevyoumean", "config.toml"), nil
+	return filepath.Join(home, ".config", "jym"), nil
+}
+
+// Path returns the configuration file path. JYM_CONFIG wins, then
+// XDG_CONFIG_HOME, then ~/.config.
+func Path() (string, error) {
+	if p := os.Getenv("JYM_CONFIG"); p != "" {
+		return p, nil
+	}
+	dir, err := Dir()
+	if err != nil {
+		return "", err
+	}
+	return filepath.Join(dir, "config.toml"), nil
 }
 
 // Load reads the configuration file. A missing file yields the defaults.
@@ -85,42 +127,12 @@ func Load() (*Config, error) {
 	return cfg, nil
 }
 
-// Save writes the configuration file with mode 0600.
-func Save(cfg *Config) error {
-	path, err := Path()
-	if err != nil {
-		return err
+// ApplyEnv overlays the JYM_* environment overrides onto cfg.
+func (c *Config) ApplyEnv() {
+	if v := os.Getenv("JYM_MODE"); v != "" {
+		c.Mode = v
 	}
-	if err := os.MkdirAll(filepath.Dir(path), 0o700); err != nil {
-		return err
+	if v := os.Getenv("JYM_DEBUG"); v != "" && v != "0" {
+		c.Debug = true
 	}
-	var buf bytes.Buffer
-	if err := toml.NewEncoder(&buf).Encode(cfg); err != nil {
-		return err
-	}
-	if err := os.WriteFile(path, buf.Bytes(), 0o600); err != nil {
-		return err
-	}
-	// Enforce permissions even when the file already existed.
-	return os.Chmod(path, 0o600)
-}
-
-// SetAPIKey stores the API key while preserving other settings.
-func SetAPIKey(key string) error {
-	cfg, err := Load()
-	if err != nil {
-		return err
-	}
-	cfg.APIKey = key
-	return Save(cfg)
-}
-
-// RemoveAPIKey clears the stored API key while preserving other settings.
-func RemoveAPIKey() error {
-	cfg, err := Load()
-	if err != nil {
-		return err
-	}
-	cfg.APIKey = ""
-	return Save(cfg)
 }
