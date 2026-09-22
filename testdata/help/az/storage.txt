@@ -1,0 +1,33 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/az
+# args: 
+
+Group
+    az storage : Manage Azure Cloud Storage resources.
+
+Subgroups:
+    account                  : Manage storage accounts.
+    advanced-platform-metric : Manage Advanced Platform Metric.
+    blob                     : Manage object storage for unstructured data (blobs).
+    container                : Manage blob storage containers.
+    container-rm             : Manage Azure containers using the Microsoft.Storage resource
+                               provider.
+    cors                     : Manage storage service Cross-Origin Resource Sharing (CORS).
+    directory                : Manage file storage directories.
+    entity                   : Manage table storage entities.
+    file                     : Manage file shares.
+    fs                       : Manage file systems in Azure Data Lake Storage Gen2 account.
+    logging                  : Manage storage service logging information.
+    message        [Preview] : Manage queue storage messages.
+    metrics                  : Manage storage service metrics.
+    queue          [Preview] : Manage storage queues.
+    share                    : Manage file shares.
+    share-rm                 : Manage Azure file shares using the Microsoft.Storage resource
+                               provider.
+    sku                      : Manage Sku.
+    table                    : Manage NoSQL key-value storage.
+
+Commands:
+    copy                     : Copy files or directories to or from Azure storage.
+    remove                   : Delete blobs or files from Azure Storage.
+

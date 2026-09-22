@@ -29,6 +29,10 @@ gh	issue	capture	ok	create,list,status,close,comment,edit,view	-	-
 gh	run	capture	ok	cancel,delete,download,list,rerun,view,watch	-	-
 gh	run/rerun	capture	leaf	-	-	leaf command, no subcommands
 gh	workflow	capture	ok	disable,enable,list,run,view	-	-
+gh	secret	capture	ok	delete,list,set	-	-
+gh	variable	capture	ok	delete,get,list,set	-	-
+gh	auth	capture	ok	login,logout,refresh,setup-git,status,switch,token	-	-
+gh	repo	capture	ok	create,list,clone,delete,fork,rename,sync,view	-	-
 gh	release	capture	ok	create,list,delete,download,edit,upload,view	-	-
 gh	extension	capture	ok	browse,create,exec,install,list,remove,search,upgrade	-	-
 gh	codespace	capture	ok	code,cp,create,delete,list,ssh,stop	-	-
@@ -36,6 +40,8 @@ gh	cache	capture	ok	delete,list	-	-
 go	-	capture	ok	build,test,run,mod,get,install,vet,work	-	-
 go	mod	capture	ok	download,edit,graph,init,tidy,vendor,verify,why	-	-
 go	work	capture	ok	edit,init,sync,use,vendor	-	-
+go	mod	capture	ok	download,edit,graph,init,tidy,vendor,verify,why	-	-
+go	tool	capture	ok	asm,cgo,compile,cover,fix,link,vet	-	bare-name col-0 lines; help_args: bare
 cargo	-	capture	ok	build,check,run,test,new,install,publish	-	-
 cargo	install	capture	leaf	-	-	leaf command, no subcommands
 cargo	doc	capture	leaf	-	-	leaf command, no subcommands
@@ -59,10 +65,14 @@ aws	s3api	capture	ok	create-bucket,delete-bucket,get-object,list-buckets,list-ob
 aws	dynamodb	capture	ok	create-table,delete-table,describe-table,list-tables,put-item,scan	-	o bullets under AVAILABLE COMMANDS
 aws	sts	capture	ok	assume-role,get-caller-identity,get-session-token	-	o bullets under AVAILABLE COMMANDS
 gcloud	-	local	ok	auth,config,compute,container,functions	-	parses; fixture not committed (proprietary)
-gcloud	config	local	bogus	get,list,set,unset	core,json,disable_color	config properties leak as commands
+gcloud	config	local	ok	get,list,set,unset	-	parses; fixture not committed (proprietary); AVAILABLE PROPERTIES skipped
 az	-	capture	ok	account,aks,acr,configure,find,storage,group,vm	-	-
+az	group	capture	ok	create,delete,exists,export,list,show,update,wait	-	-
+az	storage	capture	ok	account,blob,container,file,queue,share,table	-	-
 kubectl	-	capture	ok	get,apply,describe,delete,logs,exec,create,rollout	-	-
 kubectl	config	capture	ok	current-context,get-contexts,set-context,use-context,view	-	-
+kubectl	create	capture	ok	configmap,cronjob,deployment,job,namespace,secret,service	-	-
+kubectl	set	capture	ok	env,image,resources,selector,serviceaccount,subject	-	-
 kubectl	rollout	capture	ok	history,pause,restart,resume,status,undo	-	-
 kubectl	api-resources	capture	leaf	-	-	leaf command, no subcommands
 helm	-	capture	ok	install,list,upgrade,uninstall,repo,search,status	-	-

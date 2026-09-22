@@ -1,0 +1,12 @@
+# captured 2026-09-22
+# exe: go
+# args: (bare invocation prints the tool list)
+
+asm
+cgo
+compile
+cover
+fix
+link
+preprofile
+vet

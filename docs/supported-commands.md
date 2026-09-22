@@ -19,7 +19,10 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `aws s3api` — ok (94 parsed; o bullets under AVAILABLE COMMANDS)
   - [x] `aws dynamodb` — ok (52 parsed; o bullets under AVAILABLE COMMANDS)
   - [x] `aws sts` — ok (9 parsed; o bullets under AVAILABLE COMMANDS)
-- [x] `az` — ok (100 parsed)
+- **az**
+  - [x] `az` — ok (100 parsed)
+  - [x] `az group` — ok (8 parsed)
+  - [x] `az storage` — ok (20 parsed)
 - [x] `brew` — ok (9 parsed; tool-prefixed usage lines)
 - **bun**
   - [x] `bun` — ok (25 parsed)
@@ -46,7 +49,7 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `docker plugin` — ok (10 parsed)
 - **gcloud**
   - [x] `gcloud` — ok (fixture not committed; parses; fixture not committed (proprietary))
-  - [ ] `gcloud config` — bogus (fixture not committed; config properties leak as commands)
+  - [x] `gcloud config` — ok (fixture not committed; parses; fixture not committed (proprietary); AVAILABLE PROPERTIES skipped)
 - **gh**
   - [x] `gh` — ok (36 parsed)
   - [x] `gh pr` — ok (17 parsed; prose headings rejected)
@@ -56,6 +59,10 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `gh run` — ok (7 parsed)
   - [x] `gh run/rerun` — leaf (leaf command, no subcommands)
   - [x] `gh workflow` — ok (5 parsed)
+  - [x] `gh secret` — ok (3 parsed)
+  - [x] `gh variable` — ok (4 parsed)
+  - [x] `gh auth` — ok (7 parsed)
+  - [x] `gh repo` — ok (16 parsed)
   - [x] `gh release` — ok (8 parsed)
   - [x] `gh extension` — ok (8 parsed)
   - [x] `gh codespace` — ok (13 parsed)
@@ -72,6 +79,8 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `go` — ok (37 parsed)
   - [x] `go mod` — ok (8 parsed)
   - [x] `go work` — ok (5 parsed)
+  - [x] `go mod` — ok (8 parsed)
+  - [x] `go tool` — ok (8 parsed; bare-name col-0 lines; help_args: bare)
 - [ ] `gradle` — out-of-scope (fixture not committed; goals defined by plugins, not in --help)
 - **helm**
   - [x] `helm` — ok (26 parsed)
@@ -83,6 +92,8 @@ yields nothing, **bogus** extracts words that are not subcommands,
 - **kubectl**
   - [x] `kubectl` — ok (42 parsed)
   - [x] `kubectl config` — ok (15 parsed)
+  - [x] `kubectl create` — ok (17 parsed)
+  - [x] `kubectl set` — ok (6 parsed)
   - [x] `kubectl rollout` — ok (6 parsed)
   - [x] `kubectl api-resources` — leaf (leaf command, no subcommands)
 - [ ] `make` — out-of-scope (fixture not committed; no subcommand concept)
@@ -112,7 +123,7 @@ yields nothing, **bogus** extracts words that are not subcommands,
 - **terraform**
   - [x] `terraform` — ok (fixture not committed; parses; fixture not committed (BUSL))
   - [x] `terraform state` — ok (fixture not committed; parses; fixture not committed (BUSL))
-- [x] `tmux` — ok (85 parsed; col-0 name (alias) entries; help_args: list-commands)
+- [x] `tmux` — ok (86 parsed; col-0 name (alias) entries; help_args: list-commands)
 - **uv**
   - [x] `uv` — ok (23 parsed)
   - [x] `uv tool` — ok (8 parsed)
@@ -123,7 +134,6 @@ yields nothing, **bogus** extracts words that are not subcommands,
 
 ## Totals
 
-- ok: 73
+- ok: 84
 - leaf: 11
-- bogus: 1
 - out-of-scope: 8
