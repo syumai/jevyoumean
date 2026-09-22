@@ -1,0 +1,29 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/netlify
+# args: 
+Handle various project operations
+
+USAGE
+  $ netlify sites [options]
+
+OPTIONS
+  --filter <app>     For monorepos, specify the name of the application to run
+                     the command in
+  -h, --help         display help for command
+  --debug            Print debugging information
+  --auth <token>     Netlify auth token - can be used to run this command
+                     without logging in
+
+DESCRIPTION
+  The sites command will help you manage all your projects
+
+EXAMPLES
+  $ netlify sites:create --name my-new-project
+  $ netlify sites:list
+
+COMMANDS
+  $ sites:create     Create an empty project (advanced)
+  $ sites:delete     Delete a project
+  $ sites:list       List all projects you have access to
+  $ sites:search     Search for projects by name
+

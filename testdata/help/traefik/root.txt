@@ -1,0 +1,1740 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/traefik
+# args: 
+traefik    Traefik is a modern HTTP reverse proxy and load balancer made to deploy microservices with ease.
+Complete documentation is available at https://traefik.io
+
+Usage: traefik [command] [flags] [arguments]
+
+Use "traefik [command] --help" for help on any command.
+
+Commands:
+    healthcheck    Calls Traefik /ping endpoint (disabled by default) to check the health of Traefik.
+    version        Shows the current Traefik version.
+
+Flag's usage: traefik [--flag=flag_argument] [-f [flag_argument]]    # set flag_argument to flag(s)
+          or: traefik [--flag[=true|false| ]] [-f [true|false| ]]    # set true/false to boolean flag(s)
+
+Flags:
+    --accesslog  (Default: "false")
+        Access log settings.
+
+    --accesslog.addinternals  (Default: "false")
+        Enables access log for internal services (ping, dashboard, etc...).
+
+    --accesslog.bufferingsize  (Default: "0")
+        Number of access log lines to process in a buffered way.
+
+    --accesslog.dualoutput  (Default: "false")
+        Enables access log output alongside OTLP. By default, this output is disabled
+        when OTLP is configured.
+
+    --accesslog.fields.defaultmode  (Default: "keep")
+        Default mode for fields: keep | drop
+
+    --accesslog.fields.headers.defaultmode  (Default: "drop")
+        Default mode for fields: keep | drop | redact
+
+    --accesslog.fields.headers.names.<name>  (Default: "")
+        Override mode for headers
+
+    --accesslog.fields.names.<name>  (Default: "")
+        Override mode for fields
+
+    --accesslog.fields.queryparameters.defaultmode  (Default: "keep")
+        Default mode for query parameters: keep | drop
+
+    --accesslog.filepath  (Default: "")
+        Access log file path. Stdout is used when omitted or empty.
+
+    --accesslog.filters.minduration  (Default: "0")
+        Keep access logs when request took longer than the specified duration.
+
+    --accesslog.filters.retryattempts  (Default: "false")
+        Keep access logs when at least one retry happened.
+
+    --accesslog.filters.statuscodes  (Default: "")
+        Keep access logs with status codes in the specified range.
+
+    --accesslog.format  (Default: "common")
+        Access log format: json, common, or genericCLF
+
+    --accesslog.otlp  (Default: "false")
+        Settings for OpenTelemetry.
+
+    --accesslog.otlp.grpc  (Default: "false")
+        gRPC configuration for the OpenTelemetry collector.
+
+    --accesslog.otlp.grpc.endpoint  (Default: "localhost:4317")
+        Sets the gRPC endpoint (host:port) of the collector.
+
+    --accesslog.otlp.grpc.headers.<name>  (Default: "")
+        Headers sent with payload.
+
+    --accesslog.otlp.grpc.insecure  (Default: "false")
+        Disables client transport security for the exporter.
+
+    --accesslog.otlp.grpc.tls.ca  (Default: "")
+        TLS CA
+
+    --accesslog.otlp.grpc.tls.cert  (Default: "")
+        TLS cert
+
+    --accesslog.otlp.grpc.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --accesslog.otlp.grpc.tls.key  (Default: "")
+        TLS key
+
+    --accesslog.otlp.http  (Default: "false")
+        HTTP configuration for the OpenTelemetry collector.
+
+    --accesslog.otlp.http.endpoint  (Default: "https://localhost:4318")
+        Sets the HTTP endpoint (scheme://host:port/path) of the collector.
+
+    --accesslog.otlp.http.headers.<name>  (Default: "")
+        Headers sent with payload.
+
+    --accesslog.otlp.http.tls.ca  (Default: "")
+        TLS CA
+
+    --accesslog.otlp.http.tls.cert  (Default: "")
+        TLS cert
+
+    --accesslog.otlp.http.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --accesslog.otlp.http.tls.key  (Default: "")
+        TLS key
+
+    --accesslog.otlp.resourceattributes.<name>  (Default: "")
+        Defines additional resource attributes (key:value).
+
+    --accesslog.otlp.servicename  (Default: "traefik")
+        Defines the service name resource attribute.
+
+    --api  (Default: "false")
+        Enable api/dashboard.
+
+    --api.basepath  (Default: "/")
+        Defines the base path where the API and Dashboard will be exposed.
+
+    --api.dashboard  (Default: "true")
+        Activate dashboard.
+
+    --api.dashboardname  (Default: "")
+        Custom name for the dashboard.
+
+    --api.debug  (Default: "false")
+        Enable additional endpoints for debugging and profiling.
+
+    --api.disabledashboardad  (Default: "false")
+        Disable ad in the dashboard.
+
+    --api.insecure  (Default: "false")
+        Activate API directly on the entryPoint named traefik.
+
+    --certificatesresolvers.<name>  (Default: "false")
+        Certificates resolvers configuration.
+
+    --certificatesresolvers.<name>.acme.cacertificates  (Default: "")
+        Specify the paths to PEM encoded CA Certificates that can be used to
+        authenticate an ACME server with an HTTPS certificate not issued by a CA in the
+        system-wide trusted root list.
+
+    --certificatesresolvers.<name>.acme.caserver  (Default: "https://acme-v02.api.letsencrypt.org/directory")
+        CA server to use.
+
+    --certificatesresolvers.<name>.acme.caservername  (Default: "")
+        Specify the CA server name that can be used to authenticate an ACME server with
+        an HTTPS certificate not issued by a CA in the system-wide trusted root list.
+
+    --certificatesresolvers.<name>.acme.casystemcertpool  (Default: "false")
+        Define if the certificates pool must use a copy of the system cert pool.
+
+    --certificatesresolvers.<name>.acme.certificatesduration  (Default: "2160")
+        Certificates' duration in hours.
+
+    --certificatesresolvers.<name>.acme.certificatetimeout  (Default: "30")
+        Timeout for obtaining the certificate during the finalization request.
+
+    --certificatesresolvers.<name>.acme.clientresponseheadertimeout  (Default: "30")
+        Timeout for receiving the response headers when communicating with the ACME
+        server.
+
+    --certificatesresolvers.<name>.acme.clienttimeout  (Default: "120")
+        Timeout for a complete HTTP transaction with the ACME server.
+
+    --certificatesresolvers.<name>.acme.disablecommonname  (Default: "false")
+        Disable the common name in the CSR.
+
+    --certificatesresolvers.<name>.acme.dnschallenge  (Default: "false")
+        Activate DNS-01 Challenge.
+
+    --certificatesresolvers.<name>.acme.dnschallenge.delaybeforecheck  (Default: "0")
+        (Deprecated) Assume DNS propagates after a delay in seconds rather than finding
+        and querying nameservers.
+
+    --certificatesresolvers.<name>.acme.dnschallenge.disablepropagationcheck  (Default: "false")
+        (Deprecated) Disable the DNS propagation checks before notifying ACME that the
+        DNS challenge is ready. [not recommended]
+
+    --certificatesresolvers.<name>.acme.dnschallenge.propagation  (Default: "")
+        DNS propagation checks configuration
+
+    --certificatesresolvers.<name>.acme.dnschallenge.propagation.delaybeforechecks  (Default: "0")
+        Defines the delay before checking the challenge TXT record propagation.
+
+    --certificatesresolvers.<name>.acme.dnschallenge.propagation.disableanschecks  (Default: "false")
+        Disables the challenge TXT record propagation checks against authoritative
+        nameservers.
+
+    --certificatesresolvers.<name>.acme.dnschallenge.propagation.disablechecks  (Default: "false")
+        Disables the challenge TXT record propagation checks (not recommended).
+
+    --certificatesresolvers.<name>.acme.dnschallenge.propagation.requireallrns  (Default: "false")
+        Requires the challenge TXT record to be propagated to all recursive nameservers.
+
+    --certificatesresolvers.<name>.acme.dnschallenge.provider  (Default: "")
+        Use a DNS-01 based challenge provider rather than HTTPS.
+
+    --certificatesresolvers.<name>.acme.dnschallenge.resolvers  (Default: "")
+        Use following DNS servers to resolve the FQDN authority.
+
+    --certificatesresolvers.<name>.acme.eab.hmacencoded  (Default: "")
+        Base64 encoded HMAC key from External CA.
+
+    --certificatesresolvers.<name>.acme.eab.kid  (Default: "")
+        Key identifier from External CA.
+
+    --certificatesresolvers.<name>.acme.email  (Default: "")
+        Email address used for registration.
+
+    --certificatesresolvers.<name>.acme.emailaddresses  (Default: "")
+        CSR email addresses to use.
+
+    --certificatesresolvers.<name>.acme.httpchallenge  (Default: "false")
+        Activate HTTP-01 Challenge.
+
+    --certificatesresolvers.<name>.acme.httpchallenge.delay  (Default: "0")
+        Delay between the creation of the challenge and the validation.
+
+    --certificatesresolvers.<name>.acme.httpchallenge.entrypoint  (Default: "")
+        HTTP challenge EntryPoint
+
+    --certificatesresolvers.<name>.acme.keytype  (Default: "RSA4096")
+        KeyType used for generating certificate private key. Allow value 'EC256',
+        'EC384', 'RSA2048', 'RSA4096', 'RSA8192'.
+
+    --certificatesresolvers.<name>.acme.preferredchain  (Default: "")
+        Preferred chain to use.
+
+    --certificatesresolvers.<name>.acme.profile  (Default: "")
+        Certificate profile to use.
+
+    --certificatesresolvers.<name>.acme.storage  (Default: "acme.json")
+        Storage to use.
+
+    --certificatesresolvers.<name>.acme.tlschallenge  (Default: "false")
+        Activate TLS-ALPN-01 Challenge.
+
+    --certificatesresolvers.<name>.acme.tlschallenge.delay  (Default: "0")
+        Delay between the creation of the challenge and the validation.
+
+    --certificatesresolvers.<name>.tailscale  (Default: "true")
+        Enables Tailscale certificate resolution.
+
+    --configfile  (Default: "")
+        Configuration file to use. If specified all other flags are ignored.
+
+    --core.defaultrulesyntax  (Default: "v3")
+        Defines the rule parser default syntax (v2 or v3)
+
+    --core.stricttlsoptions  (Default: "false")
+        Disables the unsafe fallback to the default TLS options for the routers with
+        conflicting TLS options.
+
+    --entrypoints.<name>  (Default: "false")
+        Entry points definition.
+
+    --entrypoints.<name>.address  (Default: "")
+        Entry point address.
+
+    --entrypoints.<name>.allowacmebypass  (Default: "false")
+        Enables handling of ACME TLS and HTTP challenges with custom routers.
+
+    --entrypoints.<name>.asdefault  (Default: "false")
+        Adds this EntryPoint to the list of default EntryPoints to be used on routers
+        that don't have any Entrypoint defined.
+
+    --entrypoints.<name>.forwardedheaders.connection  (Default: "")
+        List of Connection headers that are allowed to pass through the middleware chain
+        before being removed.
+
+    --entrypoints.<name>.forwardedheaders.insecure  (Default: "false")
+        Trust all forwarded headers.
+
+    --entrypoints.<name>.forwardedheaders.notappendxforwardedfor  (Default: "false")
+        Disable appending RemoteAddr to X-Forwarded-For header. Defaults to false
+        (appending is enabled).
+
+    --entrypoints.<name>.forwardedheaders.trustedips  (Default: "")
+        Trust only forwarded headers from selected IPs.
+
+    --entrypoints.<name>.http  (Default: "")
+        HTTP configuration.
+
+    --entrypoints.<name>.http.aliasheadersstrategy  (Default: "")
+        Defines the strategy to handle the requests carrying a header whose name aliases
+        another header name (keep, delete, and reject).
+
+    --entrypoints.<name>.http.encodedcharacters.allowencodedbackslash  (Default: "true")
+        Defines whether requests with encoded back slash characters in the path are
+        allowed.
+
+    --entrypoints.<name>.http.encodedcharacters.allowencodedhash  (Default: "true")
+        Defines whether requests with encoded hash characters in the path are allowed.
+
+    --entrypoints.<name>.http.encodedcharacters.allowencodednullcharacter  (Default: "true")
+        Defines whether requests with encoded null characters in the path are allowed.
+
+    --entrypoints.<name>.http.encodedcharacters.allowencodedpercent  (Default: "true")
+        Defines whether requests with encoded percent characters in the path are
+        allowed.
+
+    --entrypoints.<name>.http.encodedcharacters.allowencodedquestionmark  (Default: "true")
+        Defines whether requests with encoded question mark characters in the path are
+        allowed.
+
+    --entrypoints.<name>.http.encodedcharacters.allowencodedsemicolon  (Default: "true")
+        Defines whether requests with encoded semicolon characters in the path are
+        allowed.
+
+    --entrypoints.<name>.http.encodedcharacters.allowencodedslash  (Default: "true")
+        Defines whether requests with encoded slash characters in the path are allowed.
+
+    --entrypoints.<name>.http.encodequerysemicolons  (Default: "false")
+        Defines whether request query semicolons should be URLEncoded.
+
+    --entrypoints.<name>.http.maxheaderbytes  (Default: "1048576")
+        Maximum size of request headers in bytes.
+
+    --entrypoints.<name>.http.middlewares  (Default: "")
+        Default middlewares for the routers linked to the entry point.
+
+    --entrypoints.<name>.http.redirections.entrypoint.permanent  (Default: "true")
+        Applies a permanent redirection.
+
+    --entrypoints.<name>.http.redirections.entrypoint.priority  (Default: "9223372036854775806")
+        Priority of the generated router.
+
+    --entrypoints.<name>.http.redirections.entrypoint.scheme  (Default: "https")
+        Scheme used for the redirection.
+
+    --entrypoints.<name>.http.redirections.entrypoint.to  (Default: "")
+        Targeted entry point of the redirection.
+
+    --entrypoints.<name>.http.sanitizepath  (Default: "true")
+        Defines whether to enable request path sanitization (removal of /./, /../ and
+        multiple slash sequences).
+
+    --entrypoints.<name>.http.tls  (Default: "false")
+        Default TLS configuration for the routers linked to the entry point.
+
+    --entrypoints.<name>.http.tls.certresolver  (Default: "")
+        Default certificate resolver for the routers linked to the entry point.
+
+    --entrypoints.<name>.http.tls.domains  (Default: "")
+        Default TLS domains for the routers linked to the entry point.
+
+    --entrypoints.<name>.http.tls.domains[n].main  (Default: "")
+        Default subject name.
+
+    --entrypoints.<name>.http.tls.domains[n].sans  (Default: "")
+        Subject alternative names.
+
+    --entrypoints.<name>.http.tls.options  (Default: "")
+        Default TLS options for the routers linked to the entry point.
+
+    --entrypoints.<name>.http.underscoreheadersstrategy  (Default: "")
+        Defines the strategy to handle requests with headers with underscores (keep,
+        delete, and reject). (Deprecated: please use aliasHeadersStrategy instead)
+
+    --entrypoints.<name>.http2.maxconcurrentstreams  (Default: "250")
+        Specifies the number of concurrent streams per connection that each client is
+        allowed to initiate.
+
+    --entrypoints.<name>.http2.maxdecoderheadertablesize  (Default: "4096")
+        Specifies the maximum size of the HTTP2 HPACK header table on the decoding
+        (receiving from client) side.
+
+    --entrypoints.<name>.http2.maxencoderheadertablesize  (Default: "4096")
+        Specifies the maximum size of the HTTP2 HPACK header table on the encoding
+        (sending to client) side.
+
+    --entrypoints.<name>.http3  (Default: "false")
+        HTTP/3 configuration.
+
+    --entrypoints.<name>.http3.advertisedport  (Default: "0")
+        UDP port to advertise, on which HTTP/3 is available.
+
+    --entrypoints.<name>.observability.accesslogs  (Default: "true")
+        Enables access-logs for this entryPoint.
+
+    --entrypoints.<name>.observability.metrics  (Default: "true")
+        Enables metrics for this entryPoint.
+
+    --entrypoints.<name>.observability.traceverbosity  (Default: "minimal")
+        Defines the tracing verbosity level for this entryPoint.
+
+    --entrypoints.<name>.observability.tracing  (Default: "true")
+        Enables tracing for this entryPoint.
+
+    --entrypoints.<name>.proxyprotocol  (Default: "false")
+        Proxy-Protocol configuration.
+
+    --entrypoints.<name>.proxyprotocol.insecure  (Default: "false")
+        Trust all.
+
+    --entrypoints.<name>.proxyprotocol.trustedips  (Default: "")
+        Trust only selected IPs.
+
+    --entrypoints.<name>.reuseport  (Default: "false")
+        Enables EntryPoints from the same or different processes listening on the same
+        TCP/UDP port.
+
+    --entrypoints.<name>.transport.keepalivemaxrequests  (Default: "0")
+        Maximum number of requests before closing a keep-alive connection.
+
+    --entrypoints.<name>.transport.keepalivemaxtime  (Default: "0")
+        Maximum duration before closing a keep-alive connection.
+
+    --entrypoints.<name>.transport.lifecycle.gracetimeout  (Default: "10")
+        Duration to give active requests a chance to finish before Traefik stops.
+
+    --entrypoints.<name>.transport.lifecycle.requestacceptgracetimeout  (Default: "0")
+        Duration to keep accepting requests before Traefik initiates the graceful
+        shutdown procedure.
+
+    --entrypoints.<name>.transport.respondingtimeouts.idletimeout  (Default: "180")
+        IdleTimeout is the maximum amount duration an idle (keep-alive) connection will
+        remain idle before closing itself. If zero, no timeout is set.
+
+    --entrypoints.<name>.transport.respondingtimeouts.readtimeout  (Default: "60")
+        ReadTimeout is the maximum duration for reading the entire request, including
+        the body. If zero, no timeout is set.
+
+    --entrypoints.<name>.transport.respondingtimeouts.writetimeout  (Default: "0")
+        WriteTimeout is the maximum duration before timing out writes of the response.
+        If zero, no timeout is set.
+
+    --entrypoints.<name>.udp.timeout  (Default: "3")
+        Timeout defines how long to wait on an idle session before releasing the related
+        resources.
+
+    --experimental.abortonpluginfailure  (Default: "false")
+        Defines whether all plugins must be loaded successfully for Traefik to start.
+
+    --experimental.fastproxy  (Default: "false")
+        Enables the FastProxy implementation.
+
+    --experimental.fastproxy.debug  (Default: "false")
+        Enable debug mode for the FastProxy implementation.
+
+    --experimental.knative  (Default: "false")
+        Allow the Knative provider usage.
+
+    --experimental.kubernetesgateway  (Default: "false")
+        (Deprecated) Allow the Kubernetes gateway api provider usage.
+
+    --experimental.kubernetesingressnginx  (Default: "false")
+        Allow the Kubernetes Ingress NGINX provider usage.
+
+    --experimental.localplugins.<name>  (Default: "false")
+        Local plugins configuration.
+
+    --experimental.localplugins.<name>.modulename  (Default: "")
+        Plugin's module name.
+
+    --experimental.localplugins.<name>.settings  (Default: "")
+        Plugin's settings (works only for wasm plugins).
+
+    --experimental.localplugins.<name>.settings.envs  (Default: "")
+        Environment variables to forward to the wasm guest.
+
+    --experimental.localplugins.<name>.settings.mounts  (Default: "")
+        Directory to mount to the wasm guest.
+
+    --experimental.localplugins.<name>.settings.useunsafe  (Default: "false")
+        Allow the plugin to use unsafe and syscall packages.
+
+    --experimental.otlplogs  (Default: "false")
+        Enables the OpenTelemetry logs integration.
+
+    --experimental.plugins.<name>  (Default: "false")
+        Plugins configuration.
+
+    --experimental.plugins.<name>.hash  (Default: "")
+        plugin's hash to validate'
+
+    --experimental.plugins.<name>.modulename  (Default: "")
+        plugin's module name.
+
+    --experimental.plugins.<name>.settings  (Default: "")
+        Plugin's settings (works only for wasm plugins).
+
+    --experimental.plugins.<name>.settings.envs  (Default: "")
+        Environment variables to forward to the wasm guest.
+
+    --experimental.plugins.<name>.settings.mounts  (Default: "")
+        Directory to mount to the wasm guest.
+
+    --experimental.plugins.<name>.settings.useunsafe  (Default: "false")
+        Allow the plugin to use unsafe and syscall packages.
+
+    --experimental.plugins.<name>.version  (Default: "")
+        plugin's version.
+
+    --global.checknewversion  (Default: "true")
+        Periodically check if a new version has been released.
+
+    --global.notappendxforwardedfor  (Default: "false")
+        Disable appending RemoteAddr to X-Forwarded-For header. Defaults to false
+        (appending is enabled).
+
+    --global.sendanonymoususage  
+        Periodically send anonymous usage statistics. If the option is not specified, it
+        will be disabled by default.
+
+    --hostresolver  (Default: "false")
+        Enable CNAME Flattening.
+
+    --hostresolver.cnameflattening  (Default: "false")
+        A flag to enable/disable CNAME flattening
+
+    --hostresolver.resolvconfig  (Default: "/etc/resolv.conf")
+        resolv.conf used for DNS resolving
+
+    --hostresolver.resolvdepth  (Default: "5")
+        The maximal depth of DNS recursive resolving
+
+    --log  (Default: "false")
+        Traefik log settings.
+
+    --log.compress  (Default: "false")
+        Determines if the rotated log files should be compressed using gzip.
+
+    --log.filepath  (Default: "")
+        Traefik log file path. Stdout is used when omitted or empty.
+
+    --log.format  (Default: "common")
+        Traefik log format: json | common
+
+    --log.level  (Default: "ERROR")
+        Log level set to traefik logs.
+
+    --log.maxage  (Default: "0")
+        Maximum number of days to retain old log files based on the timestamp encoded in
+        their filename.
+
+    --log.maxbackups  (Default: "0")
+        Maximum number of old log files to retain.
+
+    --log.maxsize  (Default: "0")
+        Maximum size in megabytes of the log file before it gets rotated.
+
+    --log.nocolor  (Default: "false")
+        When using the 'common' format, disables the colorized output.
+
+    --log.otlp  (Default: "false")
+        Settings for OpenTelemetry.
+
+    --log.otlp.grpc  (Default: "false")
+        gRPC configuration for the OpenTelemetry collector.
+
+    --log.otlp.grpc.endpoint  (Default: "localhost:4317")
+        Sets the gRPC endpoint (host:port) of the collector.
+
+    --log.otlp.grpc.headers.<name>  (Default: "")
+        Headers sent with payload.
+
+    --log.otlp.grpc.insecure  (Default: "false")
+        Disables client transport security for the exporter.
+
+    --log.otlp.grpc.tls.ca  (Default: "")
+        TLS CA
+
+    --log.otlp.grpc.tls.cert  (Default: "")
+        TLS cert
+
+    --log.otlp.grpc.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --log.otlp.grpc.tls.key  (Default: "")
+        TLS key
+
+    --log.otlp.http  (Default: "false")
+        HTTP configuration for the OpenTelemetry collector.
+
+    --log.otlp.http.endpoint  (Default: "https://localhost:4318")
+        Sets the HTTP endpoint (scheme://host:port/path) of the collector.
+
+    --log.otlp.http.headers.<name>  (Default: "")
+        Headers sent with payload.
+
+    --log.otlp.http.tls.ca  (Default: "")
+        TLS CA
+
+    --log.otlp.http.tls.cert  (Default: "")
+        TLS cert
+
+    --log.otlp.http.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --log.otlp.http.tls.key  (Default: "")
+        TLS key
+
+    --log.otlp.resourceattributes.<name>  (Default: "")
+        Defines additional resource attributes (key:value).
+
+    --log.otlp.servicename  (Default: "traefik")
+        Defines the service name resource attribute.
+
+    --metrics.addinternals  (Default: "false")
+        Enables metrics for internal services (ping, dashboard, etc...).
+
+    --metrics.datadog  (Default: "false")
+        Datadog metrics exporter type.
+
+    --metrics.datadog.addentrypointslabels  (Default: "true")
+        Enable metrics on entry points.
+
+    --metrics.datadog.address  (Default: "localhost:8125")
+        Datadog's address.
+
+    --metrics.datadog.addrouterslabels  (Default: "false")
+        Enable metrics on routers.
+
+    --metrics.datadog.addserviceslabels  (Default: "true")
+        Enable metrics on services.
+
+    --metrics.datadog.prefix  (Default: "traefik")
+        Prefix to use for metrics collection.
+
+    --metrics.datadog.pushinterval  (Default: "10")
+        Datadog push interval.
+
+    --metrics.influxdb2  (Default: "false")
+        InfluxDB v2 metrics exporter type.
+
+    --metrics.influxdb2.addentrypointslabels  (Default: "true")
+        Enable metrics on entry points.
+
+    --metrics.influxdb2.additionallabels.<name>  (Default: "")
+        Additional labels (influxdb tags) on all metrics
+
+    --metrics.influxdb2.address  (Default: "http://localhost:8086")
+        InfluxDB v2 address.
+
+    --metrics.influxdb2.addrouterslabels  (Default: "false")
+        Enable metrics on routers.
+
+    --metrics.influxdb2.addserviceslabels  (Default: "true")
+        Enable metrics on services.
+
+    --metrics.influxdb2.bucket  (Default: "")
+        InfluxDB v2 bucket ID.
+
+    --metrics.influxdb2.org  (Default: "")
+        InfluxDB v2 org ID.
+
+    --metrics.influxdb2.pushinterval  (Default: "10")
+        InfluxDB v2 push interval.
+
+    --metrics.influxdb2.token  (Default: "")
+        InfluxDB v2 access token. It accepts either a token value or a file path to the
+        token.
+
+    --metrics.otlp  (Default: "false")
+        OpenTelemetry metrics exporter type.
+
+    --metrics.otlp.addentrypointslabels  (Default: "true")
+        Enable metrics on entry points.
+
+    --metrics.otlp.addrouterslabels  (Default: "false")
+        Enable metrics on routers.
+
+    --metrics.otlp.addserviceslabels  (Default: "true")
+        Enable metrics on services.
+
+    --metrics.otlp.explicitboundaries  (Default: "0.005000, 0.010000, 0.025000, 0.050000, 0.075000, 0.100000, 0.250000, 0.500000, 0.750000, 1.000000, 2.500000, 5.000000, 7.500000, 10.000000")
+        Boundaries for latency metrics.
+
+    --metrics.otlp.grpc  (Default: "false")
+        gRPC configuration for the OpenTelemetry collector.
+
+    --metrics.otlp.grpc.endpoint  (Default: "localhost:4317")
+        Sets the gRPC endpoint (host:port) of the collector.
+
+    --metrics.otlp.grpc.headers.<name>  (Default: "")
+        Headers sent with payload.
+
+    --metrics.otlp.grpc.insecure  (Default: "false")
+        Disables client transport security for the exporter.
+
+    --metrics.otlp.grpc.tls.ca  (Default: "")
+        TLS CA
+
+    --metrics.otlp.grpc.tls.cert  (Default: "")
+        TLS cert
+
+    --metrics.otlp.grpc.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --metrics.otlp.grpc.tls.key  (Default: "")
+        TLS key
+
+    --metrics.otlp.http  (Default: "false")
+        HTTP configuration for the OpenTelemetry collector.
+
+    --metrics.otlp.http.endpoint  (Default: "https://localhost:4318")
+        Sets the HTTP endpoint (scheme://host:port/path) of the collector.
+
+    --metrics.otlp.http.headers.<name>  (Default: "")
+        Headers sent with payload.
+
+    --metrics.otlp.http.tls.ca  (Default: "")
+        TLS CA
+
+    --metrics.otlp.http.tls.cert  (Default: "")
+        TLS cert
+
+    --metrics.otlp.http.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --metrics.otlp.http.tls.key  (Default: "")
+        TLS key
+
+    --metrics.otlp.pushinterval  (Default: "10")
+        Period between calls to collect a checkpoint.
+
+    --metrics.otlp.resourceattributes.<name>  (Default: "")
+        Defines additional resource attributes (key:value).
+
+    --metrics.otlp.servicename  (Default: "traefik")
+        Defines the service name resource attribute.
+
+    --metrics.prometheus  (Default: "false")
+        Prometheus metrics exporter type.
+
+    --metrics.prometheus.addentrypointslabels  (Default: "true")
+        Enable metrics on entry points.
+
+    --metrics.prometheus.addrouterslabels  (Default: "false")
+        Enable metrics on routers.
+
+    --metrics.prometheus.addserviceslabels  (Default: "true")
+        Enable metrics on services.
+
+    --metrics.prometheus.buckets  (Default: "0.100000, 0.300000, 1.200000, 5.000000")
+        Buckets for latency metrics.
+
+    --metrics.prometheus.entrypoint  (Default: "traefik")
+        EntryPoint
+
+    --metrics.prometheus.headerlabels.<name>  (Default: "")
+        Defines the extra labels for the requests_total metrics, and for each of them,
+        the request header containing the value for this label.
+
+    --metrics.prometheus.manualrouting  (Default: "false")
+        Manual routing
+
+    --metrics.statsd  (Default: "false")
+        StatsD metrics exporter type.
+
+    --metrics.statsd.addentrypointslabels  (Default: "true")
+        Enable metrics on entry points.
+
+    --metrics.statsd.address  (Default: "localhost:8125")
+        StatsD address.
+
+    --metrics.statsd.addrouterslabels  (Default: "false")
+        Enable metrics on routers.
+
+    --metrics.statsd.addserviceslabels  (Default: "true")
+        Enable metrics on services.
+
+    --metrics.statsd.prefix  (Default: "traefik")
+        Prefix to use for metrics collection.
+
+    --metrics.statsd.pushinterval  (Default: "10")
+        StatsD push interval.
+
+    --ocsp  (Default: "false")
+        OCSP configuration.
+
+    --ocsp.responderoverrides.<name>  (Default: "")
+        Defines a map of OCSP responders to replace for querying OCSP servers.
+
+    --ping  (Default: "false")
+        Enable ping.
+
+    --ping.entrypoint  (Default: "traefik")
+        EntryPoint
+
+    --ping.manualrouting  (Default: "false")
+        Manual routing
+
+    --ping.terminatingstatuscode  (Default: "503")
+        Terminating status code
+
+    --providers.consul  (Default: "false")
+        Enables Consul provider.
+
+    --providers.consul.endpoints  (Default: "127.0.0.1:8500")
+        KV store endpoints.
+
+    --providers.consul.namespaces  (Default: "")
+        Sets the namespaces used to discover the configuration (Consul Enterprise only).
+
+    --providers.consul.rootkey  (Default: "traefik")
+        Root key used for KV store.
+
+    --providers.consul.tls.ca  (Default: "")
+        TLS CA
+
+    --providers.consul.tls.cert  (Default: "")
+        TLS cert
+
+    --providers.consul.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --providers.consul.tls.key  (Default: "")
+        TLS key
+
+    --providers.consul.token  (Default: "")
+        Per-request ACL token.
+
+    --providers.consulcatalog  (Default: "false")
+        Enables Consul Catalog provider.
+
+    --providers.consulcatalog.cache  (Default: "false")
+        Use local agent caching for catalog reads.
+
+    --providers.consulcatalog.connectaware  (Default: "false")
+        Enable Consul Connect support.
+
+    --providers.consulcatalog.connectbydefault  (Default: "false")
+        Consider every service as Connect capable by default.
+
+    --providers.consulcatalog.constraints  (Default: "")
+        Constraints is an expression that Traefik matches against the container's labels
+        to determine whether to create any route for that container.
+
+    --providers.consulcatalog.defaultrule  (Default: "Host(`{{ normalize .Name }}`)")
+        Default rule.
+
+    --providers.consulcatalog.endpoint.address  (Default: "")
+        The address of the Consul server
+
+    --providers.consulcatalog.endpoint.datacenter  (Default: "")
+        Data center to use. If not provided, the default agent data center is used
+
+    --providers.consulcatalog.endpoint.endpointwaittime  (Default: "0")
+        WaitTime limits how long a Watch will block. If not provided, the agent default
+        values will be used
+
+    --providers.consulcatalog.endpoint.httpauth.password  (Default: "")
+        Basic Auth password
+
+    --providers.consulcatalog.endpoint.httpauth.username  (Default: "")
+        Basic Auth username
+
+    --providers.consulcatalog.endpoint.scheme  (Default: "")
+        The URI scheme for the Consul server
+
+    --providers.consulcatalog.endpoint.tls.ca  (Default: "")
+        TLS CA
+
+    --providers.consulcatalog.endpoint.tls.cert  (Default: "")
+        TLS cert
+
+    --providers.consulcatalog.endpoint.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --providers.consulcatalog.endpoint.tls.key  (Default: "")
+        TLS key
+
+    --providers.consulcatalog.endpoint.token  (Default: "")
+        Token is used to provide a per-request ACL token which overrides the agent's
+        default token
+
+    --providers.consulcatalog.exposedbydefault  (Default: "true")
+        Expose containers by default.
+
+    --providers.consulcatalog.namespaces  (Default: "")
+        Sets the namespaces used to discover services (Consul Enterprise only).
+
+    --providers.consulcatalog.prefix  (Default: "traefik")
+        Prefix for consul service tags.
+
+    --providers.consulcatalog.refreshinterval  (Default: "15")
+        Interval for check Consul API.
+
+    --providers.consulcatalog.requireconsistent  (Default: "false")
+        Forces the read to be fully consistent.
+
+    --providers.consulcatalog.servicename  (Default: "traefik")
+        Name of the Traefik service in Consul Catalog (needs to be registered via the
+        orchestrator or manually).
+
+    --providers.consulcatalog.stale  (Default: "false")
+        Use stale consistency for catalog reads.
+
+    --providers.consulcatalog.strictchecks  (Default: "passing, warning")
+        A list of service health statuses to allow taking traffic.
+
+    --providers.consulcatalog.watch  (Default: "false")
+        Watch Consul API events.
+
+    --providers.docker  (Default: "false")
+        Enables Docker provider.
+
+    --providers.docker.allowemptyservices  (Default: "false")
+        Disregards the Docker containers health checks with respect to the creation or
+        removal of the corresponding services.
+
+    --providers.docker.constraints  (Default: "")
+        Constraints is an expression that Traefik matches against the container's labels
+        to determine whether to create any route for that container.
+
+    --providers.docker.defaultrule  (Default: "Host(`{{ normalize .Name }}`)")
+        Default rule.
+
+    --providers.docker.endpoint  (Default: "unix:///var/run/docker.sock")
+        Docker server endpoint. Can be a TCP or a Unix socket endpoint.
+
+    --providers.docker.exposedbydefault  (Default: "true")
+        Expose containers by default.
+
+    --providers.docker.httpclienttimeout  (Default: "0")
+        Client timeout for HTTP connections.
+
+    --providers.docker.network  (Default: "")
+        Default Docker network used.
+
+    --providers.docker.password  (Default: "")
+        Password for Basic HTTP authentication.
+
+    --providers.docker.tls.ca  (Default: "")
+        TLS CA
+
+    --providers.docker.tls.cert  (Default: "")
+        TLS cert
+
+    --providers.docker.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --providers.docker.tls.key  (Default: "")
+        TLS key
+
+    --providers.docker.usebindportip  (Default: "false")
+        Use the ip address from the bound port, rather than from the inner network.
+
+    --providers.docker.username  (Default: "")
+        Username for Basic HTTP authentication.
+
+    --providers.docker.watch  (Default: "true")
+        Watch Docker events.
+
+    --providers.ecs  (Default: "false")
+        Enables AWS ECS provider.
+
+    --providers.ecs.accesskeyid  (Default: "")
+        AWS credentials access key ID to use for making requests.
+
+    --providers.ecs.autodiscoverclusters  (Default: "false")
+        Auto discover cluster.
+
+    --providers.ecs.clusters  (Default: "default")
+        ECS Cluster names.
+
+    --providers.ecs.constraints  (Default: "")
+        Constraints is an expression that Traefik matches against the container's labels
+        to determine whether to create any route for that container.
+
+    --providers.ecs.defaultrule  (Default: "Host(`{{ normalize .Name }}`)")
+        Default rule.
+
+    --providers.ecs.ecsanywhere  (Default: "false")
+        Enable ECS Anywhere support.
+
+    --providers.ecs.exposedbydefault  (Default: "true")
+        Expose services by default.
+
+    --providers.ecs.healthytasksonly  (Default: "false")
+        Determines whether to discover only healthy tasks.
+
+    --providers.ecs.refreshseconds  (Default: "15")
+        Polling interval (in seconds).
+
+    --providers.ecs.region  (Default: "")
+        AWS region to use for requests.
+
+    --providers.ecs.secretaccesskey  (Default: "")
+        AWS credentials access key to use for making requests.
+
+    --providers.etcd  (Default: "false")
+        Enables Etcd provider.
+
+    --providers.etcd.endpoints  (Default: "127.0.0.1:2379")
+        KV store endpoints.
+
+    --providers.etcd.password  (Default: "")
+        Password for authentication.
+
+    --providers.etcd.rootkey  (Default: "traefik")
+        Root key used for KV store.
+
+    --providers.etcd.tls.ca  (Default: "")
+        TLS CA
+
+    --providers.etcd.tls.cert  (Default: "")
+        TLS cert
+
+    --providers.etcd.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --providers.etcd.tls.key  (Default: "")
+        TLS key
+
+    --providers.etcd.username  (Default: "")
+        Username for authentication.
+
+    --providers.file.debugloggeneratedtemplate  (Default: "false")
+        Enable debug logging of generated configuration template.
+
+    --providers.file.directory  (Default: "")
+        Load dynamic configuration from one or more .yml or .toml files in a directory.
+
+    --providers.file.filename  (Default: "")
+        Load dynamic configuration from a file.
+
+    --providers.file.watch  (Default: "true")
+        Watch provider.
+
+    --providers.http  (Default: "false")
+        Enables HTTP provider.
+
+    --providers.http.endpoint  (Default: "")
+        Load configuration from this endpoint.
+
+    --providers.http.headers.<name>  (Default: "")
+        Define custom headers to be sent to the endpoint.
+
+    --providers.http.maxresponsebodysize  (Default: "-1")
+        Defines the maximum size of the response body in bytes.
+
+    --providers.http.pollinterval  (Default: "5")
+        Polling interval for endpoint.
+
+    --providers.http.polltimeout  (Default: "5")
+        Polling timeout for endpoint.
+
+    --providers.http.tls.ca  (Default: "")
+        TLS CA
+
+    --providers.http.tls.cert  (Default: "")
+        TLS cert
+
+    --providers.http.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --providers.http.tls.key  (Default: "")
+        TLS key
+
+    --providers.knative  (Default: "false")
+        Enables Knative provider.
+
+    --providers.knative.certauthfilepath  (Default: "")
+        Kubernetes certificate authority file path (not needed for in-cluster client).
+
+    --providers.knative.endpoint  (Default: "")
+        Kubernetes server endpoint (required for external cluster client).
+
+    --providers.knative.labelselector  (Default: "")
+        Kubernetes label selector to use.
+
+    --providers.knative.namespaces  (Default: "")
+        Kubernetes namespaces.
+
+    --providers.knative.privateentrypoints  (Default: "")
+        Entrypoint names used to expose the Ingress privately. If empty local Ingresses
+        are skipped.
+
+    --providers.knative.privateservice  (Default: "")
+        Kubernetes service used to expose the networking controller privately.
+
+    --providers.knative.privateservice.name  (Default: "")
+        Name of the Kubernetes service.
+
+    --providers.knative.privateservice.namespace  (Default: "")
+        Namespace of the Kubernetes service.
+
+    --providers.knative.publicentrypoints  (Default: "")
+        Entrypoint names used to expose the Ingress publicly. If empty an Ingress is
+        exposed on all entrypoints.
+
+    --providers.knative.publicservice  (Default: "")
+        Kubernetes service used to expose the networking controller publicly.
+
+    --providers.knative.publicservice.name  (Default: "")
+        Name of the Kubernetes service.
+
+    --providers.knative.publicservice.namespace  (Default: "")
+        Namespace of the Kubernetes service.
+
+    --providers.knative.throttleduration  (Default: "0")
+        Ingress refresh throttle duration
+
+    --providers.knative.token  (Default: "")
+        Kubernetes bearer token (not needed for in-cluster client).
+
+    --providers.kubernetescrd  (Default: "false")
+        Enables Kubernetes CRD provider.
+
+    --providers.kubernetescrd.allowcrossnamespace  (Default: "false")
+        Allow cross namespace resource reference.
+
+    --providers.kubernetescrd.allowemptyservices  (Default: "false")
+        Allow the creation of services without endpoints.
+
+    --providers.kubernetescrd.allowexternalnameservices  (Default: "false")
+        Allow ExternalName services.
+
+    --providers.kubernetescrd.certauthfilepath  (Default: "")
+        Kubernetes certificate authority file path (not needed for in-cluster client).
+
+    --providers.kubernetescrd.crossprovidernamespaces  (Default: "")
+        List of namespaces from which IngressRoute, IngressRouteTCP, IngressRouteUDP,
+        and TraefikService are allowed to declare cross-provider references.
+
+    --providers.kubernetescrd.defaulttlsresourcesnamespace  (Default: "")
+        Namespace allowed to define the default TLSOption and TLSStore resources. When
+        empty, they can be defined in any namespace.
+
+    --providers.kubernetescrd.disableclusterscoperesources  (Default: "false")
+        Disables the lookup of cluster scope resources (incompatible with IngressClasses
+        and NodePortLB enabled services).
+
+    --providers.kubernetescrd.endpoint  (Default: "")
+        Kubernetes server endpoint (required for external cluster client).
+
+    --providers.kubernetescrd.ingressclass  (Default: "")
+        Value of ingressClassName field or kubernetes.io/ingress.class annotation to
+        watch for.
+
+    --providers.kubernetescrd.labelselector  (Default: "")
+        Kubernetes label selector to use.
+
+    --providers.kubernetescrd.namespaces  (Default: "")
+        Kubernetes namespaces.
+
+    --providers.kubernetescrd.nativelbbydefault  (Default: "false")
+        Defines whether to use Native Kubernetes load-balancing mode by default.
+
+    --providers.kubernetescrd.safenaming  (Default: "false")
+        Enable collision-safe naming for the Kubernetes CRD provider.
+
+    --providers.kubernetescrd.throttleduration  (Default: "0")
+        Ingress refresh throttle duration
+
+    --providers.kubernetescrd.token  (Default: "")
+        Kubernetes bearer token (not needed for in-cluster client). It accepts either a
+        token value or a file path to the token.
+
+    --providers.kubernetesgateway  (Default: "false")
+        Enables Kubernetes Gateway API provider.
+
+    --providers.kubernetesgateway.burst  (Default: "100")
+        Defines the maximum burst of requests to the Kubernetes API server.
+
+    --providers.kubernetesgateway.certauthfilepath  (Default: "")
+        Kubernetes certificate authority file path (not needed for in-cluster client).
+
+    --providers.kubernetesgateway.crossprovidernamespaces  (Default: "")
+        List of namespaces from which Gateway API routes are allowed to declare
+        TraefikService backendRef references.
+
+    --providers.kubernetesgateway.endpoint  (Default: "")
+        Kubernetes server endpoint (required for external cluster client).
+
+    --providers.kubernetesgateway.experimentalchannel  (Default: "false")
+        Toggles Experimental Channel resources support (TCPRoute, TLSRoute...). Requires
+        the Experimental Channel CRDs.
+
+    --providers.kubernetesgateway.labelselector  (Default: "")
+        Kubernetes label selector to select specific GatewayClasses.
+
+    --providers.kubernetesgateway.namespaces  (Default: "")
+        Kubernetes namespaces.
+
+    --providers.kubernetesgateway.nativelbbydefault  (Default: "false")
+        Defines whether to use Native Kubernetes load-balancing by default.
+
+    --providers.kubernetesgateway.qps  (Default: "50")
+        Defines the maximum QPS to the Kubernetes API server. Setting this to a negative
+        value will disable client-side ratelimiting.
+
+    --providers.kubernetesgateway.statusaddress.hostname  (Default: "")
+        Hostname used for Kubernetes Gateway status address.
+
+    --providers.kubernetesgateway.statusaddress.ip  (Default: "")
+        IP used to set Kubernetes Gateway status address.
+
+    --providers.kubernetesgateway.statusaddress.service  (Default: "")
+        Published Kubernetes Service to copy status addresses from.
+
+    --providers.kubernetesgateway.statusaddress.service.name  (Default: "")
+        Name of the Kubernetes service.
+
+    --providers.kubernetesgateway.statusaddress.service.namespace  (Default: "")
+        Namespace of the Kubernetes service.
+
+    --providers.kubernetesgateway.throttleduration  (Default: "0")
+        Kubernetes refresh throttle duration
+
+    --providers.kubernetesgateway.token  (Default: "")
+        Kubernetes bearer token (not needed for in-cluster client). It accepts either a
+        token value or a file path to the token.
+
+    --providers.kubernetesingress  (Default: "false")
+        Enables Kubernetes Ingress provider.
+
+    --providers.kubernetesingress.allowemptyservices  (Default: "false")
+        Allow creation of services without endpoints.
+
+    --providers.kubernetesingress.allowexternalnameservices  (Default: "false")
+        Allow ExternalName services.
+
+    --providers.kubernetesingress.certauthfilepath  (Default: "")
+        Kubernetes certificate authority file path (not needed for in-cluster client).
+
+    --providers.kubernetesingress.crossprovidernamespaces  (Default: "")
+        List of namespaces from which Ingresses or Services are allowed to declare
+        Middlewares, TLSOptions, or ServersTransport references.
+
+    --providers.kubernetesingress.disableclusterscoperesources  (Default: "false")
+        Disables the lookup of cluster scope resources (incompatible with IngressClasses
+        and NodePortLB enabled services).
+
+    --providers.kubernetesingress.disableingressclasslookup  (Default: "false")
+        Disables the lookup of IngressClasses (Deprecated, please use
+        DisableClusterScopeResources).
+
+    --providers.kubernetesingress.endpoint  (Default: "")
+        Kubernetes server endpoint (required for external cluster client).
+
+    --providers.kubernetesingress.ingressclass  (Default: "")
+        Value of kubernetes.io/ingress.class annotation or IngressClass name to watch
+        for.
+
+    --providers.kubernetesingress.ingressendpoint.hostname  (Default: "")
+        Hostname used for Kubernetes Ingress endpoints.
+
+    --providers.kubernetesingress.ingressendpoint.ip  (Default: "")
+        IP used for Kubernetes Ingress endpoints.
+
+    --providers.kubernetesingress.ingressendpoint.publishedservice  (Default: "")
+        Published Kubernetes Service to copy status from.
+
+    --providers.kubernetesingress.labelselector  (Default: "")
+        Kubernetes Ingress label selector to use.
+
+    --providers.kubernetesingress.namespaces  (Default: "")
+        Kubernetes namespaces.
+
+    --providers.kubernetesingress.nativelbbydefault  (Default: "false")
+        Defines whether to use Native Kubernetes load-balancing mode by default.
+
+    --providers.kubernetesingress.strictprefixmatching  (Default: "false")
+        Make prefix matching strictly comply with the Kubernetes Ingress specification
+        (path-element-wise matching instead of character-by-character string matching).
+
+    --providers.kubernetesingress.throttleduration  (Default: "0")
+        Ingress refresh throttle duration
+
+    --providers.kubernetesingress.token  (Default: "")
+        Kubernetes bearer token (not needed for in-cluster client). It accepts either a
+        token value or a file path to the token.
+
+    --providers.kubernetesingressnginx  (Default: "false")
+        Enables Kubernetes Ingress NGINX provider.
+
+    --providers.kubernetesingressnginx.allowcrossnamespaceresources  (Default: "false")
+        Allow Ingress to reference resources (e.g. ConfigMaps, Secrets) in different
+        namespaces.
+
+    --providers.kubernetesingressnginx.allowsnippetannotations  (Default: "false")
+        Enables to parse and add -snippet annotations/directives.
+
+    --providers.kubernetesingressnginx.certauthfilepath  (Default: "")
+        Kubernetes certificate authority file path (not needed for in-cluster client).
+
+    --providers.kubernetesingressnginx.clientbodybuffersize  (Default: "16384")
+        Default buffer size for reading client request body.
+
+    --providers.kubernetesingressnginx.controllerclass  (Default: "k8s.io/ingress-nginx")
+        Ingress Class Controller value this controller satisfies.
+
+    --providers.kubernetesingressnginx.customhttperrors  (Default: "")
+        Defines which status should result in calling the default backend to return an
+        error page.
+
+    --providers.kubernetesingressnginx.defaultbackendservice  (Default: "")
+        Service used to serve HTTP requests not matching any known server name
+        (catch-all). Takes the form 'namespace/name'.
+
+    --providers.kubernetesingressnginx.disablesvcexternalname  (Default: "false")
+        Disable support for Services of type ExternalName.
+
+    --providers.kubernetesingressnginx.endpoint  (Default: "")
+        Kubernetes server endpoint (required for external cluster client).
+
+    --providers.kubernetesingressnginx.globalallowedresponseheaders  (Default: "")
+        List of allowed response headers inside the custom headers annotations.
+
+    --providers.kubernetesingressnginx.globalauthurl  (Default: "")
+        URL to the service that provides authentication for all the locations. Per
+        ingress auth-url annotation has precedence over this option.
+
+    --providers.kubernetesingressnginx.httpentrypoint  (Default: "")
+        Defines the EntryPoint to use for HTTP requests.
+
+    --providers.kubernetesingressnginx.httpsentrypoint  (Default: "")
+        Defines the EntryPoint to use for HTTPS requests.
+
+    --providers.kubernetesingressnginx.ingressclass  (Default: "nginx")
+        Name of the ingress class this controller satisfies.
+
+    --providers.kubernetesingressnginx.ingressclassbyname  (Default: "false")
+        Define if Ingress Controller should watch for Ingress Class by Name together
+        with Controller Class.
+
+    --providers.kubernetesingressnginx.ipallowliststrategy.depth  (Default: "0")
+
+    --providers.kubernetesingressnginx.ipallowliststrategy.excludedips  (Default: "")
+
+    --providers.kubernetesingressnginx.ipallowliststrategy.ipv6subnet  (Default: "0")
+
+    --providers.kubernetesingressnginx.proxybodysize  (Default: "1048576")
+        Default maximum size of a client request body in bytes.
+
+    --providers.kubernetesingressnginx.proxybuffering  (Default: "false")
+        Defines whether to enable response buffering.
+
+    --providers.kubernetesingressnginx.proxybuffersize  (Default: "8192")
+        Default buffer size for reading the response body.
+
+    --providers.kubernetesingressnginx.proxybuffersnumber  (Default: "4")
+        Default number of buffers for reading a response.
+
+    --providers.kubernetesingressnginx.proxyconnecttimeout  (Default: "60")
+        Amount of time to wait until a connection to a server can be established.
+        Timeout value is unitless and in seconds.
+
+    --providers.kubernetesingressnginx.proxynextupstream  (Default: "error timeout")
+        Defines in which cases a request should be retried.
+
+    --providers.kubernetesingressnginx.proxynextupstreamtimeout  (Default: "0")
+        Limits the total elapsed time to retry the request if the backend server does
+        not reply. Timeout value is unitless and in seconds.
+
+    --providers.kubernetesingressnginx.proxynextupstreamtries  (Default: "3")
+        Limits the number of possible tries if the backend server does not reply.
+
+    --providers.kubernetesingressnginx.proxyreadtimeout  (Default: "60")
+        Amount of time between two successive read operations. Timeout value is unitless
+        and in seconds.
+
+    --providers.kubernetesingressnginx.proxyrequestbuffering  (Default: "false")
+        Defines whether to enable request buffering.
+
+    --providers.kubernetesingressnginx.proxysendtimeout  (Default: "60")
+        Amount of time between two successive write operations. Timeout value is
+        unitless and in seconds.
+
+    --providers.kubernetesingressnginx.publishservice  (Default: "")
+        Service fronting the Ingress controller. Takes the form 'namespace/name'.
+
+    --providers.kubernetesingressnginx.publishstatusaddress  (Default: "")
+        Customized address (or addresses, separated by comma) to set as the
+        load-balancer status of Ingress objects this controller satisfies.
+
+    --providers.kubernetesingressnginx.strictvalidatepathtype  (Default: "true")
+        Defines whether to reject the entire ingress when any path contains regex
+        characters and pathType is Prefix or Exact.
+
+    --providers.kubernetesingressnginx.throttleduration  (Default: "0")
+        Ingress refresh throttle duration.
+
+    --providers.kubernetesingressnginx.token  (Default: "")
+        Kubernetes bearer token (not needed for in-cluster client). It accepts either a
+        token value or a file path to the token.
+
+    --providers.kubernetesingressnginx.upstreamkeepalivetimeout  (Default: "60")
+        Defines the idle timeout for keep-alive connections to upstream servers. Timeout
+        value is unitless and in seconds.
+
+    --providers.kubernetesingressnginx.watchingresswithoutclass  (Default: "false")
+        Define if Ingress Controller should also watch for Ingresses without an
+        IngressClass or the annotation specified.
+
+    --providers.kubernetesingressnginx.watchnamespace  (Default: "")
+        Namespace the controller watches for updates to Kubernetes objects. All
+        namespaces are watched if this parameter is left empty.
+
+    --providers.kubernetesingressnginx.watchnamespaceselector  (Default: "")
+        Selector selects namespaces the controller watches for updates to Kubernetes
+        objects.
+
+    --providers.nomad  (Default: "false")
+        Enables Nomad provider.
+
+    --providers.nomad.allowemptyservices  (Default: "false")
+        Allow the creation of services without endpoints.
+
+    --providers.nomad.constraints  (Default: "")
+        Constraints is an expression that Traefik matches against the Nomad service's
+        tags to determine whether to create route(s) for that service.
+
+    --providers.nomad.defaultrule  (Default: "Host(`{{ normalize .Name }}`)")
+        Default rule.
+
+    --providers.nomad.endpoint.address  (Default: "http://127.0.0.1:4646")
+        The address of the Nomad server, including scheme and port.
+
+    --providers.nomad.endpoint.endpointwaittime  (Default: "0")
+        WaitTime limits how long a Watch will block. If not provided, the agent default
+        values will be used
+
+    --providers.nomad.endpoint.region  (Default: "")
+        Nomad region to use. If not provided, the local agent region is used.
+
+    --providers.nomad.endpoint.tls.ca  (Default: "")
+        TLS CA
+
+    --providers.nomad.endpoint.tls.cert  (Default: "")
+        TLS cert
+
+    --providers.nomad.endpoint.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --providers.nomad.endpoint.tls.key  (Default: "")
+        TLS key
+
+    --providers.nomad.endpoint.token  (Default: "")
+        Token is used to provide a per-request ACL token.
+
+    --providers.nomad.exposedbydefault  (Default: "true")
+        Expose Nomad services by default.
+
+    --providers.nomad.namespaces  (Default: "")
+        Sets the Nomad namespaces used to discover services.
+
+    --providers.nomad.prefix  (Default: "traefik")
+        Prefix for nomad service tags.
+
+    --providers.nomad.refreshinterval  (Default: "15")
+        Interval for polling Nomad API.
+
+    --providers.nomad.stale  (Default: "false")
+        Use stale consistency for catalog reads.
+
+    --providers.nomad.throttleduration  (Default: "0")
+        Watch throttle duration.
+
+    --providers.nomad.watch  (Default: "false")
+        Watch Nomad Service events.
+
+    --providers.plugin.<name>  (Default: "")
+        Plugins configuration.
+
+    --providers.precedence  (Default: "kubernetesgateway, kubernetescrd, kubernetes, kubernetesingressnginx, swarm, docker, file, redis, knative, consul, consulcatalog, nomad, etcd, ecs, http, zookeeper, rest")
+        Defines the routing precedence between providers.
+
+    --providers.providersthrottleduration  (Default: "2")
+        Backends throttle duration: minimum duration between 2 events from providers
+        before applying a new configuration. It avoids unnecessary reloads if multiples
+        events are sent in a short amount of time.
+
+    --providers.redis  (Default: "false")
+        Enables Redis provider.
+
+    --providers.redis.db  (Default: "0")
+        Database to be selected after connecting to the server.
+
+    --providers.redis.endpoints  (Default: "127.0.0.1:6379")
+        KV store endpoints.
+
+    --providers.redis.password  (Default: "")
+        Password for authentication.
+
+    --providers.redis.rootkey  (Default: "traefik")
+        Root key used for KV store.
+
+    --providers.redis.sentinel.latencystrategy  (Default: "false")
+        Defines whether to route commands to the closest master or replica nodes
+        (mutually exclusive with RandomStrategy and ReplicaStrategy).
+
+    --providers.redis.sentinel.mastername  (Default: "")
+        Name of the master.
+
+    --providers.redis.sentinel.password  (Default: "")
+        Password for Sentinel authentication.
+
+    --providers.redis.sentinel.randomstrategy  (Default: "false")
+        Defines whether to route commands randomly to master or replica nodes (mutually
+        exclusive with LatencyStrategy and ReplicaStrategy).
+
+    --providers.redis.sentinel.replicastrategy  (Default: "false")
+        Defines whether to route all commands to replica nodes (mutually exclusive with
+        LatencyStrategy and RandomStrategy).
+
+    --providers.redis.sentinel.usedisconnectedreplicas  (Default: "false")
+        Use replicas disconnected with master when cannot get connected replicas.
+
+    --providers.redis.sentinel.username  (Default: "")
+        Username for Sentinel authentication.
+
+    --providers.redis.tls.ca  (Default: "")
+        TLS CA
+
+    --providers.redis.tls.cert  (Default: "")
+        TLS cert
+
+    --providers.redis.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --providers.redis.tls.key  (Default: "")
+        TLS key
+
+    --providers.redis.username  (Default: "")
+        Username for authentication.
+
+    --providers.rest  (Default: "false")
+        Enables Rest provider.
+
+    --providers.rest.insecure  (Default: "false")
+        Activate REST Provider directly on the entryPoint named traefik.
+
+    --providers.swarm  (Default: "false")
+        Enables Docker Swarm provider.
+
+    --providers.swarm.allowemptyservices  (Default: "false")
+        Disregards the Docker containers health checks with respect to the creation or
+        removal of the corresponding services.
+
+    --providers.swarm.constraints  (Default: "")
+        Constraints is an expression that Traefik matches against the container's labels
+        to determine whether to create any route for that container.
+
+    --providers.swarm.defaultrule  (Default: "Host(`{{ normalize .Name }}`)")
+        Default rule.
+
+    --providers.swarm.endpoint  (Default: "unix:///var/run/docker.sock")
+        Docker server endpoint. Can be a TCP or a Unix socket endpoint.
+
+    --providers.swarm.exposedbydefault  (Default: "true")
+        Expose containers by default.
+
+    --providers.swarm.httpclienttimeout  (Default: "0")
+        Client timeout for HTTP connections.
+
+    --providers.swarm.network  (Default: "")
+        Default Docker network used.
+
+    --providers.swarm.password  (Default: "")
+        Password for Basic HTTP authentication.
+
+    --providers.swarm.refreshseconds  (Default: "15")
+        Polling interval for swarm mode.
+
+    --providers.swarm.tls.ca  (Default: "")
+        TLS CA
+
+    --providers.swarm.tls.cert  (Default: "")
+        TLS cert
+
+    --providers.swarm.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --providers.swarm.tls.key  (Default: "")
+        TLS key
+
+    --providers.swarm.usebindportip  (Default: "false")
+        Use the ip address from the bound port, rather than from the inner network.
+
+    --providers.swarm.username  (Default: "")
+        Username for Basic HTTP authentication.
+
+    --providers.swarm.watch  (Default: "true")
+        Watch Docker events.
+
+    --providers.zookeeper  (Default: "false")
+        Enables ZooKeeper provider.
+
+    --providers.zookeeper.endpoints  (Default: "127.0.0.1:2181")
+        KV store endpoints.
+
+    --providers.zookeeper.password  (Default: "")
+        Password for authentication.
+
+    --providers.zookeeper.rootkey  (Default: "traefik")
+        Root key used for KV store.
+
+    --providers.zookeeper.username  (Default: "")
+        Username for authentication.
+
+    --serverstransport.forwardingtimeouts.dialtimeout  (Default: "30")
+        The amount of time to wait until a connection to a backend server can be
+        established. If zero, no timeout exists.
+
+    --serverstransport.forwardingtimeouts.idleconntimeout  (Default: "90")
+        The maximum period for which an idle HTTP keep-alive connection will remain open
+        before closing itself
+
+    --serverstransport.forwardingtimeouts.responseheadertimeout  (Default: "0")
+        The amount of time to wait for a server's response headers after fully writing
+        the request (including its body, if any). If zero, no timeout exists.
+
+    --serverstransport.insecureskipverify  (Default: "false")
+        Disable SSL certificate verification.
+
+    --serverstransport.maxidleconnsperhost  (Default: "200")
+        If non-zero, controls the maximum idle (keep-alive) to keep per-host. If zero,
+        DefaultMaxIdleConnsPerHost is used. If negative, disables connection reuse.
+
+    --serverstransport.rootcas  (Default: "")
+        Add cert file for self-signed certificate.
+
+    --serverstransport.spiffe  (Default: "false")
+        Defines the SPIFFE configuration.
+
+    --serverstransport.spiffe.ids  (Default: "")
+        Defines the allowed SPIFFE IDs (takes precedence over the SPIFFE TrustDomain).
+
+    --serverstransport.spiffe.trustdomain  (Default: "")
+        Defines the allowed SPIFFE trust domain.
+
+    --spiffe.workloadapiaddr  (Default: "")
+        Defines the workload API address.
+
+    --tcpserverstransport.dialkeepalive  (Default: "15")
+        Defines the interval between keep-alive probes for an active network connection.
+        If zero, keep-alive probes are sent with a default value (currently 15 seconds),
+        if supported by the protocol and operating system. Network protocols or
+        operating systems that do not support keep-alives ignore this field. If
+        negative, keep-alive probes are disabled
+
+    --tcpserverstransport.dialtimeout  (Default: "30")
+        Defines the amount of time to wait until a connection to a backend server can be
+        established. If zero, no timeout exists.
+
+    --tcpserverstransport.terminationdelay  (Default: "0")
+        Defines the delay to wait before fully terminating the connection, after one
+        connected peer has closed its writing capability.
+
+    --tcpserverstransport.tls  (Default: "false")
+        Defines the TLS configuration.
+
+    --tcpserverstransport.tls.insecureskipverify  (Default: "false")
+        Disables SSL certificate verification.
+
+    --tcpserverstransport.tls.rootcas  (Default: "")
+        Defines a list of CA secret used to validate self-signed certificate
+
+    --tcpserverstransport.tls.spiffe  (Default: "false")
+        Defines the SPIFFE TLS configuration.
+
+    --tcpserverstransport.tls.spiffe.ids  (Default: "")
+        Defines the allowed SPIFFE IDs (takes precedence over the SPIFFE TrustDomain).
+
+    --tcpserverstransport.tls.spiffe.trustdomain  (Default: "")
+        Defines the allowed SPIFFE trust domain.
+
+    --tracing  (Default: "false")
+        Tracing configuration.
+
+    --tracing.addinternals  (Default: "false")
+        Enables tracing for internal services (ping, dashboard, etc...).
+
+    --tracing.capturedrequestheaders  (Default: "")
+        Request headers to add as attributes for server and client spans.
+
+    --tracing.capturedresponseheaders  (Default: "")
+        Response headers to add as attributes for server and client spans.
+
+    --tracing.globalattributes.<name>  (Default: "")
+        (Deprecated) Defines additional resource attributes (key:value).
+
+    --tracing.otlp  (Default: "false")
+        Settings for OpenTelemetry.
+
+    --tracing.otlp.grpc  (Default: "false")
+        gRPC configuration for the OpenTelemetry collector.
+
+    --tracing.otlp.grpc.endpoint  (Default: "localhost:4317")
+        Sets the gRPC endpoint (host:port) of the collector.
+
+    --tracing.otlp.grpc.headers.<name>  (Default: "")
+        Headers sent with payload.
+
+    --tracing.otlp.grpc.insecure  (Default: "false")
+        Disables client transport security for the exporter.
+
+    --tracing.otlp.grpc.tls.ca  (Default: "")
+        TLS CA
+
+    --tracing.otlp.grpc.tls.cert  (Default: "")
+        TLS cert
+
+    --tracing.otlp.grpc.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --tracing.otlp.grpc.tls.key  (Default: "")
+        TLS key
+
+    --tracing.otlp.http  (Default: "false")
+        HTTP configuration for the OpenTelemetry collector.
+
+    --tracing.otlp.http.endpoint  (Default: "https://localhost:4318")
+        Sets the HTTP endpoint (scheme://host:port/path) of the collector.
+
+    --tracing.otlp.http.headers.<name>  (Default: "")
+        Headers sent with payload.
+
+    --tracing.otlp.http.tls.ca  (Default: "")
+        TLS CA
+
+    --tracing.otlp.http.tls.cert  (Default: "")
+        TLS cert
+
+    --tracing.otlp.http.tls.insecureskipverify  (Default: "false")
+        TLS insecure skip verify
+
+    --tracing.otlp.http.tls.key  (Default: "")
+        TLS key
+
+    --tracing.resourceattributes.<name>  (Default: "")
+        Defines additional resource attributes (key:value).
+
+    --tracing.safequeryparams  (Default: "")
+        Query params to not redact.
+
+    --tracing.samplerate  (Default: "1.000000")
+        Sets the rate between 0.0 and 1.0 of requests to trace.
+
+    --tracing.servicename  (Default: "traefik")
+        Defines the service name resource attribute.
+

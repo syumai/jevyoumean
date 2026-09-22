@@ -1,0 +1,148 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/just
+# args: 
+🤖 Just a command runner - https://github.com/casey/just
+
+Usage: just [OPTIONS] [ARGUMENTS]...
+
+Arguments:
+  [ARGUMENTS]...  Overrides and recipe(s) to run, defaulting to the first recipe in the justfile
+
+Options:
+      --alias-style <ALIAS_STYLE>
+          Set list command alias display style [env: JUST_ALIAS_STYLE=] [default: right] [possible
+          values: left, right, separate]
+      --allow-missing
+          Ignore missing recipe and module errors [env: JUST_ALLOW_MISSING=]
+      --ceiling <CEILING>
+          Do not ascend above <CEILING> directory when searching for a justfile. [env:
+          JUST_CEILING=]
+      --check
+          Run `--fmt` in 'check' mode. Exits with 0 if justfile is formatted correctly. Exits with 1
+          and prints a diff if formatting is required.
+      --chooser <CHOOSER>
+          Override binary invoked by `--choose` [env: JUST_CHOOSER=]
+      --clear-shell-args
+          Clear shell arguments
+      --color <COLOR>
+          Print colorful output [env: JUST_COLOR=] [default: auto] [possible values: always, auto,
+          never]
+      --command-color <COMMAND_COLOR>
+          Echo recipe lines in <COMMAND-COLOR> [env: JUST_COMMAND_COLOR=] [possible values: black,
+          blue, cyan, green, purple, red, yellow]
+      --complete-aliases
+          Auto-complete recipe aliases [env: JUST_COMPLETE_ALIASES=]
+      --cygpath <CYGPATH>
+          Use binary at <CYGPATH> to convert between unix and Windows paths [env: JUST_CYGPATH=]
+          [default: cygpath]
+      --default-list
+          List recipes when no arguments are provided [env: JUST_DEFAULT_LIST=]
+      --dotenv-command <COMMAND>
+          Run <COMMAND> and load its output as an environment file [env: JUST_DOTENV_COMMAND=]
+  -F, --dotenv-filename <DOTENV_FILENAME>
+          Search for an environment file named <DOTENV-FILENAME> instead of `.env`
+  -E, --dotenv-path <DOTENV_PATH>
+          Load <DOTENV-PATH> as an environment file instead of searching for one
+  -n, --dry-run
+          Print what just would do without doing it [env: JUST_DRY_RUN=]
+      --dump-format <FORMAT>
+          Dump justfile as <FORMAT> [env: JUST_DUMP_FORMAT=] [default: just] [possible values: json,
+          just]
+      --evaluate-format <FORMAT>
+          Print evaluated variables in <FORMAT> [env: JUST_EVALUATE_FORMAT=] [default: just]
+          [possible values: just, shell]
+      --explain
+          Print recipe doc comment before running it [env: JUST_EXPLAIN=]
+  -g, --global-justfile
+          Use global justfile
+      --group <GROUP>
+          Only list recipes in <GROUP> [env: JUST_GROUP=]
+      --highlight
+          Highlight echoed recipe lines in bold [env: JUST_HIGHLIGHT=]
+      --indentation <INDENTATION>
+          Indent recipes bodies with <INDENTATION> [env: JUST_INDENTATION=]
+      --jobs <N>
+          Run at most <N> recipes simultaneously with the [parallel] attribute [env: JUST_JOBS=]
+  -f, --justfile <JUSTFILE>
+          Use <JUSTFILE> as justfile or `-` to read from standard input [env: JUST_JUSTFILE=]
+      --justfile-name <NAME>
+          Search for justfile named <NAME>, accepts multiple `,`-separated values and may be
+          repeated [env: JUST_JUSTFILE_NAME=]
+      --list-heading <TEXT>
+          Print <TEXT> before list [env: JUST_LIST_HEADING=] [default: "Available recipes:\n"]
+      --list-prefix <TEXT>
+          Print <TEXT> before each list item [env: JUST_LIST_PREFIX=] [default: "    "]
+      --list-submodules
+          List recipes in submodules [env: JUST_LIST_SUBMODULES=]
+      --no-aliases
+          Don't show aliases in list [env: JUST_NO_ALIASES=]
+      --no-cache
+          Bypass recipe cache [env: JUST_NO_CACHE=]
+      --no-deps
+          Don't run recipe dependencies [env: JUST_NO_DEPS=]
+      --no-dotenv
+          Don't load `.env` file [env: JUST_NO_DOTENV=]
+      --no-highlight
+          Don't highlight echoed recipe lines in bold [env: JUST_NO_HIGHLIGHT=]
+      --one
+          Forbid multiple recipes from being invoked on the command line [env: JUST_ONE=]
+  -q, --quiet
+          Suppress all output [env: JUST_QUIET=]
+      --set <VARIABLE> <VALUE>
+          Override <VARIABLE> with <VALUE>
+      --shell <SHELL>
+          Invoke <SHELL> to run recipes
+      --shell-arg <SHELL_ARG>
+          Invoke shell with <SHELL-ARG> as an argument
+      --shell-command
+          Invoke <COMMAND> with the shell used to run recipe lines and backticks
+      --tempdir <TEMPDIR>
+          Save temporary files to <TEMPDIR>. [env: JUST_TEMPDIR=]
+      --time
+          Print recipe execution time [env: JUST_TIME=]
+      --timestamp
+          Print recipe command timestamps [env: JUST_TIMESTAMP=]
+      --timestamp-format <TIMESTAMP_FORMAT>
+          Timestamp format string [env: JUST_TIMESTAMP_FORMAT=] [default: %H:%M:%S]
+  -u, --unsorted
+          Return list and summary entries in source order [env: JUST_UNSORTED=]
+      --unstable
+          Enable unstable features [env: JUST_UNSTABLE=]
+  -v, --verbose...
+          Use verbose output [env: JUST_VERBOSE=]
+  -d, --working-directory <WORKING_DIRECTORY>
+          Use <WORKING-DIRECTORY> as working directory. --justfile must also be set [env:
+          JUST_WORKING_DIRECTORY=]
+      --yes
+          Automatically confirm all recipes. [env: JUST_YES=]
+  -h, --help
+          Print help
+  -V, --version
+          Print version
+
+Commands:
+      --changelog                 Print changelog
+      --choose                    Select one or more recipes to run using a binary chooser. If
+                                  `--chooser` is not passed the chooser defaults to the value of
+                                  $JUST_CHOOSER, falling back to `fzf`
+      --clean [<RECIPE_PATH>...]  Clear recipe cache, optionally restricted to recipes whose path
+                                  begins with <RECIPE_PATH>
+  -c, --command <COMMAND>...      Run an arbitrary command with the working directory, `.env`,
+                                  overrides, and exports set
+      --completions <SHELL>       Print shell completion script for <SHELL> [possible values: bash,
+                                  elvish, fish, nushell, powershell, zsh]
+      --dump                      Print justfile
+  -e, --edit                      Edit justfile with editor given by $VISUAL or $EDITOR, falling
+                                  back to `vim`
+      --evaluate                  Evaluate and print all variables. If a variable name is given as
+                                  an argument, only print that variable's value.
+      --fmt                       Format and overwrite justfile
+      --groups                    List recipe groups
+      --init                      Initialize new justfile in project root
+      --json                      Print justfile as JSON
+  -l, --list [<MODULE>...]        List available recipes in <MODULE> or root if omitted
+      --man                       Print man page
+  -s, --show <RECIPE_PATH>...     Show recipe at <RECIPE_PATH>
+      --summary                   List names of available recipes
+      --usage <RECIPE_PATH>...    Print usage information for recipe at <RECIPE_PATH>
+      --variables                 List names of variables

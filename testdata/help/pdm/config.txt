@@ -1,0 +1,27 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pdm
+# args: 
+Usage: pdm config [-h] [-v | -q] [-g] [-p PROJECT_PATH] [-l] [-d] [-e]
+ [key] [value]
+
+Display the current configuration
+
+Positional Arguments:
+  key                   Config key
+  value                 Config value
+
+Options:
+  -h, --help            Show this help message and exit.
+  -v, --verbose         Use `-v` for detailed output and `-vv` for more
+                        detailed
+  -q, --quiet           Suppress output
+  -g, --global          Use the global project, supply the project root with
+                        `-p` option
+  -p PROJECT_PATH, --project PROJECT_PATH
+                        Specify another path as the project root, which
+                        changes the base of pyproject.toml and __pypackages__
+                        [env var: PDM_PROJECT]
+  -l, --local           Set config in the project's local configuration file
+  -d, --delete          Unset a configuration key
+  -e, --edit            Edit the configuration file in the default
+                        editor(defined by EDITOR env var)

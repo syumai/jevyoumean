@@ -1,0 +1,16 @@
+# synthetic fixture mimicking `zola --help` output (Zola is EUPL-1.2;
+# format reproduced by hand, no verbatim capture — see ../NOTICE.md)
+A fast static site generator in a single binary with everything built-in
+
+Usage: jym-zola [COMMAND]
+
+Commands:
+  init        Create a new project
+  build       Build the site
+  serve       Serve the site and rebuild on change
+  check       Try building the site without rendering it
+  completion  Generate shell completions
+  help        Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help  Print help

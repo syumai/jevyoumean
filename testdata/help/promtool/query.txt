@@ -1,0 +1,42 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/promtool
+# args: 
+usage: promtool query [<flags>] <command> [<args> ...]
+
+Run query against a Prometheus server.
+
+
+Flags:
+  -h, --[no-]help            Show context-sensitive help (also try --help-long
+                             and --help-man).
+      --[no-]version         Show application version.
+      --[no-]experimental    Enable experimental commands.
+      --enable-feature= ...  Comma separated feature names to enable.
+                             Valid options: promql-experimental-functions,
+                             promql-delayed-name-removal,
+                             promql-extended-range-selectors. See
+                             https://prometheus.io/docs/prometheus/latest/feature_flags/
+                             for more details
+  -o, --format=promql        Output format of the query.
+      --http.config.file=<filename>  
+                             HTTP client configuration file, see details at
+                             https://prometheus.io/docs/prometheus/latest/configuration/promtool
+
+Subcommands:
+query instant [<flags>] <server> <expr>
+    Run instant query.
+
+query range [<flags>] <server> <expr>
+    Run range query.
+
+query series --match=MATCH [<flags>] <server>
+    Run series query.
+
+query labels [<flags>] <server> <name>
+    Run labels query.
+
+query analyze --server=SERVER --type=TYPE --match=MATCH [<flags>]
+    Run queries against your Prometheus to analyze the usage pattern of certain
+    metrics.
+
+

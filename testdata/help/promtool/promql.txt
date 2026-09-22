@@ -1,0 +1,31 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/promtool
+# args: 
+usage: promtool promql <command> [<args> ...]
+
+PromQL formatting and editing. Requires the --experimental flag.
+
+
+Flags:
+  -h, --[no-]help            Show context-sensitive help (also try --help-long
+                             and --help-man).
+      --[no-]version         Show application version.
+      --[no-]experimental    Enable experimental commands.
+      --enable-feature= ...  Comma separated feature names to enable.
+                             Valid options: promql-experimental-functions,
+                             promql-delayed-name-removal,
+                             promql-extended-range-selectors. See
+                             https://prometheus.io/docs/prometheus/latest/feature_flags/
+                             for more details
+
+Subcommands:
+promql format <query>
+    Format PromQL query to pretty printed form.
+
+promql label-matchers set [<flags>] <query> <name> <value>
+    Set a label matcher in the query.
+
+promql label-matchers delete <query> <name>
+    Delete a label from the query.
+
+

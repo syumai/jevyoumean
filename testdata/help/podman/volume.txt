@@ -1,0 +1,21 @@
+# captured 2026-09-22
+# exe: /usr/bin/podman
+# args: 
+Manage volumes
+
+Description:
+  Volumes are created in and can be shared between containers
+
+Usage:
+  podman volume [command]
+
+Available Commands:
+  create      Create a new volume
+  exists      volume exists
+  export      Export volumes
+  import      Import a tarball contents into a podman volume
+  inspect     Display detailed information on one or more volumes
+  ls          List volumes
+  prune       Remove all unused volumes
+  rm          Remove one or more volumes
+

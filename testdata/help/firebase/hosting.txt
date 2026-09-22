@@ -1,0 +1,18 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/firebase
+# args: 
+Usage: firebase hosting [options] [command]
+
+manage Firebase Hosting sites and channels
+
+Options:
+  -h, --help                              display help for command
+
+Commands:
+  hosting:clone <source> <targetChannel>  clone a version from one site to another
+  hosting:disable [options]               stop serving web traffic to your Firebase Hosting site
+  hosting:channel                         manage hosting:channel resources
+  hosting:sites                           manage hosting:sites resources
+
+To see more about a specific command, run:
+  firebase hosting:<command> --help

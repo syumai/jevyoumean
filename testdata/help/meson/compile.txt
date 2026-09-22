@@ -1,0 +1,30 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/meson
+# args: 
+usage: meson compile [-h] [--clean] [-C WD] [-j JOBS] [-l LOAD_AVERAGE] [-v]
+                     [--ninja-args NINJA_ARGS] [--vs-args VS_ARGS]
+                     [--xcode-args XCODE_ARGS]
+                     [TARGET ...]
+
+positional arguments:
+  TARGET                                Targets to build. Target has the
+                                        following format: [PATH_TO_TARGET/]TARGE
+                                        T_NAME.TARGET_SUFFIX[:TARGET_TYPE].
+
+options:
+  -h, --help                            show this help message and exit
+  --clean                               Clean the build directory.
+  -C WD                                 directory to cd into before running
+  -j JOBS, --jobs JOBS                  The number of worker jobs to run (if
+                                        supported). If the value is less than 1
+                                        the build program will guess.
+  -l LOAD_AVERAGE, --load-average LOAD_AVERAGE
+                                        The system load average to try to
+                                        maintain (if supported).
+  -v, --verbose                         Show more verbose output.
+  --ninja-args NINJA_ARGS               Arguments to pass to `ninja` (applied
+                                        only on `ninja` backend).
+  --vs-args VS_ARGS                     Arguments to pass to `msbuild` (applied
+                                        only on `vs` backend).
+  --xcode-args XCODE_ARGS               Arguments to pass to `xcodebuild`
+                                        (applied only on `xcode` backend).

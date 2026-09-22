@@ -1,0 +1,62 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/meson
+# args: 
+usage: meson test [-h] [-k MAXFAIL] [--repeat REPEAT] [--no-rebuild] [--gdb]
+                  [--gdb-path GDB_PATH] [-i] [--list] [--wrapper WRAPPER]
+                  [-C WD] [--suite SUITE] [--no-suite SUITE] [--exclude EXCLUDE]
+                  [--no-stdsplit] [--print-errorlogs] [--benchmark]
+                  [--logbase LOGBASE] [-j NUM_PROCESSES] [-v] [-q]
+                  [-t TIMEOUT_MULTIPLIER] [--setup SETUP]
+                  [--test-args TEST_ARGS] [--max-lines MAX_LINES]
+                  [--slice SLICE/NUM_SLICES]
+                  [args ...]
+
+positional arguments:
+  args                                  Optional list of test names to run.
+                                        "testname" to run all tests with that
+                                        name, "subprojname:testname" to
+                                        specifically run "testname" from
+                                        "subprojname", "subprojname:" to run all
+                                        tests defined by "subprojname".
+
+options:
+  -h, --help                            show this help message and exit
+  -k MAXFAIL, --maxfail MAXFAIL         Number of failing tests before aborting
+                                        the test run. (default: 0, to disable
+                                        aborting on failure)
+  --repeat REPEAT                       Number of times to run the tests.
+  --no-rebuild                          Do not rebuild before running tests.
+  --gdb                                 Run test under gdb.
+  --gdb-path GDB_PATH                   Path to the gdb binary (default: gdb).
+  -i, --interactive                     Run tests with interactive input/output.
+  --list                                List available tests.
+  --wrapper WRAPPER                     wrapper to run tests with (e.g.
+                                        Valgrind)
+  -C WD                                 directory to cd into before running
+  --suite SUITE                         Only run tests belonging to the given
+                                        suite.
+  --no-suite SUITE                      Do not run tests belonging to the given
+                                        suite.
+  --exclude EXCLUDE                     Exclude tests with the given name.
+  --no-stdsplit                         Do not split stderr and stdout in test
+                                        logs.
+  --print-errorlogs                     Whether to print failing tests' logs.
+  --benchmark                           Run benchmarks instead of tests.
+  --logbase LOGBASE                     Base name for log file.
+  -j NUM_PROCESSES, --num-processes NUM_PROCESSES
+                                        How many parallel processes to use.
+  -v, --verbose                         Do not redirect stdout and stderr
+  -q, --quiet                           Produce less output to the terminal.
+  -t TIMEOUT_MULTIPLIER, --timeout-multiplier TIMEOUT_MULTIPLIER
+                                        Define a multiplier for test timeout,
+                                        for example when running tests in
+                                        particular conditions they might take
+                                        more time to execute. (<= 0 to disable
+                                        timeout)
+  --setup SETUP                         Which test setup to use.
+  --test-args TEST_ARGS                 Arguments to pass to the specified
+                                        test(s) or all tests
+  --max-lines MAX_LINES                 Maximum number of lines to show from a
+                                        long test log. Since 1.5.0.
+  --slice SLICE/NUM_SLICES              Split tests into NUM_SLICES slices and
+                                        execute slice SLICE. Since 1.8.0.

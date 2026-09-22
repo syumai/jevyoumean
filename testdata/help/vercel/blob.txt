@@ -1,0 +1,56 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/vercel
+# args: 
+Vercel CLI 59.25.0 (Node.js 22.17.0)
+
+  ▲ vercel blob command [options]
+
+  Interact with Vercel Blob                                                     
+
+  Commands:
+
+  list                                        List all files in the Blob store  
+  put           pathToFile                    Upload a file to the Blob store   
+  put-image     pathToFileOrUrl               Optimize an image with Vercel     
+                                              Image Optimization and store the  
+                                              result in the Blob store (requires
+                                              OIDC credentials)                 
+  get           urlOrPathname                 Download a blob by URL or pathname
+  del           urlsOrPathnames               Delete a file from the Blob store 
+  copy          fromUrlOrPathname toPathname  Copy a file in the Blob store     
+  signed-token                                Issue a short-lived signed token  
+                                              for Blob operations               
+  presign       pathname                      Generate a presigned URL for Blob 
+                                              operations                        
+  create-store  [name]                        Create a new Blob store           
+  delete-store  [storeId]                     Delete a Blob store               
+  get-store     [storeId]                     Get a Blob store                  
+  list-stores                                 List all Blob stores              
+  empty-store                                 Delete all blobs in a Blob store  
+
+
+  Options:
+
+   --oidc-token <String>  OIDC token for the Blob store (must be passed together 
+                          with --store-id)                                       
+   --rw-token <String>    Read_Write_Token for the Blob store                    
+   --store-id <String>    Blob store id, with or without the "store_" prefix     
+                          (must be passed together with --oidc-token)            
+
+
+  Global Options:
+
+       --cwd <DIR>            Sets the current working directory for a single   
+                              run of a command                                  
+  -d,  --debug                Debug mode (default off)                          
+  -Q,  --global-config <DIR>  Path to the global `.vercel` directory            
+  -h,  --help                 Output usage information                          
+  -A,  --local-config <FILE>  Path to the local `vercel.json` file              
+       --no-color             No color mode (default off)                       
+       --non-interactive      Run without interactive prompts; when an agent is 
+                              detected this is the default                      
+  -S,  --scope                Set a custom scope                                
+  -t,  --token <TOKEN>        Login token                                       
+  -v,  --version              Output the version number                         
+
+

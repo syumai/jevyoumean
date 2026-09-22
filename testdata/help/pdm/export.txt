@@ -1,0 +1,51 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pdm
+# args: 
+Usage: pdm export [-h] [-v | -q] [-g] [-p PROJECT_PATH] [-L LOCKFILE]
+ [-f {requirements,pylock}] [-G GROUP] [--without]
+ [--no-default] [-d | --prod] [--no-hashes] [--no-markers]
+ [--no-extras] [-o OUTPUT] [--pyproject] [--expandvars]
+ [--self | --editable-self]
+
+Export the locked packages set to other formats
+
+Options:
+  -h, --help            Show this help message and exit.
+  -v, --verbose         Use `-v` for detailed output and `-vv` for more
+                        detailed
+  -q, --quiet           Suppress output
+  -g, --global          Use the global project, supply the project root with
+                        `-p` option
+  -p PROJECT_PATH, --project PROJECT_PATH
+                        Specify another path as the project root, which
+                        changes the base of pyproject.toml and __pypackages__
+                        [env var: PDM_PROJECT]
+  -L LOCKFILE, --lockfile LOCKFILE
+                        Specify another lockfile path. Default: pdm.lock. [env
+                        var: PDM_LOCKFILE]
+  -f {requirements,pylock}, --format {requirements,pylock}
+                        Export to requirements.txt format or pylock.toml
+                        format
+  --no-hashes, --without-hashes
+                        Don't include artifact hashes
+  --no-markers          (DEPRECATED)Don't include platform markers
+  --no-extras           Strip extras from the requirements
+  -o OUTPUT, --output OUTPUT
+                        Write output to the given file, or print to stdout if
+                        not given
+  --pyproject           Read the list of packages from pyproject.toml
+  --expandvars          Expand environment variables in requirements
+  --self                Include the project itself
+  --editable-self       Include the project itself as an editable dependency
+
+Dependencies Selection:
+  -G GROUP, --group GROUP, --with GROUP
+                        Select group of optional-dependencies separated by
+                        comma or dependency-groups (with `-d`). Can be
+                        supplied multiple times, use ":all" to include all
+                        groups under the same species.
+  --without             Exclude groups of optional-dependencies or dependency-
+                        groups
+  --no-default          Don't include dependencies from the default group
+  -d, --dev             Select dev dependencies
+  --prod, --production  Unselect dev dependencies

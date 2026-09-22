@@ -1,0 +1,168 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/meson
+# args: 
+usage: meson setup [-h] [--prefix CMD_LINE_OPTIONS] [--bindir CMD_LINE_OPTIONS]
+                   [--datadir CMD_LINE_OPTIONS] [--includedir CMD_LINE_OPTIONS]
+                   [--infodir CMD_LINE_OPTIONS] [--libdir CMD_LINE_OPTIONS]
+                   [--licensedir CMD_LINE_OPTIONS]
+                   [--libexecdir CMD_LINE_OPTIONS]
+                   [--localedir CMD_LINE_OPTIONS]
+                   [--localstatedir CMD_LINE_OPTIONS]
+                   [--mandir CMD_LINE_OPTIONS] [--sbindir CMD_LINE_OPTIONS]
+                   [--sharedstatedir CMD_LINE_OPTIONS]
+                   [--sysconfdir CMD_LINE_OPTIONS]
+                   [--auto-features {enabled,disabled,auto}]
+                   [--backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,vs2026,xcode,none}]
+                   [--genvslite {vs2022,vs2026}]
+                   [--buildtype {plain,debug,debugoptimized,release,minsize,custom}]
+                   [--debug] [--default-library {shared,static,both}]
+                   [--default-both-libraries {shared,static,auto}] [--errorlogs]
+                   [--install-umask CMD_LINE_OPTIONS] [--layout {mirror,flat}]
+                   [--namingscheme {platform,classic}]
+                   [--optimization {plain,0,g,1,2,3,s}] [--prefer-static]
+                   [--stdsplit] [--strip] [--unity {on,off,subprojects}]
+                   [--unity-size CMD_LINE_OPTIONS]
+                   [--warnlevel {0,1,2,3,everything}] [--werror]
+                   [--wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}]
+                   [--force-fallback-for CMD_LINE_OPTIONS] [--vsenv]
+                   [--os2-emxomf] [--pkgconfig.relocatable]
+                   [--python.bytecompile CMD_LINE_OPTIONS]
+                   [--python.install-env {auto,prefix,system,venv}]
+                   [--python.platlibdir CMD_LINE_OPTIONS]
+                   [--python.purelibdir CMD_LINE_OPTIONS]
+                   [--python.allow-limited-api]
+                   [--python.build-config CMD_LINE_OPTIONS]
+                   [--pkg-config-path CMD_LINE_OPTIONS]
+                   [--build.pkg-config-path CMD_LINE_OPTIONS]
+                   [--cmake-prefix-path CMD_LINE_OPTIONS]
+                   [--build.cmake-prefix-path CMD_LINE_OPTIONS]
+                   [-D option=value] [--native-file NATIVE_FILE]
+                   [--cross-file CROSS_FILE] [-v] [--fatal-meson-warnings]
+                   [--reconfigure] [--wipe] [--clearcache]
+                   [builddir] [sourcedir]
+
+positional arguments:
+  builddir
+  sourcedir
+
+options:
+  -h, --help                            show this help message and exit
+  --prefix CMD_LINE_OPTIONS             Installation prefix (default:
+                                        /usr/local).
+  --bindir CMD_LINE_OPTIONS             Executable directory (default: bin).
+  --datadir CMD_LINE_OPTIONS            Data file directory (default: share).
+  --includedir CMD_LINE_OPTIONS         Header file directory (default:
+                                        include).
+  --infodir CMD_LINE_OPTIONS            Info page directory (default:
+                                        share/info).
+  --libdir CMD_LINE_OPTIONS             Library directory (default:
+                                        lib/x86_64-linux-gnu).
+  --licensedir CMD_LINE_OPTIONS         Licenses directory (default: ).
+  --libexecdir CMD_LINE_OPTIONS         Library executable directory (default:
+                                        libexec).
+  --localedir CMD_LINE_OPTIONS          Locale data directory (default:
+                                        share/locale).
+  --localstatedir CMD_LINE_OPTIONS      Localstate data directory (default:
+                                        var).
+  --mandir CMD_LINE_OPTIONS             Manual page directory (default:
+                                        share/man).
+  --sbindir CMD_LINE_OPTIONS            System executable directory (default:
+                                        sbin).
+  --sharedstatedir CMD_LINE_OPTIONS     Architecture-independent data directory
+                                        (default: com).
+  --sysconfdir CMD_LINE_OPTIONS         Sysconf data directory (default: etc).
+  --auto-features {enabled,disabled,auto}
+                                        Override value of all 'auto' features
+                                        (default: auto).
+  --backend {ninja,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,vs2026,xcode,none}
+                                        Backend to use (default: ninja).
+  --genvslite {vs2022,vs2026}           Setup multiple buildtype-suffixed ninja-
+                                        backend build directories, and a
+                                        [builddir]_vs containing a Visual Studio
+                                        meta-backend with multiple
+                                        configurations that calls into them
+                                        (default: vs2022).
+  --buildtype {plain,debug,debugoptimized,release,minsize,custom}
+                                        Build type to use (default: debug).
+  --debug                               Enable debug symbols and other
+                                        information.
+  --default-library {shared,static,both}
+                                        Default library type (default: shared).
+  --default-both-libraries {shared,static,auto}
+                                        Default library type for both_libraries
+                                        (default: shared).
+  --errorlogs                           Whether to print the logs from failing
+                                        tests.
+  --install-umask CMD_LINE_OPTIONS      Default umask to apply on permissions of
+                                        installed files (default: 0o22).
+  --layout {mirror,flat}                Build directory layout (default:
+                                        mirror).
+  --namingscheme {platform,classic}     How target file names are formed
+                                        (default: classic).
+  --optimization {plain,0,g,1,2,3,s}    Optimization level (default: 0).
+  --prefer-static                       Whether to try static linking before
+                                        shared linking.
+  --stdsplit                            Split stdout and stderr in test logs.
+  --strip                               Strip targets on install.
+  --unity {on,off,subprojects}          Unity build (default: off).
+  --unity-size CMD_LINE_OPTIONS         Unity block size (default: 4).
+  --warnlevel {0,1,2,3,everything}      Compiler warning level to use (default:
+                                        1).
+  --werror                              Treat warnings as errors.
+  --wrap-mode {default,nofallback,nodownload,forcefallback,nopromote}
+                                        Wrap mode (default: default).
+  --force-fallback-for CMD_LINE_OPTIONS
+                                        Force fallback for those subprojects
+                                        (default: []).
+  --vsenv                               Activate Visual Studio environment.
+  --os2-emxomf                          Use OMF format on OS/2.
+  --pkgconfig.relocatable               Generate pkgconfig files as relocatable.
+  --python.bytecompile CMD_LINE_OPTIONS
+                                        Whether to compile bytecode (default:
+                                        0).
+  --python.install-env {auto,prefix,system,venv}
+                                        Which python environment to install to
+                                        (default: prefix).
+  --python.platlibdir CMD_LINE_OPTIONS  Directory for site-specific, platform-
+                                        specific files (default: ).
+  --python.purelibdir CMD_LINE_OPTIONS  Directory for site-specific, non-
+                                        platform-specific files (default: ).
+  --python.allow-limited-api            Whether to allow use of the Python
+                                        Limited API.
+  --python.build-config CMD_LINE_OPTIONS
+                                        Config file containing the build details
+                                        for the target Python installation
+                                        (default: ).
+  --pkg-config-path CMD_LINE_OPTIONS    List of additional paths for pkg-config
+                                        to search (just for host machine,
+                                        default: []).
+  --build.pkg-config-path CMD_LINE_OPTIONS
+                                        List of additional paths for pkg-config
+                                        to search (just for build machine,
+                                        default: []).
+  --cmake-prefix-path CMD_LINE_OPTIONS  List of additional prefixes for cmake to
+                                        search (just for host machine, default:
+                                        []).
+  --build.cmake-prefix-path CMD_LINE_OPTIONS
+                                        List of additional prefixes for cmake to
+                                        search (just for build machine, default:
+                                        []).
+  -D option=value                       Set the value of an option, can be used
+                                        several times to set multiple options.
+  --native-file NATIVE_FILE             File containing overrides for native
+                                        compilation environment.
+  --cross-file CROSS_FILE               File describing cross compilation
+                                        environment.
+  -v, --version                         show program's version number and exit
+  --fatal-meson-warnings                Make all Meson warnings fatal
+  --reconfigure                         Set options and reconfigure the project.
+                                        Useful when new options have been added
+                                        to the project and the default value is
+                                        not working.
+  --wipe                                Wipe build directory and reconfigure
+                                        using previous command line options.
+                                        Useful when build directory got
+                                        corrupted, or when rebuilding with a
+                                        newer version of meson.
+  --clearcache                          Clear cached state (e.g. found
+                                        dependencies). Since 1.3.0.

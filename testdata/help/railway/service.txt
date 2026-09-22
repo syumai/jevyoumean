@@ -1,0 +1,45 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/railway
+# args: 
+Manage services
+
+Usage: railway service [SERVICE] [COMMAND]
+
+Commands:
+  list      List services in the current environment [aliases: ls]
+  delete    Delete a service from an environment [aliases: remove, rm]
+  link      Link a service to the current project
+  source    Connect or disconnect a service source
+  status    Show deployment status for services
+  logs      View logs from a service
+  redeploy  Redeploy the latest deployment of a service
+  restart   Restart the latest deployment of a service
+  scale     Scale a service across regions
+  files     Manage files in a service filesystem [aliases: file]
+  help      Print this message or the help of the given subcommand(s)
+
+Arguments:
+  [SERVICE]  The service ID/name to link (deprecated: use 'service link' instead)
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
+Examples:
+
+  railway service list --json
+  railway service delete --service api --environment production --yes --json
+  railway service link api
+  railway service source connect --repo owner/repo --branch main --service api
+  railway service source disconnect --service api
+  railway service files list /app --json
+  railway service files browse /app
+  railway service files download /app/data.db ./data.db --json
+  railway service files upload ./seed.db /app/seed.db --json
+  railway service files delete /app/data.db --yes --json
+  railway service files rename /app/data.db /app/data-old.db --json
+
+Automation notes:
+  Destructive non-interactive runs must pass exact selectors and --yes.
+  Prefer service IDs from `railway service list --json` when names may collide.
+

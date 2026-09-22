@@ -72,6 +72,24 @@ code from these projects.
 | supabase | Supabase CLI (`supabase/cli`) | MIT |
 | firebase | Firebase CLI (`firebase/firebase-tools`) | MIT |
 
+| borg | BorgBackup (`borgbackup/borg`) | BSD-3-Clause |
+| chezmoi | chezmoi (`twpayne/chezmoi`) | MIT |
+| mkdocs | MkDocs (`mkdocs/mkdocs`) | BSD-2-Clause |
+| dbt | dbt (`dbt-labs/dbt-core`) | Apache-2.0 |
+| podman | Podman (`containers/podman`) | Apache-2.0 |
+| hugo | Hugo (`gohugoio/hugo`) | Apache-2.0 |
+| rclone | rclone (`rclone/rclone`) | MIT |
+| caddy | Caddy (`caddyserver/caddy`) | Apache-2.0 |
+| traefik | Traefik (`traefik/traefik`) | MIT |
+| restic | restic (`restic/restic`) | BSD-2-Clause |
+| velero | Velero (`vmware-tanzu/velero`) | Apache-2.0 |
+| promtool | Prometheus promtool (`prometheus/prometheus`) | Apache-2.0 |
+| zellij | Zellij (`zellij-org/zellij`) | MIT |
+| starship | Starship (`starship/starship`) | ISC |
+| task | Task (`go-task/task`) | MIT |
+| just | just (`casey/just`) | CC0-1.0 |
+| volta | Volta (`volta-cli/volta`) | BSD-2-Clause |
+
 ## Synthetic fixtures (format only, not verbatim)
 
 | Command | Upstream project | License |
@@ -83,3 +101,4 @@ code from these projects.
 | tar | GNU tar | GPL-3.0 |
 | sops | SOPS (`getsops/sops`) | MPL-2.0 |
 | tofu | OpenTofu (`opentofu/opentofu`) | MPL-2.0 |
+| zola | Zola (`getzola/zola`) | EUPL-1.2 |

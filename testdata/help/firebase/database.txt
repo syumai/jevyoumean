@@ -1,0 +1,23 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/firebase
+# args: 
+Usage: firebase database [options] [command]
+
+manage Realtime Database
+
+Options:
+  -h, --help                                 display help for command
+
+Commands:
+  database:get [options] <path>              fetch and print JSON data at the specified path
+  database:import [options] <path> [infile]  non-atomically import the contents of a JSON file to the specified path in Realtime Database
+  database:profile [options]                 profile the Realtime Database and generate a usage report
+  database:push [options] <path> [infile]    add a new JSON object to a list of data in your Firebase
+  database:remove [options] <path>           remove data from your Firebase at the specified path
+  database:set [options] <path> [infile]     store JSON data at the specified path via STDIN, arg, or file
+  database:update [options] <path> [infile]  update some of the keys for the defined path in your Realtime Database
+  database:instances                         manage database:instances resources
+  database:settings                          manage database:settings resources
+
+To see more about a specific command, run:
+  firebase database:<command> --help

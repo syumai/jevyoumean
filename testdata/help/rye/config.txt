@@ -1,0 +1,37 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.rye/shims/rye
+# args: 
+Reads or modifies the global `config.toml` file.
+
+The config file can be read via `--get` and it can be set with one of the set options (`--set`,
+`--set-int`, `--set-bool`, or `--unset`). Each of the set operations takes a key=value pair. All of
+these can be supplied multiple times.
+
+Usage: rye config [OPTIONS]
+
+Options:
+      --show-path
+          Print the path to the config
+
+      --format <FORMAT>
+          Request parseable output format rather than lines
+          
+          [possible values: json]
+
+      --get <GET>
+          Reads a config key
+
+      --set <SET>
+          Sets a config key to a string
+
+      --set-int <SET_INT>
+          Sets a config key to an integer
+
+      --set-bool <SET_BOOL>
+          Sets a config key to a bool
+
+      --unset <UNSET>
+          Remove a config key
+
+  -h, --help
+          Print help (see a summary with '-h')

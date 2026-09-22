@@ -1,0 +1,17 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pdm
+# args: 
+Usage: pdm cache [-h] [-v | -q] ...
+
+Control the caches of PDM
+
+Options:
+  -h, --help     Show this help message and exit.
+  -v, --verbose  Use `-v` for detailed output and `-vv` for more detailed
+  -q, --quiet    Suppress output
+
+Commands:
+  clear          Clean all the files under cache directory
+  remove         Remove files matching the given pattern
+  list           List the built wheels stored in the cache
+  info           Show the info and current size of caches

@@ -1,0 +1,99 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/vercel
+# args: 
+Vercel CLI 59.25.0 (Node.js 22.17.0)
+
+  ▲ vercel project [command]
+
+  Manage your Vercel projects                                                   
+
+  Commands:
+
+  add             name             Add a new project                    
+  access-summary  [name]           Show member counts by team role for  
+                                   project access (requires access      
+                                   groups entitlement)                  
+  checks          [name]           List, add, or remove deployment      
+                                   checks for a project (GET/POST/DELETE
+                                   /v2/projects/.../checks)             
+  inspect         [name]           Displays information related to a    
+                                   project                              
+  list                             Show all projects in the selected    
+                                   scope (default)                      
+  members         [name]           List, add, or remove project members 
+                                   for a project                        
+  access-groups   [name]           List access groups for a project     
+  protection      [action] [name]  Show or toggle deployment protection 
+                                   settings for a project               
+  web-analytics   [action] [name]  Enable or disable Web Analytics for a
+                                   project                              
+  speed-insights  [action] [name]  Enable or disable Speed Insights for 
+                                   a project                            
+  pause           [project]        Pause production traffic for a       
+                                   project (visitors will see an error  
+                                   page)                                
+  observability   action [name]    Enable or disable Observability Plus 
+                                   for a project                        
+  resume          [project]        Resume production traffic for a      
+                                   paused project                       
+  update          [name]           Update one or more project settings; 
+                                   omitted settings remain unchanged    
+  rename          name new-name    Rename a project                     
+  remove          name             Delete a project                     
+  token           [name]           Get a development OIDC token for a   
+                                   project                              
+
+
+  Global Options:
+
+       --cwd <DIR>            Sets the current working directory for a single   
+                              run of a command                                  
+  -d,  --debug                Debug mode (default off)                          
+  -Q,  --global-config <DIR>  Path to the global `.vercel` directory            
+  -h,  --help                 Output usage information                          
+  -A,  --local-config <FILE>  Path to the local `vercel.json` file              
+       --no-color             No color mode (default off)                       
+       --non-interactive      Run without interactive prompts; when an agent is 
+                              detected this is the default                      
+  -S,  --scope                Set a custom scope                                
+  -t,  --token <TOKEN>        Login token                                       
+  -v,  --version              Output the version number                         
+
+
+  Examples:
+
+  - Pause production traffic for a project
+
+    $ vercel project pause [NAME]
+    $ vercel project pause my-project
+
+  - Resume a paused project
+
+    $ vercel project resume [NAME]
+    $ vercel project resume my-project
+
+  - Add a member to a project
+
+    $ vercel project members add [NAME] <EMAIL | UID> --role <ROLE>
+    $ vercel project members add my-project user@example.com --role PROJECT_VIEWER
+
+  - Remove a member from a project
+
+    $ vercel project members remove [NAME] <EMAIL | UID>
+    $ vercel project members remove my-project user@example.com
+
+  - Enable or disable Observability Plus for a project
+
+    $ vercel project observability <enable | disable> [NAME]
+    $ vercel project observability enable my-project
+
+  - Enable Web Analytics for a project
+
+    $ vercel project web-analytics [NAME]
+    $ vercel project web-analytics my-project
+
+  - Enable Speed Insights for a project
+
+    $ vercel project speed-insights [NAME]
+    $ vercel project speed-insights my-project
+

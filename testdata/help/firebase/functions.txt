@@ -1,0 +1,22 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/firebase
+# args: 
+Usage: firebase functions [options] [command]
+
+manage Cloud Functions
+
+Options:
+  -h, --help                               display help for command
+
+Commands:
+  functions:delete [options] [filters...]  delete one or more Cloud Functions by name, group name, or codebase.
+  functions:log [options]                  read logs from deployed functions
+  functions:shell [options]                launch full Node shell with emulated functions
+  functions:list                           list all deployed functions in your Firebase project
+  functions:config                         manage functions:config resources
+  functions:lifecycle                      manage functions:lifecycle resources
+  functions:secrets                        manage functions:secrets resources
+  functions:artifacts                      manage functions:artifacts resources
+
+To see more about a specific command, run:
+  firebase functions:<command> --help
