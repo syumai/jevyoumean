@@ -1,0 +1,52 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/zed
+# args: 
+A command-line client for managing SpiceDB clusters.
+
+Usage:
+  zed [command]
+
+Examples:
+
+zed context list
+zed context set dev localhost:80 testpresharedkey --insecure
+zed context set prod grpc.authzed.com:443 tc_zed_my_laptop_deadbeefdeadbeefdeadbeefdeadbeef
+zed context use dev
+zed permission check --explain document:firstdoc writer user:emilia
+
+
+Available Commands:
+  backup       Create, restore, and inspect permissions system backups
+  completion   Generate the autocompletion script for the specified shell
+  context      Manage configurations for connecting to SpiceDB deployments
+  help         Help about any command
+  import       Imports schema and relationships from a file or url
+  mcp          MCP (Model Context Protocol) server commands
+  permission   Query the permissions in a permissions system
+  relationship Query and mutate the relationships in a permissions system
+  schema       Manage schema for a permissions system
+  use          Alias for `zed context use`
+  validate     Validates the given validation files (.yaml, .zaml) or schema files (.zed)
+  version      Display zed and SpiceDB version information
+
+Flags:
+      --certificate-path string     path to certificate authority used to verify secure connections
+      --endpoint string             spicedb gRPC API endpoint
+  -h, --help                        help for zed
+      --hostname-override string    override the hostname used in the connection to the endpoint
+      --insecure                    connect over a plaintext connection
+      --log-format string           format of logs ("auto", "console", "json") (default "auto")
+      --log-level string            verbosity of logging ("trace", "debug", "info", "warn", "error") (default "info")
+      --max-message-size int        maximum size *in bytes* (defaults to 4_194_304 bytes ~= 4MB) of a gRPC message that can be sent or received by zed
+      --max-retries uint            maximum number of sequential retries to attempt when a request fails (default 10)
+      --no-verify-ca                do not attempt to verify the server's certificate chain and host name
+      --permissions-system string   permissions system to query
+      --proxy string                specify a SOCKS5 proxy address
+      --request-id string           optional id to send along with SpiceDB requests for tracing
+      --skip-version-check          if true, no version check is performed against the server
+      --token string                token used to authenticate to SpiceDB
+
+Additional help topics:
+  zed preview      Experimental commands that have been made available for preview
+
+Use "zed [command] --help" for more information about a command.

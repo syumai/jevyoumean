@@ -1,0 +1,82 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/dgraph
+# args: 
+Dgraph is a horizontally scalable and distributed graph database,
+providing ACID transactions, consistent replication and linearizable reads.
+It's built from the ground up to perform for a rich set of queries. Being a native
+graph database, it tightly controls how the data is arranged on disk to optimize
+for query performance and throughput, reducing disk seeks and network calls in a
+cluster.
+Dgraph version   : v25.4.1
+Dgraph codename  : dgraph
+Dgraph SHA-256   : 096f628f6874623fe8ceba2edfd479eb86805e340c24722f3ae2f326465ac15a
+Commit SHA-1     : 759e242
+Commit timestamp : 2026-08-24 15:26:59 -0400
+Branch           : HEAD
+Go version       : go1.27.0
+jemalloc enabled : true
+GOMAXPROCS       : 8
+Num CPUs         : 8
+
+For Dgraph official documentation, visit https://docs.dgraph.io
+For discussions about Dgraph     , visit https://github.com/orgs/dgraph-io/discussions
+
+Licensed under the Apache Public License 2.0.
+© Istari Digital, Inc.
+
+Usage:
+  dgraph [command] 
+
+Generic:              
+ help          Help about any command         
+ version       Prints the dgraph version details 
+
+Available Commands:
+
+Dgraph Core:   
+  alpha         Run Dgraph Alpha database server                     
+  zero          Run Dgraph Zero management server 
+
+Data Loading:     
+  bulk          Run Dgraph Bulk Loader          
+  import        Run Dgraph Import  
+  live          Run Dgraph Live Loader    
+  restore       Restore backup from Dgraph   
+
+Dgraph Security:  
+  acl           Run the Dgraph ACL tool  
+  audit         Dgraph audit tool  
+  cert          Dgraph TLS certificate management                  
+
+Dgraph Debug:          
+  debug         Debug Dgraph instance 
+  debuginfo     Generate debug information on the current node             
+
+Dgraph Tools:       
+  checkupgrade  Run the checkupgrade tool 
+  completion    Generates shell completion scripts for bash or zsh 
+  conv          Dgraph Geo file converter   
+  decrypt       Run the Dgraph decryption tool 
+  export_backup Export data inside single full or incremental backup   
+  increment     Increment a counter transactionally  
+  lsbackup      List info on backups in a given location 
+  mcp           Run Dgraph MCP server 
+  migrate       Run the Dgraph migration tool from a MySQL database to Dgraph  
+  upgrade       Run the Dgraph upgrade tool  
+
+Flags:
+      --alsologtostderr                   log to standard error as well as files
+      --bindall                           Use 0.0.0.0 instead of localhost to bind to all addresses on local machine. (default true)
+      --block_rate int                    Block profiling rate. Must be used along with block profile_mode
+      --config string                     Configuration file. Takes precedence over default values, but is overridden to values set with environment variables and flags.
+      --cwd string                        Change working directory to the path specified. The parent must exist.
+      --expose_trace                      Allow trace endpoint to be accessible from remote
+  -h, --help                              help for dgraph
+      --log_backtrace_at traceLocations   when logging hits line file:N, emit a stack trace
+      --log_dir string                    If non-empty, write log files in this directory
+      --log_link string                   If non-empty, add symbolic links in this directory to the log files
+      --logbuflevel int                   Buffer log messages logged at this level or lower (-1 means don't buffer; 0 means buffer INFO only; ...). Has limited applicability on non-prod platforms.
+      --logtostderr                       log to standard error instead of files
+      --profile_mode string               Enable profiling mode, one of [cpu, mem, mutex, block]
+  -v, --v Level                           log level for V logs
+      --vmodule vModuleFlag               comma-separated list of pattern=N settings for file-filtered logging

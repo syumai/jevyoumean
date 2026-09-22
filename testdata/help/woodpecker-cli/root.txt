@@ -1,0 +1,43 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/woodpecker-cli
+# args: 
+NAME:
+   woodpecker-cli - command line utility
+
+USAGE:
+   woodpecker-cli [global options] [command [command options]]
+
+VERSION:
+   3.18.1
+
+DESCRIPTION:
+   Woodpecker command line utility
+
+COMMANDS:
+   admin         manage server settings
+   context, ctx  manage contexts
+   exec          execute a local pipeline
+   info          show information about the current user
+   lint          lint a pipeline configuration file
+   org           manage organizations
+   pipeline      manage pipelines
+   repo          manage repositories
+   setup         setup the woodpecker-cli for the first time
+   update        update the woodpecker-cli to the latest version
+   help, h       Shows a list of commands or help for one command
+   completion    generate completion script for the specified shell
+
+GLOBAL OPTIONS:
+   --config string, -c string  path to config file [$WOODPECKER_CONFIG]
+   --server string, -s string  server address [$WOODPECKER_SERVER]
+   --token string, -t string   server auth token [$WOODPECKER_TOKEN]
+   --disable-update-check      disable update check [$WOODPECKER_DISABLE_UPDATE_CHECK]
+   --skip-verify               skip ssl verification [$WOODPECKER_SKIP_VERIFY]
+   --socks-proxy string        socks proxy address [$SOCKS_PROXY]
+   --socks-proxy-off           socks proxy ignored [$SOCKS_PROXY_OFF]
+   --log-level string          set logging level (default: "info") [$WOODPECKER_LOG_LEVEL]
+   --log-file string           Output destination for logs. 'stdout' and 'stderr' can be used as special keywords. (default: "stderr") [$WOODPECKER_LOG_FILE]
+   --pretty                    enable pretty-printed debug output [$WOODPECKER_DEBUG_PRETTY]
+   --nocolor                   disable colored debug output, only has effect if pretty output is set too [$WOODPECKER_DEBUG_NOCOLOR]
+   --help, -h                  show help
+   --version, -v               print the version

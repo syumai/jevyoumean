@@ -1,0 +1,27 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/notation
+# args: 
+Notation - a tool to sign and verify artifacts
+
+Usage:
+  notation [command]
+
+Available Commands:
+  certificate Manage certificates in trust store
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  inspect     Inspect all signatures associated with the signed artifact
+  key         Manage keys used for signing
+  list        List signatures of the signed artifact
+  login       Login to registry
+  logout      Log out from the logged in registries
+  plugin      Manage plugins
+  policy      Manage trust policy configuration
+  sign        Sign artifacts
+  verify      Verify OCI artifacts
+  version     Show the notation version information
+
+Flags:
+  -h, --help   help for notation
+
+Use "notation [command] --help" for more information about a command.

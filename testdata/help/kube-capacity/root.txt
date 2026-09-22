@@ -1,0 +1,35 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/kube-capacity
+# args: 
+kube-capacity provides an overview of the resource requests, limits, and utilization in a Kubernetes cluster.
+
+Usage:
+  kube-capacity [flags]
+  kube-capacity [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  version     Print the version number of kube-capacity
+
+Flags:
+      --as string                 user to impersonate kube-capacity with
+      --as-group string           group to impersonate kube-capacity with
+  -a, --available                 includes quantity available instead of percentage used
+  -c, --containers                includes containers in output
+      --context string            context to use for Kubernetes config
+  -h, --help                      help for kube-capacity
+      --kubeconfig string         kubeconfig file to use for Kubernetes config
+  -n, --namespace string          only include pods from this namespace
+      --namespace-labels string   labels to filter namespaces with
+      --no-taint                  exclude nodes with taints
+      --node-labels string        labels to filter nodes with
+  -t, --node-taints string        comma seperated list of taints to filter nodes with, prefix taint with '!' to filter out
+  -o, --output string             output format for information (supports: [table csv tsv json yaml]) (default "table")
+      --pod-count                 includes pod count per node in output
+  -l, --pod-labels string         labels to filter pods with
+  -p, --pods                      includes pods in output
+      --sort string               attribute to sort results by (supports: [cpu.util cpu.request cpu.limit mem.util mem.request mem.limit cpu.util.percentage cpu.request.percentage cpu.limit.percentage mem.util.percentage mem.request.percentage mem.limit.percentage name]) (default "name")
+  -u, --util                      includes resource utilization in output
+
+Use "kube-capacity [command] --help" for more information about a command.

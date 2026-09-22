@@ -1,0 +1,41 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/conan
+# args: 
+
+Consumer commands
+cache      Perform file operations in the local cache (of recipes and/or packages).
+config     Manage the Conan configuration in the Conan home.
+graph      Compute a dependency graph, without installing or building the binaries.
+inspect    Inspect a conanfile.py to return its public fields.
+install    Install the requirements specified in a recipe (conanfile.py or conanfile.txt).
+list       List existing recipes, revisions, or packages in the cache (by default) or the
+             remotes.
+lock       Create or manage lockfiles.
+pkglist    Several operations over package lists
+profile    Manage profiles.
+remote     Manage the remote list and the users authenticated on them.
+remove     Remove recipes or packages from local cache or a remote.
+require    Adds/removes requirements to/from your local conanfile.
+run        (Experimental) Run a command given a set of requirements from a recipe or from
+             command line.
+search     Search for package recipes in all the remotes (by default), or a remote.
+version    Give information about the Conan client version.
+workspace  Manage Conan workspaces (group of packages in editable mode)
+
+Creator commands
+build      Install dependencies and call the build() method.
+create     Create a package.
+download   Download (without installing) a single conan package from a remote server.
+editable   Allow working with a package that resides in user folder.
+export     Export a recipe to the Conan package cache.
+export-pkg Create a package directly from pre-compiled binaries.
+new        Create a new example recipe and source files from a template.
+source     Call the source() method.
+test       Test a package from a test_package folder.
+upload     Upload packages to a remote.
+
+Security commands
+audit      Find vulnerabilities in your dependencies.
+report     Gets information about the recipe and its sources.
+
+Type "conan <command> -h" for help

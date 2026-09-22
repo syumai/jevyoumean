@@ -1,0 +1,72 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/b2
+# args: 
+b2 [-h] [--help-all]
+   {account,bucket,file,install-autocomplete,key,license,ls,replication,rm,sync,version}
+   ...
+
+  This program provides command-line access to the B2 service.
+
+  There are two flows of authorization:
+
+    • call b2 account authorize and have the credentials cached in sqlite
+    • set B2_APPLICATION_KEY_ID and B2_APPLICATION_KEY environment variables
+    when running this program
+
+  This program caches authentication-related and other data in a local SQLite
+  database. The location of this database is determined in the following way:
+
+  If --profile arg is provided:
+
+    • XDG_CONFIG_HOME/b2/db-<profile>.sqlite, if XDG_CONFIG_HOME env var is set
+    • ~/.b2db-{profile}.sqlite
+
+  Otherwise:
+
+    • B2_ACCOUNT_INFO env var's value, if set
+    • ~/.b2_account_info, if it exists
+    • XDG_CONFIG_HOME/b2/account_info, if XDG_CONFIG_HOME env var is set
+    • ~/.b2_account_info, as default
+
+  If the directory XDG_CONFIG_HOME/b2 does not exist (and is needed), it is
+  created. Please note that the above rules may be changed in next versions of
+  b2sdk, and in order to get reliable authentication file location you should
+  use b2 account get.
+
+  Control characters escaping is turned on if running under terminal. You can
+  override it by explicitly using --escape-control-chars/--no-escape-control--
+  chars` option, or by setting B2_ESCAPE_CONTROL_CHARACTERS environment
+  variable to either 1 or 0.
+
+  You can suppress command stdout & stderr output by using --quiet option. To
+  supress only progress bar, use --no-progress option.
+
+  For more details on one command:
+
+  b2 <command> --help
+
+  When authorizing with application keys, this tool requires that the key have
+  the listBuckets capability so that it can take the bucket names you provide
+  on the command line and translate them into bucket IDs for the B2 Storage
+  service. Each different command may required additional capabilities. You
+  can find the details for each command in the help for that command.
+
+  A string provided via an optional environment variable B2_USER_AGENT_APPEND
+  will be appended to the User-Agent.
+
+options:
+  -h, --help  show this help message and exit
+  --help-all  show help for all options, including deprecated ones
+
+usages:
+  b2 account                Account management subcommands.
+  b2 bucket                 Bucket management subcommands.
+  b2 file                   File management subcommands.
+  b2 install-autocomplete   Install autocomplete for supported shells.
+  b2 key                    Application keys management subcommands.
+  b2 license                Print the license information for this tool.
+  b2 ls                     List files in a given folder.
+  b2 replication            Replication rule management subcommands.
+  b2 rm                     Remove a "folder" or a set of files matching a pattern.
+  b2 sync                   Copy multiple files from source to destination.
+  b2 version                Print the version number of this tool.

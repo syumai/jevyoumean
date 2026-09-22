@@ -1,0 +1,38 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/jx
+# args: 
+JayeX 3.x command line
+
+General:
+  dashboard   View the JayeX Pipelines Dashboard
+  namespace   View or change the current namespace context in the current Kubernetes cluster
+  upgrade     Upgrades resources
+  version     Displays the version of this command
+  add         Adds one or more resources
+  get         Display one or more resources
+  create      Create one or more resources
+  start       Starts a resource
+  stop        Stops a resource
+  import      alias for: jx project import
+  ctx         alias for: jx context
+
+Other Commands:
+  help        Help about any command
+
+Other Commands
+  admin       admin  binary (from plugin)
+  application application  binary (from plugin)
+  changelog   changelog  binary (from plugin)
+  gitops      gitops  binary (from plugin)
+  health      health  binary (from plugin)
+  pipeline    pipeline  binary (from plugin)
+  preview     preview  binary (from plugin)
+  project     project  binary (from plugin)
+  promote     promote  binary (from plugin)
+  secret      secret  binary (from plugin)
+  test        test  binary (from plugin)
+  verify      verify  binary (from plugin)
+
+Usage:
+  jx [flags] [options]
+Use "jx <command> --help" for more information about a given command.

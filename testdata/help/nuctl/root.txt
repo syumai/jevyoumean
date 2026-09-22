@@ -1,0 +1,34 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/nuctl
+# args: 
+Nuclio command-line interface
+
+Usage:
+  nuctl [command]
+
+Available Commands:
+  beta        A beta version of nuctl as a Nuclio api CLI client
+  build       Build a function
+  completion  Generate the autocompletion script for the specified shell
+  create      Create resources
+  delete      Delete resources
+  deploy      Build and deploy a function, or deploy from an existing image
+  export      Export functions or projects
+  get         Display resource information
+  help        Help about any command
+  import      Import functions or projects
+  invoke      Invoke a function
+  parse       Parse report
+  update      Update resources
+  version     Display the version number of the nuctl CLI
+
+Flags:
+      --concurrency int         Max number of parallel patches. The default value is equal to the number of CPUs. (default 8)
+  -h, --help                    help for nuctl
+  -k, --kubeconfig string       Path to a Kubernetes configuration file (admin.conf)
+      --mask-sensitive-fields   Enable sensitive fields masking
+  -n, --namespace string        Namespace
+      --platform string         Platform identifier - "kube", "local", or "auto" (default "auto")
+  -v, --verbose                 Verbose output
+
+Use "nuctl [command] --help" for more information about a command.

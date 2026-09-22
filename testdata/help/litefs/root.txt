@@ -1,0 +1,17 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/litefs
+# args: 
+litefs is a distributed file system for replicating SQLite databases.
+
+Usage:
+
+	litefs <command> [arguments]
+
+The commands are:
+
+	export       export a database from a LiteFS cluster to disk
+	import       import a SQLite database into a LiteFS cluster
+	mount        mount the LiteFS FUSE file system
+	run          executes a subcommand for remote writes
+	version      prints the version
+

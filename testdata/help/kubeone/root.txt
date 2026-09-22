@@ -1,0 +1,39 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/kubeone
+# args: 
+Provision and maintain Kubernetes High-Availability clusters with ease
+
+Usage:
+  kubeone [flags]
+  kubeone [command]
+
+Available Commands:
+  addons        Manage addons
+  apply         Reconcile the cluster
+  certificates  certificates manipulations
+  completion    Generates completion scripts for bash, zsh, and fish
+  config        Commands for working with the KubeOneCluster configuration manifests
+  document      Generates documentation
+  etcd          Perform etcd operations
+  help          Help about any command
+  init          init new kubeone cluster configuration
+  kubeconfig    Download the kubeconfig file from master
+  local         Reconcile the local one-node-all-in-one cluster
+  migrate       Commands for running different migrations
+  mirror-images Mirror images to another registry
+  proxy         Proxy to the kube-apiserver using SSH tunnel
+  reset         Revert changes
+  status        Status of the cluster
+  ui            Show UI
+  version       Display KubeOne version
+
+Flags:
+  -c, --credentials string              File to source credentials and secrets from
+  -d, --debug                           debug output with stacktrace
+  -h, --help                            help for kubeone
+  -l, --log-format string               format for logging (default "text")
+  -m, --manifest string                 Path to the KubeOne config (default "./kubeone.yaml")
+  -t, --tfjson terraform output -json   Source for terraform output in JSON - to read from stdin. If path is a file, contents will be used. If path is a dictionary, terraform output -json is executed in this path
+  -v, --verbose                         verbose output
+
+Use "kubeone [command] --help" for more information about a command.

@@ -1,0 +1,65 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/atlas
+# args: 
+
+Warning: Secure storage is not available, falling back to insecure storage
+To disable this alert, run "atlas config set silence_storage_warning true"
+CLI tool to manage MongoDB Atlas. The Atlas CLI is a command line interface built specifically for MongoDB Atlas. You can manage your Atlas database deployments and Atlas Search from the terminal with short, intuitive commands.
+		
+Use the --help flag with any command for more info on that command.
+
+To learn more, see our documentation: https://www.mongodb.com/docs/atlas/cli/stable/connect-atlas-cli/
+
+Usage:
+  atlas [command]
+
+Examples:
+  # Display the help menu for the config command:
+  atlas config --help
+
+
+Available Commands:
+  config                  Configure and manage your user profiles.
+  auth                    Manage the CLI's authentication state.
+  setup                   Login, authenticate, create, and access an Atlas cluster.
+  projects                Manage your Atlas projects.
+  organizations           Manage your Atlas organizations.
+  users                   Manage your Atlas users.
+  teams                   Manage your Atlas teams.
+  clusters                Manage clusters for your project.
+  dbusers                 Manage database users for your project.
+  customDbRoles           Manage custom database roles for your project.
+  accessLists             Manage the list of IP addresses that can access your Atlas project.
+  alerts                  Manage alerts for your project.
+  backups                 Manage cloud backups for your project.
+  events                  Manage events for your organization or project.
+  metrics                 Get metrics on the MongoDB process.
+  performanceAdvisor      Learn more about slow queries and get suggestions to improve database performance.
+  logs                    Download host logs for your project.
+  processes               Manage MongoDB processes for your project.
+  privateEndpoints        Manage Atlas private endpoints.
+  networking              Manage or configure network peering for your Atlas project.
+  security                Manage security configuration for your project.
+  integrations            Configure third-party integrations for your Atlas project.
+  maintenanceWindows      Manage Atlas maintenance windows.
+  customDns               Manage DNS configuration of Atlas project’s clusters deployed to AWS.
+  cloudProviders          Manage cloud provider access in Atlas using AWS IAM roles.
+  streams                 Manage your Atlas Stream Processing deployments.
+  liveMigrations          Manage a Live Migration to Atlas for your organization.
+  accessLogs              Return the access logs for a cluster.
+  dataFederation          Data federation.
+  auditing                Returns database auditing settings for MongoDB Cloud projects.
+  federatedAuthentication Manage Atlas Federated Authentication.
+  api                     Access all features of the Atlas Administration API through the Atlas CLI by using the 'atlas api <tag> <operationId>' command.
+  kubernetes              Manage Kubernetes resources.
+  local                   Manage MongoDB Atlas local instances
+  plugin                  Manage plugins for the AtlasCLI.
+  help                    Help about any command
+  completion              Generate the autocompletion script for the specified shell
+
+Flags:
+  -h, --help             help for atlas
+  -P, --profile string   Name of the profile to use from your configuration file. To learn about profiles for the Atlas CLI, see https://dochub.mongodb.org/core/atlas-cli-save-connection-settings.
+  -v, --version          version for atlas
+
+Use "atlas [command] --help" for more information about a command.

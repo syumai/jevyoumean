@@ -1,0 +1,54 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/kubefwd
+# args: 
+[36mINFO[0m[06:41:50]  _          _           __             _     
+[36mINFO[0m[06:41:50] | | ___   _| |__   ___ / _|_      ____| |    
+[36mINFO[0m[06:41:50] | |/ / | | | '_ \ / _ \ |_\ \ /\ / / _  |    
+[36mINFO[0m[06:41:50] |   <| |_| | |_) |  __/  _|\ V  V / (_| |    
+[36mINFO[0m[06:41:50] |_|\_\\__,_|_.__/ \___|_|   \_/\_/ \__,_|    
+[36mINFO[0m[06:41:50]                                              
+[36mINFO[0m[06:41:50] Version 1.25.16                              
+[36mINFO[0m[06:41:50] https://kubefwd.com                          
+[36mINFO[0m[06:41:50]                                              
+Bulk forward Kubernetes services for local development.
+
+Each forwarded service gets its own unique loopback IP (127.x.x.x), allowing
+multiple services to use the same port simultaneously. Service names are added
+to /etc/hosts for transparent access using cluster service names.
+
+Modes:
+  Idle Mode:    Run without -n/--namespace; API enabled, no namespaces forwarded
+  Namespace:    Forward all services from specified namespace(s)
+  All:          Forward services from all namespaces (--all-namespaces)
+
+The REST API (http://kubefwd.internal/) is auto-enabled in idle mode and allows
+adding/removing namespaces and services dynamically.
+
+Subcommands:
+  mcp           Start MCP server for AI assistant integration (no sudo needed)
+  version       Show version information
+
+Usage:
+  kubefwd [command]
+
+Examples:
+  sudo kubefwd                      # Idle mode (API enabled, no namespaces)
+  sudo kubefwd --tui                # Idle mode with TUI
+  sudo kubefwd -n myapp             # Forward services from 'myapp' namespace
+  sudo kubefwd -n ns1 -n ns2        # Forward from multiple namespaces
+  sudo kubefwd -A                   # Forward from all namespaces
+  sudo kubefwd -n myapp -l app=web  # Filter by label selector
+  kubefwd mcp                       # Start MCP server for AI integration
+  kubefwd version                   # Show version
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  mcp         Start MCP server (connects to kubefwd REST API)
+  services    Forward services
+  version     Print the version of Kubefwd
+
+Flags:
+  -h, --help   help for kubefwd
+
+Use "kubefwd [command] --help" for more information about a command.

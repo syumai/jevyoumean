@@ -1,0 +1,65 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/micromamba
+# args: 
+Version: 2.9.0
+
+
+
+/home/ubuntu/.local/bin/micromamba [OPTIONS] [SUBCOMMAND]
+
+
+OPTIONS:
+  -h,     --help              Print this help message and exit
+          --version           
+
+Configuration options:
+          --rc-file FILE1 FILE2... 
+                              Paths to the configuration files to use
+          --no-rc             Disable the use of configuration files
+          --no-env            Disable the use of environment variables
+
+Global options:
+  -v,     --verbose           Set verbosity (higher verbosity with multiple -v, e.g. -vvv)
+          --log-level ENUM:value in {critical->5,debug->1,error->4,info->2,off->6,trace->0,warning->3} OR {5,1,4,2,6,0,3} 
+                              Set the log level
+  -q,     --quiet             Set quiet mode (print less output). Implicitly bypasses prompts
+                              as if `--yes` was used.
+  -y,     --yes               Automatically answer yes on prompted questions
+          --json              Report all output as json. Implicitly bypasses prompts as if
+                              `--yes` was used.
+          --offline           Force use cached repodata
+          --dry-run           Only display what would have been done
+          --download-only     Only download and extract packages, do not link them into
+                              environment.
+          --use-uv            Whether to use uv for installing pip dependencies. Defaults to
+                              false.
+
+Prefix options:
+  -r,     --root-prefix PATH  Path to the root prefix
+  -p,     --prefix PATH       Path to the target prefix
+          --relocate-prefix PATH 
+                              Path to the relocation prefix
+  -n,     --name NAME         Name of the target prefix
+
+SUBCOMMANDS:
+  shell                       Generate shell init scripts
+  create                      Create new environment
+  install                     Install packages in active environment
+  update                      Update packages in active environment
+  self-update                 Update micromamba
+  repoquery                   Find and analyze packages in active environment or channels
+  remove, uninstall           Remove packages from active environment
+  list                        List packages in active environment
+  package                     Extract a package or bundle files into an archive
+  clean                       Clean package cache
+  config                      Configuration of micromamba
+  info                        Information about micromamba
+  constructor                 Commands to support using micromamba in constructor
+  env                         See `mamba/micromamba env --help`
+  activate                    Activate an environment
+  deactivate                  Deactivate the active environment
+  run                         Run an executable in an environment
+  ps                          Show, inspect or kill running processes
+  auth                        Login or logout of a given host
+  search                      Find packages in active environment or channels
+                              This is equivalent to `repoquery search` command

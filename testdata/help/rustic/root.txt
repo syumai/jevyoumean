@@ -1,0 +1,255 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/rustic
+# args: 
+rustic - fast, encrypted, deduplicated backups powered by Rust
+
+Usage: rustic [OPTIONS] <COMMAND>
+
+Commands:
+  backup       Backup to the repository
+  cat          Show raw data of files and blobs in a repository
+  config       Change the repository configuration
+  completions  Generate shell completions
+  check        Check the repository
+  copy         Copy snapshots to other repositories
+  diff         Compare two snapshots or paths
+  docs         Open the documentation
+  dump         Dump the contents of a file within a snapshot to stdout
+  find         Find patterns in given snapshots
+  forget       Remove snapshots from the repository
+  init         Initialize a new repository
+  key          Manage keys for a repository
+  list         List repository files by file type
+  ls           List file contents of a snapshot
+  merge        Merge snapshots
+  snapshots    Show a detailed overview of the snapshots within the repository
+  show-config  Show the configuration which has been read from the config file(s)
+  self-update  Update to the latest stable rustic release
+  prune        Remove unused data or repack repository pack files
+  restore      Restore (a path within) a snapshot
+  rewrite      Rewrite existing snapshot(s)
+  repair       Repair a snapshot or the repository index
+  repoinfo     Show general information about the repository
+  tag          Change tags of snapshots
+  webdav       Start a webdav server which allows to access the repository
+  version      Print version information
+  help         Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help
+          Print help (see a summary with '-h')
+
+  -V, --version
+          Print version
+
+Global options:
+      --profile-substitute-env
+          Substitute environment variables in profiles
+          
+          [env: RUSTIC_PROFILE_SUBSTITUTE_ENV=]
+
+  -P, --use-profile <PROFILE>
+          Config profile to use. This parses the file `<PROFILE>.toml` in the config directory.
+          [default: "rustic"]
+          
+          [env: RUSTIC_USE_PROFILE=]
+
+  -g, --group-by <CRITERION>
+          Group snapshots by any combination of host,label,paths,tags, e.g. to find the latest
+          snapshot [default: "host,label,paths"]
+          
+          [env: RUSTIC_GROUP_BY=]
+
+  -n, --dry-run
+          Only show what would be done without modifying anything. Does not affect read-only
+          commands
+          
+          [env: RUSTIC_DRY_RUN=]
+
+      --dry-run-warmup
+          Additional to dry run, but still issue warm-up command if configured
+          
+          [env: RUSTIC_DRY_RUN_WARMUP=]
+
+      --check-index
+          Check if index matches pack files and read pack headers if necessary
+          
+          [env: RUSTIC_CHECK_INDEX=]
+
+      --log-level <LOG_LEVEL>
+          Use this log level [default: info]
+          
+          [env: RUSTIC_LOG_LEVEL=]
+          [possible values: off, error, warn, info, debug, trace]
+
+      --log-level-logfile <LOG_LEVEL_LOGFILE>
+          Use this log level for the log file [default: info]
+          
+          [env: RUSTIC_LOG_LEVEL_LOGFILE=]
+          [possible values: off, error, warn, info, debug, trace]
+
+      --log-level-dryrun <LOG_LEVEL_DRYRUN>
+          Use this log level in dry-run mode [default: info]
+          
+          [env: RUSTIC_LOG_LEVEL_DRYRUN=]
+          [possible values: off, error, warn, info, debug, trace]
+
+      --log-level-dependencies <LOG_LEVEL_DEPENDENCIES>
+          Use this log level for dependencies [default: warn]
+          
+          [env: RUSTIC_LOG_LEVEL_DEPENDENCIES=]
+          [possible values: off, error, warn, info, debug, trace]
+
+      --log-file <LOGFILE>
+          Write log messages to the given file (using log-level-logfile)
+          
+          [env: RUSTIC_LOG_FILE=]
+
+      --no-progress
+          Don't show any progress bar
+          
+          [env: RUSTIC_NO_PROGRESS=]
+
+      --json-progress
+          Write progress as newline-delimited JSON
+          
+          [env: RUSTIC_JSON_PROGRESS=]
+
+      --progress-interval <DURATION>
+          Interval to update progress bars (default: 100ms)
+          
+          [env: RUSTIC_PROGRESS_INTERVAL=]
+
+      --prometheus <PUSHGATEWAY_URL>
+          Push metrics to a Prometheus Pushgateway
+          
+          [env: RUSTIC_PROMETHEUS=]
+
+      --prometheus-user <USER>
+          Authenticate to Prometheus Pushgateway using this user
+          
+          [env: RUSTIC_PROMETHEUS_USER=]
+
+      --prometheus-pass <PASSWORD>
+          Authenticate to Prometheus Pushgateway using this password
+          
+          [env: RUSTIC_PROMETHEUS_PASS=]
+
+      --opentelemetry <ENDPOINT_URL>
+          OpenTelemetry metrics endpoint (HTTP Protobuf)
+          
+          [env: RUSTIC_OTEL=]
+
+      --show-time-offset
+          Show time offsets instead of converting to system time zone
+          
+          [env: RUSTIC_SHOW_TIME_OFFSET=]
+
+Repository options:
+  -r, --repository <REPOSITORY>
+          Repository to use
+          
+          [env: RUSTIC_REPOSITORY=]
+          [alias: --repo]
+
+      --repo-hot <REPO_HOT>
+          Repository to use as hot storage
+          
+          [env: RUSTIC_REPO_HOT=]
+
+      --no-cache
+          Don't use a cache
+          
+          [env: RUSTIC_NO_CACHE=]
+
+      --cache-dir <CACHE_DIR>
+          Use this dir as cache dir instead of the standard cache dir
+          
+          [env: RUSTIC_CACHE_DIR=]
+
+      --warm-up
+          Warm up needed data pack files by only requesting them without processing
+
+      --warm-up-command <WARM_UP_COMMAND>
+          Warm up needed data pack files by running the command with %id replaced by pack id
+
+      --warm-up-wait-command <WARM_UP_WAIT_COMMAND>
+          Wait for end of warm up by running the command with %id replaced by pack id
+
+      --warm-up-wait <DURATION>
+          Duration (e.g. 10m) to wait after warm up
+
+      --warm-up-batch <WARM_UP_BATCH>
+          Batch size for warm-up command invocations
+
+credential options:
+      --key <KEY>
+          masterkey to use
+          
+          [env: RUSTIC_KEY]
+
+      --key-file <KEY_FILE>
+          File to read the masterkey from
+          
+          [env: RUSTIC_KEY_FILE=]
+
+      --key-command <KEY_COMMAND>
+          Command to read the masterkey from. Key is read from stdout
+          
+          [env: RUSTIC_KEY_COMMAND=]
+
+      --password <PASSWORD>
+          Password for the repository
+          
+          # Warning
+          
+          * Using --password can reveal the password in the process list!
+          
+          [env: RUSTIC_PASSWORD]
+
+  -p, --password-file <PASSWORD_FILE>
+          File to read the password from
+          
+          [env: RUSTIC_PASSWORD_FILE=]
+
+      --password-command <PASSWORD_COMMAND>
+          Command to read the password from. Password is read from stdout
+          
+          [env: RUSTIC_PASSWORD_COMMAND=]
+
+Snapshot filter options:
+      --filter-host <HOSTNAME>
+          Hostname to filter (can be specified multiple times)
+
+      --filter-label <LABEL>
+          Label to filter (can be specified multiple times)
+
+      --filter-paths <PATH[,PATH,..]>
+          Path list to filter (can be specified multiple times)
+
+      --filter-paths-exact <PATH[,PATH,..]>
+          Path list to filter exactly (no superset) as given (can be specified multiple times)
+
+      --filter-tags <TAG[,TAG,..]>
+          Tag list to filter (can be specified multiple times)
+
+      --filter-tags-exact <TAG[,TAG,..]>
+          Tag list to filter exactly (no superset) as given (can be specified multiple times)
+
+      --filter-after <DATE(TIME)>
+          Only use snapshots which are taken after the given given date/time
+
+      --filter-before <DATE(TIME)>
+          Only use snapshots which are taken before the given given date/time
+
+      --filter-size <SIZE>
+          Only use snapshots with total size in given range
+
+      --filter-size-added <SIZE>
+          Only use snapshots with size added to the repo in given range
+
+      --filter-last <COUNT>
+          Only use the last COUNT snapshots for each group
+
+      --filter-jq <JQ>
+          jq to filter snapshots

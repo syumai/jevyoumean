@@ -1,0 +1,25 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/cfssl
+# args: 
+Usage:
+Available commands:
+	crl
+	sign
+	scan
+	revoke
+	bundle
+	gencert
+	gencsr
+	ocsprefresh
+	info
+	serve
+	ocspdump
+	ocspsign
+	ocspserve
+	print-defaults
+	certinfo
+	version
+	genkey
+	gencrl
+	selfsign
+Top-level flags:

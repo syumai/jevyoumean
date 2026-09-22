@@ -1,0 +1,36 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/clusterctl
+# args: 
+Get started with Cluster API using clusterctl to create a management cluster,
+install providers, and create templates for your workload cluster.
+
+Usage:
+  clusterctl [command]
+
+Cluster Management Commands:
+  delete      Delete one or more providers from the management cluster
+  generate    Generate yaml using clusterctl yaml processor
+  get         Get info from a management or workload cluster
+  init        Initialize a management cluster
+  move        Move Cluster API objects and all dependencies between management clusters
+  upgrade     Upgrade core and provider components in a management cluster
+
+Troubleshooting and Debugging Commands:
+  describe    Describe workload clusters
+
+Other Commands:
+  alpha       Commands for features in alpha
+  completion  Output shell completion code for the specified shell (bash, zsh or fish)
+  config      Display clusterctl configuration
+  help        Help about any command
+  version     Print clusterctl version
+
+Additional Commands:
+  convert     EXPERIMENTAL: Convert Cluster API resources between API versions
+
+Flags:
+      --config $XDG_CONFIG_HOME/cluster-api/clusterctl.yaml   Path to clusterctl configuration (default is $XDG_CONFIG_HOME/cluster-api/clusterctl.yaml) or to a remote location (i.e. https://example.com/clusterctl.yaml)
+  -h, --help                                                  help for clusterctl
+  -v, --v int                                                 Set the log level verbosity. This overrides the CLUSTERCTL_LOG_LEVEL environment variable.
+
+Use "clusterctl [command] --help" for more information about a command.

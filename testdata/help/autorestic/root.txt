@@ -1,0 +1,34 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/autorestic
+# args: 
+Documentation:	https://autorestic.vercel.app
+Support:	https://discord.gg/wS7RpYTYd2
+
+Usage:
+  autorestic [command]
+
+Available Commands:
+  backup      Create backups for given locations
+  check       Check if everything is setup
+  completion  Generate completion script
+  cron        Run cron job for automated backups
+  exec        Execute arbitrary native restic commands for given backends
+  forget      Forget and optionally prune snapshots according the specified policies
+  help        Help about any command
+  info        Show info about the config
+  install     Install restic if missing
+  restore     Restore backup for location
+  uninstall   Uninstall restic and autorestic
+  unlock      Unlock autorestic only if you are sure that no other instance is running
+  upgrade     Upgrade autorestic and restic
+
+Flags:
+      --ci                    CI mode disabled interactive mode and colors and enables verbosity
+  -c, --config string         config file (default is $HOME/.autorestic.yml or ./.autorestic.yml)
+      --docker-image string   specify a custom docker image (default "cupcakearmy/autorestic:1.8.3")
+  -h, --help                  help for autorestic
+      --restic-bin string     specify custom restic binary (default "restic")
+  -v, --verbose               verbose mode
+      --version               version for autorestic
+
+Use "autorestic [command] --help" for more information about a command.

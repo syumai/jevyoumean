@@ -1,0 +1,26 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/bin
+# args: 
+Effortless binary manager
+
+Usage:
+  bin [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  ensure      Ensures that all binaries listed in the configuration are present
+  help        Help about any command
+  install     Installs the specified binary from a url
+  list        List binaries managed by bin
+  pin         Pins current version of the binaries
+  prune       Prunes binaries that no longer exist in the system
+  remove      Removes binaries managed by bin
+  unpin       Unpins current version of the binaries
+  update      Updates one or multiple binaries managed by bin
+
+Flags:
+      --debug     Enable debug mode
+  -h, --help      help for bin
+  -v, --version   version for bin
+
+Use "bin [command] --help" for more information about a command.

@@ -1,0 +1,40 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/mirrord
+# args: 
+Encountered an issue? Have a feature request?
+Join our Slack at https://metalbear.com/slack , create a GitHub issue at https://github.com/metalbear-co/mirrord/issues/new/choose, or email as at hi@metalbear.com
+
+Usage: mirrord <COMMAND>
+
+Commands:
+  container     Create and run a new container from an image with mirrord loaded (unstable)
+  exec          Execute a binary using mirrord: intercept remote traffic, provide access to remote resources (network, files) and environment variables
+  dump          Print incoming tcp traffic of specific ports from remote target
+  completions   Generate shell completions for the provided shell. Supported shells: bash, elvish, fish, powershell, zsh
+  operator      Execute a command related to the mirrord Operator
+  port-forward  Forward local ports to hosts available from the cluster or intercept traffic and direct it to local ports (unstable)
+  db-branches   Manage database branching
+  queues        Browse the status of active queue-splitting sessions [alias: qs]
+  teams         Try out mirrord for Teams
+  diagnose      Diagnose mirrord setup
+  newsletter    Subscribe to the mirrord newsletter
+  ci            Execute a command related to mirrord CI
+  config        Inspect or change global mirrord configuration at `~/.mirrord/mirrord.json`
+  preview       Manage preview environments (requires operator)
+  subscribe     Stream operator interception events for a session as JSON (requires operator)
+  up            Run mirrord sessions for services defined in `mirrord-up.yaml`
+  fix           Fix issues related to mirrord
+  tui           Launch the mirrord terminal interface
+  ui            Launch the mirrord local UI. Respects the `$BROWSER` env var
+  wizard        Launch the config wizard
+  chaos         Manage per-session chaos rules for local chaos testing
+  session       Manage local mirrord sessions [alias: sessions]
+  kill          Kill a local mirrord session
+  help          Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help
+          Print help (see a summary with '-h')
+
+  -V, --version
+          Print version

@@ -1,0 +1,36 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/bicep
+# args: 
+Description:
+  Bicep CLI
+
+Usage:
+  bicep [command] [options]
+
+Options:
+  -v, --version          Shows bicep version information.
+  --license              Prints license information.
+  --third-party-notices  Prints third-party notices.
+  -?, -h, --help         Show help and usage information
+
+Commands:
+  build <Input file>              Builds a .bicep file.
+  test <Input file>               Runs tests in a .bicep file.
+  build-params <Input file>       Builds a .json file from a .bicepparam file.
+  format <Input file>             Formats a .bicep file.
+  generate-params <Input file>    Builds parameters file from the given bicep file, updates if there is an existing parameters file.
+  decompile <Input file>          Attempts to decompile a template .json file to .bicep.
+  decompile-params <Input file>   Attempts to decompile a parameters .json file to .bicepparam.
+  publish <Input file>            Publishes the .bicep file to the module registry.
+  publish-extension <Index file>  [Experimental] Publishes a Bicep extension to a registry.
+  restore <Input file>            Restores external modules from the specified Bicep file to the local module cache.
+  lint <Input file>               Lints a .bicep file.
+  jsonrpc                         Starts the Bicep CLI listening for JSONRPC messages, for programatically interacting with Bicep.
+  local-deploy <Parameters file>  [Experimental] Performs a local deployment.
+  snapshot <Parameters file>      Generates or validates a deployment snapshot from a .bicepparam file.
+  deploy <Parameters file>        [Experimental] Deploys infrastructure using a .bicepparam file.
+  what-if <Parameters file>       [Experimental] Previews the changes a deployment would make.
+  teardown <Parameters file>      [Experimental] Tears down resources deployed by a .bicepparam file.
+  console                         Opens an interactive Bicep console.
+  docs                            [Experimental] Generates documentation for Bicep modules.
+

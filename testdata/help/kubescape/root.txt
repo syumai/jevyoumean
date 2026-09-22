@@ -1,0 +1,50 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/kubescape
+# args: 
+Kubescape is a tool for testing Kubernetes security posture. Docs: https://kubescape.io/docs/
+
+Usage:
+  kubescape [command]
+
+Examples:
+
+  # Scan a Kubernetes cluster or YAML files for image vulnerabilities and misconfigurations
+  kubescape scan
+
+  # List supported controls
+  kubescape list controls
+
+  # Download artifacts (air-gapped environment support)
+  kubescape download artifacts
+
+  # View cached configurations
+  kubescape config view
+
+
+Available Commands:
+  completion    Generate autocompletion script
+  config        Handle cached configurations
+  decrypt       Decrypt a report produced by kubescape scan --encrypt
+  diff          Compare two Kubescape scan JSON reports and show what changed
+  download      Download artifacts,attack-tracks,control,controls-inputs,exceptions,framework
+  fix           Propose a fix for the misconfiguration found when scanning Kubernetes manifest files
+  help          Help about any command
+  list          List the supported frameworks, controls and control configuration
+  mcpserver     Start the Kubescape MCP server
+  operator      The operator is used to communicate with the Kubescape Operator within the cluster components.
+  patch         Patch container images to fix known OS-level vulnerabilities
+  policy        Author and test custom Rego controls
+  prerequisites Check prerequisites for installing Kubescape Operator
+  scan          Scan a Kubernetes cluster or YAML files for image vulnerabilities and misconfigurations
+  update        Update to latest release version
+  vap           Helper commands for managing Validating Admission Policies in a Kubernetes cluster
+  version       Get current version
+
+Flags:
+      --cache-dir string      Cache directory [$KS_CACHE_DIR] (default "/home/ubuntu/.kubescape")
+  -h, --help                  help for kubescape
+      --kube-context string   Kube context. Default will use the current-context
+  -l, --logger string         Logger level. Supported: debug/info/success/warning/error/fatal [$KS_LOGGER] (default "info")
+      --server string         Backend discovery server URL
+
+Use "kubescape [command] --help" for more information about a command.

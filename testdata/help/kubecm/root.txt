@@ -1,0 +1,47 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/kubecm
+# args: 
+
+                                                   
+        Manage your kubeconfig more easily.        
+                                                   
+
+██   ██ ██    ██ ██████  ███████  ██████ ███    ███ 
+██  ██  ██    ██ ██   ██ ██      ██      ████  ████ 
+█████   ██    ██ ██████  █████   ██      ██ ████ ██ 
+██  ██  ██    ██ ██   ██ ██      ██      ██  ██  ██ 
+██   ██  ██████  ██████  ███████  ██████ ██      ██
+
+ Tips  Find more information at: kubecm.cloud (https://kubecm.cloud)
+
+Usage:
+  kubecm [command]
+
+Available Commands:
+  add         Add KubeConfig to $HOME/.kube/config
+  alias       Generate alias for all contexts
+  clear       Clear lapsed context, cluster and user
+  cloud       Manage kubeconfig from cloud
+  completion  Generate completion script
+  create      Create new KubeConfig(experiment)
+  delete      Delete the specified context from the kubeconfig
+  docs        Open document website
+  export      Export the specified context from the kubeconfig
+  help        Help about any command
+  list        List KubeConfig
+  merge       Merge multiple kubeconfig files into one
+  namespace   Switch or change namespace interactively
+  registry    Manage kubeconfig registries (Git-backed distribution)
+  rename      Rename the contexts of kubeconfig
+  switch      Switch Kube Context interactively
+  version     Print version info
+
+Flags:
+      --config string   path of kubeconfig (default "$HOME/.kube/config")
+      --create          Create a new kubeconfig file if not exists
+  -h, --help            help for kubecm
+  -m, --mac-notify      enable to display Mac notification banner
+  -s, --silence-table   enable/disable output of context table on successful config update
+  -u, --ui-size int     number of list items to show in menu at once (default 10)
+
+Use "kubecm [command] --help" for more information about a command.

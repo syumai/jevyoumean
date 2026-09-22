@@ -1,0 +1,32 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/lab
+# args: 
+lab: A GitLab Command Line Interface Utility
+
+Usage:
+  lab [flags]
+  lab [command]
+
+Available Commands:
+  ci            Work with GitLab CI pipelines and jobs
+  clone         GitLab aware clone repo command
+  completion    Generates autocompletion for different shell implementations
+  fork          Fork a remote repository on GitLab and add as remote
+  help          Show the help for lab
+  issue         Describe, list, and create issues
+  label         List and search labels
+  milestone     List and search milestones
+  mr            Describe, list, and create merge requests
+  project       Perform project level operations on GitLab
+  snippet       Create a personal or project snippet
+  todo          Check out the todo list for MR or issues
+  version       
+
+Flags:
+      --debug      Enable debug logging level
+  -h, --help       help for lab
+      --no-pager   Do not pipe output into a pager
+      --quiet      Turn off any sort of logging. Only command output is printed
+      --version    Show the lab version
+
+Use "lab [command] --help" for more information about a command.

@@ -1,0 +1,93 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/nerdctl
+# args: 
+nerdctl is a command line interface for containerd
+
+Config file ($NERDCTL_TOML): /home/ubuntu/.config/nerdctl/nerdctl.toml
+
+Usage: nerdctl [command]
+
+Management commands:
+  apparmor    Manage AppArmor profiles
+  builder     Manage builds
+  checkpoint  Manage checkpoints.
+  container   Manage containers
+  image       Manage images
+  ipfs        Distributing images on IPFS
+  manifest    Manage image manifests.
+  namespace   Manage containerd namespaces
+  network     Manage networks
+  system      Manage containerd
+  volume      Manage volumes
+
+Commands:
+  attach       Attach stdin, stdout, and stderr to a running container.
+  build        Build an image from a Dockerfile. Needs buildkitd to be running.
+  commit       Create a new image from a container's changes
+  completion   Generate the autocompletion script for the specified shell
+  compose      Compose
+  cp           Copy files/folders between a running container and the local filesystem.
+  create       Create a new container. Optionally specify "ipfs://" or "ipns://" scheme to pull image from IPFS.
+  diff         Inspect changes to files or directories on a container's filesystem
+  events       Get real time events from the server
+  exec         Run a command in a running container
+  export       Export a containers filesystem as a tar archive
+  healthcheck  Execute the health check command in a container
+  help         Help about any command
+  history      Show the history of an image
+  images       List images
+  import       Import the contents from a tarball to create a filesystem image
+  info         Display system-wide information
+  inspect      Return low-level information on objects.
+  kill         Kill one or more running containers
+  load         Load an image from a tar archive or STDIN
+  login        Log in to a container registry
+  logout       Log out from a container registry
+  logs         Fetch the logs of a container. Expected to be used with 'nerdctl run -d'.
+  pause        Pause all processes within one or more containers
+  port         List port mappings or a specific mapping for the container
+  ps           List containers
+  pull         Pull an image from a registry. Optionally specify "ipfs://" or "ipns://" scheme to pull image from IPFS.
+  push         Push an image or a repository to a registry. Optionally specify "ipfs://" or "ipns://" scheme to push image to IPFS.
+  rename       rename a container
+  restart      Restart one or more running containers
+  rm           Remove one or more containers
+  rmi          Remove one or more images
+  run          Run a command in a new container. Optionally specify "ipfs://" or "ipns://" scheme to pull image from IPFS.
+  save         Save one or more images to a tar archive (streamed to STDOUT by default)
+  search       Search registry for images
+  start        Start one or more running containers
+  stats        Display a live stream of container(s) resource usage statistics.
+  stop         Stop one or more running containers
+  tag          Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top          Display the running processes of a container
+  unpause      Unpause all processes within one or more containers
+  update       Update one or more running containers
+  version      Show the nerdctl version information
+  wait         Block until one or more containers stop, then print their exit codes.
+
+Flags:
+      --address string           containerd address, optionally with "unix://" prefix [$CONTAINERD_ADDRESS] (aliases: -a, -H, --host) (default "/run/containerd/containerd.sock")
+      --bridge-ip string         IP address for the default nerdctl bridge network [$NERDCTL_BRIDGE_IP]
+      --cdi-spec-dirs strings    The directories to search for CDI spec files. Defaults to /etc/cdi,/var/run/cdi (default [/home/ubuntu/.config/cdi,/run/user/1000/cdi])
+      --cgroup-manager string    Cgroup manager to use ("cgroupfs"|"systemd") (default "systemd")
+      --cni-netconfpath string   cni config directory [$NETCONFPATH] (default "/home/ubuntu/.config/cni/net.d")
+      --cni-path string          cni plugins binary directory [$CNI_PATH] (default "/usr/lib/cni")
+      --data-root string         Root directory of persistent nerdctl state (managed by nerdctl, not by containerd) (default "/home/ubuntu/.local/share/nerdctl")
+      --debug                    debug mode
+      --debug-full               debug mode (with full output)
+      --experimental             Control experimental: https://github.com/containerd/nerdctl/blob/main/docs/experimental.md [$NERDCTL_EXPERIMENTAL] (default true)
+  -h, --help                     help for nerdctl
+      --host-gateway-ip string   IP address that the special 'host-gateway' string in --add-host resolves to. Defaults to the IP address of the host. It has no effect without setting --add-host [$NERDCTL_HOST_GATEWAY_IP] (default "172.16.255.2")
+      --hosts-dir strings        A directory that contains <HOST:PORT>/hosts.toml (containerd style) or <HOST:PORT>/{ca.cert, cert.pem, key.pem} (docker style) (default [/home/ubuntu/.config/containerd/certs.d,/home/ubuntu/.config/docker/certs.d])
+      --insecure-registry        skips verifying HTTPS certs, and allows falling back to plain HTTP
+      --kube-hide-dupe           Deduplicate images for Kubernetes with namespace k8s.io
+      --log-file string          Append nerdctl's own log to this file, in addition to the standard error [$NERDCTL_LOG_FILE]
+      --namespace string         containerd namespace, such as "moby" for Docker, "k8s.io" for Kubernetes [$CONTAINERD_NAMESPACE] (aliases: -n) (default "default")
+      --selinux-enabled          Enable selinux support
+      --snapshotter string       containerd snapshotter [$CONTAINERD_SNAPSHOTTER] (aliases: --storage-driver) (default "overlayfs")
+      --userns-remap host        Support idmapping for creating and running containers. This options is only supported on linux. If host is passed, no idmapping is done. if a user name is passed, it does idmapping based on the uidmap and gidmap ranges specified in /etc/subuid and /etc/subgid respectively
+  -v, --version                  version for nerdctl
+
+Run 'nerdctl COMMAND --help' for more information on a command.
+

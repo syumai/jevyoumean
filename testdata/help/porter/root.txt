@@ -1,0 +1,62 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/porter
+# args: 
+With Porter you can package your application artifact, client tools, configuration and deployment logic together as a versioned bundle that you can distribute, and then install with a single command.
+
+Most commands require a Docker daemon, either local or remote.
+
+Try our QuickStart https://porter.sh/quickstart to learn how to use Porter.
+
+Usage:
+  porter [flags]
+  porter [command]
+
+Examples:
+  porter create
+  porter build
+  porter install
+  porter uninstall
+
+Resources:
+  bundles       Bundle commands
+  credentials   Credentials commands
+  installations Installation commands
+  mixins        Mixin commands. Mixins assist with authoring bundles.
+  parameters    Parameter set commands
+  plugins       Plugin commands. Plugins enable Porter to work on different cloud providers and systems.
+  storage       Manage data stored by Porter
+
+Commands:
+  mcp           Start an MCP server over stdio
+
+Aliased Commands:
+  archive       Archive a bundle from a reference
+  build         Build a bundle
+  copy          Copy a bundle
+  create        Create a bundle
+  explain       Explain a bundle
+  inspect       Inspect a bundle
+  install       Create a new installation of a bundle
+  invoke        Invoke a custom action on an installation
+  lint          Lint a bundle
+  list          List installed bundles
+  logs          Show the logs from an installation
+  publish       Publish a bundle
+  show          Show an installation of a bundle
+  uninstall     Uninstall an installation
+  upgrade       Upgrade an installation
+
+Meta Commands:
+  completion    Generate completion script
+  config        Config commands
+  schema        Print the JSON schema for the Porter manifest
+  version       Print the application version
+
+Flags:
+      --context string         Name of the configuration context to use. When unset, Porter uses the current-context from the config file, falling back to the context named "default".
+      --experimental strings   Comma separated list of experimental features to enable. See https://porter.sh/configuration/#experimental-feature-flags for available feature flags.
+  -h, --help                   help for porter
+      --verbosity string       Threshold for printing messages to the console. Available values are: debug, info, warning, error. (default "info")
+  -v, --version                Print the application version
+
+Use "porter [command] --help" for more information about a command.

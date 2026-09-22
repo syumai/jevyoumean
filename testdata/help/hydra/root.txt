@@ -1,0 +1,28 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/hydra
+# args: 
+Run and manage Ory Hydra
+
+Usage:
+  hydra [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  create      Create resources
+  delete      Delete resources
+  get         Get resources
+  help        Help about any command
+  import      Import resources
+  introspect  Introspect resources
+  janitor     This command cleans up stale database rows.
+  list        List resources
+  perform     Perform OAuth 2.0 Flows
+  revoke      Revoke resources
+  serve       Parent command for starting public and administrative HTTP/2 APIs
+  update      Update resources
+  version     Display this binary's version, build time and git hash of this build
+
+Flags:
+  -h, --help   help for hydra
+
+Use "hydra [command] --help" for more information about a command.

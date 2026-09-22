@@ -1,0 +1,29 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/rekor-cli
+# args: 
+Rekor command line interface tool
+
+Usage:
+  rekor-cli [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  get         Rekor get command
+  help        Help about any command
+  loginfo     Rekor loginfo command
+  logproof    Rekor logproof command
+  search      Rekor search command
+  upload      Upload an artifact to Rekor
+  verify      Rekor verify command
+  version     Prints the version
+
+Flags:
+      --config string      config file (default is $HOME/.rekor.yaml)
+      --format format      Command output format (default default)
+  -h, --help               help for rekor-cli
+      --rekor_server url   Server address:port (default https://rekor.sigstore.dev)
+      --retry uint         Number of times to retry HTTP requests (default 3)
+      --store_tree_state   whether to store tree state in between invocations for additional verification (default true)
+      --timeout format     HTTP timeout (default 30s)
+
+Use "rekor-cli [command] --help" for more information about a command.

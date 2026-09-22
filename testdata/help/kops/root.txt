@@ -1,0 +1,42 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/kops
+# args: 
+kOps is Kubernetes Operations.
+
+ kOps is the easiest way to get a production grade Kubernetes cluster up and running. We like to think of it as kubectl for clusters.
+
+ kOps helps you create, destroy, upgrade and maintain production-grade, highly available, Kubernetes clusters from the command line. AWS (Amazon Web Services) is currently officially supported, with Digital Ocean and OpenStack in beta support.
+
+Usage:
+  kops [command]
+
+Available Commands:
+  completion     Generate the autocompletion script for the specified shell
+  create         Create a resource by command line, filename or stdin.
+  delete         Delete clusters, instancegroups, instances, and secrets.
+  distrust       Distrust keypairs.
+  edit           Edit clusters and other resources.
+  export         Export configuration.
+  get            Get one or many resources.
+  help           Help about any command
+  promote        Promote a resource.
+  reconcile      Reconcile a cluster.
+  replace        Replace cluster resources.
+  rolling-update Rolling update a cluster.
+  toolbox        Miscellaneous, experimental, or infrequently used commands.
+  trust          Trust keypairs.
+  update         Update a cluster.
+  upgrade        Upgrade a kubernetes cluster.
+  validate       Validate a kOps cluster.
+  version        Print the kOps version information.
+
+Flags:
+      --alsologtostderrthreshold severity   logs at or above this threshold go to stderr when -alsologtostderr=true (no effect when -logtostderr=true)
+      --config string                       yaml config file (default is $HOME/.kops.yaml)
+  -h, --help                                help for kops
+      --legacy_stderr_threshold_behavior    If true, stderrthreshold is ignored when logtostderr=true (legacy behavior). If false, stderrthreshold is honored even when logtostderr=true
+      --name string                         Name of cluster. Overrides KOPS_CLUSTER_NAME environment variable
+      --state string                        Location of state storage (kops 'config' file). Overrides KOPS_STATE_STORE environment variable
+  -v, --v Level                             number for the log level verbosity
+
+Use "kops [command] --help" for more information about a command.

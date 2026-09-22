@@ -1,0 +1,106 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/auth0
+# args: 
+Build, manage and test your Auth0 integrations from the command line.
+
+## For Agents and Automation
+
+The Auth0 CLI now includes features for AI agents and automation:
+
+  • Schema Discovery: Use the '--schema' flag on a create/update command to print
+    its request payload schema. Add '--json' for machine-readable output.
+    Example: auth0 actions create --schema --json
+
+  • JSON Input: Use '--data' flag for programmatic resource creation/updates
+    Example: auth0 actions create --data @action.json
+
+  • Schema Validation: JSON inputs are validated locally before API calls
+    Example: auth0 actions create --data '{"name":"my-action",...}'
+
+See 'auth0 <resource> --help' for details on specific resources.
+For agent integration guide, visit: https://github.com/auth0/auth0-cli
+
+## Agent Mode
+
+Agent mode makes every command's output machine-readable. The CLI enables it
+automatically when it detects an AI agent. Force it with '--agent-mode' (or
+AUTH0_AGENT_MODE=true) and turn it off with '--agent-mode=false' (or
+AUTH0_AGENT_MODE=false).
+
+In agent mode the CLI:
+
+  • Prints results to stdout as JSON, and streams (for example 'auth0 logs tail')
+    as newline-delimited JSON, one object per line.
+  • Keeps stderr clean: human hints and progress messages are suppressed, so on
+    success stderr is empty and on failure it carries only a JSON error envelope
+    ({"error":{"code","reason","message","status","details"}}). Because that envelope
+    is the only thing on stderr, even a merged stdout+stderr stream stays parseable.
+  • Disables interactive prompts and colors.
+  • Prefers machine (client-credentials) login, which needs no browser:
+    'auth0 login --domain <domain> --client-id <id> --client-secret <secret>'.
+    A bare 'auth0 login' still works but requires a human: the CLI emits the device
+    verification URL and code as a JSON object on stdout, then waits while a person
+    approves it in a browser.
+  • Exits 0 on success and 130 when interrupted; every other failure exits 1, so
+    scripts that treat any non-zero exit as failure keep working. The specific
+    failure class (usage, auth, validation, not_found, conflict, rate_limit, api) is carried
+    by the JSON error envelope's "code" field, not by the exit code.
+
+
+Before using the CLI, you'll need to login:
+
+  $ auth0 login
+
+Usage:
+  auth0 <resource> <operation> [parameters...] [flags]
+
+Available Resources:
+  login           Authenticate the Auth0 CLI 
+  logout          Log out of a tenant's session 
+  tenants         Manage configured tenants 
+  apps            Manage resources for applications [clients]
+  acul            Advanced Customization the Universal Login experience 
+  users           Manage resources for users 
+  rules           Manage resources for rules 
+  actions         Manage resources for actions 
+  apis            Manage resources for APIs [resource-servers]
+  client-grants   Manage client grants [grants]
+  roles           Manage resources for roles 
+  orgs            Manage resources for organizations [organizations]
+  universal-login Manage the Universal Login experience [ul]
+  phone           Manage phone providers 
+  email           Manage email settings and configure email providers 
+  domains         Manage custom domains 
+  quickstarts     Quickstart support for getting bootstrapped [qs]
+  protection      Manage resources for attack protection [attack-protection, ap]
+  test            Try your Universal Login box or get a token 
+  logs            View tenant logs 
+  api             Makes an authenticated HTTP request to the Auth0 Management API 
+  terraform       Manage terraform configuration for your Auth0 Tenant [tf]
+  event-streams   Manage Event Stream 
+  forms           Manage Forms 
+  flows           Manage Flows 
+  network-acl     Manage network ACL settings 
+  connections     Manage resources for connections 
+  tenant-settings Manage tenant settings 
+  token-exchange  Manage token exchange profiles [te]
+  sessions        Manage resources for sessions 
+  refresh-tokens  Manage resources for refresh tokens 
+  guardian        Manage multi-factor authentication (Guardian) 
+  commands        Discover every CLI command in one place, for humans and AI agents 
+  agent           Manage Auth0 AI capabilities 
+  completion      Setup autocomplete features for this CLI on your terminal 
+
+Flags:
+      --agent-mode      Output JSON, disable prompts and colors.
+                        Auto-enabled for AI agents; set
+                        AUTH0_AGENT_MODE=false to disable.
+      --debug           Enable debug mode.
+  -h, --help            Help for auth0.
+      --no-color        Disable colors.
+      --no-input        Disable interactivity.
+      --tenant string   Specific tenant to use.
+  -v, --version         Version for auth0.
+
+Use "auth0 [command] --help" for more information about a command.
+Use "auth0 commands" for an overview of every command, and add --json to any --help for machine-readable output.

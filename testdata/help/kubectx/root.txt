@@ -1,0 +1,22 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/kubectx
+# args: 
+Manage and switch between kubectl contexts.
+
+USAGE:
+  kubectx                       : list the contexts
+  kubectx <NAME>                : switch to context <NAME>
+  kubectx -                     : switch to the previous context
+  kubectx -s, --shell <NAME>    : start a shell scoped to context <NAME>
+  kubectx -s, --shell           : interactively select a context to start a shell
+  kubectx -r, --readonly <NAME> : start a read-only shell for context <NAME>
+  kubectx -r, --readonly        : interactively select a context for read-only shell
+  kubectx -c, --current         : show the current context name
+  kubectx -u, --unset           : unset the current context
+  kubectx <NEW_NAME>=<NAME>     : rename context <NAME> to <NEW_NAME>
+  kubectx <NEW_NAME>=.          : rename current-context to <NEW_NAME>
+  kubectx -d <NAME> [<NAME...>] : delete context <NAME> ('.' for current-context)
+                                  (this command won't delete the user/cluster entry
+                                   referenced by the context entry)
+  kubectx -h, --help            : show this message
+  kubectx -V, --version         : show version

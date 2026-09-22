@@ -1,0 +1,22 @@
+# synthetic fixture: format modeled on kingpin "Commands:" output.
+Usage: terramate <command>
+
+Terramate is an Infrastructure as Code orchestration, observability and
+visibility platform.
+
+Commands:
+  create                 Create or import stacks.
+  fmt                    Format configuration files.
+  list                   List stacks.
+  run                    Run command in the stacks
+  generate               Run Code Generation in stacks.
+  script                 Use Terramate Scripts
+  cloud                  Manage cloud information.
+  debug                  Print debug information.
+  experimental           Select experimental commands.
+  help                   Show help.
+  vendor                 Vendor a directory or git repository.
+  version                Show version.
+
+Flags:
+  -h, --help   Show help.

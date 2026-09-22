@@ -1,0 +1,42 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/func
+# args: 
+func is the command line interface for managing Knative Function resources
+
+	Create a new Node.js function in the current directory:
+	func create --language node myfunction
+
+	Deploy the function using Docker hub to host the image:
+	func deploy --registry docker.io/alice
+
+Learn more about Functions:  https://knative.dev/docs/functions/
+Learn more about Knative at: https://knative.dev
+
+Primary Commands:
+  create      Create a function
+  describe    Describe a function
+  deploy      Deploy a function
+  delete      Undeploy a function
+  list        List deployed functions
+  subscribe   Subscribe a function to events
+
+Development Commands:
+  run         Run the function locally
+  invoke      Invoke a local or remote function
+  build       Build a function container
+  logs        Stream logs from a deployed function
+
+System Commands:
+  config      Configure a function
+  languages   List available function language runtimes
+  templates   List available function source templates
+  repository  Manage installed template repositories
+  environment Display function execution environment information
+
+Other Commands:
+  completion  Output functions shell completion code
+  version     Function client version information
+  mcp         Model Context Protocol (MCP) server
+
+Use "func <command> --help" for more information about a given command.
+

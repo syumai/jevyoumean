@@ -1,0 +1,52 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/popeye
+# args: 
+Popeye scans your Kubernetes clusters and reports potential resource issues.
+
+Usage:
+  popeye [flags]
+  popeye [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  info        Prints Popeye info
+  version     Prints version/build info
+
+Flags:
+  -A, --all-namespaces                 When present, runs linters for all namespaces
+      --as string                      Username to impersonate for the operation
+      --as-group stringArray           Group to impersonate for the operation
+      --certificate-authority string   Path to a cert file for the certificate authority
+  -c, --clear                          Clears the screen before a run
+      --client-certificate string      Path to a client certificate file for TLS
+      --client-key string              Path to a client key file for TLS
+      --cluster string                 The name of the kubeconfig cluster to use
+      --cluster-name string            Specify a cluster name when running popeye in cluster
+      --context string                 The name of the kubeconfig context to use
+  -f, --file string                    Use a spinach YAML configuration file
+      --force-exit-zero                Force zero exit status when report errors are present
+  -h, --help                           help for popeye
+      --insecure-skip-tls-verify       If true, the server's caCertFile will not be checked for validity
+      --kubeconfig string              Path to the kubeconfig file to use for CLI requests
+  -l, --lint string                    Specify a lint level (ok, info, warn, error) (default "ok")
+  -v, --log-level int                  Specify log level. Use 0|1|2|3|4 for disable|info|warn|error|debug (default 1)
+      --logs none                      Specify log file location. Use none for stdout (default "/tmp/popeye.log")
+      --min-score int                  Force non-zero exit if the cluster score is below that threshold (default 50)
+  -n, --namespace string               If present, the namespace scope for this CLI request
+  -o, --out string                     Specify the output type (standard, jurassic, yaml, json, html, junit, score) (default "standard")
+      --output-file string             Specify the file name to persist report to disk
+      --over-allocs                    Check for cpu/memory over allocations
+      --push-gtwy-password string      Prometheus pushgateway auth password
+      --push-gtwy-url string           Prometheus pushgateway address e.g. http://localhost:9091
+      --push-gtwy-user string          Prometheus pushgateway auth username
+      --request-timeout string         The length of time to wait before giving up on a single server request
+      --s3-bucket string               Specify to which S3 bucket you want to save the output file
+      --s3-endpoint string             Specify an s3 compatible endpoint when the s3-bucket option is enabled
+      --s3-region string               Specify an s3 compatible region when the s3-bucket option is enabled
+      --save                           Specify if you want Popeye to persist the output to a file
+  -s, --sections strings               Specify which resources to include in the scan ie -s po,svc
+      --token string                   Bearer token for authentication to the API server
+      --user string                    The name of the kubeconfig user to use
+
+Use "popeye [command] --help" for more information about a command.

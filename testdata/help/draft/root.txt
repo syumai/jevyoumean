@@ -1,0 +1,46 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/draft
+# args: 
+Draft is a Command Line Tool (CLI) that creates the miminum required files for your Kubernetes deployments.
+
+To start a k8s deployment with draft, run the 'draft create' command 🤩
+
+	$ draft create
+
+This will prompt you to create a Dockerfile and deployment files for your project ✨
+
+For more information, please visit the Draft Github page: https://github.com/Azure/draft.
+
+
+Usage:
+
+  draft [command]
+
+
+Available Commands:
+
+  completion                    Generate the autocompletion script for the specified shell
+  create                        Add minimum required files to the directory
+  generate-workflow             Generates a Github workflow for automatic build and deploy to AKS
+  help                          Help about any command
+  info                          Prints draft supported values in machine-readable format
+  setup-gh                      Automates the Github OIDC setup process
+  update                        Updates your application to be internet accessible
+  validate                      Validates manifests against AKS best practices
+  version                       Get the current version of Draft
+
+
+Flags:
+
+      --config string         config file (default is $HOME/.draft.yaml)
+      --dry-run               enable dry run mode in which no files are written to disk
+      --dry-run-file string   optional file to write dry run summary in json format into (requires --dry-run flag)
+  -h, --help                  help for draft
+      --interactive           toggle interactive prompting for user input (default is true, use --interactive=false to disable) (default true)
+  -p, --provider string       cloud provider (default "azure")
+      --silent                enable silent logging
+  -v, --verbose               enable verbose logging
+
+
+Use "draft [command] --help" for more information about a command.
+

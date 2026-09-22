@@ -1,0 +1,46 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/asdf
+# args: 
+NAME:
+   asdf - The multiple runtime version manager
+
+USAGE:
+   The Multiple Runtime Version Manager.
+
+   Manage all your runtime versions with one tool!
+
+   Complete documentation is available at https://asdf-vm.com/
+
+VERSION:
+   v0.20.0 (revision 150aaf0)
+
+AUTHOR:
+   {Trevor Brown someguy@example.com}
+
+COMMANDS:
+   cmd           
+   completion    
+   current       
+   env           
+   exec          
+   help          
+   info          
+   version       
+   install       
+   latest        
+   list          
+   plugin        
+   reshim        
+   set           
+   shimversions  
+   uninstall     
+   update        
+   where         
+   which         
+
+GLOBAL OPTIONS:
+   --help, -h     show help
+   --version, -v  print the version
+
+COPYRIGHT:
+   (c) 2024 Trevor Brown

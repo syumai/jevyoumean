@@ -37,6 +37,18 @@ func (c Command) Matches(token string) bool {
 
 var namePattern = regexp.MustCompile(`^[A-Za-z0-9][A-Za-z0-9._-]*$`)
 
+// ansiPattern matches ANSI escape sequences (SGR colors and friends) so
+// captured help from colorized CLIs parses like plain text.
+var ansiPattern = regexp.MustCompile(`\x1b\[[0-9;:?]*[A-Za-z]|\x1b[()][0-9AB]`)
+
+// uuidPattern matches a leading UUID so identifiers from example tables
+// never read as command names.
+var uuidPattern = regexp.MustCompile(`^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-`)
+
+func stripANSI(line string) string {
+	return ansiPattern.ReplaceAllString(line, "")
+}
+
 // stripOverstrike removes nroff-style overstriking used by man pages and
 // groff-formatted help: X\bX renders bold, _\bX underlined. Each
 // backspace erases the previous output byte.
@@ -81,7 +93,7 @@ func looksLikeSubPath(n string) bool {
 }
 
 func looksLikeName(n string) bool {
-	if !namePattern.MatchString(n) || strings.HasSuffix(n, ".") {
+	if !namePattern.MatchString(n) || strings.HasSuffix(n, ".") || uuidPattern.MatchString(n) {
 		return false
 	}
 	if len(n) > 1 && n[0] >= 'A' && n[0] <= 'Z' {
@@ -101,6 +113,7 @@ func looksLikeName(n string) bool {
 var headerSkipWords = []string{
 	"option", "flag", "interface", "environment", "example",
 	"parameter", "argument", "suffix", "alias", "propert", "field",
+	"driver",
 }
 
 // headerHead extracts the label portion of a candidate header: the text
@@ -152,6 +165,12 @@ func Parse(output string) []Command {
 	sawKnownHeader := false
 	entryIndent := -1
 	yamlDepth := -1
+	// A "positional arguments" section only lists real subcommands
+	// when the group holds a command metavariable ({a,b,c}, COMMAND
+	// or <command>); otherwise its entries are ordinary arguments
+	// (meson's "builddir") and must not commit.
+	positionalSection := false
+	choiceSeen := false
 	prefixSeen := map[string]map[string]string{}
 	var prefixOrder []string
 
@@ -165,11 +184,16 @@ func Parse(output string) []Command {
 		}
 		entryIndent = -1
 		yamlDepth = -1
+		positionalSection = false
+		choiceSeen = false
 	}
 	flush := func() {
 		min := 1
 		if tentative {
 			min = 2
+		}
+		if positionalSection && !choiceSeen {
+			min = len(pending) + 1
 		}
 		if len(pending) >= min {
 			for _, c := range pending {
@@ -182,7 +206,7 @@ func Parse(output string) []Command {
 	}
 
 	for _, line := range strings.Split(output, "\n") {
-		line = stripOverstrike(strings.TrimRight(line, "\r"))
+		line = stripANSI(stripOverstrike(strings.TrimRight(line, "\r")))
 		// "tool sub ARGS..." — CLIs like brew and yarn repeat their own
 		// name before every subcommand in usage-style listings. Lines
 		// are collected wherever they appear; a prefix group only
@@ -202,6 +226,9 @@ func Parse(output string) []Command {
 		if isSectionHeader(line) {
 			flush()
 			startSection(false)
+			head := headerHead(strings.ToLower(line))
+			positionalSection = strings.Contains(head, "positional arguments") ||
+				strings.Contains(head, "required arguments")
 			continue
 		}
 		// Blank lines occur between a section header and its entries,
@@ -211,6 +238,15 @@ func Parse(output string) []Command {
 			continue
 		}
 		if indentation(line) == 0 {
+			// Inside a recognized section a col-0 line is tried as
+			// an entry first — kingpin listings (aws-vault) write
+			// "name [args]" entries at column zero under "Commands:".
+			if inSection && !tentative {
+				if names, desc, ok := parseEntryLine(strings.TrimSpace(line)); ok {
+					pending = appendCommand(pending, sectionSeen, names, desc)
+					continue
+				}
+			}
 			// Unindented "name (alias) args" and bare-name entries —
 			// listings like `tmux list-commands` and `go tool` put
 			// entries at column zero where they would otherwise read
@@ -226,15 +262,6 @@ func Parse(output string) []Command {
 				continue
 			}
 			flatMode = false
-			// cosign puts its commands unindented under a known
-			// header — while a recognized section is open, a col-0
-			// line is still an entry if it parses as one.
-			if inSection && !tentative {
-				if names, desc, ok := parseEntryLine(strings.TrimSpace(line)); ok {
-					pending = appendCommand(pending, sectionSeen, names, desc)
-					continue
-				}
-			}
 			// Every other non-indented line is a tentative header.
 			flush()
 			if s := strings.ToLower(strings.TrimSpace(line)); s != "" &&
@@ -245,6 +272,12 @@ func Parse(output string) []Command {
 		}
 		if !inSection {
 			continue
+		}
+		if marker := strings.TrimSpace(line); strings.HasPrefix(marker, "{") ||
+			strings.EqualFold(
+				strings.TrimSuffix(strings.Trim(marker, "<>[]"), "..."),
+				"command") {
+			choiceSeen = true
 		}
 		// Indented "key:" blocks (YAML and similar config examples
 		// embedded in prose, like helm's Chart.yaml samples) keep all
@@ -286,6 +319,12 @@ func Parse(output string) []Command {
 			if lineIndent := indentation(line); entryIndent >= 0 && lineIndent > entryIndent {
 				last := &pending[len(pending)-1]
 				last.Description = strings.TrimSpace(last.Description + " " + strings.TrimSpace(line))
+				continue
+			}
+			// In a recognized section an indented non-entry line is a
+			// group header (copilot's "  Develop ✨") or stray prose —
+			// a recognized section ends only at a column-0 line.
+			if !tentative {
 				continue
 			}
 			flush()
@@ -546,10 +585,10 @@ func prefixedEntry(line string) (prefix, name, desc string, ok bool) {
 			continue
 		}
 		if colonDesc {
-			if d := strings.TrimSpace(trimmed[idx:]); d != "" {
-				return strings.Join(fields[:plen], " "), name, d, true
-			}
-			continue
+			// "git lfs checkout:" puts the description on the next
+			// line, so a colon entry counts even with an empty rest.
+			return strings.Join(fields[:plen], " "), name,
+				strings.TrimSpace(trimmed[idx:]), true
 		}
 		rest := trimmed[idx:]
 		if strings.HasPrefix(rest, ":") {
@@ -652,9 +691,10 @@ func isSectionHeader(line string) bool {
 	if strings.Contains(lower, "commands") && !strings.Contains(lower, "interface") {
 		return true
 	}
-	// argparse renders a required-positional group holding the
-	// subcommand choices as "required arguments:" (borg-style).
-	return lower == "required arguments"
+	// argparse renders the group holding subcommand choices as
+	// "positional arguments:" (pipenv-style) or, for required
+	// positionals, "required arguments:" (borg-style).
+	return lower == "positional arguments" || lower == "required arguments"
 }
 
 // parseEntry extracts a "names <sep> description" entry line and returns
@@ -742,11 +782,23 @@ func parseEntryLine(trimmed string) (names []string, desc string, ok bool) {
 			token, rest = rest[:i], rest[i:]
 		}
 		hadComma := strings.HasSuffix(token, ",")
-		for _, n := range strings.Split(strings.TrimSuffix(token, ","), "|") {
-			if !looksLikeName(n) && !looksLikeSubPath(n) {
-				return nil, "", false
+		if strings.HasPrefix(token, "{") && strings.HasSuffix(token, "}") &&
+			strings.Contains(token, ",") {
+			// "{check,upload,register}" — argparse renders the
+			// subcommand choices as one brace token.
+			for _, n := range strings.Split(token[1:len(token)-1], ",") {
+				if !looksLikeName(n) {
+					return nil, "", false
+				}
+				names = append(names, n)
 			}
-			names = append(names, n)
+		} else {
+			for _, n := range strings.Split(strings.TrimSuffix(token, ","), "|") {
+				if !looksLikeName(n) && !looksLikeSubPath(n) {
+					return nil, "", false
+				}
+				names = append(names, n)
+			}
 		}
 		if rest == "" {
 			return names, "", true
@@ -759,6 +811,32 @@ func parseEntryLine(trimmed string) (names []string, desc string, ok bool) {
 			return names, strings.TrimSpace(rest[j:]), true
 		}
 		if !hadComma {
+			// "name (alias[, alias...])" — tox and similar list
+			// aliases in parentheses right after the name.
+			if j > 0 && j < len(rest) && rest[j] == '(' {
+				if e := strings.Index(rest[j:], ")"); e > 0 {
+					var aliases []string
+					parenOK := true
+					for _, a := range strings.Fields(rest[j+1 : j+e]) {
+						a = strings.TrimSuffix(a, ",")
+						if !looksLikeName(a) {
+							parenOK = false
+							break
+						}
+						aliases = append(aliases, a)
+					}
+					if parenOK {
+						names = append(names, aliases...)
+						tail := rest[j+e+1:]
+						if strings.TrimSpace(tail) == "" {
+							return names, "", true
+						}
+						if d, ok := skipArgs(tail); ok {
+							return names, d, true
+						}
+					}
+				}
+			}
 			// "name - description" is a common apt/help2man style.
 			if d := strings.TrimPrefix(rest[j:], "- "); d != rest[j:] {
 				return names, strings.TrimSpace(d), true

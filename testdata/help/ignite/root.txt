@@ -1,0 +1,61 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/ignite
+# args: 
+
+Ignite is a containerized Firecracker microVM administration tool.
+It can build VM images, spin VMs up/down and manage multiple VMs efficiently.
+
+Administration is divided into three subcommands:
+  image       Manage base images for VMs
+  kernel      Manage VM kernels
+  vm          Manage VMs
+
+Ignite also supports the same commands as the Docker CLI.
+Combining an Image and a Kernel gives you a runnable VM.
+
+Example usage:
+
+	$ ignite run weaveworks/ignite-ubuntu \
+		--cpus 2 \
+		--memory 2GB \
+		--ssh \
+		--name my-vm
+	$ ignite images
+	$ ignite kernels
+	$ ignite ps
+	$ ignite logs my-vm
+	$ ignite ssh my-vm
+
+Usage:
+  ignite [command]
+
+Available Commands:
+  attach      Attach to a running VM
+  completion  Output bash completion for ignite to stdout
+  cp          Copy files/folders between a running vm and the local filesystem
+  create      Create a new VM without starting it
+  exec        execute a command in a running VM
+  help        Help about any command
+  image       Manage base images for VMs
+  inspect     Inspect an Ignite Object
+  kernel      Manage VM kernels
+  kill        Kill running VMs
+  logs        Get the logs for a running VM
+  ps          List running VMs
+  rm          Remove VMs
+  rmi         Remove VM base images
+  rmk         Remove kernels
+  run         Create a new VM and start it
+  ssh         SSH into a running vm
+  start       Start a VM
+  stop        Stop running VMs
+  version     Print the version of ignite
+  vm          Manage VMs
+
+Flags:
+  -h, --help                   help for ignite
+      --ignite-config string   Ignite configuration path; refer to the 'Ignite Configuration' docs for more details
+      --log-level loglevel     Specify the loglevel for the program (default info)
+  -q, --quiet                  The quiet mode allows for machine-parsable output by printing only IDs
+
+Use "ignite [command] --help" for more information about a command.

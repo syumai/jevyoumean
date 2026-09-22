@@ -1,0 +1,47 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/nsc
+# args: 
+nsc creates NATS operators, accounts, users, and manage their permissions.
+
+Usage:
+  nsc [flags]
+  nsc [command]
+
+Available Commands:
+  add         Add assets such as operators, accounts, imports/exports, users, mappings
+  completion  Generate the autocompletion script for the specified shell
+  delete      Delete assets such as accounts/users, imports/exports, mappings
+  describe    Describe assets such as operators, accounts, users, and jwt files
+  edit        Edit assets such as operators, accounts, users, exports, scoped signing keys, and account auth callout configuration
+  env         Prints and manage the nsc environment
+  expirations Create a new expiration report
+  export      Export assets such as nkeys
+  generate    Generate activations, nats-cli contexts, credential files, configs, nkeys and diagrams
+  help        Help about any command
+  import      Import accounts, users or nkeys
+  init        Initialize an environment by creating an operator, account and user
+  keys        Manage keys for operators, accounts, and users
+  list        List assets such as operators, accounts, users and keys
+  load        load entities for an operator, account and keys
+  pull        Pull an operator or account jwt replacing the local jwt with the server's version
+  push        Push an account jwt to an Account JWT Server
+  reissue     Re-issue objects with a new identity key
+  revocations Manage revocation for users and activations from an account
+  select      Set the current operator or account
+  tool        NATS tools: pub, sub, req, reply, rtt
+  update      Update this tool to latest version
+  validate    Validate an operator, account(s), and users
+
+Flags:
+  -H, --all-dirs string       sets --config-dir, --data-dir, and --keystore-dir to the same value
+      --config-dir string     nsc config directory
+      --data-dir string       nsc data store directory
+  -h, --help                  help for nsc
+  -i, --interactive           ask questions for various settings
+      --keystore-dir string   nsc keystore directory
+  -K, --private-key string    Key used to sign. Can be specified as role (where applicable),
+                              public key (private portion is retrieved)
+                              or file path to a private key or private key 
+  -v, --version               version for nsc
+
+Use "nsc [command] --help" for more information about a command.

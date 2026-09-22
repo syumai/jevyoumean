@@ -1,0 +1,19 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/egctl
+# args: 
+A command line utility for operating Envoy Gateway
+
+Usage:
+  egctl [command]
+
+Available Commands:
+  completion   Generate the autocompletion script for the specified shell
+  config       Retrieve proxy configuration.
+  experimental Experimental features
+  help         Help about any command
+  version      Show version
+
+Flags:
+  -h, --help   help for egctl
+
+Use "egctl [command] --help" for more information about a command.

@@ -1,0 +1,129 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/gscloud
+# args: 
+gscloud lets you manage objects in the gridscale API via the command line. It provides a command line comparable to Docker-CLI that allows you to create, manipulate, and remove objects on gridscale.io.
+
+Commands are given usually in the form of 'gscloud object verb'. For example, to list all servers you would do 'gscloud server ls'. Likewise, to list all storages you would do 'gscloud storage ls'.
+
+Output, if any, is usually in the form of a table. You can pass --json to print output as JSON if you wish to do so.
+
+To configure access to your projects via the API a YAML configuration file is used. See gscloud-make-config(1) and --config for more.
+
+# FILES
+
+$XDG_CONFIG_HOMEgridscale user API access configuration
+
+# EXIT CODES
+
+gscloud returns zero exit code on success, non-zero on failure. Following exit codes map to these failure modes:
+
+    1. The requested command failed.
+    2. Reading the configuration file failed.
+    3. The configuration could not be parsed.
+    4. The account specified does not exist in the configuration file.
+
+# EXAMPLES
+
+List all servers available:
+
+    $ gscloud server ls
+
+    ID                                    NAME    CORE  MEM  CHANGED                    POWER
+    37d53278-8e5f-47e1-a63f-54513e4b4d53  test-1  1     1    2020-11-17T08:48:22+01:00  off
+    b0dd8d71-8f8d-46c1-8985-ce4b6dc37ecc  test-2  1     1    2020-11-20T11:44:58+01:00  off
+
+Power all servers on:
+
+    $ gscloud server ls --quiet | while read s; do
+        gscloud server on $s
+    done
+
+Get the list of storages as JSON:
+
+    $ gscloud --json storage ls | jq
+    [
+      {
+        "storage": {
+          "change_time": "2020-11-17T06:32:30Z",
+          "location_iata": "fra",
+          "status": "active",
+          "license_product_no": 0,
+          "location_country": "de",
+          "usage_in_minutes": 59230,
+          "last_used_template": "8d1bb5dc-7c37-4c90-8529-d2aaac75d812",
+          "current_price": 99.99,
+          "capacity": 10,
+          "location_uuid": "45ed677b-3702-4b36-be2a-a2eab9827950",
+          "storage_type": "storage",
+          "parent_uuid": "",
+          "name": "test-1",
+          "location_name": "de/fra",
+          "object_uuid": "479b7973-376a-4b23-98fc-50e94131a6e3",
+          "snapshots": [],
+          "relations": {
+            "servers": [
+              {
+                "bootdevice": true,
+                "target": 0,
+                "controller": 0,
+                "bus": 0,
+                "object_uuid": "37d53278-8e5f-47e1-a63f-54513e4b4d53",
+                "lun": 0,
+                "create_time": "2020-11-17T06:32:30Z",
+                "object_name": "test-1"
+              }
+            ],
+            "snapshot_schedules": []
+          },
+          "labels": [],
+          "create_time": "2020-11-17T06:32:30Z"
+        }
+      }
+    ]
+
+# ENVIRONMENT
+
+GRIDSCALE_ACCOUNT
+	Specify the account used. Gets overriden by --account option
+
+GRIDSCALE_UUID
+	Specify the user id used. Overrides the value in the config file
+
+GRIDSCALE_TOKEN
+	Specify the API token used. Overrides the value in the config file
+
+GRIDSCALE_URL
+	Specify the URL of the API. Overrides the value in the config file
+
+Usage:
+  gscloud [command]
+
+Available Commands:
+  completion  Generate shell completion scripts
+  help        Help about any command
+  info        Print account summary
+  ip          Operations on IP addresses
+  iso-image   Operations on ISO images
+  kubernetes  Operate managed Kubernetes clusters
+  make-config Create a new configuration file
+  manpage     Create man-pages for gscloud
+  move-config Move an old config file to the current path
+  network     Operations on networks
+  postgresql  Operate managed PostgreSQL database
+  server      Operations on servers
+  ssh-key     Operations on SSH keys
+  storage     Operations on storages
+  template    Operations on templates
+  version     Print the version
+
+Flags:
+      --config string    Path to configuration file
+      --debug            Debug mode
+  -h, --help             Print usage
+  -j, --json             Print JSON to stdout instead of a table
+      --noheading        Do not print column headings
+      --project string   Specify the project used. Overrides GRIDSCALE_PROJECT environment variable
+  -q, --quiet            Print only object IDs
+      --timeout string   Timeout for API requests. Examples: 10s, 10m, 1h
+
+Use "gscloud [command] --help" for more information about a command.

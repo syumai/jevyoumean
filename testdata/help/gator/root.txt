@@ -1,0 +1,24 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/gator
+# args: 
+gator is a suite of authorship tools for Gatekeeper
+
+Usage:
+  gator [command]
+
+Available Commands:
+  bench       Benchmark policy evaluation performance
+  completion  Generate the autocompletion script for the specified shell
+  expand      expand allow for testing generator resource expansion configs by expanding a generator resource and outputting the resultant resource(s)
+  help        Help about any command
+  policy      Manage Gatekeeper policies from the policy library
+  sync        Manage SyncSets and Config
+  test        test evaluates resources against policies as defined by constraint templates and constraints.
+  verify      verify suites of tests on Gatekeeper Constraints
+  version     Prints the version
+
+Flags:
+  -h, --help      help for gator
+  -v, --version   version for gator
+
+Use "gator [command] --help" for more information about a command.

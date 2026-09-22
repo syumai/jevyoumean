@@ -1,0 +1,22 @@
+# synthetic fixture: format modeled on cobra "Available Commands:" output.
+Manage ZITADEL
+
+Usage:
+  zitadel [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  init        initialize ZITADEL instance
+  keys        manage encryption keys
+  mirror      mirrors all data of ZITADEL from one database to another
+  ready       Checks if zitadel is ready
+  server      Start ZITADEL server
+  setup       Setup ZITADEL instance
+  start       Start ZITADEL
+  version     Print the version
+
+Flags:
+  -h, --help   help for zitadel
+
+Use "zitadel [command] --help" for more information about a command.

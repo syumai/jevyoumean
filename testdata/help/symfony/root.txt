@@ -1,0 +1,27 @@
+# synthetic fixture: format modeled on Symfony Console "Available commands:"
+# output (category rows at one indent, "name, alias  desc" entries deeper).
+Symfony CLI version 5.20.0 (c) 2021-2026 Fabien Potencier
+
+Usage:
+  command [options] [arguments]
+
+Options:
+  -h, --help     Display help for the given command.
+  -V, --version  Display this application version.
+
+Available commands:
+  book
+   book:check-requirements, book:check  Check that you have all the pre-requisites locally
+   book:checkout                        Check out a step of the book repository
+  cloud
+   cloud:clear-cache, cloud:cc          Clear the CLI cache
+   cloud:console, cloud:web             Open the project in the Console
+   cloud:deploy                         Deploy an environment
+  local
+   local:new                            Create a new Symfony project
+   local:server:start                   Run a local web server
+   local:server:stop                    Stop the local web server
+  self
+   self:completion                      Dump the shell completion script
+   self:help, help, list                Display help for a command or a category of commands
+   self:version, version                Display the application version

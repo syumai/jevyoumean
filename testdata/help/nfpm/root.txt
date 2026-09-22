@@ -1,0 +1,23 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/nfpm
+# args: 
+
+  nFPM is a simple and 0-dependencies apk, arch, deb, ipk, msix, and rpm packager written in Go.                        
+         
+  USAGE  
+         
+    nfpm [command] [--flags]  
+            
+  COMMANDS  
+            
+    completion [command]  Generate the autocompletion script for the specified shell
+    help [command]        Help about any command
+    init [--flags]        Creates a sample nfpm.yaml configuration file
+    jsonschema [--flags]  Outputs nFPM's JSON schema
+    package [--flags]     Creates a package based on the given config file and flags
+         
+  FLAGS  
+         
+    -h --help             Help for nfpm
+    -v --version          Version for nfpm
+

@@ -1,0 +1,30 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/antctl
+# args: 
+antctl is the command line tool for Antrea that supports showing status of controller
+
+Usage:
+  antctl [command]
+
+Available Commands:
+  check         Performs pre and post installation checks
+  completion    Generate the autocompletion script for the specified shell
+  get           Get the status or resource of a topic
+  help          Help about any command
+  mc            Sub-commands of multi-cluster feature
+  packetcapture Start capture packets
+  proxy         Run a reverse proxy to access Antrea API
+  query         Execute a user-provided query
+  supportbundle Generate support bundle
+  traceflow     Start a Traceflows
+  upgrade       Sub-commands for upgrade operations
+  version       Print version information
+
+Flags:
+  -h, --help                help for antctl
+  -k, --kubeconfig string   absolute path to the kubeconfig file
+  -s, --server string       address and port of the API server, taking precedence over the default endpoint and the one set in kubeconfig
+  -t, --timeout duration    time limit of the execution of the command
+  -v, --verbose             enable verbose output
+
+Use "antctl [command] --help" for more information about a command.

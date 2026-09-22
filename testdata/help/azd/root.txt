@@ -1,0 +1,68 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/azd
+# args: 
+
+The Azure Developer CLI is an open-source tool that helps onboard and manage your project on Azure
+
+Usage
+  azd [command]
+
+Commands
+  Getting started
+    init      	: Initialize a new application.
+    up        	: Provision and deploy your project to Azure with a single command.
+
+  Create and manage Azure resources
+    auth      	: Authenticate with Azure.
+    deploy    	: Deploy your project code to Azure.
+    down      	: Delete your project's Azure resources.
+    provision 	: Provision Azure resources for your project.
+    publish   	: Publish a service image or reuse an existing passthrough image.
+
+  Manage and show settings
+    completion	: Generate shell completion scripts.
+    config    	: Manage azd configurations (ex: default Azure subscription, location).
+    env       	: Manage environments (ex: default environment, environment variables).
+    exec      	: Execute commands and scripts with azd environment context.
+    show      	: Display information about your project and its resources.
+    tool      	: Manage Azure development tools.
+    version   	: Print the version number of Azure Developer CLI.
+
+  Beta commands
+    add       	: Add a component to your project.
+    build     	: Builds the application's code.
+    extension 	: Manage azd extensions.
+    hooks     	: Develop, test and run hooks for a project.
+    infra     	: Manage your Infrastructure as Code (IaC).
+    monitor   	: Monitor a deployed project.
+    package   	: Packages the project's code to be deployed to Azure.
+    pipeline  	: Manage and configure your deployment pipelines.
+    restore   	: Restores the project's dependencies.
+    template  	: Find and view template details.
+    update    	: Updates azd to the latest version.
+
+  Enabled alpha commands
+    copilot   	: Manage GitHub Copilot agent settings. (Preview)
+    mcp       	: Manage Model Context Protocol (MCP) server. (Alpha)
+
+Flags
+    -C, --cwd string         	: Sets the current working directory.
+        --debug              	: Enables debugging and diagnostics logging.
+    -e, --environment string 	: The name of the environment to use.
+        --no-prompt          	: Runs without prompts. Uses existing values; fails if any required value or decision cannot be resolved automatically. Automatically enabled when azd detects a CI/CD or AI-agent environment; set AZD_NON_INTERACTIVE=false to opt out of that automatic enablement.
+
+Global Flags
+        --docs 	: Opens the documentation for azd in your web browser.
+    -h, --help 	: Gets help for azd.
+
+Use azd [command] --help to view examples and more information about a specific command.
+
+Deploying a sample application
+Initialize from a sample application by running the azd init --template [template name] command in an empty directory.
+Then, run azd up to get the application up-and-running in Azure.
+
+To view a curated list of sample templates, run azd template list.
+To view all available sample templates, including those submitted by the azd community, visit: https://azure.github.io/awesome-azd.
+
+Find a bug? Want to let us know how we're doing? Fill out this brief survey: https://aka.ms/azure-dev/hats.
+

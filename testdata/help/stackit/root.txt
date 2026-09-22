@@ -1,0 +1,60 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/stackit
+# args: 
+Manage STACKIT resources using the command line.
+Your feedback is appreciated!
+
+USAGE
+  stackit [flags]
+  stackit [command]
+
+AVAILABLE COMMANDS
+  affinity-group    Manage server affinity groups
+  auth              Authenticates the STACKIT CLI
+  beta              Contains beta STACKIT CLI commands
+  completion        Generate the autocompletion script for the specified shell
+  config            Provides functionality for CLI configuration options
+  curl              Executes an authenticated HTTP request to an endpoint
+  dns               Provides functionality for DNS
+  git               Provides functionality for STACKIT Git
+  help              Help about any command
+  image             Manage server images
+  key-pair          Provides functionality for SSH key pairs
+  kms               Provides functionality for KMS
+  load-balancer     Provides functionality for Load Balancer
+  logme             Provides functionality for LogMe
+  logs              Provides functionality for Logs
+  mariadb           Provides functionality for MariaDB
+  mongodbflex       Provides functionality for MongoDB Flex
+  network           Provides functionality for networks
+  network-area      Provides functionality for STACKIT Network Area (SNA)
+  network-interface Provides functionality for network interfaces
+  object-storage    Provides functionality for Object Storage
+  observability     Provides functionality for Observability
+  opensearch        Provides functionality for OpenSearch
+  organization      Manages organizations
+  postgresflex      Provides functionality for PostgreSQL Flex
+  project           Manages projects
+  public-ip         Provides functionality for public IPs
+  quota             Manage server quotas
+  rabbitmq          Provides functionality for RabbitMQ
+  secrets-manager   Provides functionality for Secrets Manager
+  security-group    Manage security groups
+  server            Provides functionality for servers
+  service-account   Provides functionality for service accounts
+  ske               Provides functionality for SKE
+  sqlserverflex     Provides functionality for SQLServer Flex
+  valkey            Provides functionality for Valkey
+  volume            Provides functionality for volumes
+
+FLAGS
+  -y, --assume-yes             If set, skips all confirmation prompts
+      --async                  If set, runs the command asynchronously
+  -h, --help                   Help for "stackit"
+  -o, --output-format string   Output format, (one of: [json, pretty, none, yaml])
+  -p, --project-id string      Project ID
+      --region string          Target region for region-specific requests
+      --verbosity string       Verbosity of the CLI, (one of: [debug, info, warning, error]) (default "info")
+  -v, --version                Show "stackit" version
+
+Use "stackit [command] --help" for more information about a command.

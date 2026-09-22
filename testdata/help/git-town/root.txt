@@ -1,0 +1,67 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/git-town
+# args: 
+Branching and workflow support for Git.
+
+Git Town helps create, sync, and ship changes
+efficiently and with minimal merge conflicts.
+
+Usage:
+  git-town [flags]
+  git-town [command]
+
+Basic workflow:
+  hack        Create a new feature branch off the main branch
+  propose     Create a proposal to merge a feature branch
+  sync        Update the current branch with all relevant changes
+
+Stacked changes:
+  append      Create a new feature branch as a child of the current branch
+  combine     Combines the current branch with its parent
+  commit      Commit into another branch
+  detach      Move a branch out of a stack
+  diff-parent Show the changes committed to a branch
+  prepend     Create a new feature branch as the parent of the current branch
+  set-parent  Set the parent branch for the current branch
+  swap        Swap the position of this branch with its parent
+
+Branch navigation:
+  branch      Display the local branch hierarchy and types
+  down        Switch to the child branch
+  switch      Switch branches visually
+  up          Switch to the parent branch
+
+Control syncing:
+  contribute  Stop syncing some feature branches with their parents
+  feature     Convert branches to feature branches
+  observe     Stop your contributions to some feature branches
+  park        Suspend syncing of some feature branches
+  prototype   Make an existing branch a prototype branch
+
+Error handling:
+  continue    Resume the last run Git Town command after having resolved conflicts
+  runlog      Displays the repo state before and after previous Git Town commands
+  skip        Resume the last run Git Town command by skipping the current branch
+  status      Displays or resets the current suspended Git Town command
+  undo        Undo the most recent Git Town command
+
+Configuration:
+  completions Generate auto-completion for bash, zsh, fish, or PowerShell
+  config      Display your Git Town configuration
+  init        Set up Git Town on your computer
+  offline     Display or set offline mode
+
+Additional Commands:
+  compress    Squash all commits on the current branch down to a single commit
+  delete      Remove an obsolete feature branch
+  help        Help about any command
+  rename      Rename a branch and its tracking branch
+  repo        Open the repository homepage in the browser
+  ship        Deliver a completed feature branch
+  walk        Run a command on each local feature branch
+
+Flags:
+  -h, --help      help for git-town
+  -V, --version   display the version number
+
+Use "git-town [command] --help" for more information about a command.

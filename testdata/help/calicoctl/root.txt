@@ -1,0 +1,36 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/calicoctl
+# args: 
+Usage:
+  calicoctl [options] <command> [<args>...]
+
+    create       Create a resource by file, directory or stdin.
+    replace      Replace a resource by file, directory or stdin.
+    apply        Apply a resource by file, directory or stdin.  This creates a resource
+                 if it does not exist, and replaces a resource if it does exists.
+    patch        Patch a preexisting resource in place.
+    delete       Delete a resource identified by file, directory, stdin or resource type and
+                 name.
+    get          Get a resource identified by file, directory, stdin or resource type and
+                 name.
+    label        Add or update labels of resources.
+    validate     Validate a resource by file, directory or stdin without applying it.
+    ipam         IP address management.
+    node         Calico node management.
+    version      Display the version of this binary.
+    datastore    Calico datastore management.
+    cluster      Access cluster information.
+
+Options:
+  -h --help                    Show this screen.
+  -l --log-level=<level>       Set the log level (one of panic, fatal, error,
+                               warn, info, debug) [default: panic]
+     --context=<context>       The name of the kubeconfig context to use.
+     --allow-version-mismatch  Allow client and cluster versions mismatch.
+
+Description:
+  The calicoctl command line tool is used to manage Calico network and security
+  policy, to view and manage endpoint configuration, and to manage a Calico
+  node instance.
+
+  See 'calicoctl <command> --help' to read about a specific subcommand.

@@ -1,0 +1,48 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/kube-bench
+# args: 
+This tool runs the CIS Kubernetes Benchmark (https://www.cisecurity.org/benchmark/kubernetes/)
+
+Usage:
+  /home/ubuntu/.local/bin/kube-bench [flags]
+  /home/ubuntu/.local/bin/kube-bench [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  run         Run tests
+  version     Shows the version of kube-bench.
+
+Flags:
+      --alsologtostderr                   log to standard error as well as files
+      --asff                              Send the results to AWS Security Hub
+      --benchmark string                  Manually specify CIS benchmark version. It would be an error to specify both --version and --benchmark flags
+  -c, --check string                      A comma-delimited list of checks to run as specified in CIS document. Example --check="1.1.1,1.1.2"
+      --config string                     config file (default is ./cfg/config.yaml)
+  -D, --config-dir string                 config directory (default "/etc/kube-bench/cfg")
+      --exit-code int                     Specify the exit code for when checks fail
+  -g, --group string                      Run all the checks under this comma-delimited list of groups. Example --group="1.1"
+  -h, --help                              help for /home/ubuntu/.local/bin/kube-bench
+      --include-test-output               Prints the actual result when test fails
+      --json                              Prints the results as JSON
+      --junit                             Prints the results as JUnit
+      --log_backtrace_at traceLocations   when logging hits line file:N, emit a stack trace
+      --log_dir string                    If non-empty, write log files in this directory
+      --log_link string                   If non-empty, add symbolic links in this directory to the log files
+      --logbuflevel int                   Buffer log messages logged at this level or lower (-1 means don't buffer; 0 means buffer INFO only; ...). Has limited applicability on non-prod platforms.
+      --logtostderr                       log to standard error instead of files (default true)
+      --noremediations                    Disable printing of remediations section
+      --noresults                         Disable printing of results section
+      --nosummary                         Disable printing of summary section
+      --nototals                          Disable printing of totals for failed, passed, ... checks across all sections
+      --outputfile string                 Writes the results to output file when run with --json or --junit
+      --pgsql                             Save the results to PostgreSQL
+      --scored                            Run the scored CIS checks (default true)
+      --skip string                       List of comma separated values of checks to be skipped
+      --stderrthreshold severityFlag      logs at or above this threshold go to stderr (default 2)
+      --unscored                          Run the unscored CIS checks (default true)
+  -v, --v Level                           log level for V logs
+      --version string                    Manually specify Kubernetes version, automatically detected if unset
+      --vmodule vModuleFlag               comma-separated list of pattern=N settings for file-filtered logging
+
+Use "/home/ubuntu/.local/bin/kube-bench [command] --help" for more information about a command.

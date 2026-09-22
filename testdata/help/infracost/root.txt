@@ -1,0 +1,47 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/infracost
+# args: 
+Infracost - cloud cost estimates for Terraform
+
+DOCS
+  Quick start: https://infracost.io/docs
+  Add cost estimates to your pull requests: https://infracost.io/cicd
+
+USAGE
+  infracost [flags]
+  infracost [command]
+
+EXAMPLES
+  Show cost diff from Terraform directory:
+
+      infracost breakdown --path /code --format json --out-file infracost-base.json
+      # Make Terraform code changes
+      infracost diff --path /code --compare-to infracost-base.json
+
+  Show cost breakdown from Terraform directory:
+
+      infracost breakdown --path /code --terraform-var-file my.tfvars
+
+AVAILABLE COMMANDS
+  auth             Get a free API key, or log in to your existing account
+  breakdown        Show breakdown of costs
+  comment          Post an Infracost comment to GitHub, GitLab, Azure Repos or Bitbucket
+  completion       Generate shell completion script
+  configure        Display or change global configuration
+  diff             Show diff of monthly costs between current and planned state
+  generate         Generate configuration to help run Infracost
+  help             Help about any command
+  output           Combine and output Infracost JSON files in different formats
+  upload           Upload an Infracost JSON file to Infracost Cloud
+
+FLAGS
+      --debug-report       Generate a debug report file which can be sent to Infracost team
+  -h, --help               help for infracost
+      --log-level string   Log level (trace, debug, info, warn, error, fatal)
+      --no-color           Turn off colored output
+  -v, --version            version for infracost
+
+Use "infracost [command] --help" for more information about a command.
+
+Update: A new version of Infracost is available: v0.10.45 → v2.16.3
+  $ curl -fsSL https://raw.githubusercontent.com/infracost/cli/master/scripts/install.sh | sh
