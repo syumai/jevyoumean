@@ -67,6 +67,11 @@ code from these projects.
 | pdm | PDM (`pdm-project/pdm`) | MIT |
 | meson | Meson (`mesonbuild/meson`) | Apache-2.0 |
 | rye | Rye (`astral-sh/rye`) | MIT |
+| tofu | OpenTofu (`opentofu/opentofu`) | MPL-2.0 |
+| istioctl | Istio (`istio/istio`) | Apache-2.0 |
+| pack | pack (`buildpacks/pack`) | Apache-2.0 |
+| supabase | Supabase CLI (`supabase/cli`) | MIT |
+| firebase | Firebase CLI (`firebase/firebase-tools`) | MIT |
 
 ## Synthetic fixtures (format only, not verbatim)
 

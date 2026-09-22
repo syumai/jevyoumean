@@ -1,0 +1,13 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/tofu
+# args: 
+Usage: tofu [global options] workspace
+
+  new, list, show, select and delete OpenTofu workspaces.
+
+Subcommands:
+    delete    Delete a workspace
+    list      List Workspaces
+    new       Create a new workspace
+    select    Select a workspace
+    show      Show the name of the current workspace

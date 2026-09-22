@@ -1,0 +1,16 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pdm
+# args: 
+Usage: pdm python [-h] ...
+
+Manage installed Python interpreters
+
+Options:
+  -h, --help  Show this help message and exit.
+
+Commands:
+  list        List all Python interpreters installed with PDM
+  remove      Remove a Python interpreter installed with PDM
+  install     Install a Python interpreter with PDM
+  link        Link an external Python interpreter to PDM
+  find        Search for a Python interpreter

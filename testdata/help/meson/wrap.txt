@@ -1,0 +1,23 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/meson
+# args: 
+usage: meson wrap [-h]
+                  {list,search,install,update,info,status,promote,update-db} ...
+
+options:
+  -h, --help                            show this help message and exit
+
+Commands:
+  {list,search,install,update,info,status,promote,update-db}
+    list                                show all available projects
+    search                              search the db by name
+    install                             install the specified project
+    update                              Update wrap files from WrapDB (Since
+                                        0.63.0)
+    info                                show available versions of a project
+    status                              show installed and available versions of
+                                        your projects
+    promote                             bring a subsubproject up to the master
+                                        project
+    update-db                           Update list of projects available in
+                                        WrapDB (Since 0.61.0)

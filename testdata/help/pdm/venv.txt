@@ -1,0 +1,24 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pdm
+# args: 
+Usage: pdm venv [-h] [-p PROJECT_PATH] [--path PATH | --python PYTHON] ...
+
+Virtualenv management
+
+Options:
+  -h, --help            Show this help message and exit.
+  -p PROJECT_PATH, --project PROJECT_PATH
+                        Specify another path as the project root, which
+                        changes the base of pyproject.toml and __pypackages__
+                        [env var: PDM_PROJECT]
+  --path PATH           Show the path to the given virtualenv
+  --python PYTHON       Show the python interpreter path for the given
+                        virtualenv
+
+Commands:
+  create                Create a virtualenv
+  list                  List all virtualenvs associated with this project
+  remove                Remove the virtualenv with the given name
+  activate              Print the command to activate the virtualenv with the
+                        given name
+  purge                 Purge selected/all created Virtualenvs

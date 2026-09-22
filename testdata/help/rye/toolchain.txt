@@ -1,0 +1,16 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.rye/shims/rye
+# args: 
+Helper utility to manage Python toolchains
+
+Usage: rye toolchain <COMMAND>
+
+Commands:
+  fetch     Fetches a Python interpreter for the local machine
+  list      List all registered toolchains
+  register  Register a Python binary
+  remove    Removes a toolchain
+  help      Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help  Print help

@@ -1,0 +1,71 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/firebase
+# args: 
+Usage: firebase [options] [command]
+
+Options:
+  -V, --version                        output the version number
+  -P, --project <alias_or_project_id>  the Firebase project to use for this
+                                       command
+  --account <email>                    the Google account to use for
+                                       authorization
+  -j, --json                           output JSON instead of text, also
+                                       triggers non-interactive mode
+  --token <token>                      DEPRECATED - will be removed in a future
+                                       major version - supply an auth token for
+                                       this command
+  --non-interactive                    error out of the command instead of
+                                       waiting for prompts
+  -i, --interactive                    force prompts to be displayed
+  --debug                              print verbose debug output and keep a
+                                       debug log file
+  -c, --config <path>                  path to the firebase.json file to use
+                                       for configuration
+  -h, --help                           display help for command
+
+Commands:
+  deploy [options]                     deploy code and assets to your
+                                       Firebase project
+  ext                                  display information on how to use ext
+                                       commands and extensions installed to
+                                       your project
+  help [command]                       display help information
+  init [feature]                       interactively configure the current
+                                       directory as a Firebase project
+                                       directory
+  login [options] [auth_code]          log the CLI into Firebase
+  logout [email]                       log the CLI out of Firebase
+  mcp|experimental:mcp                 Run the multi-modal conversational
+                                       platform (MCP) server.
+  open [link]                          quickly open a browser to relevant
+                                       project resources
+  serve [options]                      start a local server for your static
+                                       assets
+  target [type]                        display configured deploy targets for
+                                       the current project
+  use [options] [alias_or_project_id]  set an active Firebase project for
+                                       your working directory
+  appcheck                             manage appcheck resources
+  appdistribution                      manage App Distribution resources
+  apptesting                           manage apptesting resources
+  apps                                 manage Firebase apps
+  auth                                 manage Firebase Auth
+  crashlytics                          manage Crashlytics symbols and
+                                       mappings
+  database                             manage Realtime Database
+  emulators                            start and manage local Firebase
+                                       emulators
+  experiments                          enable and disable CLI experiments
+  firestore                            manage Cloud Firestore resources
+  functions                            manage Cloud Functions
+  hosting                              manage Firebase Hosting sites and
+                                       channels
+  apphosting                           manage App Hosting resources
+  projects                             manage Firebase projects
+  remoteconfig                         manage Remote Config
+  setup                                manage setup resources
+  dataconnect                          manage Data Connect resources
+  studio                               manage studio resources
+
+To see more about a specific namespace or command, run:
+  firebase <namespace|command> --help

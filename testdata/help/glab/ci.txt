@@ -1,0 +1,38 @@
+# captured 2026-09-22
+# exe: /home/linuxbrew/.linuxbrew/bin/glab
+# args: 
+
+  Manages CI/CD pipelines and jobs in your GitLab project.                                                              
+                                                                                                                        
+  Use these commands to manage CI/CD pipelines and jobs. You can also                                                   
+  lint and compile CI/CD configuration files.                                                                           
+                                                                                                                        
+  The `pipe` and `pipeline` aliases are deprecated. Use `ci` instead.                                                   
+                                                                                                                        
+         
+  USAGE  
+         
+    glab ci <command> [command] [--flags]  
+            
+  COMMANDS  
+            
+    artifact <refName> <jobName> [--flags]   Download all artifacts from the last pipeline.
+    cancel <command> [command]               Cancel a running pipeline or job.
+    config <command> [command] [--flags]     View and inspect GitLab CI/CD configuration.
+    delete <id> [--flags]                    Delete CI/CD pipelines.
+    get [--flags]                            Get the details of a CI/CD pipeline.
+    lint [--flags]                           Check if your `.gitlab-ci.yml` file is valid.
+    list [--flags]                           List CI/CD pipelines.
+    retry [<job-id | job-name>] [--flags]    Retry a CI/CD job.
+    run [--flags]                            Create a new CI/CD pipeline.
+    run-trig [--flags]                       Run a CI/CD pipeline trigger.
+    status [--flags]                         View CI/CD pipeline status.
+    trace [<job-id>|<job-name>] [--flags]    Trace a CI/CD job log in real time.
+    trigger [<job-id | job-name>] [--flags]  Trigger a manual CI/CD job.
+    view [<branch | tag>] [--flags]          View, run, retry, and cancel CI/CD pipeline jobs.
+         
+  FLAGS  
+         
+    -h --help                                Show help for this command.
+    -R --repo                                Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.
+

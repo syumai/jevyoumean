@@ -1,0 +1,29 @@
+# captured 2026-09-22
+# exe: /home/linuxbrew/.linuxbrew/bin/glab
+# args: 
+
+  Manages authentication for glab against one or more GitLab instances. Use                                             
+  these commands to log in, log out, check your authentication status,                                                  
+  and configure glab as a credential helper for Git and Docker.                                                         
+                                                                                                                        
+  glab can authenticate with a personal access token, an OAuth token from                                               
+  a web flow, or a CI job token when running in a GitLab CI/CD job.                                                     
+                                                                                                                        
+         
+  USAGE  
+         
+    glab auth <command> [command] [--flags]  
+            
+  COMMANDS  
+            
+    configure-docker    Register glab as a Docker credential helper.
+    docker-helper       A Docker credential helper for GitLab container and artifact registries.
+    dpop-gen [--flags]  Generate a DPoP (demonstrating-proof-of-possession) proof JWT. (EXPERIMENTAL)
+    login [--flags]     Authenticate with a GitLab instance.
+    logout [--flags]    Log out from a GitLab instance.
+    status [--flags]    View authentication status.
+         
+  FLAGS  
+         
+    -h --help           Show help for this command.
+
