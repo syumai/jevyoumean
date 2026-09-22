@@ -1,13 +1,12 @@
-# captured 2026-09-22
-# exe: /home/ubuntu/.local/bin/tofu
-# args: 
-Usage: tofu [global options] workspace
+# synthetic fixture mimicking `tofu workspace --help` output (OpenTofu is
+# MPL-2.0; format reproduced by hand — see ../NOTICE.md)
+Usage: jym-tofu [global options] workspace
 
-  new, list, show, select and delete OpenTofu workspaces.
+  Create, list, select and delete workspaces.
 
 Subcommands:
     delete    Delete a workspace
-    list      List Workspaces
-    new       Create a new workspace
+    list      List workspaces
+    new       Create a workspace
     select    Select a workspace
-    show      Show the name of the current workspace
+    show      Print the active workspace name

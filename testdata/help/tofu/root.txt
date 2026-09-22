@@ -1,42 +1,39 @@
-# captured 2026-09-22
-# exe: /home/ubuntu/.local/bin/tofu
-# args: 
-Usage: tofu [global options] <subcommand> [args]
+# synthetic fixture mimicking `tofu --help` output (OpenTofu is MPL-2.0;
+# format reproduced by hand, no verbatim capture — see ../NOTICE.md)
+Usage: jym-tofu [global options] <subcommand> [args]
 
 The available commands for execution are listed below.
 The primary workflow commands are given first, followed by
 less common or more advanced commands.
 
 Main commands:
-  init          Prepare your working directory for other commands
+  init          Initialize a working directory
   validate      Check whether the configuration is valid
-  plan          Show changes required by the current configuration
-  apply         Create or update infrastructure
-  destroy       Destroy previously-created infrastructure
+  plan          Preview the changes to be made
+  apply         Apply the planned changes
+  destroy       Tear down the managed infrastructure
 
 All other commands:
-  console       Try OpenTofu expressions at an interactive command prompt
-  fmt           Reformat your configuration in the standard style
-  force-unlock  Release a stuck lock on the current workspace
-  get           Install or upgrade remote OpenTofu modules
-  graph         Generate a Graphviz graph of the steps in an operation
-  import        Associate existing infrastructure with a OpenTofu resource
-  login         Obtain and save credentials for a remote host
-  logout        Remove locally-stored credentials for a remote host
-  metadata      Metadata related commands
-  output        Show output values from your root module
-  providers     Show the providers required for this configuration
-  refresh       Update the state to match remote systems
-  show          Show the current state or a saved plan
-  state         Advanced state management
-  taint         Mark a resource instance as not fully functional
-  test          Execute integration tests for OpenTofu modules
-  untaint       Remove the 'tainted' state from a resource instance
-  version       Show the current OpenTofu version
-  workspace     Workspace management
+  console       Evaluate expressions interactively
+  fmt           Rewrite configuration files canonically
+  force-unlock  Release a stuck state lock
+  get           Download or update modules
+  graph         Emit a dependency graph
+  import        Import existing resources into state
+  login         Store credentials for a remote host
+  logout        Forget stored credentials for a remote host
+  metadata      Inspect module metadata
+  output        Print root module output values
+  providers     List the providers this configuration requires
+  refresh       Re-read remote objects and update state
+  show          Inspect a state or plan file
+  state         Manipulate the state directly
+  taint         Flag an instance for recreation
+  test          Run module tests
+  untaint       Clear the tainted flag from an instance
+  version       Print the version
+  workspace     Manage workspaces
 
 Global options (use these before the subcommand, if any):
-  -chdir=DIR    Switch to a different working directory before executing the
-                given subcommand.
-  -help         Show this help output, or the help for a specified subcommand.
-  -version      An alias for the "version" subcommand.
+  -chdir=DIR    Change directory before running the subcommand.
+  -help         Show help.

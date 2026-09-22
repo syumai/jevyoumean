@@ -7,9 +7,10 @@ corpus test. They are used in three ways:
   developer machine by `cmd/jym-help-capture`. Only CLIs whose licenses
   permit redistribution are committed this way; attribution below.
 - `source=synthetic` fixtures are hand-written and merely mimic a help
-  format. They are used for CLIs whose licenses (GPL, LGPL, Artistic)
-  make committing verbatim output undesirable, and contain no captured
-  text beyond short functional command/variable names.
+  format. They are used for CLIs whose licenses (GPL, LGPL, Artistic,
+  MPL and other copyleft licenses) make committing verbatim output
+  undesirable, and contain no captured text beyond short functional
+  command/variable names.
 - `source=local` entries have no committed fixture; `jym-help-capture`
   can fill them in on a developer machine for inspection.
 
@@ -51,7 +52,6 @@ code from these projects.
 | minikube | minikube (`kubernetes/minikube`) | Apache-2.0 |
 | kustomize | kustomize (`kubernetes-sigs/kustomize`) | Apache-2.0 |
 | helmfile | helmfile (`helmfile/helmfile`) | MIT |
-| sops | SOPS (`getsops/sops`) | MPL-2.0 |
 | argocd | Argo CD CLI (`argoproj/argo-cd`) | Apache-2.0 |
 | tilt | Tilt (`tilt-dev/tilt`) | MIT |
 | skaffold | Skaffold (`GoogleContainerTools/skaffold`) | Apache-2.0 |
@@ -67,7 +67,6 @@ code from these projects.
 | pdm | PDM (`pdm-project/pdm`) | MIT |
 | meson | Meson (`mesonbuild/meson`) | Apache-2.0 |
 | rye | Rye (`astral-sh/rye`) | MIT |
-| tofu | OpenTofu (`opentofu/opentofu`) | MPL-2.0 |
 | istioctl | Istio (`istio/istio`) | Apache-2.0 |
 | pack | pack (`buildpacks/pack`) | Apache-2.0 |
 | supabase | Supabase CLI (`supabase/cli`) | MIT |
@@ -82,3 +81,5 @@ code from these projects.
 | apt | apt (`Debian/apt`) | GPL-2.0 |
 | npm | npm CLI (`npm/cli`) | Artistic-2.0 |
 | tar | GNU tar | GPL-3.0 |
+| sops | SOPS (`getsops/sops`) | MPL-2.0 |
+| tofu | OpenTofu (`opentofu/opentofu`) | MPL-2.0 |

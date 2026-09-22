@@ -119,7 +119,7 @@ k9s	-	capture	ok	completion,info	-	-
 minikube	-	capture	ok	start,status,stop,delete,dashboard,addons,service,tunnel	-	-
 kustomize	-	capture	ok	build,cfg,create,edit,fn,localize	-	-
 helmfile	-	capture	ok	apply,build,deps,destroy,diff,lint,sync,template	-	-
-sops	-	capture	ok	decrypt,encrypt,edit,set,unset,rotate,updatekeys	-	-
+sops	-	synthetic	ok	decrypt,encrypt,edit,set,unset,rotate,updatekeys	-	-
 argocd	-	capture	ok	account,admin,app,appset,cluster,proj,repo	-	-
 tilt	-	capture	ok	apply,ci,create,delete,describe,down,up	-	-
 skaffold	-	capture	ok	run,dev,debug,build,test,deploy,render,verify	-	-
@@ -175,9 +175,9 @@ poetry	source	capture	ok	add,remove,show	-	namespaced name: desc entries
 poetry	cache	capture	ok	clear,list	-	namespaced name: desc entries
 pnpm	store	capture	ok	status,add,prune,path	-	-
 pnpm	env	capture	empty	-	-	deprecated; help does not list subcommands
-tofu	-	capture	ok	init,validate,plan,apply,destroy,workspace,state	-	-
-tofu	workspace	capture	ok	delete,list,new,select,show	-	-
-tofu	state	capture	ok	list,mv,pull,push,replace-provider,rm,show	-	-
+tofu	-	synthetic	ok	init,validate,plan,apply,destroy,workspace,state	-	-
+tofu	workspace	synthetic	ok	delete,list,new,select,show	-	-
+tofu	state	synthetic	ok	list,mv,pull,push,replace-provider,rm,show	-	-
 istioctl	-	capture	ok	admin,analyze,install,proxy-config,uninstall,upgrade,waypoint	-	single-space long-name entries
 pack	-	capture	ok	build,builder,buildpack,extension,inspect,stack,rebase,sbom	-	-
 supabase	-	capture	ok	branches,db,functions,init,link,login	-	-
