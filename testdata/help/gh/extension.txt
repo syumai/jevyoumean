@@ -1,0 +1,43 @@
+# captured 2026-09-22
+# exe: /opt/.devin/package/custom_binaries/gh
+# args: 
+GitHub CLI extensions are repositories that provide additional gh commands.
+
+The name of the extension repository must start with `gh-` and it must contain an
+executable of the same name. All arguments passed to the `gh <extname>` invocation
+will be forwarded to the `gh-<extname>` executable of the extension.
+
+An extension cannot override any of the core gh commands. If an extension name conflicts
+with a core gh command, you can use `gh extension exec <extname>`.
+
+When an extension is executed, gh will check for new versions once every 24 hours and display
+an upgrade notice. See `gh help environment` for information on disabling extension notices.
+
+For the list of available extensions, see <https://github.com/topics/gh-extension>.
+
+
+USAGE
+  gh extension [flags]
+
+ALIASES
+  gh extensions, gh ext
+
+AVAILABLE COMMANDS
+  browse:        Enter a UI for browsing, adding, and removing extensions
+  create:        Create a new extension
+  exec:          Execute an installed extension
+  install:       Install a gh extension from a repository
+  list:          List installed extension commands
+  remove:        Remove an installed extension
+  search:        Search extensions to the GitHub CLI
+  upgrade:       Upgrade installed extensions
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `gh <command> <subcommand> --help` for more information about a command.
+  Read the manual at https://cli.github.com/manual
+  Learn about exit codes using `gh help exit-codes`
+  Learn about accessibility experiences using `gh help accessibility`
+

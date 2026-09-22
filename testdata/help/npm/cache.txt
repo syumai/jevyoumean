@@ -1,0 +1,14 @@
+# synthetic fixture mimicking npm-cache help (npm is Artistic-2.0;
+# format reproduced by hand, no verbatim capture — see ../NOTICE.md)
+Manipulates packages cache
+
+Usage:
+jym-npm cache add <package-spec>
+jym-npm cache clean [<key>]
+jym-npm cache ls [<name>@<version>]
+jym-npm cache verify
+
+Options:
+[--cache <cache>]
+
+Run "jym-npm help cache" for more info
