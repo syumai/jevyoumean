@@ -85,7 +85,7 @@ func looksLikeName(n string) bool {
 // in the loose fallback scan.
 var headerSkipWords = []string{
 	"option", "flag", "interface", "environment", "example",
-	"parameter", "argument", "suffix",
+	"parameter", "argument", "suffix", "alias",
 }
 
 // headerHead extracts the label portion of a candidate header: the text
@@ -108,6 +108,16 @@ func isSkippableHeader(lower string) bool {
 	return false
 }
 
+// bareKey reports whether line is an indented "name:" with nothing after
+// the colon — the opening key of a YAML or config example block.
+func bareKey(line string) bool {
+	t := strings.TrimSpace(line)
+	if !strings.HasSuffix(t, ":") || len(t) < 2 {
+		return false
+	}
+	return namePattern.MatchString(strings.TrimSuffix(t, ":"))
+}
+
 // Parse extracts subcommands from help output. An empty result means
 // "cannot judge": the output had no recognizable command listing.
 //
@@ -126,6 +136,7 @@ func Parse(output string) []Command {
 	flatMode := false
 	sawKnownHeader := false
 	entryIndent := -1
+	yamlDepth := -1
 	prefixSeen := map[string]map[string]string{}
 	var prefixOrder []string
 
@@ -138,6 +149,7 @@ func Parse(output string) []Command {
 			sawKnownHeader = true
 		}
 		entryIndent = -1
+		yamlDepth = -1
 	}
 	flush := func() {
 		min := 1
@@ -207,6 +219,20 @@ func Parse(output string) []Command {
 			continue
 		}
 		if !inSection {
+			continue
+		}
+		// Indented "key:" blocks (YAML and similar config examples
+		// embedded in prose, like helm's Chart.yaml samples) keep all
+		// deeper content from being read as entries until the block
+		// dedents back or the section ends at column zero.
+		if lineIndent := indentation(line); yamlDepth >= 0 {
+			if lineIndent >= yamlDepth {
+				continue
+			}
+			yamlDepth = -1
+		}
+		if bareKey(line) && yamlDepth < 0 {
+			yamlDepth = indentation(line)
 			continue
 		}
 		names, desc, indent, ok := parseEntry(line)

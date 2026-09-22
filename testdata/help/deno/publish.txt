@@ -1,0 +1,41 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.deno/bin/deno
+# args: 
+Publish the current working directory's package or workspace
+
+Usage: deno publish [OPTIONS]
+
+Options:
+      --token <VALUE>     The API token to use when publishing. If unset, interactive authentication is be used
+      --dry-run           Prepare the package for publishing performing all checks and validations without uploading
+      --allow-slow-types  Allow publishing with slow types
+      --allow-dirty       Allow publishing if the repository has uncommitted changed
+      --no-provenance     Disable provenance attestation.
+                            Enabled by default on Github actions, publicly links the package to where it was built and published from.
+      --set-version <VALUE>  Set version for a package to be published.
+                            This flag can be used while publishing individual packages and cannot be used in a workspace.
+      --check[=<VALUE>]   Set type-checking behavior. This subcommand type-checks local modules by default, so passing --check is redundant; pass --check=all to also type-check remote modules. Alternatively, use the 'deno check' subcommand.
+      --env-file[=<VALUE>]  Load environment variables from local file
+                            Only the first environment variable with a given key is used.
+                            Existing process environment variables are not overwritten, so if variables with the same names already exist in the environment, their values will be preserved.
+                            Where multiple declarations for the same environment variable exist in your .env file, the first one encountered is applied. This is determined by the order of the files you pass as arguments.
+      --no-check[=<VALUE>]  Skip type-checking. If the value of "remote" is supplied, diagnostic errors from remote modules will be ignored
+      --import-map <VALUE>  Load import map file from local file or remote URL
+                            Docs: https://docs.deno.com/runtime/manual/basics/import_maps
+      --no-remote         Do not resolve remote modules
+      --no-npm            Do not resolve npm modules
+      --node-modules-dir[=<VALUE>]  Selects the node_modules directory mode for npm packages (not a path). One of: auto (create a local node_modules directory and install npm packages into it), manual (use the existing local node_modules directory, do not modify it), none (do not use a local node_modules directory; resolve npm packages from the global cache). Defaults to auto when the flag is passed without a value.
+      --vendor[=<VALUE>]  Toggles local vendor folder usage for remote modules and a node_modules folder for npm packages
+      --node-modules-linker <VALUE>  Sets the linker mode for npm packages (isolated or hoisted)
+  -c, --config <VALUE>    Configure different aspects of deno including TypeScript, linting, and code formatting.
+                            Typically the configuration file will be called `deno.json` or `deno.jsonc` and
+                            automatically detected; in that case this flag is not necessary.
+                            Docs: https://docs.deno.com/go/config
+      --no-config         Disable automatic loading of the configuration file
+  -r, --reload[=VALUE...]  Reload source code cache (recompile TypeScript). With no value, reloads everything. Pass a comma-separated list of specifiers to reload only those modules; npm: reloads all npm modules; npm:chalk reloads a single npm module; jsr:@std/http/file-server,jsr:@std/assert/assert-equals reloads specific modules.
+      --lock [<VALUE>]    Check the specified lock file. (If value is not provided, defaults to "./deno.lock")
+      --no-lock           Disable auto discovery of the lock file
+      --frozen-lockfile[=<VALUE>]  Error out if lockfile is out of date
+      --cert <VALUE>      Load certificate authority from PEM encoded file
+      --unsafely-ignore-certificate-errors[=VALUE...]  DANGER: Disables verification of TLS certificates
+      --min-dep-age <VALUE>  (Unstable) The age in minutes, ISO-8601 duration or RFC3339 absolute timestamp (e.g. '120' for two hours, 'P2D' for two days, '2025-09-16' for cutoff date, '2025-09-16T12:00:00+00:00' for cutoff time, '0' to disable)
