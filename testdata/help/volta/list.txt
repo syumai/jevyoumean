@@ -1,0 +1,39 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.volta/bin/volta
+# args: 
+Displays the current toolchain
+
+Usage: volta list [OPTIONS] [tool]
+
+Arguments:
+  [tool]
+          The tool to lookup - `all`, `node`, `npm`, `yarn`, `pnpm`, or the name of a package or
+          binary
+
+Options:
+      --format <FORMAT>
+          Specify the output format.
+          
+          Defaults to `human` for TTYs, `plain` otherwise.
+          
+          [possible values: human, plain]
+
+  -c, --current
+          Show the currently-active tool(s).
+          
+          Equivalent to `volta list` when not specifying a specific tool.
+
+  -d, --default
+          Show your default tool(s)
+
+      --verbose
+          Enables verbose diagnostics
+
+      --very-verbose
+          Enables trace-level diagnostics
+
+      --quiet
+          Prevents unnecessary output
+
+  -h, --help
+          Print help (see a summary with '-h')

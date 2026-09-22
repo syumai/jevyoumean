@@ -1,0 +1,15 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/hatch
+# args: 
+Usage: hatch config [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  explore  Open the config location in your file manager
+  find     Show the location of the config file
+  restore  Restore the config file to default settings
+  set      Assign values to config file entries
+  show     Show the contents of the config file
+  update   Update the config file with any new fields

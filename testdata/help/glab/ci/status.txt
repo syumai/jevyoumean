@@ -1,0 +1,41 @@
+# captured 2026-09-22
+# exe: /home/linuxbrew/.linuxbrew/bin/glab
+# args: 
+
+  Defaults to the current branch.                                                                                       
+                                                                                                                        
+  Use `--live` for real-time updates. Use `--compact` for a condensed view.                                             
+                                                                                                                        
+         
+  USAGE  
+         
+    glab ci status [--flags]                                                               
+            
+  EXAMPLES  
+            
+    # View the pipeline status in real time                                                
+    glab ci status --live                                                                  
+                                                                                           
+    # Wait to return until the pipeline is finished, and provide output without a prompt.  
+    glab ci status --wait                                                                  
+                                                                                           
+    # A more compact view                                                                  
+    glab ci status --compact                                                               
+                                                                                           
+    # Get the pipeline for the main branch                                                 
+    glab ci status --branch=main                                                           
+                                                                                           
+    # Get the pipeline for the current branch                                              
+    glab ci status                                                                         
+         
+  FLAGS  
+         
+    -b --branch   Check pipeline status for a branch. Defaults to the current branch.
+    -c --compact  Show status in compact format.
+    -h --help     Show help for this command.
+    --jq          Filter JSON output with a jq expression.
+    -l --live     Show status in real time until the pipeline ends.
+    -F --output   Format output as: text, json. Note: JSON output is not compatible with --live, --wait, or --compact flags. (text)
+    -R --repo     Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.
+    -w --wait     Wait to return until the pipeline is finished, and provide output without a prompt.
+

@@ -1,0 +1,73 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pdm
+# args: 
+Usage: pdm install [-h] [-v | -q] [-g] [-p PROJECT_PATH] [-G GROUP]
+ [--without] [--no-default] [-d | --prod] [--no-editable]
+ [--no-self] [--fail-fast] [--no-isolation]
+ [--config-setting CONFIG_SETTING] [--override OVERRIDE]
+ [--dry-run] [-L LOCKFILE] [--frozen-lockfile] [-k SKIP]
+ [--venv [NAME]] [--check] [--plugins]
+
+Check the lockfile, resolve if needed, and install dependencies
+
+Options:
+  -h, --help            Show this help message and exit.
+  -v, --verbose         Use `-v` for detailed output and `-vv` for more
+                        detailed
+  -q, --quiet           Suppress output
+  -g, --global          Use the global project, supply the project root with
+                        `-p` option
+  -p PROJECT_PATH, --project PROJECT_PATH
+                        Specify another path as the project root, which
+                        changes the base of pyproject.toml and __pypackages__
+                        [env var: PDM_PROJECT]
+  --override OVERRIDE   Use the constraint file in pip-requirements format for
+                        overriding. [env var: PDM_OVERRIDE] This option can be
+                        used multiple times. See
+                        https://pip.pypa.io/en/stable/user_guide/#constraints-
+                        files
+  --dry-run             Show the difference only and don't perform any action
+  -L LOCKFILE, --lockfile LOCKFILE
+                        Specify another lockfile path. Default: pdm.lock. [env
+                        var: PDM_LOCKFILE]
+  --frozen-lockfile, --no-lock
+                        Don't try to create or update the lockfile. [env var:
+                        PDM_FROZEN_LOCKFILE]
+  -k SKIP, --skip SKIP  Skip some tasks and/or hooks by their comma-separated
+                        names. Can be supplied multiple times. Use ":all" to
+                        skip all hooks. Use ":pre" and ":post" to skip all pre
+                        or post hooks.
+  --venv [NAME]         Run the command in the virtual environment with the
+                        given key. [env var: PDM_IN_VENV]
+  --check               Check if the lock file is up to date and fail
+                        otherwise
+  --plugins             Install the plugins specified in pyproject.toml
+
+Dependencies Selection:
+  -G GROUP, --group GROUP, --with GROUP
+                        Select group of optional-dependencies separated by
+                        comma or dependency-groups (with `-d`). Can be
+                        supplied multiple times, use ":all" to include all
+                        groups under the same species.
+  --without             Exclude groups of optional-dependencies or dependency-
+                        groups
+  --no-default          Don't include dependencies from the default group
+  -d, --dev             Select dev dependencies
+  --prod, --production  Unselect dev dependencies
+
+Install Options:
+  --no-editable         Install non-editable versions for all packages. [env
+                        var: PDM_NO_EDITABLE]
+  --no-self             Don't install the project itself. [env var:
+                        PDM_NO_SELF]
+  --fail-fast, -x       Abort on first installation error
+  --no-isolation        Disable isolation when building a source distribution
+                        that follows PEP 517, as in: build dependencies
+                        specified by PEP 518 must be already installed if this
+                        option is used.
+  --config-setting CONFIG_SETTING, -C CONFIG_SETTING
+                        Pass options to the builder. Options with a value must
+                        be specified after "=": `--config-setting=key(=value)`
+                        or `-Ckey(=value)`
+
+Creates a missing lockfile or updates an outdated one, then installs the selected locked packages. Does not change dependency declarations in pyproject.toml or remove unrelated installed packages. Refreshing an existing lockfile preserves its locked groups; run pdm lock with the desired groups before installing a group not yet locked. --check refuses a missing or outdated lockfile but still installs when it is fresh. --frozen-lockfile prevents lockfile writes, not dependency resolution.

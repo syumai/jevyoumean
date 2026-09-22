@@ -1,0 +1,45 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/hcloud
+# args: 
+Manage Firewalls
+
+Usage:
+  hcloud firewall [command]
+
+Aliases:
+  firewall, firewalls
+
+General:
+  add-label            Add a label to a Firewall
+  create               Create a Firewall
+  delete               Delete a Firewall
+  describe             Describe a Firewall
+  list                 List Firewalls
+  remove-label         Remove a label from a Firewall
+  update               Update a Firewall
+
+Rules:
+  add-rule             Add a single rule to a firewall
+  delete-rule          Delete a single rule from a Firewall
+  replace-rules        Replaces all rules from a Firewall from a file
+
+Resources:
+  apply-to-resource    Applies a Firewall to a single resource
+  remove-from-resource Removes a Firewall from a single resource
+
+Flags:
+  -h, --help   help for firewall
+
+Global Flags:
+      --config string              Config file path (default "~/.config/hcloud/cli.toml")
+      --context string             Currently active context
+      --debug                      Enable debug output
+      --debug-file string          File to write debug output to
+      --endpoint string            Hetzner Cloud API endpoint (default "https://api.hetzner.cloud/v1")
+      --hetzner-endpoint string    Hetzner API endpoint (default "https://api.hetzner.com/v1")
+      --http-timeout duration      Timeout for HTTP requests (default 0 = no timeout)
+      --no-experimental-warnings   If true, experimental warnings are not shown
+      --poll-interval duration     Interval at which to poll information, for example action progress (default 500ms)
+      --quiet                      If true, only print error messages
+
+Use "hcloud firewall [command] --help" for more information about a command.

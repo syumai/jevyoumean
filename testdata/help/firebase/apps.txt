@@ -1,0 +1,19 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/firebase
+# args: 
+Usage: firebase apps [options] [command]
+
+manage Firebase apps
+
+Options:
+  -h, --help                                      display help for command
+
+Commands:
+  apps:create [options] [platform] [displayName]  create a new Firebase app. [platform] can be IOS, ANDROID or WEB (case insensitive)
+  apps:list [platform]                            list the registered apps of a Firebase project. Optionally filter apps by [platform]: IOS, ANDROID or WEB (case insensitive)
+  apps:init [options] [platform] [appId]          automatically download and create config of a Firebase app
+  apps:sdkconfig [options] [platform] [appId]     print the Google Services config of a Firebase app. [platform] can be IOS, ANDROID or WEB (case insensitive)
+  apps:android                                    manage apps:android resources
+
+To see more about a specific command, run:
+  firebase apps:<command> --help

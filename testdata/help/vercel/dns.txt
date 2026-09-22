@@ -1,0 +1,80 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/vercel
+# args: 
+Vercel CLI 59.25.0 (Node.js 22.17.0)
+
+  ▲ vercel dns [command]
+
+  Interact with DNS entries for a project                                       
+
+  Commands:
+
+  add      domain details   Add a new DNS entry (see below for examples) 
+  import   domain zonefile  Import a DNS zone file (see below for        
+                            examples)                                    
+  inspect  id               Show a DNS record in full using its ID       
+  list     [domain]         List DNS entries. Pass a domain to list its  
+                            records, or omit the argument to list records
+                            across every domain on the scope (default)   
+  remove   id               Remove a DNS entry using its ID              
+  update   id               Update an existing DNS record using its ID   
+
+
+  Global Options:
+
+       --cwd <DIR>            Sets the current working directory for a single   
+                              run of a command                                  
+  -d,  --debug                Debug mode (default off)                          
+  -Q,  --global-config <DIR>  Path to the global `.vercel` directory            
+  -h,  --help                 Output usage information                          
+  -A,  --local-config <FILE>  Path to the local `vercel.json` file              
+       --no-color             No color mode (default off)                       
+       --non-interactive      Run without interactive prompts; when an agent is 
+                              detected this is the default                      
+  -S,  --scope                Set a custom scope                                
+  -t,  --token <TOKEN>        Login token                                       
+  -v,  --version              Output the version number                         
+
+
+  Examples:
+
+  - Add an A record for a subdomain
+
+    $ vercel dns add <DOMAIN> <SUBDOMAIN> <A | AAAA | ALIAS | CNAME | TXT>  <VALUE>
+    $ vercel dns add zeit.rocks api A 198.51.100.100
+
+  - Add an MX record (@ as a name refers to the domain)
+
+    $ vercel dns add <DOMAIN> '@' MX <RECORD VALUE> <PRIORITY>
+    $ vercel dns add zeit.rocks '@' MX mail.zeit.rocks 10
+
+  - Add an SRV record
+
+    $ vercel dns add <DOMAIN> <NAME> SRV <PRIORITY> <WEIGHT> <PORT> <TARGET>
+    $ vercel dns add zeit.rocks '@' SRV 10 0 389 zeit.party
+
+  - Add a CAA record
+
+    $ vercel dns add <DOMAIN> <NAME> CAA '<FLAGS> <TAG> "<VALUE>"'
+    $ vercel dns add zeit.rocks '@' CAA '0 issue "example.com"'
+
+  - Update an existing DNS record using its ID
+
+    $ vercel dns update <ID> --value <VALUE>
+    $ vercel dns update rec_1a2b3c4d5e6f --name api --ttl 300
+
+  - Show a DNS record in full using its ID
+
+    $ vercel dns inspect <ID>
+    $ vercel dns inspect rec_1a2b3c4d5e6f
+
+  - Import a Zone file
+
+    $ vercel dns import <DOMAIN> <FILE>
+    $ vercel dns import zeit.rocks ./zonefile.txt
+
+  - Paginate results, where `1584722256178` is the time in milliseconds since the UNIX epoch
+
+    $ vercel dns ls --next 1584722256178
+    $ vercel dns ls zeit.rocks --next 1584722256178
+

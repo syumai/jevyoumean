@@ -1,0 +1,48 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/doctl
+# args: 
+The subcommands under `doctl compute` are for managing DigitalOcean resources.
+
+Usage:
+  doctl compute [command]
+
+Available Commands:
+  action             Display commands for retrieving resource action history
+  cdn                Display commands that manage CDNs
+  certificate        Display commands that manage SSL certificates and private keys
+  domain             Display commands that manage domains
+  droplet            Manage virtual machines (Droplets)
+  droplet-action     Display Droplet action commands
+  droplet-autoscale  Display commands to manage Droplet autoscale pools
+  firewall           Display commands to manage cloud firewalls
+  image              Display commands to manage images
+  image-action       Display commands to perform actions on images
+  load-balancer      Display commands to manage load balancers
+  region             Display commands to list datacenter regions
+  reserved-ip        Display commands to manage reserved IP addresses
+  reserved-ip-action Display commands to associate reserved IP addresses with Droplets
+  reserved-ipv6      Display commands to manage reserved IPv6 addresses
+  size               List available Droplet sizes
+  snapshot           Access and manage snapshots
+  ssh                Access a Droplet using SSH
+  ssh-key            Display commands to manage SSH keys on your account
+  tag                Display commands to manage tags
+  volume             Display commands to manage block storage volumes
+  volume-action      Display commands to perform actions on a volume
+  vpc-nat-gateway    Display commands to manage VPC NAT Gateways
+
+Flags:
+  -h, --help   help for compute
+
+Global Flags:
+  -t, --access-token string   API V2 access token
+  -u, --api-url string        Override default API endpoint
+  -c, --config string         Specify a custom config file
+      --context string        Specify a custom authentication context name
+      --http-retry-max int    Set maximum number of retries for requests that fail with a 429 or 500-level error (default 5)
+      --interactive           Enable interactive behavior. Defaults to true if the terminal supports it (default false)
+  -o, --output string         Desired output format [text|json] (default "text")
+      --trace                 Show a log of network activity while performing a command
+  -v, --verbose               Enable verbose output
+
+Use "doctl compute [command] --help" for more information about a command.

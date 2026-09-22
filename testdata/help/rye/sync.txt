@@ -1,0 +1,64 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.rye/shims/rye
+# args: 
+Updates the virtualenv based on the pyproject.toml
+
+Usage: rye sync [OPTIONS]
+
+Options:
+  -f, --force
+          Force the environment to be re-created
+
+      --no-dev
+          Do not include dev dependencies
+
+      --no-lock
+          Do not update the lockfile
+
+  -v, --verbose
+          Enables verbose diagnostics
+
+  -q, --quiet
+          Turns off all output
+
+      --update <UPDATE>
+          Update a specific package
+
+      --update-all
+          Update all packages to the latest
+
+      --pre
+          Update to pre-release versions
+
+      --features <FEATURES>
+          Extras/features to enable when syncing the workspace
+
+      --all-features
+          Enables all features
+
+      --with-sources
+          Set to true to lock with sources in the lockfile
+
+      --keyring-provider <KEYRING_PROVIDER>
+          Attempt to use `keyring` for authentication for index URLs
+          
+          [default: disabled]
+
+          Possible values:
+          - disabled:   Do not use keyring for credential lookup
+          - subprocess: Use the `keyring` command for credential lookup
+
+      --generate-hashes
+          Set to true to lock with hashes in the lockfile
+
+      --pyproject <PYPROJECT_TOML>
+          Use this pyproject.toml file
+
+      --reset
+          Do not reuse (reset) prior lock options
+
+      --universal
+          Use universal lock files
+
+  -h, --help
+          Print help (see a summary with '-h')

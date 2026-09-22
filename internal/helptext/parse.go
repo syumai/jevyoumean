@@ -303,20 +303,19 @@ func Parse(output string) []Command {
 	// cache", "bun pm") are used only when no one-token group
 	// qualified, so "yarn config get X" inside a root listing cannot
 	// fabricate a top-level "get" command.
-	oneToken, twoToken := false, false
-	for _, f0 := range prefixOrder {
-		if len(prefixSeen[f0]) < 2 {
-			continue
+	// Only merge prefix groups at the shallowest depth that produced
+	// one — "yarn config get" must not fabricate a top-level "get"
+	// next to the "yarn" group, and a "wrangler d1 migrations" file
+	// merges its three-token group only because nothing shallower
+	// qualified.
+	depth := 0
+	for d := 1; d <= 3 && depth == 0; d++ {
+		for _, f0 := range prefixOrder {
+			if len(prefixSeen[f0]) >= 2 && len(strings.Fields(f0)) == d {
+				depth = d
+				break
+			}
 		}
-		if len(strings.Fields(f0)) == 1 {
-			oneToken = true
-		} else {
-			twoToken = true
-		}
-	}
-	depth := 1
-	if !oneToken && twoToken {
-		depth = 2
 	}
 	for _, f0 := range prefixOrder {
 		if len(prefixSeen[f0]) < 2 || len(strings.Fields(f0)) != depth {
@@ -499,7 +498,7 @@ func isLowerWord(s string) bool {
 func prefixedEntry(line string) (prefix, name, desc string, ok bool) {
 	fields := strings.Fields(line)
 	trimmed := strings.TrimSpace(line)
-	for plen := 1; plen <= 2; plen++ {
+	for plen := 1; plen <= 3; plen++ {
 		if len(fields) <= plen {
 			continue
 		}
@@ -641,7 +640,12 @@ func isSectionHeader(line string) bool {
 	// The plural word is required so placeholders like "<command>" in
 	// usage lines do not count. Singular headers still win through the
 	// tentative-section rule when two or more entries follow.
-	return strings.Contains(lower, "commands") && !strings.Contains(lower, "interface")
+	if strings.Contains(lower, "commands") && !strings.Contains(lower, "interface") {
+		return true
+	}
+	// argparse renders a required-positional group holding the
+	// subcommand choices as "required arguments:" (borg-style).
+	return lower == "required arguments"
 }
 
 // parseEntry extracts a "names <sep> description" entry line and returns

@@ -1,0 +1,127 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/caddy
+# args: 
+Caddy is an extensible server platform written in Go.
+
+At its core, Caddy merely manages configuration. Modules are plugged
+in statically at compile-time to provide useful functionality. Caddy's
+standard distribution includes common modules to serve HTTP, TLS,
+and PKI applications, including the automation of certificates.
+
+To run Caddy, use:
+
+	- 'caddy run' to run Caddy in the foreground (recommended).
+	- 'caddy start' to start Caddy in the background; only do this
+	  if you will be keeping the terminal window open until you run
+	  'caddy stop' to close the server.
+
+When Caddy is started, it opens a locally-bound administrative socket
+to which configuration can be POSTed via a restful HTTP API (see
+https://caddyserver.com/docs/api).
+
+Caddy's native configuration format is JSON. However, config adapters
+can be used to convert other config formats to JSON when Caddy receives
+its configuration. The Caddyfile is a built-in config adapter that is
+popular for hand-written configurations due to its straightforward
+syntax (see https://caddyserver.com/docs/caddyfile). Many third-party
+adapters are available (see https://caddyserver.com/docs/config-adapters).
+Use 'caddy adapt' to see how a config translates to JSON.
+
+For convenience, the CLI can act as an HTTP client to give Caddy its
+initial configuration for you. If a file named Caddyfile is in the
+current working directory, it will do this automatically. Otherwise,
+you can use the --config flag to specify the path to a config file.
+
+Some special-purpose subcommands build and load a configuration file
+for you directly from command line input; for example:
+
+	- caddy file-server
+	- caddy reverse-proxy
+	- caddy respond
+
+These commands disable the administration endpoint because their
+configuration is specified solely on the command line.
+
+In general, the most common way to run Caddy is simply:
+
+	$ caddy run
+
+Or, with a configuration file:
+
+	$ caddy run --config caddy.json
+
+If running interactively in a terminal, running Caddy in the
+background may be more convenient:
+
+	$ caddy start
+	...
+	$ caddy stop
+
+This allows you to run other commands while Caddy stays running.
+Be sure to stop Caddy before you close the terminal!
+
+Depending on the system, Caddy may need permission to bind to low
+ports. One way to do this on Linux is to use setcap:
+
+	$ sudo setcap cap_net_bind_service=+ep $(which caddy)
+
+Remember to run that command again after replacing the binary.
+
+See the Caddy website for tutorials, configuration structure,
+syntax, and module documentation: https://caddyserver.com/docs/
+
+Custom Caddy builds are available on the Caddy download page at:
+https://caddyserver.com/download
+
+The xcaddy command can be used to build Caddy from source with or
+without additional plugins: https://github.com/caddyserver/xcaddy
+
+Where possible, Caddy should be installed using officially-supported
+package installers: https://caddyserver.com/docs/install
+
+Instructions for running Caddy in production are also available:
+https://caddyserver.com/docs/running
+
+Usage:
+  caddy [command]
+
+Examples:
+  $ caddy run
+  $ caddy run --config caddy.json
+  $ caddy reload --config caddy.json
+  $ caddy stop
+
+Available Commands:
+  adapt          Adapts a configuration to Caddy's native JSON
+  add-package    Adds Caddy packages (EXPERIMENTAL)
+  build-info     Prints information about this build
+  completion     Generate completion script
+  environ        Prints the environment
+  file-server    Spins up a production-ready file server
+  fmt            Formats a Caddyfile
+  hash-password  Hashes a password and writes base64
+  help           Help about any command
+  list-modules   Lists the installed Caddy modules
+  manpage        Generates the manual pages for Caddy commands
+  reload         Changes the config of the running Caddy instance
+  remove-package Removes Caddy packages (EXPERIMENTAL)
+  respond        Simple, hard-coded HTTP responses for development and testing
+  reverse-proxy  A quick and production-ready reverse proxy
+  run            Starts the Caddy process and blocks indefinitely
+  start          Starts the Caddy process in the background and then returns
+  stop           Gracefully stops a started Caddy process
+  storage        Commands for working with Caddy's storage (EXPERIMENTAL)
+  trust          Installs a CA certificate into local trust stores
+  untrust        Untrusts a locally-trusted CA certificate
+  upgrade        Upgrade Caddy (EXPERIMENTAL)
+  validate       Tests whether a configuration file is valid
+  version        Prints the version
+
+Flags:
+  -h, --help      help for caddy
+  -v, --version   version for caddy
+
+Use "caddy [command] --help" for more information about a command.
+
+Full documentation is available at:
+https://caddyserver.com/docs/command-line

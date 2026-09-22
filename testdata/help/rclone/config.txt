@@ -1,0 +1,37 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/rclone
+# args: 
+Enter an interactive configuration session where you can setup new
+remotes and manage existing ones. You may also set or remove a
+password to protect your configuration.
+
+Usage:
+  rclone config [flags]
+  rclone config [command]
+
+Available commands:
+  create      Create a new remote with name, type and options.
+  delete      Delete an existing remote.
+  disconnect  Disconnects user from remote
+  dump        Dump the config file as JSON.
+  edit        Enter an interactive configuration session.
+  encryption  set, remove and check the encryption for the config file
+  file        Show path of configuration file in use.
+  password    Update password in an existing remote.
+  paths       Show paths used for configuration, cache, temp etc.
+  providers   List in JSON format all the providers and options.
+  reconnect   Re-authenticates user with remote.
+  redacted    Print redacted (decrypted) config file, or the redacted config for a single remote.
+  show        Print (decrypted) config file, or the config for a single remote.
+  string      Print connection string for a single remote.
+  touch       Ensure configuration file exists.
+  unset       Unset options in an existing remote.
+  update      Update options in an existing remote.
+  userinfo    Prints info about logged in user of remote.
+
+Flags:
+  -h, --help   help for config
+
+Use "rclone [command] --help" for more information about a command.
+Use "rclone help flags" for to see the global flags.
+Use "rclone help backends" for a list of supported services.

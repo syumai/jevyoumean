@@ -1,0 +1,41 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/mkdocs
+# args: 
+Usage: mkdocs gh-deploy [OPTIONS]
+
+  Deploy your documentation to GitHub Pages.
+
+Options:
+  -c, --clean / --dirty           Remove old files from the site_dir before
+                                  building (the default).
+  -m, --message TEXT              A commit message to use when committing to
+                                  the GitHub Pages remote branch. Commit {sha}
+                                  and MkDocs {version} are available as
+                                  expansions
+  -b, --remote-branch TEXT        The remote branch to commit to for GitHub
+                                  Pages. This overrides the value specified in
+                                  config
+  -r, --remote-name TEXT          The remote name to commit to for GitHub
+                                  Pages. This overrides the value specified in
+                                  config
+  --force                         Force the push to the repository.
+  --no-history                    Replace the whole Git history with one new
+                                  commit.
+  --ignore-version                Ignore check that build is not being
+                                  deployed with an older version of MkDocs.
+  --shell                         Use the shell when invoking Git.
+  -f, --config-file FILENAME      Provide a specific MkDocs config. This can
+                                  be a file name, or '-' to read from stdin.
+  -s, --strict / --no-strict      Enable strict mode. This will cause MkDocs
+                                  to abort the build on any warnings.
+  -t, --theme [mkdocs|readthedocs]
+                                  The theme to use when building your
+                                  documentation.
+  --use-directory-urls / --no-directory-urls
+                                  Use directory URLs when building pages (the
+                                  default).
+  -d, --site-dir PATH             The directory to output the result of the
+                                  documentation build.
+  -q, --quiet                     Silence warnings
+  -v, --verbose                   Enable verbose output
+  -h, --help                      Show this message and exit.

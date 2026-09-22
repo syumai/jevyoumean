@@ -1,0 +1,22 @@
+# captured 2026-09-22
+# exe: /usr/bin/podman
+# args: 
+Manage networks
+
+Description:
+  Manage networks
+
+Usage:
+  podman network [command]
+
+Available Commands:
+  connect     network connect
+  create      network create
+  disconnect  network rm
+  exists      network exists
+  inspect     Displays the raw CNI network configuration for one or more networks.
+  ls          network list
+  prune       network prune
+  reload      Reload firewall rules for one or more containers
+  rm          network rm
+

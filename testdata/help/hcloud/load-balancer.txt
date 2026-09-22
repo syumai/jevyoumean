@@ -1,0 +1,63 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/hcloud
+# args: 
+Manage Load Balancers
+
+Usage:
+  hcloud load-balancer [command]
+
+Aliases:
+  load-balancer, loadbalancer, load-balancers, loadbalancers
+
+General:
+  add-label                Add a label to a Load Balancer
+  change-algorithm         Changes the algorithm of a Load Balancer
+  change-type              Change type of a Load Balancer
+  create                   Create a Load Balancer
+  delete                   Delete a Load Balancer
+  describe                 Describe a Load Balancer
+  list                     List Load Balancer
+  remove-label             Remove a label from a Load Balancer
+  update                   Update a Load Balancer
+
+Protection:
+  disable-protection       Disable resource protection for a Load Balancer
+  enable-protection        Enable resource protection for a Load Balancer
+
+Targets:
+  add-target               Add a target to a Load Balancer
+  remove-target            Remove a target from a Load Balancer
+
+Services:
+  add-service              Add a service to a Load Balancer
+  delete-service           Deletes a service from a Load Balancer
+  update-service           Updates a service from a Load Balancer
+
+Network:
+  attach-to-network        Attach a Load Balancer to a Network
+  detach-from-network      Detach a Load Balancer from a Network
+
+Public Interface:
+  disable-public-interface Disable the public interface of a Load Balancer
+  enable-public-interface  Enable the public interface of a Load Balancer
+
+Additional Commands:
+  metrics                  [ALPHA] Metrics from a Load Balancer
+  set-rdns                 Change reverse DNS of a Load Balancer
+
+Flags:
+  -h, --help   help for load-balancer
+
+Global Flags:
+      --config string              Config file path (default "~/.config/hcloud/cli.toml")
+      --context string             Currently active context
+      --debug                      Enable debug output
+      --debug-file string          File to write debug output to
+      --endpoint string            Hetzner Cloud API endpoint (default "https://api.hetzner.cloud/v1")
+      --hetzner-endpoint string    Hetzner API endpoint (default "https://api.hetzner.com/v1")
+      --http-timeout duration      Timeout for HTTP requests (default 0 = no timeout)
+      --no-experimental-warnings   If true, experimental warnings are not shown
+      --poll-interval duration     Interval at which to poll information, for example action progress (default 500ms)
+      --quiet                      If true, only print error messages
+
+Use "hcloud load-balancer [command] --help" for more information about a command.

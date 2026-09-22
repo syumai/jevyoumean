@@ -1,0 +1,19 @@
+# captured 2026-09-22
+# exe: /usr/bin/podman
+# args: 
+Manage a virtual machine
+
+Description:
+  Manage a virtual machine. Virtual machines are used to run Podman.
+
+Usage:
+  podman machine [command]
+
+Available Commands:
+  init        Initialize a virtual machine
+  list        List machines
+  rm          Remove an existing machine
+  ssh         SSH into an existing machine
+  start       Start an existing machine
+  stop        Stop an existing machine
+

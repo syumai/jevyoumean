@@ -1,0 +1,42 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/railway
+# args: 
+Manage environment variables for a service
+
+Usage: railway variable [OPTIONS] [COMMAND]
+
+Commands:
+  list    List variables for a service [aliases: ls]
+  set     Set a variable
+  delete  Delete a variable [aliases: rm, remove]
+  edit    Bulk-edit variables in $EDITOR, then confirm an IaC-style diff
+  help    Print this message or the help of the given subcommand(s)
+
+Options:
+  -s, --service <SERVICE>          The service to show/set variables for
+  -e, --environment <ENVIRONMENT>  The environment to show/set variables for
+  -p, --project <PROJECT_ID>       Project ID to use (defaults to linked project)
+  -k, --kv                         Show variables in KV format. This prints raw values
+      --set <SET>                  The "{key}={value}" environment variable pair to set the service variables (legacy, use 'variable set' instead)
+      --set-from-stdin <KEY>       Set a variable with the value read from stdin (legacy, use 'variable set --stdin' instead)
+      --json                       Output in JSON format. Variable list JSON includes raw values
+      --skip-deploys               Skip triggering deploys when setting variables
+  -h, --help                       Print help
+  -V, --version                    Print version
+
+Examples:
+
+  railway variable list --service api --json
+  railway variable list --service api --kv
+  railway variable set API_URL=https://example.com --skip-deploys --json
+  echo "secret" | railway variable set API_KEY --stdin --skip-deploys --json
+  railway variable delete API_KEY --service api --json
+  railway variable edit
+  railway variable edit --demo
+
+Automation notes:
+  JSON and KV output include raw variable values. Avoid sharing command output from secret-bearing variable commands.
+  For idempotent deletes, list variables first, check whether the key exists, then delete it.
+  Sealed variables are listed by name with no value (null in JSON, <sealed> in the table). They are already set and nobody can read them back - do not recreate them.
+  `variable edit` opens $EDITOR, then shows an IaC-style diff and asks for confirmation before applying.
+

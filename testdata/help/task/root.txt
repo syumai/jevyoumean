@@ -1,0 +1,69 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/task
+# args: 
+Usage: task [flags...] [task...]
+
+Runs the specified task(s). Falls back to the "default" task if no task name
+was specified, or lists all tasks if an unknown task name was specified.
+
+Example: 'task hello' with the following 'Taskfile.yml' file will generate an
+'output.txt' file with the content "hello".
+
+'''
+version: '3'
+tasks:
+  hello:
+    cmds:
+      - echo "I am going to write a file named 'output.txt' now."
+      - echo "hello" > output.txt
+    generates:
+      - output.txt
+'''
+
+Options:
+      --cacert string               Path to a custom CA certificate for HTTPS connections.
+      --cert string                 Path to a client certificate for HTTPS connections.
+      --cert-key string             Path to a client certificate key for HTTPS connections.
+      --clear-cache                 Clear the remote cache.
+  -c, --color                       Colored output. Enabled by default. Set flag to false or use NO_COLOR=1 to disable. (default true)
+      --completion string           Generates shell completion script.
+  -C, --concurrency int             Limit number of tasks to run concurrently.
+  -d, --dir string                  Sets the directory in which Task will execute and look for a Taskfile.
+      --disable-fuzzy               Disables fuzzy matching for task names.
+      --download                    Forces task to download remote Taskfiles and ignore any cached versions.
+  -n, --dry                         Compiles and prints tasks in the order that they would be run, without executing them.
+  -x, --exit-code                   Pass-through the exit code of the task command.
+      --experiments                 Lists all the available experiments and whether or not they are enabled.
+      --expiry duration             Expiry duration for cached remote Taskfiles.
+  -F, --failfast                    When running tasks in parallel, stop all tasks if one fails.
+  -f, --force                       Forces execution even when the task is up-to-date.
+  -g, --global                      Runs global Taskfile, from $HOME/{T,t}askfile.{yml,yaml}.
+  -h, --help                        Shows Task usage.
+  -i, --init                        Creates a new Taskfile.yml in the current folder.
+      --insecure                    Forces Task to download Taskfiles over insecure connections.
+      --interactive                 Prompt for missing required variables.
+  -I, --interval duration           Interval to watch for changes.
+  -j, --json                        Formats task list as JSON.
+  -l, --list                        Lists tasks with description of current Taskfile.
+  -a, --list-all                    Lists tasks with or without a description.
+      --nested                      Nest namespaces when listing tasks as JSON
+      --no-status                   Ignore status when listing tasks as JSON
+      --offline                     Forces Task to only use local or cached Taskfiles.
+  -o, --output string               Sets output style: [interleaved|group|prefixed].
+      --output-group-begin string   Message template to print before a task's grouped output.
+      --output-group-end string     Message template to print after a task's grouped output.
+      --output-group-error-only     Swallow output from successful tasks.
+  -p, --parallel                    Executes tasks provided on command line in parallel.
+      --remote-cache-dir string     Directory to cache remote Taskfiles.
+  -s, --silent                      Disables echoing.
+      --sort string                 Changes the order of the tasks when listed. [default|alphanumeric|none].
+      --status                      Exits with non-zero exit code if any of the given tasks is not up-to-date.
+      --summary                     Show summary about a task.
+  -t, --taskfile string             Choose which Taskfile to run. Defaults to "Taskfile.yml".
+      --temp-dir string             Sets the directory used to store Task temporary files, such as checksums. Relative paths are relative to the root Taskfile.
+      --timeout duration            Timeout for downloading remote Taskfiles. (default 10s)
+      --trusted-hosts strings       List of trusted hosts for remote Taskfiles (comma-separated).
+  -v, --verbose                     Enables verbose mode.
+      --version                     Show Task version.
+  -w, --watch                       Enables watch of the given task.
+  -y, --yes                         Assume "yes" as answer to all prompts.

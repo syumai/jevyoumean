@@ -1,0 +1,21 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/meson
+# args: 
+usage: meson dist [-h] [-C WD] [--allow-dirty] [--formats FORMATS]
+                  [--include-subprojects] [--no-tests] [-j NUM_PROCESSES]
+
+options:
+  -h, --help                            show this help message and exit
+  -C WD                                 directory to cd into before running
+  --allow-dirty                         Allow even when repository contains
+                                        uncommitted changes.
+  --formats FORMATS                     Comma separated list of archive types to
+                                        create. Supports xztar (default), bztar,
+                                        gztar, and zip.
+  --include-subprojects                 Include source code of subprojects that
+                                        have been used for the build.
+  --no-tests                            Do not build and test generated
+                                        packages.
+  -j NUM_PROCESSES, --num-processes NUM_PROCESSES
+                                        How many parallel processes to use (e.g.
+                                        for compilation and testing).

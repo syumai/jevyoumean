@@ -1,0 +1,24 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/meson
+# args: 
+usage: meson subprojects [-h]
+                         {update,checkout,download,foreach,purge,packagefiles}
+                         ...
+
+options:
+  -h, --help                            show this help message and exit
+
+Commands:
+  {update,checkout,download,foreach,purge,packagefiles}
+    update                              Update all subprojects from wrap files
+    checkout                            Checkout a branch (git only)
+    download                            Ensure subprojects are fetched, even if
+                                        not in use. Already downloaded
+                                        subprojects are not modified. This can
+                                        be used to pre-fetch all subprojects and
+                                        avoid downloads during configure.
+    foreach                             Execute a command in each subproject
+                                        directory.
+    purge                               Remove all wrap-based subproject
+                                        artifacts
+    packagefiles                        Manage the packagefiles overlay

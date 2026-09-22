@@ -1,0 +1,51 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/doctl
+# args: 
+The commands under `doctl databases` are for managing your MySQL, Redis, Valkey, PostgreSQL, MongoDB, Kafka, Opensearch and Advanced PostgreSQL and Advanced MySQL databases services.
+
+Usage:
+  doctl databases [command]
+
+Aliases:
+  databases, db, dbs, d, database
+
+Available Commands:
+  backups            List database cluster backups
+  configuration      View the configuration of a database cluster given its ID and Engine
+  connection         Retrieve connection details for a database cluster
+  create             Create a database cluster
+  db                 Display commands for managing individual databases within a cluster
+  delete             Delete a database cluster
+  events             Display commands for listing database cluster events
+  firewalls          Display commands to manage firewall rules (called`trusted sources` in the control panel) for database clusters
+  fork               Create a new database cluster by forking an existing database cluster.
+  get                Get details for a database cluster
+  get-ca             Provides the CA certificate for a DigitalOcean database
+  indexes            Display commands to manage indexes for opensearch clusters
+  list               List your database clusters
+  maintenance-window Display commands for scheduling automatic maintenance on your database cluster
+  migrate            Migrate a database cluster to a new region
+  options            Display available database options (regions, version, layouts, etc.) for all available database engines
+  pool               Display commands for managing connection pools
+  replica            Display commands to manage read-only database replicas
+  resize             Resize a database cluster
+  sql-mode           Display commands to configure a MySQL database cluster's SQL modes
+  storage-autoscale  Display commands for managing database cluster storage autoscaling
+  topics             Display commands to manage topics for kafka database clusters
+  user               Display commands for managing database users
+
+Flags:
+  -h, --help   help for databases
+
+Global Flags:
+  -t, --access-token string   API V2 access token
+  -u, --api-url string        Override default API endpoint
+  -c, --config string         Specify a custom config file
+      --context string        Specify a custom authentication context name
+      --http-retry-max int    Set maximum number of retries for requests that fail with a 429 or 500-level error (default 5)
+      --interactive           Enable interactive behavior. Defaults to true if the terminal supports it (default false)
+  -o, --output string         Desired output format [text|json] (default "text")
+      --trace                 Show a log of network activity while performing a command
+  -v, --verbose               Enable verbose output
+
+Use "doctl databases [command] --help" for more information about a command.

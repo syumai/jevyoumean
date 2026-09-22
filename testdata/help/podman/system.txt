@@ -1,0 +1,21 @@
+# captured 2026-09-22
+# exe: /usr/bin/podman
+# args: 
+Manage podman
+
+Description:
+  Manage podman
+
+Usage:
+  podman system [command]
+
+Available Commands:
+  connection  Manage remote ssh destinations
+  df          Show podman disk usage
+  info        Display podman system information
+  migrate     Migrate containers
+  prune       Remove unused data
+  renumber    Migrate lock numbers
+  reset       Reset podman storage
+  service     Run API service
+

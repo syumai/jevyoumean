@@ -1,0 +1,38 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/doctl
+# args: 
+The subcommands of `doctl registry` create, manage, and allow access to your private container registry.
+
+Usage:
+  doctl registry [command]
+
+Aliases:
+  registry, reg, r
+
+Available Commands:
+  create              Create a private container registry
+  delete              Delete a container registry
+  docker-config       Generate a Docker auth configuration for a registry
+  garbage-collection  Display commands for garbage collection for a container registry
+  get                 Retrieve details about a container registry
+  kubernetes-manifest Generate a Kubernetes secret manifest for a registry.
+  login               Log in Docker to a container registry
+  logout              Log out Docker from a container registry
+  options             List available container registry options
+  repository          Display commands for working with repositories in a container registry
+
+Flags:
+  -h, --help   help for registry
+
+Global Flags:
+  -t, --access-token string   API V2 access token
+  -u, --api-url string        Override default API endpoint
+  -c, --config string         Specify a custom config file
+      --context string        Specify a custom authentication context name
+      --http-retry-max int    Set maximum number of retries for requests that fail with a 429 or 500-level error (default 5)
+      --interactive           Enable interactive behavior. Defaults to true if the terminal supports it (default false)
+  -o, --output string         Desired output format [text|json] (default "text")
+      --trace                 Show a log of network activity while performing a command
+  -v, --verbose               Enable verbose output
+
+Use "doctl registry [command] --help" for more information about a command.
