@@ -1,0 +1,75 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/railway
+# args: 
+Interact with Railway via CLI
+
+Tip: Using an AI coding agent? Run `railway setup agent -y` to install Railway skills and the Railway MCP server.
+
+Usage: railway [COMMAND]
+
+Commands:
+  add               Add a service to your project
+  agent             Interact with the Railway Agent
+  api               Query the Railway public GraphQL API
+  autoupdate        Manage auto-update preferences
+  bucket            Manage project buckets [aliases: buckets]
+  cdn               Manage CDN caching for a service
+  ca                Manage Railway cloud agents
+  code              Launch a coding agent on a Railway cloud agent VM
+  completion        Generate completion script
+  config            Manage Railway configuration and IaC ownership
+  connect           Connect to a database's shell (psql for Postgres, mongosh for MongoDB, etc.)
+  delete            Delete a project [aliases: rm, remove]
+  deploy            Provisions a template into your project
+  deployment        Manage deployments [aliases: deployments]
+  dev               Run Railway services locally [aliases: develop]
+  domain            Add, list, inspect, update, or delete domains for a service
+  docs              Open Railway Documentation in default browser, or print doc URLs in non-interactive mode
+  down              Remove the most recent deployment
+  environment       Create, delete or link an environment [aliases: env]
+  flag              Manage feature flags [aliases: flags]
+  init              Create a new project [aliases: new]
+  link              Associate existing project with current directory, may specify projectId as an argument
+  list              List all projects in your Railway account [aliases: ls]
+  login             Sign in to Railway — also creates a new account if you don't have one
+  logout            Logout of your Railway account
+  logs              View build, deploy, HTTP, network flow, or DNS logs
+  mcp               Connects AI agents to Railway's MCP server, or installs the MCP config into AI coding tools
+  metrics           View resource and HTTP metrics for a Railway service
+  open              Open your project dashboard
+  outbound-network  Manage outbound networking for a service
+  mysql             Manage MySQL features: high availability
+  postgres          Manage Postgres features: point-in-time recovery, high availability, and connection pooling
+  project           Manage projects [aliases: projects]
+  private-network   Manage private networking for a service
+  run               Run a local command using variables from the active environment [aliases: local]
+  sandbox           Manage ephemeral sandboxes [aliases: sandboxes, sbx]
+  service           Manage services
+  setup             Set up your editor for Railway agent functionality (skills, MCP, login)
+  shell             Open a local subshell with Railway variables available
+  skills            Install Railway agent skills for AI coding tools (Claude Code, Cursor, Codex, OpenCode, GitHub Copilot, Factory Droid, Pi, and all tools that support .agents/skills)
+  ssh               Connect to a service via SSH or manage SSH keys
+  status            Show information about a Railway project
+  telemetry_cmd     Manage telemetry preferences [aliases: telemetry]
+  templates         Discover Railway templates [aliases: template]
+  tcp-proxy         Manage public TCP proxies for a service
+  unlink            Disassociate project from current directory
+  up                Upload and deploy project from the current directory
+  upgrade           Upgrade the Railway CLI to the latest version. Use `--yes` for non-interactive agent/script usage
+  usage             Show workspace usage and manage usage limits
+  variable          Manage environment variables for a service [aliases: variables, vars, var]
+  waf               Manage WAF settings for a service
+  whoami            Get the current logged in user
+  volume            Manage project volumes [aliases: volumes]
+  redeploy          Redeploy the latest deployment of a service
+  redis             Manage Redis features: high availability
+  restart           Restart the latest deployment of a service (without rebuilding)
+  scale             
+  check_updates     Test the update check [aliases: check-updates]
+  functions         Manage project functions [aliases: function, func, fn, funcs, fns]
+  help              Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+

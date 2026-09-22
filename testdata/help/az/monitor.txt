@@ -1,0 +1,23 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/az
+# args: 
+
+Group
+    az monitor : Manage the Azure Monitor Service.
+
+Subgroups:
+    account                      : Manage monitor account.
+    action-group                 : Manage action groups.
+    activity-log                 : Manage activity logs.
+    autoscale                    : Manage autoscale settings.
+    dashboard                    : Manage Dashboard with Grafana resources.
+    diagnostic-settings          : Manage service diagnostic settings.
+    log-analytics                : Manage Azure log analytics.
+    log-profiles                 : Manage log profiles.
+    metrics                      : View Azure resource metrics.
+    private-link-scope [Preview] : Manage monitor private link scope resource.
+    sli                [Preview] : Manage Service Level Indicators (SLIs) in Azure Monitor.
+
+Commands:
+    clone              [Preview] : Clone metrics alert rules from one resource to another resource.
+

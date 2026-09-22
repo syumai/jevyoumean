@@ -1,0 +1,91 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pipx
+# args: 
+usage: pipx [-h] [--version]
+            {install,install-all,uninject,inject,expose,unexpose,pin,unpin,upgrade,upgrade-all,upgrade-shared,uninstall,uninstall-all,reset,reinstall,reinstall-all,health,repair,list,interpreter,cache,manifest,run,exec,runpip,ensurepath,environment,completions,help}
+            ...
+
+Install and execute apps from Python packages.
+
+Binaries can either be installed globally into isolated Virtual Environments
+or run directly in a temporary Virtual Environment.
+
+Virtual Environment location is /home/ubuntu/.local/share/pipx/venvs.
+Symlinks to apps are placed in /home/ubuntu/.local/bin.
+Symlinks to manual pages are placed in /home/ubuntu/.local/share/man.
+
+optional environment variables:
+  PIPX_HOME              Overrides default pipx location. Virtual Environments
+                        will be installed to $PIPX_HOME/venvs.
+  PIPX_GLOBAL_HOME       Used instead of PIPX_HOME when the `--global` option
+                        is given.
+  PIPX_BIN_DIR           Overrides location of app installations. Apps are
+                        symlinked or copied here.
+  PIPX_GLOBAL_BIN_DIR    Used instead of PIPX_BIN_DIR when the `--global`
+                        option is given.
+  PIPX_MAN_DIR           Overrides location of manual pages installations.
+                        Manual pages are symlinked or copied here.
+  PIPX_GLOBAL_MAN_DIR    Used instead of PIPX_MAN_DIR when the `--global`
+                        option is given.
+  PIPX_COMPLETION_DIR    Overrides location of shell completion installations.
+                        Completion scripts are symlinked or copied here.
+  PIPX_GLOBAL_COMPLETION_DIR
+                        Used instead of PIPX_COMPLETION_DIR when the
+                        `--global` option is given.
+  PIPX_DEFAULT_PYTHON    Overrides default python used for commands.
+  PIPX_DEFAULT_BACKEND   Overrides which backend (`pip` or `uv`) is used for
+                        new venvs.
+  PIPX_COOLDOWN          Default `--cooldown` in days for the commands that
+                        accept it.
+  PIPX_DISABLE_SHARED_LIBS_AUTO_UPGRADE
+                        Skips automatic shared library upgrades.
+  PIPX_USE_EMOJI         Overrides emoji behavior. Default value varies based
+                        on platform.
+
+options:
+  -h, --help            show this help message and exit
+  --version             Print version and exit
+
+subcommands:
+  Get help for commands with pipx COMMAND --help
+
+  {install,install-all,uninject,inject,expose,unexpose,pin,unpin,upgrade,upgrade-all,upgrade-shared,uninstall,uninstall-all,reset,reinstall,reinstall-all,health,repair,list,interpreter,cache,manifest,run,exec,runpip,ensurepath,environment,completions,help}
+    install             Install a package
+    install-all         Install all packages
+    uninject            Uninstall injected packages from an existing Virtual
+                        Environment
+    inject              Install packages into an existing Virtual Environment
+    expose              Restore resources from a hidden environment
+    unexpose            Hide resources without removing an environment
+    pin                 Pin the specified package to prevent it from being
+                        upgraded
+    unpin               Unpin the specified package
+    upgrade             Upgrade a package
+    upgrade-all         Upgrade all packages. Runs `pip install -U <pkgname>`
+                        for each package.
+    upgrade-shared      Upgrade shared libraries.
+    uninstall           Uninstall a package
+    uninstall-all       Uninstall all packages
+    reset               Return pipx to a fresh install
+    reinstall           Reinstall a package
+    reinstall-all       Reinstall all packages
+    health              Check installed package environments
+    repair              Repair broken package environments
+    list                List installed packages
+    interpreter         Interact with interpreters managed by pipx
+    cache               Manage cached run environments
+    manifest            Manage tools declared in an explicit manifest
+    run                 Download the latest version of a package to a
+                        temporary virtual environment, then run an app from
+                        it. Also compatible with local `__pypackages__`
+                        directory (experimental).
+    exec                Run an application from an existing pipx environment
+    runpip              Run pip in an existing pipx-managed Virtual
+                        Environment
+    ensurepath          Ensure directories necessary for pipx operation are in
+                        your PATH environment variable.
+    environment         Print a list of environment variables and paths used
+                        by pipx.
+    completions         Print instructions on enabling shell completions for
+                        pipx
+    help                Show help for pipx or a command

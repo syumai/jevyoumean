@@ -1,0 +1,31 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/meson
+# args: 
+usage: meson [-h]
+             {setup,configure,dist,install,introspect,init,test,wrap,subprojects,rewrite,compile,devenv,env2mfile,reprotest,format,fmt,help}
+             ...
+
+options:
+  -h, --help                            show this help message and exit
+
+Commands:
+  If no command is specified it defaults to setup command.
+
+  {setup,configure,dist,install,introspect,init,test,wrap,subprojects,rewrite,compile,devenv,env2mfile,reprotest,format,fmt,help}
+    setup                               Configure the project
+    configure                           Change project options
+    dist                                Generate release archive
+    install                             Install the project
+    introspect                          Introspect project
+    init                                Create a new project
+    test                                Run tests
+    wrap                                Wrap tools
+    subprojects                         Manage subprojects
+    rewrite                             Modify the project definition
+    compile                             Build the project
+    devenv                              Run commands in developer environment
+    env2mfile                           Convert current environment to a cross
+                                        or native file
+    reprotest                           Test if project builds reproducibly
+    format (fmt)                        Format meson source file
+    help                                Print help of a subcommand

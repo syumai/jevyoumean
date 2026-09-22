@@ -1,0 +1,79 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/helmfile
+# args: 
+Declaratively deploy your Kubernetes manifests, Kustomize configs, and Charts as Helm releases in one shot
+YAML library = go.yaml.in/yaml/v3
+
+Usage:
+  helmfile [command]
+
+Available Commands:
+  apply        Apply all resources from state file only when there are changes
+  build        Build all resources from state file
+  cache        Cache management
+  completion   Generate the autocompletion script for the specified shell
+  create       Create a helmfile deployment project scaffold
+  deps         Update charts based on their requirements
+  destroy      Destroys and then purges releases
+  diff         Diff releases defined in state file
+  doctor       AI-assisted diff analysis: summarize changes and flag risks
+  fetch        Fetch charts from state file
+  help         Help about any command
+  init         Initialize the helmfile, includes version checking and installation of helm and plug-ins
+  lint         Lint charts from state file (helm lint)
+  list         List releases defined in state file
+  print-env    Print parsed environment configuration
+  repos        Add chart repositories defined in state file
+  show-dag     It prints a table with 3 columns, GROUP, RELEASE, and DEPENDENCIES. GROUP is the unsigned, monotonically increasing integer starting from 1. All the releases with the same GROUP are deployed concurrently. Everything in GROUP 2 starts being deployed only after everything in GROUP 1 got successfully deployed. RELEASE is the release that belongs to the GROUP. DEPENDENCIES is the list of releases that the RELEASE depends on. It should always be empty for releases in GROUP 1. DEPENDENCIES for a release in GROUP 2 should have some or all dependencies appeared in GROUP 1. It can be "some" because Helmfile simplifies the DAGs of releases into a DAG of groups, so that Helmfile always produce a single DAG for everything written in helmfile.yaml, even when there are technically two or more independent DAGs of releases in it.
+  status       Retrieve status of releases in state file
+  sync         Sync releases defined in state file
+  template     Template releases defined in state file
+  test         Test charts from state file (helm test)
+  unittest     Unit test charts from state file using helm-unittest plugin
+  version      Print the CLI version
+  write-values Write values files for releases. Similar to `helmfile template`, write values files instead of manifests.
+
+Flags:
+      --allow-failed-releases                 continue preparing charts for other releases when chart preparation fails for a release; failed releases are skipped and all failures are reported at the end
+      --allow-no-matching-release             Do not exit with an error code if the provided selector has no matching releases.
+  -c, --chart string                          Set chart. Uses the chart set in release by default, and is available in template as {{ .Chart }}
+      --color                                 Output with color
+      --debug                                 Enable verbose output for Helm and set log-level to debug, this disables --quiet/-q effect. Overrides "HELMFILE_DEBUG" OS environment variable when specified
+      --disable-force-update                  do not force helm repos to update when executing "helm repo add" (Helm 3 only)
+      --enable-live-output                    Show live output from the Helm binary Stdout/Stderr into Helmfile own Stdout/Stderr.
+                                              It only applies for the Helm CLI commands, Stdout/Stderr for Hooks are still displayed only when it's execution finishes.
+      --enforce-plugin-verification           fail plugin installation if verification is not supported (for security purposes)
+  -e, --environment string                    specify the environment name. Overrides "HELMFILE_ENVIRONMENT" OS environment variable when specified. defaults to "default"
+  -f, --file helmfile.yaml                    load config from file or directory. defaults to "helmfile.yaml" or "helmfile.yaml.gotmpl" or "helmfile.d" (means "helmfile.d/*.yaml" or "helmfile.d/*.yaml.gotmpl") in this preference. Specify - to load the config from the standard input.
+  -b, --helm-binary string                    Path to the helm binary. Overrides "HELMFILE_HELM_BINARY" OS environment variable when specified (default "helm")
+  -h, --help                                  help for helmfile
+  -i, --interactive                           Request confirmation before attempting to modify clusters
+      --kube-context string                   Set kubectl context. Overrides "HELMFILE_KUBE_CONTEXT" OS environment variable when specified. Uses current kubectl context by default
+      --kubeconfig string                     Use a particular kubeconfig file
+  -k, --kustomize-binary string               Path to the kustomize binary. Overrides "HELMFILE_KUSTOMIZE_BINARY" OS environment variable when specified (default "kustomize")
+      --log-level string                      Set log level. Overrides "HELMFILE_LOG_LEVEL" OS environment variable when specified (default "info")
+  -n, --namespace string                      Set namespace. Overrides "HELMFILE_NAMESPACE" OS environment variable when specified. Uses the namespace set in the context by default, and is available in templates as {{ .Namespace }}
+      --no-color                              Output without color. Overrides "HELMFILE_NO_COLOR" and "NO_COLOR" OS environment variables when specified
+      --oci-plain-http                        use plain HTTP for OCI registries (required for local/insecure registries in Helm 4)
+      --otel-tracing                          Enable OpenTelemetry tracing and metrics (experimental).
+                                              Configure exporters with standard OTEL_* environment variables (e.g. OTEL_EXPORTER_OTLP_ENDPOINT, OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER).
+                                              Overrides "HELMFILE_OTEL_TRACING" OS environment variable when specified. See docs/otel.md
+  -q, --quiet                                 Silence output. Equivalent to log-level warn. Overrides "HELMFILE_QUIET" OS environment variable when specified
+      --repo-retries int                      Number of times to retry "helm repo add/update" and "helm registry login" on failure, with exponential backoff (1s, 2s, 4s, ..., capped at 30s). Set to 0 to disable retries. Overrides "HELMFILE_REPO_RETRIES" OS environment variable when specified
+  -l, --selector stringArray                  Only run using the releases that match labels. Labels can take the form of foo=bar or foo!=bar.
+                                              A release must match all labels in a group in order to be used. Multiple groups can be specified at once.
+                                              "--selector tier=frontend,tier!=proxy --selector tier=backend" will match all frontend, non-proxy releases AND all backend releases.
+                                              The name of a release can be used as a label: "--selector name=myrelease"
+      --sequential-helmfiles                  Process helmfile.d files sequentially in alphabetical order instead of in parallel.
+                                              Useful when file order matters for dependencies (e.g., databases before applications).
+                                              When processing multiple files, paths are resolved without changing the process working directory,
+                                              so relative environment variables like KUBECONFIG work correctly.
+      --skip-deps                             skip running "helm repo update" and "helm dependency build"
+      --skip-refresh                          skip running "helm repo update"
+      --state-values-file stringArray         specify state values in a YAML file. Used to override .Values within the helmfile template (not values template).
+      --state-values-set stringArray          set state values on the command line (can specify multiple or separate values with commas: key1=val1,key2=val2). Used to override .Values within the helmfile template (not values template).
+      --state-values-set-string stringArray   set state STRING values on the command line (can specify multiple or separate values with commas: key1=val1,key2=val2). Used to override .Values within the helmfile template (not values template).
+      --strip-args-values-on-exit-error       Strip the potential secret values of the helm command args contained in a helmfile error message (default true)
+  -v, --version                               version for helmfile
+
+Use "helmfile [command] --help" for more information about a command.

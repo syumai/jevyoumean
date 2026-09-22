@@ -1,0 +1,43 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/az
+# args: 
+
+Group
+    az keyvault : Manage KeyVault keys, secrets, and certificates.
+
+Subgroups:
+    backup                      : Manage full HSM backup.
+    certificate                 : Manage certificates.
+    ekm-connection    [Preview] : Manage External Key Manager (EKM) connection for a Managed HSM.
+    key                         : Manage keys.
+    network-rule                : Manage network ACLs for vault or managed hsm.
+    private-endpoint-connection : Manage vault/HSM private endpoint connections.
+    private-link-resource       : Manage vault/HSM private link resources.
+    region                      : Manage MHSM multi-regions.
+    restore                     : Manage full HSM restore.
+    role                        : Manage user roles for access control.
+    secret                      : Manage secrets.
+    security-domain             : Manage security domain operations.
+    setting                     : Manage MHSM settings.
+
+Commands:
+    check-name                  : Check that the given name is valid and is not already in use.
+    create                      : Create a Vault or HSM.
+    delete                      : Delete a Vault or HSM.
+    delete-policy               : Delete security policy settings for a Key Vault.
+    list                        : List Vaults and/or HSMs.
+    list-deleted                : Get information about the deleted Vaults or HSMs in a
+                                  subscription.
+    purge                       : Permanently delete the specified Vault or HSM. Aka Purges the
+                                  deleted Vault or HSM.
+    recover                     : Recover a Vault or HSM.
+    set-policy                  : Update security policy settings for a Key Vault.
+    show                        : Show details of a Vault or HSM.
+    show-deleted                : Show details of a deleted Vault or HSM.
+    update                      : Update the properties of a Vault.
+    update-hsm                  : Update the properties of a HSM.
+    wait                        : Place the CLI in a waiting state until a condition of the Vault is
+                                  met.
+    wait-hsm                    : Place the CLI in a waiting state until a condition of the HSM is
+                                  met.
+

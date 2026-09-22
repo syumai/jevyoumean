@@ -1,0 +1,57 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/hatch
+# args: 
+Usage: hatch [OPTIONS] [COMMAND] [ARGS]...
+
+   _   _       _       _
+  | | | |     | |     | |
+  | |_| | __ _| |_ ___| |__
+  |  _  |/ _` | __/ __| '_ \
+  | | | | (_| | || (__| | | |
+  \_| |_/\__,_|\__\___|_| |_|
+
+Options:
+  -e, --env TEXT                  The name of the environment to use [env var:
+                                  `HATCH_ENV`]
+  -p, --project TEXT              The name of the project to work on [env var:
+                                  `HATCH_PROJECT`]
+  -v, --verbose                   Increase verbosity (can be used additively)
+                                  [env var: `HATCH_VERBOSE`]
+  -q, --quiet                     Decrease verbosity (can be used additively)
+                                  [env var: `HATCH_QUIET`]
+  --color / --no-color            Whether or not to display colored output
+                                  (default is auto-detection) [env vars:
+                                  `FORCE_COLOR`/`NO_COLOR`]
+  --interactive / --no-interactive
+                                  Whether or not to allow features like
+                                  prompts and progress bars (default is auto-
+                                  detection) [env var: `HATCH_INTERACTIVE`]
+  --data-dir TEXT                 The path to a custom directory used to
+                                  persist data [env var: `HATCH_DATA_DIR`]
+  --cache-dir TEXT                The path to a custom directory used to cache
+                                  data [env var: `HATCH_CACHE_DIR`]
+  --config TEXT                   The path to a custom config file to use [env
+                                  var: `HATCH_CONFIG`]
+  --version                       Show the version and exit.
+  -h, --help                      Show this message and exit.
+
+Commands:
+  build    Build a project
+  check    Check source code
+  clean    Remove build artifacts
+  config   Manage the config file
+  dep      Manage environment dependencies
+  env      Manage project environments
+  fmt      Format and lint source code
+  lock     Generate a lockfile for the active environment (alias for `hatch
+           dep lock`)
+  new      Create or initialize a project
+  project  View project information
+  publish  Publish build artifacts
+  python   Manage Python installations
+  run      Run commands within project environments
+  self     Manage Hatch
+  shell    Enter a shell within a project's environment
+  status   Show information about the current environment
+  test     Run tests
+  version  View or set a project's version

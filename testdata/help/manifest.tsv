@@ -108,3 +108,70 @@ jq	-	local	out-of-scope	-	-	no subcommand concept
 ssh	-	local	out-of-scope	-	-	no subcommand concept
 sudo	-	local	out-of-scope	-	-	no subcommand concept
 python3	-	local	out-of-scope	-	-	no subcommand concept
+doctl	-	capture	ok	apps,compute,databases,kubernetes,projects,registry	-	-
+flyctl	-	capture	ok	apps,deploy,launch,machine,secrets,volumes	-	-
+stripe	-	capture	ok	listen,trigger,charges,customers,payment_intents	-	-
+glab	-	capture	ok	alias,api,auth,ci,config,issue,mr,release,repo	-	-
+hcloud	-	capture	ok	certificate,datacenter,firewall,floating-ip,image,load-balancer	-	-
+eksctl	-	capture	ok	create,delete,get,update,upgrade	-	-
+kind	-	capture	ok	build,create,delete,export,get,load	-	-
+k9s	-	capture	ok	completion,info	-	-
+minikube	-	capture	ok	start,status,stop,delete,dashboard,addons,service,tunnel	-	-
+kustomize	-	capture	ok	build,cfg,create,edit,fn,localize	-	-
+helmfile	-	capture	ok	apply,build,deps,destroy,diff,lint,sync,template	-	-
+sops	-	capture	ok	decrypt,encrypt,edit,set,unset,rotate,updatekeys	-	-
+argocd	-	capture	ok	account,admin,app,appset,cluster,proj,repo	-	-
+tilt	-	capture	ok	apply,ci,create,delete,describe,down,up	-	-
+skaffold	-	capture	ok	run,dev,debug,build,test,deploy,render,verify	-	-
+pulumi	-	capture	ok	new,config,stack,up,destroy,preview,login,org	-	-
+linkerd	-	capture	ok	authz,check,diagnostics,inject,install	-	-
+flux	-	capture	ok	bootstrap,build,check,create,delete,export,get,install,reconcile	-	-
+vercel	-	capture	ok	deploy,build,dev,env,init,link,pull,rollback	-	-
+netlify	-	capture	ok	deploy,dev,env,functions,init,link,sites	-	$ sigil entries
+railway	-	capture	ok	add,deploy,down,init,link,logs,up,variable	-	-
+wrangler	-	capture	ok	login,containers,pages,vectorize,tunnel,deployments,whoami	-	-
+pipx	-	capture	ok	install,inject,list,run,uninstall,upgrade	-	-
+hatch	-	capture	ok	build,config,dep,env,new,publish,run,test	-	-
+pdm	-	capture	ok	add,build,install,lock,outdated,publish	-	-
+meson	-	capture	ok	setup,configure,dist,install,test,compile	-	-
+rye	-	capture	ok	add,build,init,install,lock,pin,publish,sync,test	-	-
+aws	lambda	capture	ok	create-function,delete-function,get-function,invoke,list-functions,update-function-code	-	o bullets
+aws	ecs	capture	ok	create-cluster,create-service,delete-cluster,describe-services,list-clusters	-	o bullets
+aws	eks	capture	ok	create-cluster,delete-cluster,describe-cluster,list-clusters	-	o bullets
+aws	rds	capture	ok	create-db-instance,delete-db-instance,describe-db-instances,start-db-instance	-	o bullets
+aws	cloudformation	capture	ok	create-stack,delete-stack,deploy,describe-stacks,list-stacks	-	o bullets
+aws	sqs	capture	ok	create-queue,delete-queue,list-queues,receive-message,send-message	-	o bullets
+aws	sns	capture	ok	create-topic,delete-topic,list-topics,publish,subscribe	-	o bullets
+aws	ecr	capture	ok	create-repository,delete-repository,describe-repositories,list-images	-	o bullets
+aws	kms	capture	ok	create-key,decrypt,describe-key,encrypt,list-keys	-	o bullets
+aws	logs	capture	ok	create-log-group,delete-log-group,describe-log-groups,filter-log-events	-	o bullets
+az	vm	capture	ok	create,delete,list,start,stop	-	name : desc entries
+az	aks	capture	ok	browse,check-acr,create,delete,get-credentials,list	-	name : desc entries
+az	network	capture	ok	application-gateway,dns,express-route,lb,nic,nsg,vnet	-	name : desc entries
+az	acr	capture	ok	build,check-health,create,delete,import,list,login,show	-	name : desc entries
+az	keyvault	capture	ok	certificate,create,delete,key,list,secret,show	-	name : desc entries
+az	webapp	capture	ok	browse,config,create,delete,deployment,list,log,restart,stop	-	name : desc entries
+az	sql	capture	ok	db,dw,elastic-pool,mi,server,vm	-	name : desc entries
+az	monitor	capture	ok	action-group,activity-log,autoscale,diagnostic-settings,log-analytics,metrics	-	name : desc entries
+gh	gpg-key	capture	ok	add,delete,list	-	-
+gh	ssh-key	capture	ok	add,delete,list	-	-
+gh	codespace/ports	capture	ok	forward,visibility	-	-
+gh	repo/deploy-key	capture	ok	add,delete,list	-	-
+kubectl	certificate	capture	ok	approve,deny	-	-
+kubectl	top	capture	ok	node,pod	-	-
+kubectl	auth	capture	ok	can-i,reconcile,whoami	-	-
+docker	system	capture	ok	df,events,info,prune	-	-
+docker	manifest	capture	ok	annotate,create,inspect,push,rm	-	-
+helm	search	capture	ok	hub,repo	-	-
+mise	settings	capture	ok	get,ls,set,unset	-	-
+mise	cache	capture	ok	clear,path,prune	-	-
+uv	cache	capture	ok	clean,prune,dir,size	-	-
+uv	self	capture	ok	update,version	-	-
+rustup	override	capture	ok	list,set,unset	-	-
+rustup	self	capture	ok	update,uninstall,upgrade-data	-	-
+poetry	env	capture	ok	activate,info,list,remove,use	-	namespaced name: desc entries
+poetry	self	capture	ok	add,install,lock,remove,show,sync,update	-	namespaced name: desc entries
+poetry	source	capture	ok	add,remove,show	-	namespaced name: desc entries
+poetry	cache	capture	ok	clear,list	-	namespaced name: desc entries
+pnpm	store	capture	ok	status,add,prune,path	-	-
+pnpm	env	capture	empty	-	-	deprecated; help does not list subcommands

@@ -1,0 +1,58 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/az
+# args: 
+
+Group
+    az aks : Azure Kubernetes Service.
+
+Subgroups:
+    approuting                     : Commands to manage App Routing addon.
+    command                        : See detail usage in 'az aks command invoke', 'az aks command
+                                     result'.
+    connection           [Preview] : Commands to manage aks connections.
+    identity-binding               : Commands to manage identity bindings in Azure Kubernetes
+                                     Service.
+    machine                        : Get information about machines in a nodepool of a managed
+                                     clusters.
+    maintenanceconfiguration       : Commands to manage maintenance configurations in managed
+                                     Kubernetes cluster.
+    mesh                           : Commands to manage Azure Service Mesh.
+    namespace                      : Commands to manage namespace in managed Kubernetes cluster.
+    nodepool                       : Commands to manage node pools in Kubernetes kubernetes cluster.
+    oidc-issuer                    : Oidc issuer related commands.
+    safeguards                     : Manage Deployment Safeguards.
+    trustedaccess                  : Commands to manage trusted access security features.
+
+Commands:
+    browse                         : Show the dashboard for a Kubernetes cluster in a web browser.
+    check-acr                      : Validate an ACR is accessible from an AKS cluster.
+    create                         : Create a new managed Kubernetes cluster.
+    delete                         : Delete a managed Kubernetes cluster.
+    disable-addons                 : Disable Kubernetes addons.
+    enable-addons                  : Enable Kubernetes addons.
+    get-credentials                : Get access credentials for a managed Kubernetes cluster.
+    get-upgrades                   : Get the upgrade versions available for a managed Kubernetes
+                                     cluster.
+    get-versions                   : Get the versions available for creating a managed Kubernetes
+                                     cluster.
+    install-cli                    : Download and install kubectl, the Kubernetes command-line tool.
+                                     Download and install kubelogin, a client-go credential (exec)
+                                     plugin implementing azure authentication.
+    list                           : List managed Kubernetes clusters.
+    operation-abort                : Abort last running operation on managed cluster.
+    remove-dev-spaces [Deprecated] : Remove Azure Dev Spaces from a managed Kubernetes cluster.
+    rotate-certs                   : Rotate certificates and keys on a managed Kubernetes cluster.
+    scale                          : Scale the node pool in a managed Kubernetes cluster.
+    show                           : Show the details for a managed Kubernetes cluster.
+    start                          : Starts a previously stopped Managed Cluster.
+    stop                           : Stop a managed cluster.
+    update                         : Update a managed Kubernetes cluster. When called with no
+                                     optional arguments this attempts to move the cluster to its
+                                     goal state without changing the current cluster configuration.
+                                     This can be used to move out of a non succeeded state.
+    update-credentials             : Update credentials for a managed Kubernetes cluster, like
+                                     service principal.
+    upgrade                        : Upgrade a managed Kubernetes cluster to a newer version.
+    use-dev-spaces    [Deprecated] : Use Azure Dev Spaces with a managed Kubernetes cluster.
+    wait                           : Wait for a managed Kubernetes cluster to reach a desired state.
+

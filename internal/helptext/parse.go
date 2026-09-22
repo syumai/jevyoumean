@@ -85,7 +85,7 @@ func looksLikeName(n string) bool {
 // in the loose fallback scan.
 var headerSkipWords = []string{
 	"option", "flag", "interface", "environment", "example",
-	"parameter", "argument", "suffix", "alias", "propert",
+	"parameter", "argument", "suffix", "alias", "propert", "field",
 }
 
 // headerHead extracts the label portion of a candidate header: the text
@@ -481,10 +481,21 @@ func prefixedEntry(line string) (prefix, name, desc string, ok bool) {
 		if plen == 1 && len(fields) < 3 {
 			continue
 		}
+		// "prefix name: description" — namespaced listings like
+		// poetry's "env activate: Print the command ..." attach the
+		// colon to the name token.
+		name := fields[plen]
+		colonDesc := strings.HasSuffix(name, ":")
+		if colonDesc {
+			name = strings.TrimSuffix(name, ":")
+			if !looksLikeName(name) {
+				continue
+			}
+		}
 		idx := 0
 		valid := true
 		for i := 0; i <= plen; i++ {
-			if !looksLikeName(fields[i]) {
+			if !looksLikeName(fields[i]) && !(colonDesc && i == plen && fields[i] == name+":") {
 				valid = false
 				break
 			}
@@ -498,7 +509,20 @@ func prefixedEntry(line string) (prefix, name, desc string, ok bool) {
 		if !valid {
 			continue
 		}
+		if colonDesc {
+			if d := strings.TrimSpace(trimmed[idx:]); d != "" {
+				return strings.Join(fields[:plen], " "), name, d, true
+			}
+			continue
+		}
 		rest := trimmed[idx:]
+		if strings.HasPrefix(rest, ":") {
+			d := strings.TrimSpace(rest[1:])
+			if d != "" {
+				return strings.Join(fields[:plen], " "), name, d, true
+			}
+			continue
+		}
 		// "tool sub   description" — a whitespace run of two or more
 		// after the name opens the description column ("bun pm scan
 		//                 scan all packages ...").
@@ -606,10 +630,13 @@ func parseEntry(line string) (names []string, desc string, indent int, ok bool) 
 	}
 	// nroff renders bulleted entries as "o name  description". Retry
 	// without the bullet; a leading "o" never parses on its own because
-	// the single space after it already fails the entry check.
-	if rest := strings.TrimPrefix(trimmed, "o "); rest != trimmed {
-		if names, desc, ok := parseEntryLine(rest); ok {
-			return names, desc, indent, true
+	// the single space after it already fails the entry check. Netlify's
+	// oclif output similarly prefixes entries with a "$ " sigil.
+	for _, prefix := range []string{"o ", "$ "} {
+		if rest := strings.TrimPrefix(trimmed, prefix); rest != trimmed {
+			if names, desc, ok := parseEntryLine(rest); ok {
+				return names, desc, indent, true
+			}
 		}
 	}
 	return nil, "", 0, false

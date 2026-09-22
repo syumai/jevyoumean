@@ -1,0 +1,26 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/az
+# args: 
+
+Group
+    az sql : Manage Azure SQL Databases and Data Warehouses.
+
+Subgroups:
+    db                      : Manage databases.
+    dw                      : Manage data warehouses.
+    elastic-pool            : Manage elastic pools.
+    failover-group          : Manage SQL Failover Groups.
+    instance-failover-group : Manage SQL Instance Failover Groups.
+    instance-pool [Preview] : Manage instance pools.
+    mi                      : Manage SQL managed instances.
+    midb                    : Manage SQL Managed Instance databases.
+    recoverable-midb        : Recoverable managed databases command group.
+    server                  : Manage SQL servers.
+    stg           [Preview] : Manage Server Trust Groups.
+    virtual-cluster         : Manage SQL virtual clusters.
+    vm                      : Manage SQL virtual machines.
+
+Commands:
+    list-usages             : Gets all subscription usage metrics in a given location.
+    show-usage              : Gets a subscription usage metric.
+

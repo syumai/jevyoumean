@@ -1,0 +1,10 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/poetry
+# args: 
+The requested command does not exist in the cache namespace.
+
+Did you mean one of these perhaps?
+    cache clear: Clear Poetry's caches.
+    cache list: List Poetry's caches.
+
+Documentation: https://python-poetry.org/docs/cli/#cache

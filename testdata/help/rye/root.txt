@@ -1,0 +1,37 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.rye/shims/rye
+# args: 
+An Experimental Package Management Solution for Python
+
+Usage: rye [OPTIONS] [COMMAND]
+
+Commands:
+  add        Adds a Python package to this project
+  build      Builds a package for distribution
+  config     Reads or modifies the global `config.toml` file
+  fetch      Fetches a Python interpreter for the local machine
+  fmt        Run the code formatter on the project
+  init       Initialize a new or existing Python project with Rye
+  install    Installs a package as global tool
+  lock       Updates the lockfiles without installing dependencies
+  lint       Run the linter on the project
+  make-req   Builds and prints a PEP 508 requirement string from parts
+  pin        Pins a Python version to this project
+  publish    Publish packages to a package repository
+  remove     Removes a package from this project
+  run        Runs a command installed into this package
+  show       Prints the current state of the project
+  sync       Updates the virtualenv based on the pyproject.toml
+  test       Run the tests on the project
+  toolchain  Helper utility to manage Python toolchains
+  tools      Helper utility to manage global tools
+  self       Rye self management
+  uninstall  Uninstalls a global tool
+  version    Get or set project version
+  list       Prints the currently installed packages
+  help       Print this message or the help of the given subcommand(s)
+
+Options:
+      --env-file <ENV_FILE>  Load one or more .env files
+      --version              Print the version
+  -h, --help                 Print help
