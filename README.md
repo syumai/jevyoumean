@@ -180,8 +180,9 @@ extra_subcommands = ["co", "br"]   # your aliases, never prompted on
 max_depth = 3
 ```
 
-Environment overrides: `JYM_MODE`, `JYM_DEBUG`, `JYM_API_ENDPOINT`
-(endpoint override, for tests).
+Environment overrides: `JYM_MODE`, `JYM_DEBUG`, `JYM_COLOR` (`always` or
+`never`; TTY detection by default), and `JYM_API_ENDPOINT` (endpoint override,
+for tests). The standard `NO_COLOR` variable disables colored output.
 
 ## Cache
 

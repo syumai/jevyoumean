@@ -77,6 +77,30 @@ Use "tool [command] --help" for more information about a command.
 	}
 }
 
+// npm-style output has a blank line after its header and wraps a
+// comma-separated command inventory across several lines.
+func TestParseNPMStyle(t *testing.T) {
+	out := `npm <command>
+
+All commands:
+
+    access, adduser, audit, cache, ci,
+    completion, config, dedupe, init, install,
+    publish, run, test, uninstall, version
+
+Specify configs in the ini-formatted config file.
+`
+	cmds := Parse(out)
+	for _, want := range []string{"access", "ci", "config", "init", "install", "uninstall"} {
+		if !has(cmds, want) {
+			t.Fatalf("missing npm command %q in %v", want, names(cmds))
+		}
+	}
+	if len(cmds) != 15 {
+		t.Fatalf("got %d commands, want 15: %v", len(cmds), names(cmds))
+	}
+}
+
 // git-style output: a colon-terminated prose header mentioning commands.
 func TestParseGitStyle(t *testing.T) {
 	out := `usage: git [-v | --version] [-h | --help] <command> [<args>]

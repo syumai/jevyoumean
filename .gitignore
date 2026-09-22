@@ -1,2 +1,4 @@
 /jym
 *.test
+/demo.mp4
+/demo/*.mp4

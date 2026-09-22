@@ -86,6 +86,11 @@ func Parse(output string) []Command {
 			startSection(false)
 			continue
 		}
+		// Many CLIs put a blank line between a section header and its
+		// entries. Keep an otherwise-empty section open across that gap.
+		if strings.TrimSpace(line) == "" && inSection && len(pending) == 0 {
+			continue
+		}
 		if indentation(line) == 0 {
 			// Every other non-indented line is a tentative header.
 			flush()
@@ -111,6 +116,14 @@ func Parse(output string) []Command {
 		}
 		if entryIndent < 0 {
 			entryIndent = indent
+		}
+		// npm-style help prints a comma-separated command inventory with
+		// no descriptions. Those names are independent commands, not aliases.
+		if desc == "" && len(names) > 1 {
+			for _, name := range names {
+				pending = appendCommand(pending, sectionSeen, []string{name}, "")
+			}
+			continue
 		}
 		pending = appendCommand(pending, sectionSeen, names, desc)
 	}

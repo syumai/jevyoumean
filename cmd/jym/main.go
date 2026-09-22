@@ -168,6 +168,7 @@ Environment:
   JYM_CONFIG        Alternate config file path
   JYM_MODE          Override mode (prompt, hint, auto)
   JYM_DEBUG         Enable debug output
+  JYM_COLOR         Color output override (always, never; auto by default)
   JYM_API_ENDPOINT  Override the TypeSafe API endpoint (testing)
 `)
 }

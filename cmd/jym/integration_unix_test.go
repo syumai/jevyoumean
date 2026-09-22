@@ -200,6 +200,9 @@ func TestPromptEnterRunsCorrected(t *testing.T) {
 	if !strings.Contains(out, "ran: pr view 42") {
 		t.Fatalf("corrected command did not run: %q", out)
 	}
+	if !strings.Contains(out, " \r\nran: pr view 42") {
+		t.Fatalf("corrected command output did not restart at column zero: %q", out)
+	}
 }
 
 // Prompt + 'o' runs the command as typed, and because it exited 0 the

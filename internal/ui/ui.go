@@ -12,46 +12,97 @@ import (
 	"golang.org/x/term"
 )
 
+const (
+	ansiReset       = "\x1b[0m"
+	ansiBoldMagenta = "\x1b[1;35m"
+	ansiBoldGreen   = "\x1b[1;32m"
+	ansiYellow      = "\x1b[33m"
+	ansiCyan        = "\x1b[36m"
+	ansiDim         = "\x1b[2m"
+)
+
+func colorEnabled(w io.Writer) bool {
+	if os.Getenv("NO_COLOR") != "" || os.Getenv("JYM_COLOR") == "never" {
+		return false
+	}
+	if os.Getenv("JYM_COLOR") == "always" {
+		return true
+	}
+	f, ok := w.(*os.File)
+	return ok && os.Getenv("TERM") != "dumb" && term.IsTerminal(int(f.Fd()))
+}
+
+func styled(enabled bool, code, s string) string {
+	if !enabled {
+		return s
+	}
+	return code + s + ansiReset
+}
+
 // ShowPrompt prints the "Did you mean?" block with numbered choices.
 // render maps a candidate name to the full corrected command line.
 func ShowPrompt(w io.Writer, typed, context string, names []string, probs []float64, render func(string) string, offline bool) {
-	fmt.Fprintf(w, "\njym: %q is not a %s subcommand. Did you mean?\n", typed, context)
+	color := colorEnabled(w)
+	fmt.Fprintf(w, "\n%s: %s is not a %s subcommand. %s\n",
+		styled(color, ansiBoldMagenta, "jym"),
+		styled(color, ansiYellow, fmt.Sprintf("%q", typed)), context,
+		styled(color, ansiBoldMagenta, "Did you mean?"))
 	for i, name := range names {
 		if offline {
-			fmt.Fprintf(w, "  %d) %s\n", i+1, render(name))
+			fmt.Fprintf(w, "  %s %s\n",
+				styled(color, ansiCyan, fmt.Sprintf("%d)", i+1)),
+				styled(color, ansiBoldGreen, render(name)))
 		} else {
-			fmt.Fprintf(w, "  %d) %s   %.2f\n", i+1, render(name), probs[i])
+			fmt.Fprintf(w, "  %s %s   %s\n",
+				styled(color, ansiCyan, fmt.Sprintf("%d)", i+1)),
+				styled(color, ansiBoldGreen, render(name)),
+				styled(color, ansiDim, fmt.Sprintf("%.2f", probs[i])))
 		}
 	}
 	if offline {
-		fmt.Fprintln(w, "  (offline matching)")
+		fmt.Fprintln(w, "  "+styled(color, ansiDim, "(offline matching)"))
 	}
-	fmt.Fprint(w, "  [Enter] run 1   [o] run as typed   [n] cancel ")
+	fmt.Fprintf(w, "  %s   %s   %s ",
+		styled(color, ansiCyan, "[Enter] run 1"),
+		styled(color, ansiCyan, "[o] run as typed"),
+		styled(color, ansiCyan, "[n] cancel"))
 }
 
 // ShowHint prints a non-interactive suggestion list.
 func ShowHint(w io.Writer, typed, context string, names []string, probs []float64, render func(string) string, offline bool) {
-	fmt.Fprintf(w, "\njym: %q is not a %s subcommand. Did you mean?\n", typed, context)
+	color := colorEnabled(w)
+	fmt.Fprintf(w, "\n%s: %s is not a %s subcommand. %s\n",
+		styled(color, ansiBoldMagenta, "jym"),
+		styled(color, ansiYellow, fmt.Sprintf("%q", typed)), context,
+		styled(color, ansiBoldMagenta, "Did you mean?"))
 	for i, name := range names {
 		if offline {
-			fmt.Fprintf(w, "  %s\n", render(name))
+			fmt.Fprintf(w, "  %s\n", styled(color, ansiBoldGreen, render(name)))
 		} else {
-			fmt.Fprintf(w, "  %s   %.2f\n", render(name), probs[i])
+			fmt.Fprintf(w, "  %s   %s\n",
+				styled(color, ansiBoldGreen, render(name)),
+				styled(color, ansiDim, fmt.Sprintf("%.2f", probs[i])))
 		}
 	}
 	if offline {
-		fmt.Fprintln(w, "  (offline matching)")
+		fmt.Fprintln(w, "  "+styled(color, ansiDim, "(offline matching)"))
 	}
 }
 
 // ShowAutoRun announces an auto-corrected execution.
 func ShowAutoRun(w io.Writer, corrected string, p float64) {
-	fmt.Fprintf(w, "jym: running '%s' (%.2f)\n", corrected, p)
+	color := colorEnabled(w)
+	fmt.Fprintf(w, "%s: running %s (%s)\n",
+		styled(color, ansiBoldMagenta, "jym"),
+		styled(color, ansiBoldGreen, "'"+corrected+"'"),
+		styled(color, ansiDim, fmt.Sprintf("%.2f", p)))
 }
 
 // ShowOfflineNote reminds the user that Jev is unavailable.
 func ShowOfflineNote(w io.Writer) {
-	fmt.Fprintln(w, "jym: using offline matching. Run 'jym --setup' to enable Jev.")
+	color := colorEnabled(w)
+	fmt.Fprintf(w, "%s: %s\n", styled(color, ansiBoldMagenta, "jym"),
+		styled(color, ansiDim, "using offline matching. Run 'jym --setup' to enable Jev."))
 }
 
 // Answer is the outcome of the one-key prompt.
@@ -79,26 +130,32 @@ func Prompt(f *os.File, w io.Writer, numCandidates int) (int, error) {
 	var buf [1]byte
 	for {
 		if _, err := f.Read(buf[:]); err != nil {
-			fmt.Fprintln(w)
+			endRawLine(w)
 			return 0, err
 		}
 		switch c := buf[0]; {
 		case c == '\r' || c == '\n':
-			fmt.Fprintln(w)
+			endRawLine(w)
 			return 1, nil
 		case c == 'o':
-			fmt.Fprintln(w)
+			endRawLine(w)
 			return int(RunAsTyped), nil
 		case c == 'n' || c == 0x1b || c == 0x03:
-			fmt.Fprintln(w)
+			endRawLine(w)
 			return int(Cancel), nil
 		case c >= '1' && c <= '9':
 			if n := int(c - '0'); n <= numCandidates {
-				fmt.Fprintln(w)
+				endRawLine(w)
 				return n, nil
 			}
 		}
 	}
+}
+
+// Raw mode disables the terminal's usual NL-to-CRLF translation. Emit both
+// bytes so output from the command that runs next starts in column zero.
+func endRawLine(w io.Writer) {
+	fmt.Fprint(w, "\r\n")
 }
 
 // JoinCmd renders a command line for display.
