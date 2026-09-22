@@ -1,0 +1,39 @@
+# synthetic fixture mimicking a git man page (git is GPL-2.0; format
+# reproduced by hand, no verbatim capture — see ../NOTICE.md)
+JYM-GIT-REMOTE(1)               Git Manual               JYM-GIT-REMOTE(1)
+
+NAME
+       jym-git-remote - Manage set of tracked repositories
+
+SYNOPSIS
+       jym-git remote [-v | --verbose]
+       jym-git remote add [-t <branch>] <name> <url>
+       jym-git remote rename <old> <new>
+       jym-git remote remove <name>
+       jym-git remote show [-n] <name>...
+       jym-git remote prune [-n | --dry-run] <name>...
+
+DESCRIPTION
+       Manage the set of repositories whose branches you track.
+
+COMMANDS
+       With no arguments, shows a list of existing remotes. Several
+       subcommands are available to perform operations on the remotes.
+
+       add
+           Add a remote named <name> for the repository at <url>.
+
+       rename
+           Rename the remote named <old> to <new>.
+
+       remove
+           Remove the remote named <name>.
+
+       show
+           Gives some information about the remote <name>.
+
+       prune
+           Deletes stale references associated with <name>.
+
+SEE ALSO
+       jym-git-fetch(1), jym-git-branch(1)

@@ -1,0 +1,69 @@
+# Help-parse support matrix. Single source of truth — corpus_test.go asserts
+# these statuses and docs/supported-commands.md is generated from this file.
+# Columns: command, path ("-" = top level), source, status, must_include,
+# must_not_include, note. Lists are comma-separated; "-" means empty.
+# source: capture (real output, permissive license only — see NOTICE.md),
+#         synthetic (hand-written, for GPL/LGPL/Artistic CLIs), local (not committed)
+# status: ok | partial | leaf | empty | bogus | todo | out-of-scope
+git	-	synthetic	ok	add,branch,checkout,commit,rm,status,switch	-	help_args: help -a
+git	remote	synthetic	empty	add,rename,remove,show,prune	-	man-page COMMANDS section broken by prose line
+git	stash	synthetic	empty	push,list,show,pop,apply,drop,clear	-	man-page COMMANDS section broken by prose line
+git	submodule	local	empty	-	-	not captured
+git	worktree	local	empty	-	-	not captured
+git	bisect	local	empty	-	-	not captured
+git	config	synthetic	bogus	-	GIT_CONFIG_GLOBAL,GIT_CONFIG_SYSTEM	env vars parsed as subcommands
+docker	-	capture	ok	run,ps,images,login,version,info	-	-
+docker	compose	capture	ok	up,down,ps,logs,exec,build	-	-
+docker	image	capture	ok	build,ls,pull,push,rm,tag	-	-
+docker	container	capture	ok	ls,exec,start,stop,rm	-	-
+docker	network	local	todo	create,ls,inspect,rm	-	not captured
+docker	volume	local	todo	create,ls,inspect,rm,prune	-	not captured
+gh	-	capture	ok	auth,pr,issue,repo,run,release,browse	-	-
+gh	pr	capture	partial	create,list,checkout,merge,view,close	-	prose commas create junk names
+gh	repo	capture	partial	create,list,fork,clone,view,delete	-	prose commas create junk names
+gh	auth	capture	ok	login,logout,refresh,status,token	-	-
+gh	issue	local	todo	create,list,view,close,status	-	not captured
+gh	run	local	todo	list,view,watch,download	-	not captured
+go	-	capture	ok	build,test,run,mod,get,install,vet,work	-	-
+go	mod	capture	ok	download,edit,graph,init,tidy,vendor,verify,why	-	-
+go	work	local	todo	init,use,sync,vendor	-	not captured
+cargo	-	capture	ok	build,check,run,test,new,install,publish	-	-
+cargo	install	capture	leaf	-	-	leaf command, no subcommands
+npm	-	synthetic	ok	access,ci,config,init,install,uninstall	-	comma inventory format
+npm	cache	local	todo	add,ls,clean,verify	-	not captured
+pnpm	-	local	todo	install,add,remove,run	-	not captured
+yarn	-	local	todo	add,install,remove,run	-	not captured
+pip	-	capture	ok	install,download,uninstall,freeze,list,show	-	-
+pip	install	capture	bogus	-	Install,packages,from	description prose parsed as commands
+uv	-	local	todo	pip,venv,init,add,sync	-	not captured
+poetry	-	local	todo	init,install,add,run	-	not captured
+aws	-	capture	bogus	s3,ec2,iam	The,services.	prose parsed as commands
+aws	s3	capture	bogus	ls,cp,mv,sync,mb,rb	This,There,must	prose parsed as commands
+aws	ec2	capture	bogus	describe-instances,run-instances	eliminates,sources	prose parsed as commands
+aws	iam	local	todo	list-users,create-role,get-policy	-	not captured
+gcloud	-	local	todo	auth,config,compute,container,functions	-	not captured
+az	-	local	todo	account,group,vm,aks,storage	-	not captured
+kubectl	-	local	todo	get,apply,describe,delete,logs,exec	-	not captured
+kubectl	config	local	todo	get-contexts,use-context,set-context	-	not captured
+kubectl	rollout	local	todo	status,restart,history,undo	-	not captured
+helm	-	local	todo	install,list,upgrade,uninstall,repo	-	not captured
+helm	repo	local	todo	add,list,update,remove	-	not captured
+terraform	-	local	todo	init,plan,apply,destroy,fmt,validate	-	not captured
+terraform	state	local	todo	list,mv,rm,show,pull	-	not captured
+brew	-	local	todo	install,uninstall,update,upgrade,list	-	not captured
+mise	-	local	todo	use,install,ls,exec,run	-	not captured
+rustup	-	local	todo	toolchain,component,update,show	-	not captured
+deno	-	local	todo	run,test,fmt,lint,install	-	not captured
+bun	-	local	todo	install,add,remove,run,test	-	not captured
+tmux	-	local	todo	new-session,attach-session,list-sessions,kill-session	-	not captured
+gradle	-	local	todo	build,test,clean,tasks	-	not captured
+mvn	-	local	todo	compile,test,package,install	-	not captured
+systemctl	-	synthetic	partial	is-system-running,daemon-reload,daemon-reexec,poweroff,reboot,default	-	entries with [ARG...] placeholders are skipped
+apt	-	synthetic	empty	list,search,show,install,remove,update,upgrade	-	dash-separated entries not recognized
+tar	-	synthetic	bogus	-	none,t,nil,never,literal	option-value keywords parsed as commands
+make	-	local	out-of-scope	-	-	no subcommand concept
+curl	-	local	out-of-scope	-	-	no subcommand concept
+jq	-	local	out-of-scope	-	-	no subcommand concept
+ssh	-	local	out-of-scope	-	-	no subcommand concept
+sudo	-	local	out-of-scope	-	-	no subcommand concept
+python3	-	local	out-of-scope	-	-	no subcommand concept

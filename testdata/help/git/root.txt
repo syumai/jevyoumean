@@ -1,0 +1,24 @@
+# synthetic fixture mimicking `git help -a` output (git is GPL-2.0;
+# format reproduced by hand, no verbatim capture — see ../NOTICE.md)
+See 'jym-git help <command>' to read about a specific subcommand
+
+Main Porcelain Commands
+   add                  Add file contents to the index
+   branch               List, create, or delete branches
+   checkout             Switch branches or restore working tree files
+   commit               Record changes to the repository
+   diff                 Show changes between commits
+   fetch                Download objects and refs from another repository
+   merge                Join two or more development histories together
+   pull                 Fetch from and integrate with another repository
+   push                 Update remote refs along with associated objects
+   rebase               Reapply commits on top of another base tip
+   restore              Restore working tree files
+   rm                   Remove files from the working tree and from the index
+   status               Show the working tree status
+   switch               Switch branches
+
+Ancillary Commands
+   config               Get and set repository or global options
+   remote               Manage set of tracked repositories
+   stash                Stash changes in a dirty working directory

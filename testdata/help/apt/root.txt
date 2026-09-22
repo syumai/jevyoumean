@@ -1,0 +1,15 @@
+# synthetic fixture mimicking `apt --help` (apt is GPL-2.0; format
+# reproduced by hand, no verbatim capture — see ../NOTICE.md)
+apt is a commandline package manager and provides commands for
+searching and managing as well as querying information about packages.
+
+Most used commands:
+  list - list packages based on package names
+  search - search in package descriptions
+  show - show package details
+  install - install packages
+  remove - remove packages
+  update - update list of available packages
+  upgrade - upgrade the system
+
+See apt(8) for more information about the available commands.

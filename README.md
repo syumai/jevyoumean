@@ -223,6 +223,25 @@ Each row is `command <TAB> typed <TAB> expected`. The report shows
 correct/false-suggestion/miss counts for Jev and for the fallback, plus
 latency percentiles.
 
+## Help coverage
+
+[docs/supported-commands.md](docs/supported-commands.md) tracks which
+CLIs' help output the parser handles — a checked TODO list that doubles
+as the support matrix. It is generated from
+`testdata/help/manifest.tsv`, the single source of truth:
+
+- `go run ./cmd/jym-help-capture <cmd> [<cmd> <sub>]...` records real
+  help output as a fixture (permissively-licensed CLIs only; see
+  `testdata/help/NOTICE.md` — use a hand-written synthetic fixture or
+  `source=local` otherwise) and prints a manifest stub row.
+- Add or edit a row with a `status` of `ok`, `partial`, `leaf`,
+  `empty`, `bogus`, `todo` or `out-of-scope`.
+- `go test ./internal/helptext` asserts every committed fixture still
+  matches its status — including the known-broken ones, so fixing a
+  parser bug fails the test until the manifest is updated.
+- `go run ./cmd/jym-help-report` regenerates the doc; CI verifies it
+  is fresh.
+
 ## Scope
 
 Not implemented (by design): flag/argument correction, command-name

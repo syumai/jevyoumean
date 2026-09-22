@@ -1,0 +1,63 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.cargo/bin/cargo
+# args: 
+Install a Rust binary
+
+Usage: cargo install [OPTIONS] [CRATE[@<VER>]]...
+
+Arguments:
+  [CRATE[@<VER>]]...  Select the package from the given source
+
+Options:
+      --version <VERSION>        Specify a version to install
+      --index <INDEX>            Registry index to install from
+      --registry <REGISTRY>      Registry to use
+      --git <URL>                Git URL to install the specified crate from
+      --branch <BRANCH>          Branch to use when installing from git
+      --tag <TAG>                Tag to use when installing from git
+      --rev <SHA>                Specific commit to use when installing from git
+      --path <PATH>              Filesystem path to local crate to install from
+      --root <DIR>               Directory to install packages into
+  -f, --force                    Force overwriting existing crates or binaries
+  -n, --dry-run                  Perform all checks without installing (unstable)
+      --no-track                 Do not save tracking information
+      --list                     List all installed packages and their versions
+      --message-format <FMT>     Error format [possible values: human, short, json,
+                                 json-diagnostic-short, json-diagnostic-rendered-ansi,
+                                 json-render-diagnostics]
+      --debug                    Build in debug mode (with the 'dev' profile) instead of release
+                                 mode
+  -v, --verbose...               Use verbose output (-vv very verbose/build.rs output)
+  -q, --quiet                    Do not print cargo log messages
+      --color <WHEN>             Coloring [possible values: auto, always, never]
+      --config <KEY=VALUE|PATH>  Override a configuration value
+  -Z <FLAG>                      Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for
+                                 details
+  -h, --help                     Print help
+
+Manifest Options:
+      --ignore-rust-version  Ignore `rust-version` specification in packages
+      --locked               Assert that `Cargo.lock` will remain unchanged
+      --offline              Run without accessing the network
+      --frozen               Equivalent to specifying both --locked and --offline
+
+Target Selection:
+      --bin [<NAME>]      Install only the specified binary
+      --bins              Install all binaries
+      --example [<NAME>]  Install only the specified example
+      --examples          Install all examples
+
+Feature Selection:
+  -F, --features <FEATURES>  Space or comma separated list of features to activate
+      --all-features         Activate all available features
+      --no-default-features  Do not activate the `default` feature
+
+Compilation Options:
+  -j, --jobs <N>                Number of parallel jobs, defaults to # of CPUs.
+      --keep-going              Do not abort the build as soon as there is an error
+      --profile <PROFILE-NAME>  Install artifacts with the specified profile
+      --target [<TRIPLE>]       Build for the target triple
+      --target-dir <DIRECTORY>  Directory for all generated artifacts
+      --timings                 Output a build timing report at the end of the build
+
+Run `cargo help install` for more detailed information.
