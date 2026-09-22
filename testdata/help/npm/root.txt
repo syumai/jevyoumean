@@ -1,0 +1,11 @@
+# synthetic fixture mimicking `npm` help (npm is Artistic-2.0; format
+# reproduced by hand, no verbatim capture — see ../NOTICE.md)
+npm <command>
+
+All commands:
+
+    access, adduser, audit, cache, ci,
+    completion, config, dedupe, init, install,
+    publish, run, test, uninstall, version
+
+Specify configs in the ini-formatted config file.

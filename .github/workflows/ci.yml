@@ -71,5 +71,7 @@ jobs:
           go mod tidy -diff
       - name: Verify dependencies
         run: go mod verify
+      - name: Supported-commands doc is fresh
+        run: go run ./cmd/jym-help-report -check
       - name: govulncheck
         run: go run golang.org/x/vuln/cmd/govulncheck@latest ./...

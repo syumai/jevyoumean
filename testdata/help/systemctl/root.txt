@@ -1,0 +1,20 @@
+# synthetic fixture mimicking `systemctl --help` (systemd is LGPL-2.1;
+# format reproduced by hand, no verbatim capture — see ../NOTICE.md)
+jym-systemctl [OPTIONS...] COMMAND ...
+
+Query or send control commands to the system manager.
+
+Commands:
+  is-system-running                   Check whether system is fully running
+  daemon-reload                       Reload manager configuration
+  daemon-reexec                       Reexecute the manager
+  default                             Enter system default mode
+  poweroff                            Shut down and power-off the system
+  reboot                              Shut down and reboot the system
+  list-units [PATTERN...]             List units currently in memory
+  status [PATTERN...|PID...]          Show runtime status of one or more units
+  show [PATTERN...|JOB...]            Show properties of units or the manager
+  start UNIT...                       Start (activate) one or more units
+  stop UNIT...                        Stop (deactivate) one or more units
+  enable UNIT...                      Enable one or more unit files
+  disable UNIT...                     Disable one or more unit files

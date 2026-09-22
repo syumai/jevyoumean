@@ -1,0 +1,48 @@
+# synthetic fixture mimicking a git man page (git is GPL-2.0; format
+# reproduced by hand, no verbatim capture — see ../NOTICE.md)
+JYM-GIT-STASH(1)                Git Manual               JYM-GIT-STASH(1)
+
+NAME
+       jym-git-stash - Stash the changes in a dirty working directory away
+
+SYNOPSIS
+       jym-git stash list [<options>]
+       jym-git stash show [<options>] [<stash>]
+       jym-git stash drop [-q|--quiet] [<stash>]
+       jym-git stash ( pop | apply ) [--index] [<stash>]
+       jym-git stash push [<options>] [--] [<pathspec>...]
+       jym-git stash clear
+
+DESCRIPTION
+       Use jym-git stash when you want to record the current state of the
+       working directory and the index, but want to go back to a clean
+       working directory.
+
+COMMANDS
+       The subcommands below manipulate the stash stack. Each entry
+       refers to a previously stashed state.
+
+       push
+           Save your local modifications to a new stash entry.
+
+       list
+           List the stash entries that you currently have.
+
+       show
+           Show the changes recorded in the stash entry.
+
+       pop
+           Remove a single stash entry and apply it on top of the current
+           working tree state.
+
+       apply
+           Like pop, but do not remove the state from the stash list.
+
+       drop
+           Remove a single stash entry from the list of stash entries.
+
+       clear
+           Remove all the stash entries.
+
+SEE ALSO
+       jym-git-checkout(1), jym-git-commit(1)

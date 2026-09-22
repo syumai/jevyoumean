@@ -1,0 +1,26 @@
+# synthetic fixture mimicking a git man page (git is GPL-2.0; format
+# reproduced by hand, no verbatim capture — see ../NOTICE.md)
+JYM-GIT-CONFIG(1)               Git Manual               JYM-GIT-CONFIG(1)
+
+NAME
+       jym-git-config - Get and set repository or global options
+
+SYNOPSIS
+       jym-git config [<file-option>] [--type=<type>] <name> [<value>]
+
+DESCRIPTION
+       You can query/set/replace/unset options with this command.
+
+FILES
+       By default, options are only written to the repository config.
+
+ENVIRONMENT
+    GIT_CONFIG_GLOBAL
+        Take the configuration from the given file instead of the
+        usual global config.
+    GIT_CONFIG_SYSTEM
+        Take the configuration from the given file instead of the
+        usual system-wide config.
+
+SEE ALSO
+       jym-git(1)

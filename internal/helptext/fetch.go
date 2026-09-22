@@ -24,11 +24,21 @@ var DefaultHelpArgs = [][]string{{"--help"}, {"-h"}, {"help"}}
 // Paginators are disabled and stdin is detached so discovery can never
 // block on interaction.
 func Fetch(ctx context.Context, exe string, path []string, helpArgs []string) ([]Command, error) {
+	_, cmds, err := FetchRaw(ctx, exe, path, helpArgs)
+	return cmds, err
+}
+
+// FetchRaw is Fetch plus the raw help output it parsed. When no attempt
+// yields a parseable command listing, raw holds the first non-empty
+// output (if any) and cmds is nil — useful for capturing fixtures of
+// help formats the parser cannot handle yet.
+func FetchRaw(ctx context.Context, exe string, path []string, helpArgs []string) (raw []byte, cmds []Command, err error) {
 	attempts := DefaultHelpArgs
 	if len(helpArgs) > 0 {
 		attempts = [][]string{helpArgs}
 	}
 	var lastErr error
+	var fallback []byte
 	for _, extra := range attempts {
 		args := append(append([]string{}, path...), extra...)
 		out, err := runHelp(ctx, exe, args)
@@ -39,10 +49,13 @@ func Fetch(ctx context.Context, exe string, path []string, helpArgs []string) ([
 			continue
 		}
 		if cmds := Parse(string(out)); len(cmds) > 0 {
-			return cmds, nil
+			return out, cmds, nil
+		}
+		if fallback == nil {
+			fallback = out
 		}
 	}
-	return nil, lastErr
+	return fallback, nil, lastErr
 }
 
 func runHelp(ctx context.Context, exe string, args []string) ([]byte, error) {
