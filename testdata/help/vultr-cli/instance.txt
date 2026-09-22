@@ -1,0 +1,47 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/vultr-cli
+# args: 
+Get commands available to instance
+
+Usage:
+  vultr-cli instance [command]
+
+Examples:
+
+	# Full example
+	vultr-cli instance
+	
+
+Available Commands:
+  app                   Application commands for an instance
+  backup                List and create backup schedules for an instance
+  bandwidth             Get bandwidth usage 
+  create                Create an instance
+  delete                Delete an instance
+  get                   Get info on an instance
+  ipv4                  IPv4 instance commands
+  ipv6                  Display instance IPv6 info
+  iso                   Manage ISOs on an instance
+  label                 Label an instance
+  list                  List all instances
+  os                    Operating system commands for an instance
+  plan                  Plan commands for an instance
+  reinstall             Reinstall an instance
+  restart               Restart an instance
+  restore               Restore instance from backup or snapshot
+  reverse-dns           Commands to handle reverse DNS on an instance
+  start                 Start an instance
+  stop                  Stop an instance
+  tags                  Update tags on an instance
+  update-firewall-group Assign a firewall group to instance
+  user-data             Commands to manage user data on an instance
+  vpc                   Commands to handle vpcs on an instance
+
+Flags:
+  -h, --help   help for instance
+
+Global Flags:
+      --config string   path to config file (default "/home/ubuntu/.vultr-cli.yaml")
+  -o, --output string   output format [ text | json | yaml ] (default "text")
+
+Use "vultr-cli instance [command] --help" for more information about a command.

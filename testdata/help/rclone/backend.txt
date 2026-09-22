@@ -1,0 +1,53 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/rclone
+# args: 
+This runs a backend-specific command. The commands themselves (except
+for "help" and "features") are defined by the backends and you should
+see the backend docs for definitions.
+
+You can discover what commands a backend implements by using
+
+```console
+rclone backend help remote:
+rclone backend help <backendname>
+```
+
+You can also discover information about the backend using (see
+[operations/fsinfo](/rc/#operations-fsinfo) in the remote control docs
+for more info).
+
+```console
+rclone backend features remote:
+```
+
+Pass options to the backend command with -o. This should be key=value or key, e.g.:
+
+```console
+rclone backend stats remote:path stats -o format=json -o long
+```
+
+Pass arguments to the backend by placing them on the end of the line
+
+```console
+rclone backend cleanup remote:path file1 file2 file3
+```
+
+Note to run these commands on a running backend then see
+[backend/command](/rc/#backend-command) in the rc docs.
+
+Usage:
+  rclone backend <command> remote:path [opts] <args> [flags]
+
+Flags:
+  -h, --help                 help for backend
+      --json                 Always output in JSON format
+  -o, --option stringArray   Option in the form name=value or name
+
+Important flags useful for most commands (flag group Important):
+  -n, --dry-run         Do a trial run with no permanent changes
+  -i, --interactive     Enable interactive mode
+  -v, --verbose count   Print lots more stuff (repeat for more)
+
+Use "rclone [command] --help" for more information about a command.
+Use "rclone help flags" for to see the global flags.
+Use "rclone help backends" for a list of supported services.

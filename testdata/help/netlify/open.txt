@@ -1,0 +1,28 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/netlify
+# args: 
+Open settings for the project linked to the current folder
+
+USAGE
+  $ netlify open [options]
+
+OPTIONS
+  --admin            Open Netlify project
+  --filter <app>     For monorepos, specify the name of the application to run
+                     the command in
+  -h, --help         display help for command
+  --site             Open project
+  --debug            Print debugging information
+  --auth <token>     Netlify auth token - can be used to run this command
+                     without logging in
+
+EXAMPLES
+  $ netlify open --site
+  $ netlify open --admin
+  $ netlify open:admin
+  $ netlify open:site
+
+COMMANDS
+  $ open:admin       Opens current project admin UI in Netlify
+  $ open:site        Opens current project url in browser
+

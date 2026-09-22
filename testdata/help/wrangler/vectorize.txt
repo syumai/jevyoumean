@@ -1,0 +1,32 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/wrangler
+# args: 
+wrangler vectorize
+
+🧮 Manage Vectorize indexes
+
+COMMANDS
+  wrangler vectorize create <name>                 Create a Vectorize index
+  wrangler vectorize delete <name>                 Delete a Vectorize index
+  wrangler vectorize get <name>                    Get a Vectorize index by name
+  wrangler vectorize list                          List your Vectorize indexes
+  wrangler vectorize list-vectors <name>           List vector identifiers in a Vectorize index
+  wrangler vectorize query <name>                  Query a Vectorize index
+  wrangler vectorize insert <name>                 Insert vectors into a Vectorize index
+  wrangler vectorize upsert <name>                 Upsert vectors into a Vectorize index
+  wrangler vectorize get-vectors <name>            Get vectors from a Vectorize index
+  wrangler vectorize delete-vectors <name>         Delete vectors in a Vectorize index
+  wrangler vectorize info <name>                   Get additional details about the index
+  wrangler vectorize create-metadata-index <name>  Enable metadata filtering on the specified property
+  wrangler vectorize list-metadata-index <name>    List metadata properties on which metadata filtering is enabled
+  wrangler vectorize delete-metadata-index <name>  Delete metadata indexes
+
+GLOBAL FLAGS
+  -c, --config          Path to Wrangler configuration file  [string]
+      --cwd             Run as if Wrangler was started in the specified directory instead of the current working directory  [string]
+  -e, --env             Environment to use for operations, and for selecting .env and .dev.vars files  [string]
+      --env-file        Path to an .env file to load - can be specified multiple times - values from earlier files are overridden by values in later files  [array]
+  -h, --help            Show help  [boolean]
+      --install-skills  Install Cloudflare skills for detected AI coding agents before running the command  [boolean] [default: false]
+      --profile         Use a specific auth profile  [string]
+  -v, --version         Show version number  [boolean]

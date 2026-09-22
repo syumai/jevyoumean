@@ -1,0 +1,14 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/firebase
+# args: 
+Usage: firebase target [options] [command] [type]
+
+display configured deploy targets for the current project
+
+Options:
+  -h, --help                                 display help for command
+
+Commands:
+  target:apply <type> <name> <resources...>  apply a deploy target to a resource
+  target:clear <type> <target>               clear all resources from a named resource target
+  target:remove <type> <resource>            remove a resource target

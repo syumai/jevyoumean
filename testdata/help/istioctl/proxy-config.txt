@@ -1,0 +1,44 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/istioctl
+# args: 
+A group of commands used to retrieve information about proxy configuration from the Envoy config dump
+
+Usage:
+  istioctl proxy-config [command]
+
+Aliases:
+  proxy-config, pc
+
+Examples:
+  # Retrieve information about proxy configuration from an Envoy instance.
+  istioctl proxy-config <clusters|listeners|routes|endpoints|ecds|bootstrap|log|secret> <pod-name[.namespace]>
+
+Available Commands:
+  all            Retrieves all configuration for the Envoy in the specified pod
+  bootstrap      Retrieves bootstrap configuration for the Envoy in the specified pod
+  cluster        Retrieves cluster configuration for the Envoy in the specified pod
+  ecds           Retrieves typed extension configuration for the Envoy in the specified pod
+  endpoint       Retrieves endpoint configuration for the Envoy in the specified pod
+  listener       Retrieves listener configuration for the Envoy in the specified pod
+  log            Retrieves logging levels of the Envoy in the specified pod
+  rootca-compare Compare ROOTCA values for the two given pods
+  route          Retrieves route configuration for the Envoy in the specified pod
+  secret         Retrieves secret configuration for the Envoy in the specified pod
+
+Flags:
+  -h, --help                   help for proxy-config
+  -o, --output string          Output format: one of json|yaml|short (default "short")
+      --proxy-admin-port int   Envoy proxy admin port (default 15000)
+
+Global Flags:
+      --as string                   Username to impersonate for the operation. User could be a regular user or a service account in a namespace
+      --as-group stringArray        Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+      --as-uid string               UID to impersonate for the operation.
+      --context string              Kubernetes configuration context
+  -i, --istioNamespace string       Istio system namespace (default "istio-system")
+      --kubeclient-timeout string   Kubernetes client timeout as a time.Duration string, defaults to 15 seconds. (default "15s")
+  -c, --kubeconfig string           Kubernetes configuration file
+  -n, --namespace string            Kubernetes namespace
+      --vklog Level                 number for the log level verbosity. Like -v flag. ex: --vklog=9
+
+Use "istioctl proxy-config [command] --help" for more information about a command.

@@ -1,0 +1,47 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/hcloud
+# args: 
+Manage Floating IPs
+
+Usage:
+  hcloud floating-ip [command]
+
+Aliases:
+  floating-ip, floating-ips
+
+General:
+  add-label          Add a label to a Floating IP
+  create             Create a Floating IP
+  delete             Delete a Floating IP
+  describe           Describe a Floating IP
+  list               List Floating IPs
+  remove-label       Remove a label from a Floating IP
+  update             Update a Floating IP
+
+Protection:
+  disable-protection Disable resource protection for a Floating IP
+  enable-protection  Enable resource protection for a Floating IP
+
+Assign:
+  assign             Assign a Floating IP to a server
+  unassign           Unassign a Floating IP
+
+Additional Commands:
+  set-rdns           Change reverse DNS of a Floating IP
+
+Flags:
+  -h, --help   help for floating-ip
+
+Global Flags:
+      --config string              Config file path (default "~/.config/hcloud/cli.toml")
+      --context string             Currently active context
+      --debug                      Enable debug output
+      --debug-file string          File to write debug output to
+      --endpoint string            Hetzner Cloud API endpoint (default "https://api.hetzner.cloud/v1")
+      --hetzner-endpoint string    Hetzner API endpoint (default "https://api.hetzner.com/v1")
+      --http-timeout duration      Timeout for HTTP requests (default 0 = no timeout)
+      --no-experimental-warnings   If true, experimental warnings are not shown
+      --poll-interval duration     Interval at which to poll information, for example action progress (default 500ms)
+      --quiet                      If true, only print error messages
+
+Use "hcloud floating-ip [command] --help" for more information about a command.

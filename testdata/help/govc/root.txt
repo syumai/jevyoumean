@@ -1,0 +1,459 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/govc
+# args: 
+Usage: govc <COMMAND> [COMMON OPTIONS] [PATH]...
+
+govmomi is a Go library for interacting with VMware vSphere APIs (ESXi and/or
+vCenter Server).
+It is licensed under the Apache License, Version 2.0
+
+govc is the CLI for govmomi.
+
+The available commands are listed below. A detailed description of each
+command can be displayed with "govc <COMMAND> -h". The description of all
+commands can be also found at https://github.com/vmware/govmomi/blob/main/govc/USAGE.md.
+
+Examples:
+  show usage of a command:       govc <COMMAND> -h
+  show toplevel structure:       govc ls
+  show datacenter summary:       govc datacenter.info
+  show all VMs:                  govc find -type m
+  upload a ISO file:             govc datastore.upload -ds datastore1 ./config.iso vm-name/config.iso
+
+Common options:
+  -h                        Show this message
+  -cert=                    Certificate [GOVC_CERTIFICATE]
+  -debug=false              Store debug logs [GOVC_DEBUG]
+  -trace=false              Write SOAP/REST traffic to stderr
+  -verbose=false            Write request/response data to stderr
+  -dump=false               Enable output dump
+  -json=false               Enable JSON output
+  -xml=false                Enable XML output
+  -k=false                  Skip verification of server certificate [GOVC_INSECURE]
+  -key=                     Private key [GOVC_PRIVATE_KEY]
+  -persist-session=true     Persist session to disk [GOVC_PERSIST_SESSION]
+  -tls-ca-certs=            TLS CA certificates file [GOVC_TLS_CA_CERTS]
+  -tls-known-hosts=         TLS known hosts file [GOVC_TLS_KNOWN_HOSTS]
+  -u=                       ESX or vCenter URL [GOVC_URL]
+  -vim-namespace=urn:vim25  Vim namespace [GOVC_VIM_NAMESPACE]
+  -vim-version=6.0          Vim version [GOVC_VIM_VERSION]
+  -dc=                      Datacenter [GOVC_DATACENTER]
+  -host.dns=                Find host by FQDN
+  -host.ip=                 Find host by IP address
+  -host.ipath=              Find host by inventory path
+  -host.uuid=               Find host by UUID
+  -vm.dns=                  Find VM by FQDN
+  -vm.ip=                   Find VM by IP address
+  -vm.ipath=                Find VM by inventory path
+  -vm.path=                 Find VM by path to .vmx file
+  -vm.uuid=                 Find VM by UUID
+
+Available commands:
+  about
+  about.cert
+  alarm.info
+  alarms
+  cluster.add
+  cluster.change
+  cluster.create
+  cluster.draft.baseimage.info
+  cluster.draft.baseimage.set
+  cluster.draft.commit
+  cluster.draft.component.add
+  cluster.draft.component.info
+  cluster.draft.component.ls
+  cluster.draft.component.rm
+  cluster.draft.create
+  cluster.draft.info
+  cluster.draft.ls
+  cluster.draft.rm
+  cluster.group.change
+  cluster.group.create
+  cluster.group.ls
+  cluster.group.remove
+  cluster.module.create
+  cluster.module.ls
+  cluster.module.rm
+  cluster.module.vm.add
+  cluster.module.vm.rm
+  cluster.mv
+  cluster.override.change
+  cluster.override.info
+  cluster.override.remove
+  cluster.rule.change
+  cluster.rule.create
+  cluster.rule.info
+  cluster.rule.ls
+  cluster.rule.remove
+  cluster.stretch
+  cluster.usage
+  cluster.vlcm.enable
+  cluster.vlcm.info
+  collect
+  datacenter.create
+  datacenter.info
+  datastore.cluster.change
+  datastore.cluster.info
+  datastore.cp
+  datastore.create
+  datastore.disk.create
+  datastore.disk.extend
+  datastore.disk.inflate
+  datastore.disk.info
+  datastore.disk.shrink
+  datastore.download
+  datastore.info
+  datastore.ls
+  datastore.maintenance.enter
+  datastore.maintenance.exit
+  datastore.mkdir
+  datastore.mv
+  datastore.remove
+  datastore.rm
+  datastore.tail
+  datastore.upload
+  datastore.vsan.dom.ls
+  datastore.vsan.dom.rm
+  device.boot
+  device.cdrom.add
+  device.cdrom.eject
+  device.cdrom.insert
+  device.clock.add
+  device.connect
+  device.disconnect
+  device.floppy.add
+  device.floppy.eject
+  device.floppy.insert
+  device.info
+  device.ls
+  device.model.tree
+  device.pci.add
+  device.pci.ls
+  device.pci.remove
+  device.remove
+  device.sata.add
+  device.scsi.add
+  device.serial.add
+  device.serial.connect
+  device.serial.disconnect
+  device.usb.add
+  disk.attach
+  disk.create
+  disk.detach
+  disk.ls
+  disk.metadata.ls
+  disk.metadata.update
+  disk.register
+  disk.rm
+  disk.snapshot.create
+  disk.snapshot.ls
+  disk.snapshot.rm
+  disk.tags.attach
+  disk.tags.detach
+  dvs.add
+  dvs.change
+  dvs.create
+  dvs.portgroup.add
+  dvs.portgroup.change
+  dvs.portgroup.info
+  env
+  events
+  export.ovf
+  extension.info
+  extension.register
+  extension.setcert
+  extension.unregister
+  fields.add
+  fields.info
+  fields.ls
+  fields.rename
+  fields.rm
+  fields.set
+  find
+  firewall.ruleset.find
+  folder.create
+  folder.info
+  folder.place
+  gpu.host.info
+  gpu.host.profile.ls
+  gpu.vm.add
+  gpu.vm.info
+  gpu.vm.remove
+  guest.chmod
+  guest.chown
+  guest.df
+  guest.download
+  guest.getenv
+  guest.kill
+  guest.ls
+  guest.mkdir
+  guest.mktemp
+  guest.mv
+  guest.ps
+  guest.rm
+  guest.rmdir
+  guest.run
+  guest.start
+  guest.touch
+  guest.upload
+  host.account.create
+  host.account.remove
+  host.account.update
+  host.add
+  host.autostart.add
+  host.autostart.configure
+  host.autostart.info
+  host.autostart.remove
+  host.cert.csr
+  host.cert.import
+  host.cert.info
+  host.date.change
+  host.date.info
+  host.disconnect
+  host.esxcli
+  host.info
+  host.maintenance.enter
+  host.maintenance.exit
+  host.option.ls
+  host.option.set
+  host.portgroup.add
+  host.portgroup.change
+  host.portgroup.info
+  host.portgroup.remove
+  host.reconnect
+  host.remove
+  host.service
+  host.service.ls
+  host.shutdown
+  host.storage.info
+  host.storage.mark
+  host.storage.partition
+  host.tpm.info
+  host.tpm.report
+  host.vnic.change
+  host.vnic.hint
+  host.vnic.info
+  host.vnic.service
+  host.vswitch.add
+  host.vswitch.info
+  host.vswitch.remove
+  import.ova
+  import.ovf
+  import.spec
+  import.vmdk
+  kms.add
+  kms.default
+  kms.export
+  kms.ls
+  kms.rm
+  kms.trust
+  library.checkin
+  library.checkout
+  library.clone
+  library.cp
+  library.create
+  library.deploy
+  library.evict
+  library.export
+  library.import
+  library.info
+  library.ls
+  library.policy.ls
+  library.publish
+  library.rm
+  library.session.ls
+  library.session.rm
+  library.subscriber.create
+  library.subscriber.info
+  library.subscriber.ls
+  library.subscriber.rm
+  library.sync
+  library.trust.create
+  library.trust.info
+  library.trust.ls
+  library.trust.rm
+  library.update
+  library.vmtx.info
+  license.add
+  license.assign
+  license.assigned.ls
+  license.decode
+  license.label.set
+  license.ls
+  license.remove
+  logs
+  logs.download
+  logs.ls
+  ls
+  metric.change
+  metric.info
+  metric.interval.change
+  metric.interval.info
+  metric.ls
+  metric.reset
+  metric.sample
+  namespace.cluster.disable
+  namespace.cluster.enable
+  namespace.cluster.ls
+  namespace.create
+  namespace.info
+  namespace.logs.download
+  namespace.ls
+  namespace.registervm
+  namespace.rm
+  namespace.service.activate
+  namespace.service.create
+  namespace.service.deactivate
+  namespace.service.info
+  namespace.service.ls
+  namespace.service.rm
+  namespace.service.version.activate
+  namespace.service.version.create
+  namespace.service.version.deactivate
+  namespace.service.version.info
+  namespace.service.version.ls
+  namespace.service.version.rm
+  namespace.update
+  namespace.vmclass.create
+  namespace.vmclass.info
+  namespace.vmclass.ls
+  namespace.vmclass.rm
+  namespace.vmclass.update
+  object.destroy
+  object.method
+  object.mv
+  object.reload
+  object.rename
+  object.save
+  option.ls
+  option.set
+  permissions.ls
+  permissions.remove
+  permissions.set
+  pool.change
+  pool.create
+  pool.destroy
+  pool.info
+  role.create
+  role.ls
+  role.remove
+  role.update
+  role.usage
+  session.login
+  session.logout
+  session.ls
+  session.rm
+  snapshot.create
+  snapshot.export
+  snapshot.remove
+  snapshot.revert
+  snapshot.tree
+  sso.group.create
+  sso.group.ls
+  sso.group.rm
+  sso.group.update
+  sso.idp.default.ls
+  sso.idp.default.update
+  sso.idp.ldap.update
+  sso.idp.ls
+  sso.lpp.info
+  sso.lpp.update
+  sso.service.ls
+  sso.user.create
+  sso.user.id
+  sso.user.ls
+  sso.user.rm
+  sso.user.update
+  storage.policy.create
+  storage.policy.info
+  storage.policy.ls
+  storage.policy.rm
+  tags.attach
+  tags.attached.ls
+  tags.category.create
+  tags.category.info
+  tags.category.ls
+  tags.category.rm
+  tags.category.update
+  tags.create
+  tags.detach
+  tags.info
+  tags.ls
+  tags.rm
+  tags.update
+  task.cancel
+  tasks
+  tree
+  vapp.destroy
+  vapp.power
+  vcsa.access.consolecli.get
+  vcsa.access.consolecli.set
+  vcsa.access.dcui.get
+  vcsa.access.dcui.set
+  vcsa.access.shell.get
+  vcsa.access.shell.set
+  vcsa.access.ssh.get
+  vcsa.access.ssh.set
+  vcsa.log.forwarding.info
+  vcsa.net.proxy.info
+  vcsa.shutdown.cancel
+  vcsa.shutdown.get
+  vcsa.shutdown.poweroff
+  vcsa.shutdown.reboot
+  version
+  vlcm.depot.baseimages.ls
+  vlcm.depot.offline.create
+  vlcm.depot.offline.info
+  vlcm.depot.offline.ls
+  vlcm.depot.offline.rm
+  vm.change
+  vm.clone
+  vm.console
+  vm.create
+  vm.customize
+  vm.dataset.create
+  vm.dataset.entry.get
+  vm.dataset.entry.ls
+  vm.dataset.entry.rm
+  vm.dataset.entry.set
+  vm.dataset.info
+  vm.dataset.ls
+  vm.dataset.rm
+  vm.dataset.update
+  vm.destroy
+  vm.disk.attach
+  vm.disk.change
+  vm.disk.create
+  vm.disk.promote
+  vm.guest.tools
+  vm.info
+  vm.instantclone
+  vm.ip
+  vm.keystrokes
+  vm.markastemplate
+  vm.markasvm
+  vm.migrate
+  vm.network.add
+  vm.network.change
+  vm.option.info
+  vm.option.ls
+  vm.policy.ls
+  vm.power
+  vm.question
+  vm.rdm.attach
+  vm.rdm.ls
+  vm.register
+  vm.target.cap.ls
+  vm.target.info
+  vm.unregister
+  vm.upgrade
+  vm.vnc
+  volume.extend
+  volume.ls
+  volume.relocate
+  volume.rm
+  volume.snapshot.create
+  volume.snapshot.ls
+  volume.snapshot.rm
+  vsan.change
+  vsan.info

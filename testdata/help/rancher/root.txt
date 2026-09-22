@@ -1,0 +1,35 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/rancher
+# args: 
+Rancher CLI, managing containers one UTF-8 character at a time
+
+Usage: rancher [OPTIONS] COMMAND [arg...]
+
+Version: v2.15.1
+
+Options:
+  --debug                     Debug logging
+  --config string, -c string  Path to rancher config (default: "/home/ubuntu/.rancher") [$RANCHER_CONFIG_DIR]
+  --help, -h                  show help
+  --version, -v               print the version
+  
+Commands:
+  clusters, cluster      Operations on clusters
+  context                Operations for the context
+  inspect                View details of resources
+  kubectl                Run kubectl commands
+  login, l               Login to a Rancher server
+  machines, machine      Operations on machines
+  namespaces, namespace  Operations on namespaces
+  nodes, node            Operations on nodes
+  projects, project      Operations on projects
+  ps                     Show workloads in a project
+  server                 Operations for the server
+  settings, setting      Show settings for the current server
+  ssh                    SSH into a node
+  up                     apply compose config
+  wait                   Wait for resources cluster, project
+  token                  Authenticate and generate new kubeconfig token
+  completion             Output shell completion script for bash, zsh, fish, or Powershell
+  
+Run 'rancher COMMAND --help' for more information on a command.

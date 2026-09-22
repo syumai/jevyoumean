@@ -1,0 +1,14 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/hatch
+# args: 
+Usage: hatch python [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  find     Locate Python binaries
+  install  Install Python distributions
+  remove   Remove Python distributions
+  show     Show the available Python distributions
+  update   Update Python distributions

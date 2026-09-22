@@ -1,0 +1,50 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/railway
+# args: 
+Manage project volumes
+
+Usage: railway volume [OPTIONS] <COMMAND>
+
+Commands:
+  list    List volumes [aliases: ls]
+  add     Add a new volume [aliases: create, new]
+  delete  Delete a volume [aliases: remove, rm]
+  update  Update a volume [aliases: edit, rename]
+  detach  Detach a volume from a service
+  files   Manage files in a volume [aliases: file]
+  browse  Browse files in a volume interactively [aliases: browser]
+  attach  Attach a volume to a service
+  help    Print this message or the help of the given subcommand(s)
+
+Options:
+  -s, --service <SERVICE>          Service ID
+  -e, --environment <ENVIRONMENT>  Environment ID
+  -p, --project <PROJECT_ID>       Project ID to use (defaults to linked project)
+  -h, --help                       Print help
+  -V, --version                    Print version
+
+Examples:
+
+  railway volume list --json
+  railway volume add --service api --mount-path /data --json
+  railway volume update --volume volume-id --name data --json
+  railway volume delete --volume data --yes --json
+  railway volume browse /
+  railway volume files list / --json
+  railway volume files browse /
+  railway volume files download /backup.tar ./backup.tar --json
+  railway volume files upload ./backup.tar /backup.tar --json
+  railway volume files delete /backup.tar --yes --json
+  railway volume files rename /backup.tar /backup-old.tar --json
+
+Aliases:
+  list: ls
+  add: create, new
+  delete: remove, rm
+  update: edit, rename
+  browse: browser
+
+Automation notes:
+  Mount paths must start with `/`. Use volume IDs from `railway volume list --json` when names may collide.
+  Downloads fail if LOCAL_PATH exists unless --overwrite or --override is passed. Uploads fail if REMOTE_PATH exists unless --overwrite is passed. Use --json for machine-readable file operation details.
+

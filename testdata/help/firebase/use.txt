@@ -1,0 +1,13 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/firebase
+# args: 
+Usage: firebase use [options] [alias_or_project_id]
+
+set an active Firebase project for your working directory
+
+Options:
+  --add             create a new project alias interactively
+  --alias <name>    create a new alias for the provided project id
+  --unalias <name>  remove an already created project alias
+  --clear           clear the active project selection
+  -h, --help        display help for command

@@ -1,0 +1,27 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/az
+# args: 
+
+Command
+    az group list : List resource groups.
+
+Arguments
+    --tag              : A single tag in 'key[=value]' format. Use '' to clear existing tags.
+
+Global Arguments
+    --debug            : Increase logging verbosity to show all debug logs.
+    --help -h          : Show this help message and exit.
+    --only-show-errors : Only show errors, suppressing warnings.
+    --output -o        : Output format.  Allowed values: json, jsonc, none, table, tsv, yaml, yamlc.
+                         Default: json.
+    --query            : JMESPath query string. See http://jmespath.org/ for more information and
+                         examples.
+    --subscription     : Name or ID of subscription. You can configure the default subscription
+                         using `az account set -s NAME_OR_ID`.
+    --verbose          : Increase logging verbosity. Use --debug for full debug logs.
+
+Examples
+    List all resource groups located in the West US region.
+        az group list --query "[?location=='westus']"
+
+

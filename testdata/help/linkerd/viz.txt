@@ -1,0 +1,41 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/linkerd
+# args: 
+viz manages the linkerd-viz extension of Linkerd service mesh.
+
+Usage:
+  linkerd viz [command]
+
+Available Commands:
+  allow-scrapes Output Kubernetes resources to authorize Prometheus scrapes
+  authz         Display stats for authorizations for a resource
+  check         Check the Linkerd Viz extension for potential problems
+  dashboard     Open the Linkerd dashboard in a web browser
+  edges         Display connections between resources, and Linkerd proxy identities
+  install       Output Kubernetes resources to install linkerd-viz extension
+  list          Lists which pods can be tapped
+  profile       Output service profile config for Kubernetes based off tap data
+  prune         Output extraneous Kubernetes resources in the linkerd-viz extension
+  routes        Display route stats
+  stat          Display traffic stats about one or many resources
+  stat-inbound  Display inbound traffic stats about a resource
+  stat-outbound Display outbound traffic stats about a resource
+  tap           Listen to a traffic stream
+  top           Display sorted information about live traffic
+  uninstall     Output Kubernetes resources to uninstall the linkerd-viz extension
+
+Flags:
+      --api-addr string            Override kubeconfig and communicate directly with the control plane at host:port (mostly for testing)
+      --as string                  Username to impersonate for Kubernetes operations
+      --as-group stringArray       Group to impersonate for Kubernetes operations
+      --context string             Name of the kubeconfig context to use
+  -h, --help                       help for viz
+      --kubeconfig string          Path to the kubeconfig file to use for CLI requests
+  -L, --linkerd-namespace string   Namespace in which Linkerd is installed (default "linkerd")
+      --verbose                    Turn on debug logging
+      --viz-namespace string       Name of the linkerd-viz namespace. If not set, it's automatically detected
+
+Global Flags:
+      --cni-namespace string   Namespace in which the Linkerd CNI plugin is installed (default "linkerd-cni")
+
+Use "linkerd viz [command] --help" for more information about a command.

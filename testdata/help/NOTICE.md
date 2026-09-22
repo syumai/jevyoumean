@@ -88,6 +88,20 @@ code from these projects.
 | starship | Starship (`starship/starship`) | ISC |
 | task | Task (`go-task/task`) | MIT |
 | just | just (`casey/just`) | CC0-1.0 |
+| vultr-cli | Vultr CLI (`vultr/vultr-cli`) | Apache-2.0 |
+| cosign | cosign (`sigstore/cosign`) | Apache-2.0 |
+| trivy | Trivy (`aquasecurity/trivy`) | Apache-2.0 |
+| syft | Syft (`anchore/syft`) | Apache-2.0 |
+| grype | Grype (`anchore/grype`) | Apache-2.0 |
+| tkn | Tekton CLI (`tektoncd/cli`) | Apache-2.0 |
+| rancher | Rancher CLI (`rancher/cli`) | Apache-2.0 |
+| dagger | Dagger (`dagger/dagger`) | Apache-2.0 |
+| goreleaser | GoReleaser (`goreleaser/goreleaser`) | MIT |
+| govc | govmomi govc (`vmware/govmomi`) | Apache-2.0 |
+| kubectl-krew | krew (`kubernetes-sigs/krew`) | Apache-2.0 |
+| certbot | Certbot (`certbot/certbot`) | Apache-2.0 |
+| composer | Composer (`composer/composer`) | MIT |
+| bundler | Bundler (`rubygems/bundler`) | MIT |
 | volta | Volta (`volta-cli/volta`) | BSD-2-Clause |
 
 ## Synthetic fixtures (format only, not verbatim)

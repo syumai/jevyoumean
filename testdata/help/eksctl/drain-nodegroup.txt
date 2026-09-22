@@ -1,0 +1,5 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/eksctl
+# args: 
+Error: unknown command "drain-nodegroup" for "eksctl"
+Run 'eksctl --help' for usage.

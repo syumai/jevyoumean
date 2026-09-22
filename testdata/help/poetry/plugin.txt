@@ -1,0 +1,9 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/poetry
+# args: 
+The requested command plugin does not exist.
+
+Did you mean one of these perhaps?
+    self show plugins: Shows information about the currently installed plugins.
+
+Documentation: https://python-poetry.org/docs/cli/

@@ -1,0 +1,115 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/zellij
+# args: 
+Send actions to a specific session
+
+Usage: zellij action <COMMAND>
+
+Commands:
+  write                             Write bytes to the terminal
+  write-chars                       Write characters to the terminal
+  paste                             Paste text to the terminal (using bracketed paste mode)
+  send-keys                         Send one or more keys to the terminal (e.g., "Ctrl a", "F1",
+                                    "Alt Shift b")
+  resize                            [increase|decrease] the focused panes area at the
+                                    [left|down|up|right] border
+  focus-next-pane                   Change focus to the next pane
+  focus-previous-pane               Change focus to the previous pane
+  focus-pane-id                     Focus a specific pane by its ID
+  focus-last-pane                   Change focus to the last focused frame
+  move-focus                        Move the focused pane in the specified direction.
+                                    [right|left|up|down]
+  move-focus-or-tab                 Move focus to the pane or tab (if on screen edge) in the
+                                    specified direction [right|left|up|down]
+  move-pane                         Change the location of the focused pane in the specified
+                                    direction or rotate forwrads [right|left|up|down]
+  move-pane-backwards               Rotate the location of the previous pane backwards
+  clear                             Clear all buffers for a focused pane
+  dump-screen                       Dumps the viewport and optionally scrollback of a pane to a file
+                                    or STDOUT
+  dump-layout                       Dump current layout to stdout
+  save-session                      Save the current session state to disk immediately
+  edit-scrollback                   Open the pane scrollback in your default editor
+  scroll-up                         Scroll up in the focused pane
+  scroll-down                       Scroll down in focus pane
+  scroll-to-bottom                  Scroll down to bottom in focus pane
+  scroll-to-top                     Scroll up to top in focus pane
+  page-scroll-up                    Scroll up one page in focus pane
+  page-scroll-down                  Scroll down one page in focus pane
+  half-page-scroll-up               Scroll up half page in focus pane
+  half-page-scroll-down             Scroll down half page in focus pane
+  toggle-fullscreen                 Toggle between fullscreen focus pane and normal layout
+  toggle-no-ui-fullscreen           Toggle between fullscreen over the entire display (including the
+                                    UI bars) and normal layout
+  toggle-pane-frames                Toggle frames around panes in the UI
+  set-pane-frame-style              
+  toggle-active-sync-tab            Toggle between sending text commands to all panes on the current
+                                    tab and normal mode
+  new-pane                          Open a new pane in the specified direction [right|down] If no
+                                    direction is specified, will try to use the biggest available
+                                    space. Returns: Created pane ID (format: terminal_<id> or
+                                    plugin_<id>)
+  edit                              Open the specified file in a new zellij pane with your default
+                                    EDITOR Returns: Created pane ID (format: terminal_<id>)
+  switch-mode                       Switch input mode of all connected clients
+                                    [locked|pane|tab|resize|move|search|session]
+  toggle-pane-embed-or-floating     Embed focused pane if floating or float focused pane if embedded
+  toggle-floating-panes             Toggle the visibility of all floating panes in the current Tab,
+                                    open one if none exist
+  show-floating-panes               Show all floating panes in the specified tab (or active tab if
+                                    tab_id is not provided)
+  hide-floating-panes               Hide all floating panes in the specified tab (or active tab if
+                                    tab_id is not provided)
+  are-floating-panes-visible        Check if floating panes are visible in the specified tab (or
+                                    active tab)
+  close-pane                        Close the focused pane
+  rename-pane                       Renames the focused pane
+  undo-rename-pane                  Remove a previously set pane name
+  go-to-next-tab                    Go to the next tab
+  go-to-previous-tab                Go to the previous tab
+  close-tab                         Close the current tab
+  go-to-tab                         Go to tab with index [index]
+  go-to-tab-name                    Go to tab with name [name]
+  rename-tab                        Renames the focused pane
+  undo-rename-tab                   Remove a previously set tab name
+  go-to-tab-by-id                   Go to tab with stable ID
+  close-tab-by-id                   Close tab with stable ID
+  rename-tab-by-id                  Rename tab by stable ID
+  new-tab                           Create a new tab, optionally with a specified tab layout and
+                                    name
+  move-tab                          Move the focused tab in the specified direction. [right|left]
+  previous-swap-layout              
+  next-swap-layout                  
+  override-layout                   Override the layout of the active tab
+  query-tab-names                   Query all tab names
+  start-or-reload-plugin            
+  launch-or-focus-plugin            Returns: Plugin pane ID (format: plugin_<id>) when creating or
+                                    focusing plugin
+  launch-plugin                     Returns: Plugin pane ID (format: plugin_<id>)
+  rename-session                    
+  pipe                              Send data to one or more plugins, launch them if they are not
+                                    running
+  list-clients                      
+  list-panes                        List all panes in the current session
+  list-tabs                         List all tabs with their information
+  current-tab-info                  Get information about the currently active tab
+  toggle-pane-pinned                
+  stack-panes                       Stack pane ids Ids are a space separated list of pane ids. They
+                                    should either be in the form of `terminal_<int>` (eg.
+                                    terminal_1), `plugin_<int>` (eg. plugin_1) or bare integers in
+                                    which case they'll be considered terminals (eg. 1 is the
+                                    equivalent of terminal_1)
+  change-floating-pane-coordinates  
+  toggle-pane-borderless            
+  set-pane-borderless               
+  detach                            Detach from the current session
+  set-dark-theme                    Switch the theme to dark (uses configured `theme_dark`)
+  set-light-theme                   Switch the theme to light (uses configured `theme_light`)
+  toggle-theme                      Toggle between dark and light themes (used configured
+                                    `theme_dark` and `theme_light`)
+  switch-session                    Switch to a different session
+  set-pane-color                    Set the default foreground/background color of a pane
+  help                              Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help  Print help

@@ -1,0 +1,34 @@
+# captured 2026-09-22
+# exe: /usr/bin/docker
+# args: 
+Usage:  docker buildx [OPTIONS] COMMAND
+
+Extended build capabilities with BuildKit
+
+Options:
+      --builder string   Override the configured builder instance
+  -D, --debug            Enable debug logging
+
+Management Commands:
+  dap         Start debug adapter protocol compatible debugger
+  history     Commands to work on build records
+  imagetools  Commands to work on images in registry
+  policy      Commands for working with build policies
+
+Commands:
+  bake        Build from a file
+  build       Start a build
+  create      Create a new builder instance
+  dial-stdio  Proxy current stdio streams to builder instance
+  du          Disk usage
+  inspect     Inspect current builder instance
+  ls          List builder instances
+  prune       Remove build cache
+  rm          Remove one or more builder instances
+  stop        Stop builder instance
+  use         Set the current builder instance
+  version     Show buildx version information
+
+Run 'docker buildx COMMAND --help' for more information on a command.
+
+Experimental commands and flags are hidden. Set BUILDX_EXPERIMENTAL=1 to show them.

@@ -1,0 +1,17 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pdm
+# args: 
+Usage: pdm self [-h] [-v | -q] ...
+
+Manage the PDM program itself (previously known as plugin)
+
+Options:
+  -h, --help     Show this help message and exit.
+  -v, --verbose  Use `-v` for detailed output and `-vv` for more detailed
+  -q, --quiet    Suppress output
+
+Commands:
+  list           List all packages installed with PDM
+  add            Install packages to the PDM's environment
+  remove         Remove packages from PDM's environment
+  update         Update PDM itself

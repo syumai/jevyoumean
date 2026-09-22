@@ -1,0 +1,15 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/starship
+# args: 
+Prints a preset config
+
+Usage: starship preset [OPTIONS] [NAME]
+
+Arguments:
+  [NAME]  The name of preset to be printed [possible values: bracketed-segments, catppuccin-powerline, gruvbox-rainbow, jetpack, nerd-font-symbols, no-empty-icons, no-nerd-font, no-runtime-versions, pastel-powerline, plain-text-symbols, pure-preset, tokyo-night]
+
+Options:
+  -o, --output <OUTPUT>  Output the preset to a file instead of stdout
+  -f, --force            Forcibly overwrite the output file if it already exists
+  -l, --list             List out all preset names
+  -h, --help             Print help

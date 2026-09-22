@@ -1,0 +1,9 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/firebase
+# args: 
+Usage: firebase open [options] [link]
+
+quickly open a browser to relevant project resources
+
+Options:
+  -h, --help  display help for command

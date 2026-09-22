@@ -1,0 +1,99 @@
+# captured 2026-09-22
+# exe: /usr/bin/composer
+# args: 
+Description:
+  Sets config options.
+
+Usage:
+  config [options] [--] [<setting-key> [<setting-value>...]]
+
+Arguments:
+  setting-key                    Setting key
+  setting-value                  Setting value
+
+Options:
+  -g, --global                   Apply command to the global config file
+  -e, --editor                   Open editor
+  -a, --auth                     Affect auth config file (only used for --editor)
+      --unset                    Unset the given setting-key
+  -l, --list                     List configuration settings
+  -f, --file=FILE                If you want to choose a different composer.json or config.json
+      --absolute                 Returns absolute paths when fetching *-dir config values instead of relative
+  -j, --json                     JSON decode the setting value, to be used with extra.* keys
+  -m, --merge                    Merge the setting value with the current value, to be used with extra.* keys in combination with --json
+      --append                   When adding a repository, append it (lowest priority) to the existing ones instead of prepending it (highest priority)
+      --source                   Display where the config value is loaded from
+  -h, --help                     Display help for the given command. When no command is given display help for the list command
+  -q, --quiet                    Do not output any message
+  -V, --version                  Display this application version
+      --ansi|--no-ansi           Force (or disable --no-ansi) ANSI output
+  -n, --no-interaction           Do not ask any interactive question
+      --profile                  Display timing and memory usage information
+      --no-plugins               Whether to disable plugins.
+      --no-scripts               Skips the execution of all scripts defined in composer.json file.
+  -d, --working-dir=WORKING-DIR  If specified, use the given directory as working directory.
+      --no-cache                 Prevent use of the cache
+  -v|vv|vvv, --verbose           Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+Help:
+  This command allows you to edit composer config settings and repositories
+  in either the local composer.json file or the global config.json file.
+  
+  Additionally it lets you edit most properties in the local composer.json.
+  
+  To set a config setting:
+  
+      /usr/bin/composer config bin-dir bin/
+  
+  To read a config setting:
+  
+      /usr/bin/composer config bin-dir
+      Outputs: bin
+  
+  To edit the global config.json file:
+  
+      /usr/bin/composer config --global
+  
+  To add a repository:
+  
+      /usr/bin/composer config repositories.foo vcs https://bar.com
+  
+  To remove a repository (repo is a short alias for repositories):
+  
+      /usr/bin/composer config --unset repo.foo
+  
+  To disable packagist:
+  
+      /usr/bin/composer config repo.packagist false
+  
+  You can alter repositories in the global config.json file by passing in the
+  --global option.
+  
+  To add or edit suggested packages you can use:
+  
+      /usr/bin/composer config suggest.package reason for the suggestion
+  
+  To add or edit extra properties you can use:
+  
+      /usr/bin/composer config extra.property value
+  
+  Or to add a complex value you can use json with:
+  
+      /usr/bin/composer config extra.property --json '{"foo":true, "bar": []}'
+  
+  To edit the file in an external editor:
+  
+      /usr/bin/composer config --editor
+  
+  To choose your editor you can set the "EDITOR" env variable.
+  
+  To get a list of configuration values in the file:
+  
+      /usr/bin/composer config --list
+  
+  You can always pass more than one option. As an example, if you want to edit the
+  global config.json file.
+  
+      /usr/bin/composer config --editor --global
+  
+  Read more at https://getcomposer.org/doc/03-cli.md#config

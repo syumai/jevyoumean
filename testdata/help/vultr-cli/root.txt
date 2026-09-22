@@ -1,0 +1,47 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/vultr-cli
+# args: 
+vultr-cli is a command line interface for the Vultr API
+
+Usage:
+  vultr-cli [command]
+
+Available Commands:
+  account            Commands related to account information
+  apps               Display applications
+  backups            Display backups
+  bare-metal         Commands to manage bare metal servers
+  billing            Display billing information
+  block-storage      Commands to manage block storage
+  cdn                Commands to manage your CDN zones
+  completion         Generate the autocompletion script for the specified shell
+  container-registry Commands to interact with container registries
+  database           Commands to manage databases
+  dns                Commands to control DNS records
+  firewall           Commands to manage firewalls
+  help               Help about any command
+  inference          Commands to manage serverless inference
+  instance           Commands to interact with instances
+  iso                Commands to manage ISOs
+  kubernetes         Commands to manage kubernetes clusters
+  load-balancer      Commands to managed load balancers
+  logs               Commands to view logs
+  marketplace        Display marketplace information
+  object-storage     Commands to manage object storage
+  os                 Display available operating systems
+  plans              Display available plan information
+  regions            Display regions information
+  reserved-ip        Commands to interact with reserved IPs
+  script             Commands to interact with startup scripts
+  snapshot           Commands to interact with snapshots
+  ssh-key            Commands to manage SSH keys
+  user               Commands to manage users
+  version            Display the vultr-cli version
+  vpc                Commands to manage VPCs
+
+Flags:
+      --config string   path to config file (default "/home/ubuntu/.vultr-cli.yaml")
+  -h, --help            help for vultr-cli
+  -o, --output string   output format [ text | json | yaml ] (default "text")
+
+Use "vultr-cli [command] --help" for more information about a command.

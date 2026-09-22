@@ -1,0 +1,45 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/zellij
+# args: 
+Run a web server to serve terminal sessions
+
+Usage: zellij web [OPTIONS]
+
+Options:
+      --start
+          Start the server (default unless other arguments are specified)
+      --stop
+          Stop the server
+      --status
+          Get the server status
+      --timeout <TIMEOUT>
+          Timeout in seconds for the status check (default: 30)
+  -d, --daemonize
+          Run the server in the background
+      --server-startup-timeout <SERVER_STARTUP_TIMEOUT>
+          Timeout in seconds waiting for the server to start (default: 10). Only used on Windows
+          where the daemonized server is polled via TCP. On Unix, startup signaling uses pipes and
+          this option is ignored
+      --create-token
+          Create a login token for the web interface, will only be displayed once and cannot later
+          be retrieved. Returns the token name and the token
+      --token-name <TOKEN_NAME>
+          Optional name for the token
+      --create-read-only-token
+          Create a read-only login token (can only attach to existing sessions as watcher)
+      --revoke-token <TOKEN NAME>
+          Revoke a login token by its name
+      --revoke-all-tokens
+          Revoke all login tokens
+      --list-tokens
+          List token names and their creation dates (cannot show actual tokens)
+      --ip <IP>
+          The ip address to listen on locally for connections (defaults to 127.0.0.1)
+      --port <PORT>
+          The port to listen on locally for connections (defaults to 8082)
+      --cert <CERT>
+          The path to the SSL certificate (required if not listening on 127.0.0.1)
+      --key <KEY>
+          The path to the SSL key (required if not listening on 127.0.0.1)
+  -h, --help
+          Print help

@@ -1,0 +1,42 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/istioctl
+# args: 
+A group of commands used to manage waypoint configuration
+
+Usage:
+  istioctl waypoint [flags]
+  istioctl waypoint [command]
+
+Examples:
+  # Apply a waypoint to the current namespace
+  istioctl waypoint apply
+
+  # Generate a waypoint as yaml
+  istioctl waypoint generate --namespace default
+
+  # List all waypoints in a specific namespace
+  istioctl waypoint list --namespace default
+
+Available Commands:
+  apply       Apply a waypoint configuration
+  delete      Delete a waypoint configuration
+  generate    Generate a waypoint configuration
+  list        List managed waypoint configurations
+  status      Show the status of waypoints
+
+Flags:
+  -h, --help          help for waypoint
+      --name string   name of the waypoint (default "waypoint")
+
+Global Flags:
+      --as string                   Username to impersonate for the operation. User could be a regular user or a service account in a namespace
+      --as-group stringArray        Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+      --as-uid string               UID to impersonate for the operation.
+      --context string              Kubernetes configuration context
+  -i, --istioNamespace string       Istio system namespace (default "istio-system")
+      --kubeclient-timeout string   Kubernetes client timeout as a time.Duration string, defaults to 15 seconds. (default "15s")
+  -c, --kubeconfig string           Kubernetes configuration file
+  -n, --namespace string            Kubernetes namespace
+      --vklog Level                 number for the log level verbosity. Like -v flag. ex: --vklog=9
+
+Use "istioctl waypoint [command] --help" for more information about a command.
