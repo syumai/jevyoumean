@@ -1,0 +1,49 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/mise
+# args: 
+Manage plugins
+
+Usage: mise plugins [FLAGS] [SUBCOMMAND]
+
+Commands:
+  install    Install a plugin from a configured source, Git URL, or supported
+             archive [aliases: i, a, add]
+  link       Link a local plugin directory into mise for development [aliases:
+             ln]
+  ls         List installed external plugins [aliases: list]
+  ls-remote  List all available remote plugins [aliases: list-remote, list-all]
+  uninstall  Remove an installed plugin [aliases: remove, rm]
+  update     Update a plugin to the latest version [aliases: up, upgrade]
+  help       Print this message or the help of the given subcommand(s)
+
+Flags:
+  -c, --core         Only show built-in (core) plugins
+                     These are hidden by default
+  -u, --urls         Show the git url for each plugin
+                     e.g.: https://github.com/mise-plugins/vfox-cmake.git
+      --user         List installed plugins
+
+                     This is the default behavior but can be used with --core
+                     to show core and user plugins
+  -h, --help         Print help
+
+Global flags:
+  -C, --cd <DIR>     Change directory before running command
+  -E, --env <ENV>    Set the environment for loading `mise.<ENV>.toml`
+  -j, --jobs <JOBS>  How many jobs to run in parallel; values below 1 are
+                     treated as 1 [default: 8]
+                     [env: MISE_JOBS]
+  -q, --quiet        Suppress non-error messages
+                     [env: MISE_QUIET]
+  -v, --verbose      Show extra output (use -vv for even more)
+  -y, --yes          Answer yes to all confirmation prompts
+      --raw          Read/write directly to stdin/stdout/stderr instead of by
+                     line
+      --locked       Require lockfile URLs to be present during installation
+
+                     Fails if tools don't have pre-resolved URLs in the lockfile
+                     for the current platform.
+                     This prevents API calls to GitHub, aqua registry, etc.
+                     Can also be enabled via MISE_LOCKED=1 or
+                     settings.locked=true
+      --silent       Suppress all task output and mise non-error messages

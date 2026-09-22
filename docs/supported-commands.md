@@ -17,6 +17,7 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `aws ec2` — ok (520 parsed; o bullets under AVAILABLE COMMANDS)
   - [x] `aws iam` — ok (160 parsed; o bullets under AVAILABLE COMMANDS)
   - [x] `aws s3api` — ok (94 parsed; o bullets under AVAILABLE COMMANDS)
+  - [x] `aws dynamodb` — ok (52 parsed; o bullets under AVAILABLE COMMANDS)
   - [x] `aws sts` — ok (9 parsed; o bullets under AVAILABLE COMMANDS)
 - [x] `az` — ok (100 parsed)
 - [x] `brew` — ok (9 parsed; tool-prefixed usage lines)
@@ -26,10 +27,13 @@ yields nothing, **bogus** extracts words that are not subcommands,
 - **cargo**
   - [x] `cargo` — ok (16 parsed)
   - [x] `cargo install` — leaf (leaf command, no subcommands)
+  - [x] `cargo doc` — leaf (leaf command, no subcommands)
 - [ ] `curl` — out-of-scope (fixture not committed; no subcommand concept)
 - **deno**
   - [x] `deno` — ok (48 parsed)
   - [x] `deno jupyter` — leaf (leaf command, no subcommands)
+  - [x] `deno task` — leaf (leaf command, no subcommands)
+  - [x] `deno publish` — leaf (leaf command, no subcommands)
 - **docker**
   - [x] `docker` — ok (43 parsed)
   - [x] `docker compose` — ok (35 parsed)
@@ -50,9 +54,12 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `gh auth` — ok (7 parsed)
   - [x] `gh issue` — ok (15 parsed)
   - [x] `gh run` — ok (7 parsed)
+  - [x] `gh run/rerun` — leaf (leaf command, no subcommands)
   - [x] `gh workflow` — ok (5 parsed)
   - [x] `gh release` — ok (8 parsed)
   - [x] `gh extension` — ok (8 parsed)
+  - [x] `gh codespace` — ok (13 parsed)
+  - [x] `gh cache` — ok (2 parsed)
 - **git**
   - [x] `git` — ok (17 parsed; help_args: help -a)
   - [x] `git remote` — ok (5 parsed; man-page COMMANDS section)
@@ -68,18 +75,21 @@ yields nothing, **bogus** extracts words that are not subcommands,
 - [ ] `gradle` — out-of-scope (fixture not committed; goals defined by plugins, not in --help)
 - **helm**
   - [x] `helm` — ok (26 parsed)
-  - [ ] `helm dependency` — bogus (8 parsed; Chart.yaml example fields leak as commands)
+  - [x] `helm dependency` — ok (3 parsed; yaml example blocks skipped)
   - [x] `helm repo` — ok (5 parsed)
   - [x] `helm plugin` — ok (4 parsed)
+  - [x] `helm show` — ok (5 parsed)
 - [ ] `jq` — out-of-scope (fixture not committed; no subcommand concept)
 - **kubectl**
   - [x] `kubectl` — ok (42 parsed)
   - [x] `kubectl config` — ok (15 parsed)
   - [x] `kubectl rollout` — ok (6 parsed)
+  - [x] `kubectl api-resources` — leaf (leaf command, no subcommands)
 - [ ] `make` — out-of-scope (fixture not committed; no subcommand concept)
 - **mise**
   - [x] `mise` — ok (67 parsed)
   - [x] `mise tasks` — ok (9 parsed)
+  - [x] `mise plugins` — ok (8 parsed)
 - [ ] `mvn` — out-of-scope (goals defined by plugins, not in --help)
 - **npm**
   - [x] `npm` — ok (15 parsed; comma inventory format)
@@ -94,6 +104,7 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `rustup` — ok (18 parsed)
   - [x] `rustup toolchain` — ok (5 parsed)
   - [x] `rustup component` — ok (4 parsed)
+  - [x] `rustup target` — ok (4 parsed)
 - [ ] `ssh` — out-of-scope (fixture not committed; no subcommand concept)
 - [ ] `sudo` — out-of-scope (fixture not committed; no subcommand concept)
 - [x] `systemctl` — ok (13 parsed; [ARG...] placeholders skipped)
@@ -107,11 +118,12 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `uv tool` — ok (8 parsed)
   - [x] `uv python` — ok (8 parsed)
   - [x] `uv pip` — ok (9 parsed)
+  - [x] `uv venv` — leaf (leaf command, no subcommands)
 - [x] `yarn` — ok (27 parsed; tool-prefixed usage lines)
 
 ## Totals
 
-- ok: 66
-- leaf: 5
-- bogus: 2
+- ok: 73
+- leaf: 11
+- bogus: 1
 - out-of-scope: 8

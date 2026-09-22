@@ -1,0 +1,106 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/uv
+# args: 
+Create a virtual environment
+
+Usage: uv venv [OPTIONS] [PATH]
+
+Arguments:
+  [PATH]  The path to the virtual environment to create
+
+Options:
+      --no-project             Avoid discovering a project or workspace [env: UV_NO_PROJECT=]
+      --seed                   Install seed packages (one or more of: `pip`, `setuptools`, and
+                               `wheel`) into the virtual environment [env: UV_VENV_SEED=]
+  -c, --clear                  Remove any existing files or directories at the target path [env:
+                               UV_VENV_CLEAR=]
+      --force                  Allow `--clear` to remove a non-virtual environment directory
+      --allow-existing         Preserve any existing files or directories at the target path
+      --prompt <PROMPT>        Provide an alternative prompt prefix for the virtual environment.
+      --system-site-packages   Give the virtual environment access to the system site packages
+                               directory
+      --relocatable            Make the virtual environment relocatable [env: UV_VENV_RELOCATABLE=]
+      --link-mode <LINK_MODE>  The method to use when installing packages from the global cache
+                               [env: UV_LINK_MODE=] [possible values: clone, copy, hardlink,
+                               symlink]
+
+Python options:
+  -p, --python <PYTHON>      The Python interpreter to use for the virtual environment. [env:
+                             UV_PYTHON=]
+      --managed-python       Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
+      --no-managed-python    Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
+      --no-python-downloads  Disable automatic downloads of Python. [env:
+                             "UV_PYTHON_DOWNLOADS=never"]
+
+Index options:
+      --index <INDEX>
+          The indexes to use when resolving dependencies, in addition to the default index [env:
+          UV_INDEX]
+      --default-index <DEFAULT_INDEX>
+          The default package index (by default: <https://pypi.org/simple>) [env: UV_DEFAULT_INDEX]
+  -i, --index-url <INDEX_URL>
+          (Deprecated: use `--default-index` instead) The URL of the Python package index (by
+          default: <https://pypi.org/simple>) [env: UV_INDEX_URL]
+      --extra-index-url <EXTRA_INDEX_URL>
+          (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to
+          `--index-url` [env: UV_EXTRA_INDEX_URL]
+  -f, --find-links <FIND_LINKS>
+          Locations to search for candidate distributions, in addition to those found in the
+          registry indexes [env: UV_FIND_LINKS]
+      --no-index
+          Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and
+          those provided via `--find-links`
+      --index-strategy <INDEX_STRATEGY>
+          The strategy to use when resolving against multiple index URLs [env: UV_INDEX_STRATEGY=]
+          [possible values: first-index, unsafe-first-match, unsafe-best-match]
+      --keyring-provider <KEYRING_PROVIDER>
+          Attempt to use `keyring` for authentication for index URLs [env: UV_KEYRING_PROVIDER=]
+          [possible values: disabled, subprocess]
+
+Resolver options:
+      --exclude-newer <EXCLUDE_NEWER>
+          Limit candidate packages to those that were uploaded prior to the given date [env:
+          UV_EXCLUDE_NEWER=]
+      --exclude-newer-package <EXCLUDE_NEWER_PACKAGE>
+          Limit candidate packages for specific packages to those that were uploaded prior to the
+          given date
+
+Cache options:
+      --refresh
+          Refresh all cached data
+      --refresh-package <REFRESH_PACKAGE>
+          Refresh cached data for a specific package
+  -n, --no-cache
+          Avoid reading from or writing to the cache, instead using a temporary directory for the
+          duration of the operation [env: UV_NO_CACHE=]
+      --cache-dir <CACHE_DIR>
+          Path to the cache directory [env: UV_CACHE_DIR=]
+
+Global options:
+  -q, --quiet...
+          Use quiet output
+  -v, --verbose...
+          Use verbose output
+      --color <COLOR_CHOICE>
+          Control the use of color in output [possible values: auto, always, never]
+      --system-certs
+          Whether to load TLS certificates from the platform's native certificate store [env:
+          UV_SYSTEM_CERTS=]
+      --offline
+          Disable network access [env: UV_OFFLINE=]
+      --allow-insecure-host <ALLOW_INSECURE_HOST>
+          Allow insecure connections to a host [env: UV_INSECURE_HOST=]
+      --no-progress
+          Hide all progress outputs [env: UV_NO_PROGRESS=]
+      --directory <DIRECTORY>
+          Change to the given directory prior to running the command [env: UV_WORKING_DIR=]
+      --project <PROJECT>
+          Discover a project in the given directory [env: UV_PROJECT=]
+      --config-file <CONFIG_FILE>
+          The path to a `uv.toml` file to use for configuration [env: UV_CONFIG_FILE=]
+      --no-config
+          Avoid discovering configuration files (`pyproject.toml`, `uv.toml`) [env: UV_NO_CONFIG=]
+  -h, --help
+          Display the concise help for this command
+
+Use `uv help venv` for more details.
