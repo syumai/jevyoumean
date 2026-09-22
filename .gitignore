@@ -2,3 +2,4 @@
 *.test
 /demo.mp4
 /demo/*.mp4
+/demo/*-frames/

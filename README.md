@@ -5,6 +5,8 @@ document, it reads the CLI's help output and asks
 [Jev](https://typesafe.ai) — TypeSafe's System One model — which
 documented subcommand you most likely meant.
 
+![jym correcting npm and git subcommands](demo/readme.gif)
+
 ```console
 $ git remove foo.txt          # actually an alias for: jym git remove foo.txt
 jym: "remove" is not a git subcommand. Did you mean?
