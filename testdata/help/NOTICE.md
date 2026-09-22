@@ -26,6 +26,20 @@ code from these projects.
 | cargo | Cargo (`rust-lang/cargo`) | MIT/Apache-2.0 |
 | pip | pip (`pypa/pip`) | MIT |
 | aws | AWS CLI (`aws/aws-cli`) | Apache-2.0 |
+| kubectl | kubectl (`kubernetes/kubernetes`) | Apache-2.0 |
+| helm | Helm (`helm/helm`) | Apache-2.0 |
+| mise | mise (`jdx/mise`) | MIT |
+| uv | uv (`astral-sh/uv`) | MIT/Apache-2.0 |
+| deno | Deno (`denoland/deno`) | MIT |
+| bun | Bun (`oven-sh/bun`) | MIT |
+| rustup | rustup (`rust-lang/rustup`) | MIT/Apache-2.0 |
+| tmux | tmux (`tmux/tmux`) | ISC |
+| pnpm | pnpm (`pnpm/pnpm`) | MIT |
+| poetry | Poetry (`python-poetry/poetry`) | MIT |
+| yarn | Yarn (`yarnpkg/berry`) | BSD-2-Clause |
+| az | Azure CLI (`Azure/azure-cli`) | MIT |
+| brew | Homebrew (`Homebrew/brew`) | BSD-2-Clause |
+| mvn | Apache Maven | Apache-2.0 |
 
 ## Synthetic fixtures (format only, not verbatim)
 

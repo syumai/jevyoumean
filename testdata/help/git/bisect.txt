@@ -1,0 +1,45 @@
+# synthetic fixture mimicking a git man page (git is GPL-2.0; format
+# reproduced by hand, no verbatim capture — see ../NOTICE.md)
+JYM-GIT-BISECT(1)               Git Manual               JYM-GIT-BISECT(1)
+
+NAME
+       jym-git-bisect - Use binary search to find the commit that
+       introduced a bug
+
+SYNOPSIS
+       jym-git bisect <subcommand> <options>
+
+DESCRIPTION
+       The command takes various subcommands, and different options
+       depending on the subcommand.
+
+COMMANDS
+       start
+           Start a bisect session.
+
+       bad
+           Mark the current or given revision as bad.
+
+       good
+           Mark the current or given revisions as good.
+
+       skip
+           Choose a nearby commit to test instead.
+
+       reset
+           Finish a bisection session and return to the original branch.
+
+       visualize
+           See the currently remaining suspects in a visual tool.
+
+       replay
+           Replay a bisection log.
+
+       log
+           Show the bisection log.
+
+       run
+           Use a script or shell command to automate bisection.
+
+SEE ALSO
+       jym-git-checkout(1)

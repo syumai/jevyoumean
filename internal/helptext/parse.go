@@ -37,6 +37,77 @@ func (c Command) Matches(token string) bool {
 
 var namePattern = regexp.MustCompile(`^[A-Za-z0-9][A-Za-z0-9._-]*$`)
 
+// stripOverstrike removes nroff-style overstriking used by man pages and
+// groff-formatted help: X\bX renders bold, _\bX underlined. Each
+// backspace erases the previous output byte.
+func stripOverstrike(line string) string {
+	if !strings.ContainsRune(line, '\b') {
+		return line
+	}
+	out := make([]byte, 0, len(line))
+	for i := 0; i < len(line); i++ {
+		if line[i] == '\b' {
+			if len(out) > 0 {
+				out = out[:len(out)-1]
+			}
+			continue
+		}
+		out = append(out, line[i])
+	}
+	return string(out)
+}
+
+// looksLikeName filters out tokens that match the name charset but are
+// almost certainly not subcommand names. Subcommands are lowercase by
+// convention, so a multi-character token starting with a capital letter
+// is a prose sentence starter ("The", "Install"), and a token without
+// any lowercase letter is an environment variable (GIT_CONFIG_GLOBAL),
+// a placeholder (UNIT) or a list marker ("1."). Names end in a letter
+// or digit, never a full stop — prose fragments like "services." are
+// rejected too. Single characters are kept either way.
+func looksLikeName(n string) bool {
+	if !namePattern.MatchString(n) || strings.HasSuffix(n, ".") {
+		return false
+	}
+	if len(n) > 1 && n[0] >= 'A' && n[0] <= 'Z' {
+		return false
+	}
+	for i := 0; i < len(n); i++ {
+		if n[i] >= 'a' && n[i] <= 'z' {
+			return true
+		}
+	}
+	return len(n) <= 1
+}
+
+// headerSkipWords mark non-indented lines that introduce sections which
+// never list runnable subcommands. Checked against tentative headers and
+// in the loose fallback scan.
+var headerSkipWords = []string{
+	"option", "flag", "interface", "environment", "example",
+	"parameter", "argument", "suffix",
+}
+
+// headerHead extracts the label portion of a candidate header: the text
+// before a colon or parenthesis, so "Usage: tool <command> [options]" is
+// judged on "usage" and does not trip on "[options]".
+func headerHead(lower string) string {
+	if i := strings.IndexAny(lower, ":("); i >= 0 {
+		lower = lower[:i]
+	}
+	return strings.TrimSpace(lower)
+}
+
+func isSkippableHeader(lower string) bool {
+	head := headerHead(lower)
+	for _, w := range headerSkipWords {
+		if strings.Contains(head, w) {
+			return true
+		}
+	}
+	return false
+}
+
 // Parse extracts subcommands from help output. An empty result means
 // "cannot judge": the output had no recognizable command listing.
 //
@@ -54,6 +125,8 @@ func Parse(output string) []Command {
 	tentative := false
 	sawKnownHeader := false
 	entryIndent := -1
+	prefixSeen := map[string]map[string]bool{}
+	var prefixOrder []string
 
 	startSection := func(tent bool) {
 		pending = nil
@@ -80,22 +153,37 @@ func Parse(output string) []Command {
 	}
 
 	for _, line := range strings.Split(output, "\n") {
-		line = strings.TrimRight(line, "\r")
+		line = stripOverstrike(strings.TrimRight(line, "\r"))
+		// "tool sub ARGS..." — CLIs like brew and yarn repeat their own
+		// name before every subcommand in usage-style listings. Lines
+		// are collected wherever they appear; a prefix group only
+		// counts when the same leading token yields two or more
+		// distinct names, so indented prose cannot inject bogus names.
+		if indentation(line) != 0 {
+			if f0, f1, ok := prefixedEntry(line); ok {
+				if prefixSeen[f0] == nil {
+					prefixSeen[f0] = map[string]bool{}
+					prefixOrder = append(prefixOrder, f0)
+				}
+				prefixSeen[f0][f1] = true
+			}
+		}
 		if isSectionHeader(line) {
 			flush()
 			startSection(false)
 			continue
 		}
-		// Many CLIs put a blank line between a section header and its
-		// entries. Keep an otherwise-empty section open across that gap.
-		if strings.TrimSpace(line) == "" && inSection && len(pending) == 0 {
+		// Blank lines occur between a section header and its entries,
+		// and between entries themselves in man-page-style listings.
+		// Sections end at the next non-indented line instead.
+		if strings.TrimSpace(line) == "" && inSection {
 			continue
 		}
 		if indentation(line) == 0 {
 			// Every other non-indented line is a tentative header.
 			flush()
 			if s := strings.ToLower(strings.TrimSpace(line)); s != "" &&
-				!strings.Contains(s, "interface") {
+				!isSkippableHeader(s) {
 				startSection(true)
 			}
 			continue
@@ -105,8 +193,14 @@ func Parse(output string) []Command {
 		}
 		names, desc, indent, ok := parseEntry(line)
 		if !ok {
+			if len(pending) == 0 {
+				// Prose between a section header and its first
+				// entry (common in man pages) does not end the
+				// section.
+				continue
+			}
 			// A deeper-indented line is probably a wrapped description.
-			if lineIndent := indentation(line); entryIndent >= 0 && lineIndent > entryIndent && len(pending) > 0 {
+			if lineIndent := indentation(line); entryIndent >= 0 && lineIndent > entryIndent {
 				last := &pending[len(pending)-1]
 				last.Description = strings.TrimSpace(last.Description + " " + strings.TrimSpace(line))
 				continue
@@ -128,6 +222,20 @@ func Parse(output string) []Command {
 		pending = appendCommand(pending, sectionSeen, names, desc)
 	}
 	flush()
+	// Prefix-form listings (brew, yarn) count as a result when the same
+	// tool-name prefix introduces two or more distinct names. This also
+	// rescues outputs whose only listing sits inside a skipped or empty
+	// section.
+	if len(cmds) == 0 {
+		for _, f0 := range prefixOrder {
+			if len(prefixSeen[f0]) < 2 {
+				continue
+			}
+			for name := range prefixSeen[f0] {
+				cmds = appendCommand(cmds, seen, []string{name}, "")
+			}
+		}
+	}
 	if len(cmds) > 0 {
 		return cmds
 	}
@@ -170,7 +278,22 @@ func appendCommand(cmds []Command, seen map[string]bool, names []string, desc st
 func parseLoose(output string) []Command {
 	var cmds []Command
 	seen := map[string]bool{}
+	skipSection := false
 	for _, line := range strings.Split(output, "\n") {
+		line = stripOverstrike(strings.TrimRight(line, "\r"))
+		if indentation(line) == 0 {
+			// Non-indented lines are section boundaries here too, so
+			// value tables under e.g. "Suffixes accepted by ..." do not
+			// leak in as commands.
+			// Blank lines keep the current skip state.
+			if s := strings.ToLower(strings.TrimSpace(line)); s != "" {
+				skipSection = isSkippableHeader(s)
+			}
+			continue
+		}
+		if skipSection {
+			continue
+		}
 		names, desc, _, ok := parseEntry(line)
 		if !ok || desc == "" {
 			continue
@@ -178,6 +301,62 @@ func parseLoose(output string) []Command {
 		cmds = appendCommand(cmds, seen, names, desc)
 	}
 	return cmds
+}
+
+// prefixedEntry recognizes usage-style lines of the form
+// "tool subcommand ARG...": the first token repeats the tool's own name,
+// the second is the actual subcommand, and everything after it is
+// argument placeholders, flags or brackets. Returns the prefix token
+// and the subcommand name; the caller decides whether the prefix is
+// trusted.
+func prefixedEntry(line string) (prefix, name string, ok bool) {
+	fields := strings.Fields(line)
+	if len(fields) < 3 ||
+		!looksLikeName(fields[0]) || !looksLikeName(fields[1]) {
+		return "", "", false
+	}
+	rest := strings.TrimSpace(line)
+	rest = strings.TrimSpace(rest[len(fields[0]):])
+	rest = strings.TrimSpace(rest[len(fields[1]):])
+	if !argsOnly(rest) {
+		return "", "", false
+	}
+	return fields[0], fields[1], true
+}
+
+// argsOnly reports whether s consists only of argument-like tokens:
+// "[...]" or "<...>" groups (which may contain spaces), "..." ellipses,
+// "-" prefixed flags and uppercase placeholders like FORMULA or FILE.
+func argsOnly(s string) bool {
+	for s != "" {
+		s = strings.TrimLeft(s, " \t")
+		if s == "" {
+			return true
+		}
+		if s[0] == '[' || s[0] == '<' {
+			close := "]"
+			if s[0] == '<' {
+				close = ">"
+			}
+			e := strings.Index(s, close)
+			if e < 0 {
+				return false
+			}
+			s = s[e+1:]
+			continue
+		}
+		var token string
+		if i := strings.IndexAny(s, " \t"); i < 0 {
+			token, s = s, ""
+		} else {
+			token, s = s[:i], s[i:]
+		}
+		if token == "..." || token[0] == '-' || isPlaceholder(token) {
+			continue
+		}
+		return false
+	}
+	return true
 }
 
 func indentation(line string) int {
@@ -225,12 +404,36 @@ func parseEntry(line string) (names []string, desc string, indent int, ok bool) 
 	if indent == 0 || trimmed == "" {
 		return nil, "", 0, false
 	}
+	if names, desc, ok := parseEntryLine(trimmed); ok {
+		return names, desc, indent, true
+	}
+	// nroff renders bulleted entries as "o name  description". Retry
+	// without the bullet; a leading "o" never parses on its own because
+	// the single space after it already fails the entry check.
+	if rest := strings.TrimPrefix(trimmed, "o "); rest != trimmed {
+		if names, desc, ok := parseEntryLine(rest); ok {
+			return names, desc, indent, true
+		}
+	}
+	return nil, "", 0, false
+}
 
+func parseEntryLine(trimmed string) (names []string, desc string, ok bool) {
 	// Colon form: "name: description" (aliases may follow: "a, b: ...").
+	// A colon preceded by a whitespace run of two or more sits inside an
+	// already-separated description ("change   Record a change intent:
+	// ..."), so the whitespace form takes precedence there.
 	if i := strings.IndexByte(trimmed, ':'); i > 0 &&
-		(i+1 == len(trimmed) || trimmed[i+1] == ' ' || trimmed[i+1] == '\t') {
+		(i+1 == len(trimmed) || trimmed[i+1] == ' ' || trimmed[i+1] == '\t') &&
+		!hasGap(trimmed[:i]) {
 		if ns := splitNames(trimmed[:i]); len(ns) > 0 {
-			return ns, strings.TrimSpace(trimmed[i+1:]), indent, true
+			// Space-separated words before a colon are a prose
+			// heading ("Install packages from:"), not an alias list.
+			// Real alias lists use commas or pipes ("a, b:" / "a|b:").
+			if len(ns) > 1 && !strings.ContainsAny(trimmed[:i], ",|") {
+				return nil, "", false
+			}
+			return ns, strings.TrimSpace(trimmed[i+1:]), true
 		}
 	}
 
@@ -246,27 +449,105 @@ func parseEntry(line string) (names []string, desc string, indent int, ok bool) 
 		}
 		hadComma := strings.HasSuffix(token, ",")
 		for _, n := range strings.Split(strings.TrimSuffix(token, ","), "|") {
-			if !namePattern.MatchString(n) {
-				return nil, "", 0, false
+			if !looksLikeName(n) {
+				return nil, "", false
 			}
 			names = append(names, n)
 		}
 		if rest == "" {
-			return names, "", indent, true
+			return names, "", true
 		}
 		j := 0
 		for j < len(rest) && (rest[j] == ' ' || rest[j] == '\t') {
 			j++
 		}
 		if j >= 2 {
-			return names, strings.TrimSpace(rest[j:]), indent, true
+			return names, strings.TrimSpace(rest[j:]), true
 		}
 		if !hadComma {
+			// "name - description" is a common apt/help2man style.
+			if d := strings.TrimPrefix(rest[j:], "- "); d != rest[j:] {
+				return names, strings.TrimSpace(d), true
+			}
+			// Argument placeholders between the name and the
+			// description ("start UNIT...", "status [PATTERN...]").
+			if d, ok := skipArgs(rest); ok {
+				return names, d, true
+			}
 			// "name word ..." with single spaces is prose, not an entry.
-			return nil, "", 0, false
+			return nil, "", false
 		}
 		rest = rest[j:]
 	}
+}
+
+// hasGap reports whether s contains a run of at least two whitespace
+// characters — the column separator used by whitespace-form entries.
+func hasGap(s string) bool {
+	for i := 1; i < len(s); i++ {
+		if (s[i] == ' ' || s[i] == '\t') && (s[i-1] == ' ' || s[i-1] == '\t') {
+			return true
+		}
+	}
+	return false
+}
+
+// skipArgs consumes argument-placeholder tokens following a name —
+// bracketed forms like "[PATTERN...]" or "<file>", and uppercase words
+// like "UNIT..." or "PROPERTY=VALUE..." — and returns the description
+// after a run of two or more spaces, or "" when the line ends.
+func skipArgs(rest string) (desc string, ok bool) {
+	for {
+		j := 0
+		for j < len(rest) && (rest[j] == ' ' || rest[j] == '\t') {
+			j++
+		}
+		if j >= 2 {
+			return strings.TrimSpace(rest[j:]), true
+		}
+		if j == 0 || j >= len(rest) {
+			return "", false
+		}
+		rest = rest[j:]
+		i := strings.IndexAny(rest, " \t")
+		var token string
+		if i < 0 {
+			token, rest = rest, ""
+		} else {
+			token, rest = rest[:i], rest[i:]
+		}
+		// A bare colon is the actual separator between args and the
+		// description ("config [Experimental] : Manage ...").
+		if token == ":" {
+			return strings.TrimSpace(rest), true
+		}
+		if !isPlaceholder(token) {
+			return "", false
+		}
+		if rest == "" {
+			return "", true
+		}
+	}
+}
+
+// isPlaceholder reports whether token looks like a CLI argument
+// placeholder rather than a subcommand name: "[...]", "<...>", or an
+// uppercase token like "UNIT", "PATTERN..." or "PROPERTY=VALUE".
+func isPlaceholder(token string) bool {
+	if token == "" {
+		return false
+	}
+	if token[0] == '[' || token[0] == '<' {
+		return true
+	}
+	for i := 0; i < len(token); i++ {
+		c := token[i]
+		if !((c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') ||
+			c == '_' || c == '=' || c == '.' || c == '|' || c == '+' || c == '/') {
+			return false
+		}
+	}
+	return token[0] >= 'A' && token[0] <= 'Z'
 }
 
 // splitNames parses the left-hand side of a colon-form entry, accepting
@@ -276,7 +557,7 @@ func splitNames(s string) []string {
 	for _, tok := range strings.FieldsFunc(s, func(r rune) bool {
 		return r == ',' || r == '|' || r == ' ' || r == '\t'
 	}) {
-		if !namePattern.MatchString(tok) {
+		if !looksLikeName(tok) {
 			return nil
 		}
 		names = append(names, tok)

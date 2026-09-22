@@ -1,0 +1,129 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.deno/bin/deno
+# args: 
+A modern JavaScript and TypeScript runtime
+
+Usage: deno [OPTIONS] [COMMAND]
+
+Commands:
+  run              Run a JavaScript or TypeScript program, or a task
+  watch            Run a JavaScript or TypeScript program, watching for file changes and hot-replacing modules
+  serve            Run a server
+  eval             Evaluate a script from the command line
+  fmt              Format source files
+  lint             Lint source files
+  test             Run tests
+  upgrade          Upgrade deno executable to given version
+  cache            Cache the dependencies
+  check            Type-check the dependencies
+  info             Show info about cache or info related to source file
+  doc              Generate and show documentation for a module or built-ins
+  task             Run a task defined in the configuration file
+  bench            Run benchmarks
+  compile          Compile the script into a self contained executable
+  coverage         Print coverage reports
+  repl             Start an interactive Read-Eval-Print Loop (REPL) for Deno
+  install          Installs dependencies either in the local project or globally to a bin directory
+  uninstall        Uninstalls a dependency or an executable script in the installation root's bin directory
+  types            Print runtime TypeScript declarations
+  completions      Generate shell completions
+  init             Initialize a new project
+  create           Create a project from a template
+  jupyter          Deno kernel for Jupyter notebooks
+  publish          Publish the current working directory's package or workspace
+  add              Add dependencies
+  remove           Remove dependencies
+  outdated         Find outdated dependencies
+  update           Update outdated dependencies
+  deploy           Deploy to Deno Deploy
+  sandbox          Run in sandbox mode
+  clean            Remove the cache directory
+  list             List the dependencies declared in deno.json / package.json
+  link             Link a local JSR package into the current project for development
+  unlink           Remove a linked local package from the current project
+  approve-scripts  Approve npm lifecycle scripts
+  lsp              Start the language server
+  vendor           `deno vendor` was removed in Deno 2.
+  bundle           Output a single JavaScript file with all dependencies
+  audit            Audit currently installed dependencies
+  why              Show why a package is installed
+  transpile        Transpile TypeScript/JSX/TSX files to JavaScript
+  bump-version     Update version in the configuration file
+  ci               Install dependencies from a lockfile in a frozen state
+  desktop          Compile a script into a desktop application
+  pack             Create a tarball of the package
+  x                Execute a binary from npm or jsr, like npx
+  help             Show help for a command
+
+Options:
+      --env-file[=<VALUE>]  Load environment variables from local file
+                            Only the first environment variable with a given key is used.
+                            Existing process environment variables are not overwritten, so if variables with the same names already exist in the environment, their values will be preserved.
+                            Where multiple declarations for the same environment variable exist in your .env file, the first one encountered is applied. This is determined by the order of the files you pass as arguments.
+  -h, --help[=<VALUE>]    
+  -V, --version           Print version
+  -L, --log-level <VALUE>  Set log level
+  -q, --quiet             Suppress diagnostic output
+
+Environment variables:
+Docs: https://docs.deno.com/go/env-vars
+
+  DENO_AUTH_TOKENS                      A semi-colon separated list of bearer tokens and hostnames
+                                        to use when fetching remote modules from private repositories
+                                         (e.g. "abcde12345@deno.land;54321edcba@github.com")
+  DENO_CACHE_DB_MODE                    Controls whether Web cache should use disk based or in-memory database.
+  DENO_CERT                             Load certificate authorities from PEM encoded file.
+  DENO_COMPAT                           Enable Node.js compatibility mode - extensionless imports, built-in
+                                        Node.js modules, CommonJS detection and more.
+  DENO_CONDITIONS                       Comma-separated list of custom conditions to resolve npm package
+                                        exports and imports with. Equivalent to using the --conditions flag.
+  DENO_COVERAGE_DIR                     Set the directory for collecting code coverage profiles.
+                                        Equivalent to using the --coverage flag.
+  DENO_DIR                              Set the cache directory
+  DENO_INSTALL_ROOT                     Set deno install's output directory
+                                         (defaults to $HOME/.deno/bin)
+  DENO_JOBS                             Number of parallel workers used for the --parallel flag with the test
+                                        subcommand. Defaults to the number of available CPUs.
+  DENO_KV_DB_MODE                       Controls whether Deno.openKv() API should use disk based or in-memory
+                                        database.
+  DENO_KV_DEFAULT_PATH                  Set the default path for Deno.openKv() when no path is provided.
+  DENO_KV_PATH_PREFIX                   Set a prefix to be added to all Deno.openKv() paths.
+  DENO_KV_REQUIRES_DISTRIBUTED_DATABASE Require Deno.openKv() to resolve to a distributed (remote) database.
+                                        When set to "error", Deno.openKv() is always exposed and rejects with a
+                                        clear message unless the resolved path is remote. When set to "warn", a
+                                        local/in-memory fallback is allowed but logs a warning. Used by Deno
+                                        Deploy to surface a clear error when no KV database is attached.
+  DENO_EMIT_CACHE_MODE                  Control if the transpiled sources should be cached.
+  DENO_NO_PACKAGE_JSON                  Disables auto-resolution of package.json.
+  DENO_NO_PROMPT                        Set to disable permission prompts on access
+                                        (alternative to passing --no-prompt on invocation).
+  DENO_NO_UPDATE_CHECK                  Set to disable checking if a newer Deno version is available
+  DENO_PATCH_REACT_CVE                  Enable load-time source patches mitigating known React Server
+                                        Components CVEs (CVE-2025-55182, CVE-2025-55184).
+  DENO_SERVE_ADDRESS                    Override address for Deno.serve
+                                         ("tcp:0.0.0.0:8080", "unix:/tmp/deno.sock", or "vsock:1234:5678")
+  DENO_SERVE_AUTOMATIC_COMPRESSION      Set to 1 or true to enable automatic response body compression in Deno.serve by default.
+  DENO_AUTO_SERVE                       If the entrypoint contains export default { fetch }, `deno run`
+                                        behaves like `deno serve`.
+  DENO_TLS_CA_STORE                     Comma-separated list of order dependent certificate stores.
+                                        Possible values: "system", "mozilla" (defaults to "mozilla")
+  DENO_TRACE_PERMISSIONS                Environmental variable to enable stack traces in permission prompts.
+  DENO_TSC_BIN                          Path to a prebuilt native TypeScript compiler (tsc/tsgo) for `deno check` to use instead of downloading the pinned one.
+  DENO_USE_CGROUPS                      Use cgroups to determine V8 memory limit.
+  DENO_V8_FLAGS                         Set V8 command line options. Equivalent to using the --v8-flags flag;
+                                        flags passed via --v8-flags are appended after these.
+  FORCE_COLOR                           Set force color output even if stdout isn't a tty.
+  HTTP_PROXY                            Proxy address for HTTP requests.
+                                         (module downloads, fetch)
+  HTTPS_PROXY                           Proxy address for HTTPS requests.
+                                         (module downloads, fetch)
+  NO_COLOR                              Set to disable color.
+  NO_PROXY                              Comma-separated list of hosts which do not use a proxy.
+                                         (module downloads, fetch)
+  NODE_USE_ENV_PROXY                    If set to 1, node:http and node:https honor HTTP_PROXY,
+                                        HTTPS_PROXY, and NO_PROXY from the environment.
+  NPM_CONFIG_REGISTRY                   URL to use for the npm registry.
+  SSLKEYLOGFILE                         Write TLS session keys to the specified file in NSS Key Log format
+                                        for debugging encrypted traffic with tools like Wireshark.
+  DENO_TRUST_PROXY_HEADERS              If specified, removes X-deno-client-address header when serving HTTP.
+  DENO_USR2_MEMORY_TRIM                 If specified, listen for SIGUSR2 signal to try and free memory (Linux only).
