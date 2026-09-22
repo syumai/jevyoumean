@@ -1,0 +1,35 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/doctl
+# args: 
+The commands under `doctl kubernetes` are for managing Kubernetes clusters and viewing configuration options relating to clusters.
+
+A typical workflow is to use `doctl kubernetes cluster create` to create the cluster on DigitalOcean's infrastructure, then call `doctl kubernetes cluster kubeconfig` to configure `kubectl` to connect to the cluster. You are then able to use `kubectl` to create and manage workloads.
+
+The commands under `doctl kubernetes options` retrieve values used while creating clusters, such as the list of regions where cluster creation is supported.
+
+Usage:
+  doctl kubernetes [command]
+
+Aliases:
+  kubernetes, kube, k8s, k
+
+Available Commands:
+  1-click     Display commands that pertain to kubernetes 1-click applications
+  cluster     Display commands for managing Kubernetes clusters
+  options     List possible option values for use inside Kubernetes commands
+
+Flags:
+  -h, --help   help for kubernetes
+
+Global Flags:
+  -t, --access-token string   API V2 access token
+  -u, --api-url string        Override default API endpoint
+  -c, --config string         Specify a custom config file
+      --context string        Specify a custom authentication context name
+      --http-retry-max int    Set maximum number of retries for requests that fail with a 429 or 500-level error (default 5)
+      --interactive           Enable interactive behavior. Defaults to true if the terminal supports it (default false)
+  -o, --output string         Desired output format [text|json] (default "text")
+      --trace                 Show a log of network activity while performing a command
+  -v, --verbose               Enable verbose output
+
+Use "doctl kubernetes [command] --help" for more information about a command.

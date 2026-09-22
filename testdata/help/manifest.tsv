@@ -119,7 +119,7 @@ k9s	-	capture	ok	completion,info	-	-
 minikube	-	capture	ok	start,status,stop,delete,dashboard,addons,service,tunnel	-	-
 kustomize	-	capture	ok	build,cfg,create,edit,fn,localize	-	-
 helmfile	-	capture	ok	apply,build,deps,destroy,diff,lint,sync,template	-	-
-sops	-	capture	ok	decrypt,encrypt,edit,set,unset,rotate,updatekeys	-	-
+sops	-	synthetic	ok	decrypt,encrypt,edit,set,unset,rotate,updatekeys	-	-
 argocd	-	capture	ok	account,admin,app,appset,cluster,proj,repo	-	-
 tilt	-	capture	ok	apply,ci,create,delete,describe,down,up	-	-
 skaffold	-	capture	ok	run,dev,debug,build,test,deploy,render,verify	-	-
@@ -175,3 +175,50 @@ poetry	source	capture	ok	add,remove,show	-	namespaced name: desc entries
 poetry	cache	capture	ok	clear,list	-	namespaced name: desc entries
 pnpm	store	capture	ok	status,add,prune,path	-	-
 pnpm	env	capture	empty	-	-	deprecated; help does not list subcommands
+tofu	-	synthetic	ok	init,validate,plan,apply,destroy,workspace,state	-	-
+tofu	workspace	synthetic	ok	delete,list,new,select,show	-	-
+tofu	state	synthetic	ok	list,mv,pull,push,replace-provider,rm,show	-	-
+istioctl	-	capture	ok	admin,analyze,install,proxy-config,uninstall,upgrade,waypoint	-	single-space long-name entries
+pack	-	capture	ok	build,builder,buildpack,extension,inspect,stack,rebase,sbom	-	-
+supabase	-	capture	ok	branches,db,functions,init,link,login	-	-
+supabase	functions	capture	ok	delete,deploy,download,list,new,serve	-	-
+firebase	-	capture	ok	deploy,init,login,serve,emulators,functions,hosting	-	pipe-alias namespaced names
+firebase	emulators	capture	ok	emulators:exec,emulators:export,emulators:start	-	namespaced a:b entries
+doctl	apps	capture	ok	create,delete,get,list,update	-	-
+doctl	kubernetes	capture	ok	1-click,cluster,options	-	-
+argocd	app	capture	ok	create,delete,diff,get,list,sync,wait	-	-
+argocd	proj	capture	ok	create,delete,get,list,role,windows	-	-
+glab	mr	capture	ok	create,list,merge,close	-	-
+glab	ci	capture	ok	artifact,cancel,lint,list,run-trig	-	-
+glab	release	capture	ok	create,delete,download,list,upload,view	-	-
+glab	issue	capture	ok	create,list	-	-
+glab	repo	capture	ok	create,fork,list,search,view	-	-
+glab	auth	capture	ok	login,logout,status	-	-
+pulumi	stack	capture	ok	export,graph,history,list,output,select,tag	-	-
+pulumi	config	capture	ok	get,refresh,remove,set	-	-
+pulumi	plugin	capture	ok	install,list,remove,run	-	-
+flux	create	capture	ok	alert,helmrelease,kustomization,source,tenant	-	-
+flux	get	capture	ok	alerts,helmreleases,kustomizations,sources	-	-
+flux	reconcile	capture	ok	helmrelease,kustomization,source	-	-
+eksctl	create	capture	ok	cluster,addon,nodegroup,iamserviceaccount	-	-
+eksctl	get	capture	ok	cluster,addon,nodegroup	-	-
+minikube	addons	capture	ok	configure,disable,enable,images,list,open	-	-
+minikube	image	capture	ok	build,load,ls,pull,push,rm,save,tag	-	-
+vercel	env	capture	ok	add,list,pull,remove	-	-
+vercel	teams	capture	ok	add,invite,list,switch	-	-
+wrangler	kv	capture	ok	namespace,key,bulk	-	-
+wrangler	r2	capture	ok	bucket,object	-	-
+wrangler	d1	capture	ok	create,delete,execute,export,list,migrations,time-travel	-	-
+wrangler	pages	capture	ok	deployment,project	-	-
+netlify	env	capture	ok	env:get,env:list,env:set,env:unset	-	namespaced a:b entries
+netlify	functions	capture	ok	functions:build,functions:create,functions:invoke,functions:list	-	namespaced a:b entries
+railway	environment	capture	ok	link,new,delete,edit,list	-	-
+hatch	env	capture	ok	create,find,prune,remove,run,show	-	-
+hatch	dep	capture	ok	hash,show	-	-
+pdm	venv	capture	ok	create,list,remove,activate,purge	-	-
+pdm	python	capture	ok	list,remove,install,link,find	-	-
+meson	wrap	capture	ok	list,search,install,update,status,promote	-	-
+rye	toolchain	capture	ok	fetch,list,register,remove	-	-
+rye	tools	capture	ok	install,uninstall,list	-	-
+stripe	customers	capture	ok	create,balance_transactions	-	-
+hcloud	server	capture	ok	create,delete,describe,list,rebuild,update	-	-

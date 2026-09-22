@@ -1,0 +1,19 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/firebase
+# args: 
+Usage: firebase emulators [options] [command]
+
+start and manage local Firebase emulators
+
+Options:
+  -h, --help                         display help for command
+
+Commands:
+  emulators:exec [options] <script>  start the local Firebase emulators, run
+                                     a test script, then shut down the
+                                     emulators
+  emulators:export [options] <path>  export data from running emulators
+  emulators:start [options]          start the local Firebase emulators
+
+To see more about a specific command, run:
+  firebase emulators:<command> --help

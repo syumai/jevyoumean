@@ -1,0 +1,20 @@
+# synthetic fixture mimicking `tofu state --help` output (OpenTofu is
+# MPL-2.0; format reproduced by hand — see ../NOTICE.md)
+Usage: jym-tofu [global options] state <subcommand> [options] [args]
+
+  This command has subcommands for advanced state management.
+
+  These subcommands slice and dice the state and are only needed in
+  advanced cases. Commands that modify state first write a timestamped
+  backup.
+
+  Output is meant to compose with common Unix tools such as grep and awk.
+
+Subcommands:
+    list                List resources tracked in the state
+    mv                  Move an item within the state
+    pull                Download remote state to stdout
+    push                Upload a local state file to remote state
+    replace-provider    Swap the provider recorded in the state
+    rm                  Remove items from the state
+    show                Print a state item

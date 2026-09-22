@@ -1,0 +1,12 @@
+# synthetic fixture mimicking `tofu workspace --help` output (OpenTofu is
+# MPL-2.0; format reproduced by hand — see ../NOTICE.md)
+Usage: jym-tofu [global options] workspace
+
+  Create, list, select and delete workspaces.
+
+Subcommands:
+    delete    Delete a workspace
+    list      List workspaces
+    new       Create a workspace
+    select    Select a workspace
+    show      Print the active workspace name

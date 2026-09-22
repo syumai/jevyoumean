@@ -1,0 +1,49 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/istioctl
+# args: 
+Istio configuration command line utility for service operators to
+debug and diagnose their Istio mesh.
+
+Usage:
+  istioctl [command]
+
+Available Commands:
+  admin                Manage control plane (istiod) configuration
+  analyze              Analyze Istio configuration and print validation messages
+  authz                (authz is experimental. Use `istioctl experimental authz`)
+  bug-report           Cluster information and log capture support tool.
+  completion           Generate the autocompletion script for the specified shell
+  create-remote-secret Create a secret with credentials to allow Istio to access remote Kubernetes apiservers
+  dashboard            Access to Istio web UIs
+  experimental         Experimental commands that may be modified or deprecated
+  help                 Help about any command
+  install              Applies an Istio manifest, installing or reconfiguring Istio on a cluster.
+  kube-inject          Inject Istio sidecar into Kubernetes pod resources
+  manifest             Commands related to Istio manifests
+  proxy-config         Retrieve information about proxy configuration from Envoy [kube only]
+  proxy-status         Retrieves the synchronization status of each Envoy in the mesh
+  remote-clusters      Lists the remote clusters each istiod instance is connected to.
+  tag                  Command group used to interact with revision tags
+  uninstall            Uninstall Istio from a cluster
+  upgrade              Upgrade Istio control plane in-place
+  validate             Validate Istio policy and rules files
+  version              Prints out build version information
+  waypoint             Manage waypoint configuration
+  ztunnel-config       Update or retrieve current Ztunnel configuration.
+
+Flags:
+      --as string                   Username to impersonate for the operation. User could be a regular user or a service account in a namespace
+      --as-group stringArray        Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+      --as-uid string               UID to impersonate for the operation.
+      --context string              Kubernetes configuration context
+  -h, --help                        help for istioctl
+  -i, --istioNamespace string       Istio system namespace (default "istio-system")
+      --kubeclient-timeout string   Kubernetes client timeout as a time.Duration string, defaults to 15 seconds. (default "15s")
+  -c, --kubeconfig string           Kubernetes configuration file
+  -n, --namespace string            Kubernetes namespace
+      --vklog Level                 number for the log level verbosity. Like -v flag. ex: --vklog=9
+
+Additional help topics:
+  istioctl options              Displays istioctl global options
+
+Use "istioctl [command] --help" for more information about a command.

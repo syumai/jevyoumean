@@ -1,0 +1,13 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/hatch
+# args: 
+Usage: hatch dep [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  hash  Output a hash of the currently defined dependencies
+  lock  Generate a lockfile for the active environment (`-e` / `HATCH_ENV`)
+  show  Display dependencies in various formats
+  sync  Install dependencies from the environment lockfile (`apply_lock`)

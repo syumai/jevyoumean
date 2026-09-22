@@ -65,6 +65,21 @@ func stripOverstrike(line string) string {
 // a placeholder (UNIT) or a list marker ("1."). Names end in a letter
 // or digit, never a full stop — prose fragments like "services." are
 // rejected too. Single characters are kept either way.
+// looksLikeSubPath reports whether n is a namespaced command path like
+// firebase's "experimental:mcp" or "functions:log" — colon-separated
+// segments that each look like a name.
+func looksLikeSubPath(n string) bool {
+	if !strings.Contains(n, ":") {
+		return false
+	}
+	for _, part := range strings.Split(n, ":") {
+		if !looksLikeName(part) {
+			return false
+		}
+	}
+	return true
+}
+
 func looksLikeName(n string) bool {
 	if !namePattern.MatchString(n) || strings.HasSuffix(n, ".") {
 		return false
@@ -237,6 +252,20 @@ func Parse(output string) []Command {
 			continue
 		}
 		names, desc, indent, ok := parseEntry(line)
+		if !ok && inSection && !tentative {
+			// Cobra pads the name column to a fixed width, so a name
+			// longer than that width gets only a single space before
+			// its description ("create-remote-secret Create ...").
+			// Only inside a recognized commands section is that
+			// allowed.
+			names, desc, indent, ok = relaxedEntry(line)
+		}
+		// A deeper-indented bare token (" directory" wrapping a long
+		// description) belongs to the previous entry's text, not to
+		// the command list.
+		if ok && desc == "" && len(names) == 1 && entryIndent >= 0 && indent > entryIndent {
+			ok = false
+		}
 		if !ok {
 			if len(pending) == 0 {
 				// Prose between a section header and its first
@@ -268,34 +297,33 @@ func Parse(output string) []Command {
 	}
 	flush()
 	// Prefix-form listings (brew, yarn) count as a result when the same
-	// tool-name prefix introduces two or more distinct names. This also
-	// rescues outputs whose only listing sits inside a skipped or empty
-	// section. Two-token prefixes ("npm cache", "bun pm") are used only
-	// when no one-token group qualified — "yarn config get X" inside a
-	// root listing must not fabricate a top-level "get" command.
-	if len(cmds) == 0 {
-		oneToken, twoToken := false, false
-		for _, f0 := range prefixOrder {
-			if len(prefixSeen[f0]) < 2 {
-				continue
-			}
-			if len(strings.Fields(f0)) == 1 {
-				oneToken = true
-			} else {
-				twoToken = true
-			}
+	// tool-name prefix introduces two or more distinct names. Groups
+	// are merged alongside section results — a single stray section
+	// entry must not suppress them — and two-token prefixes ("npm
+	// cache", "bun pm") are used only when no one-token group
+	// qualified, so "yarn config get X" inside a root listing cannot
+	// fabricate a top-level "get" command.
+	oneToken, twoToken := false, false
+	for _, f0 := range prefixOrder {
+		if len(prefixSeen[f0]) < 2 {
+			continue
 		}
-		depth := 1
-		if !oneToken && twoToken {
-			depth = 2
+		if len(strings.Fields(f0)) == 1 {
+			oneToken = true
+		} else {
+			twoToken = true
 		}
-		for _, f0 := range prefixOrder {
-			if len(prefixSeen[f0]) < 2 || len(strings.Fields(f0)) != depth {
-				continue
-			}
-			for name, d := range prefixSeen[f0] {
-				cmds = appendCommand(cmds, seen, []string{name}, d)
-			}
+	}
+	depth := 1
+	if !oneToken && twoToken {
+		depth = 2
+	}
+	for _, f0 := range prefixOrder {
+		if len(prefixSeen[f0]) < 2 || len(strings.Fields(f0)) != depth {
+			continue
+		}
+		for name, d := range prefixSeen[f0] {
+			cmds = appendCommand(cmds, seen, []string{name}, d)
 		}
 	}
 	if len(cmds) > 0 {
@@ -537,6 +565,11 @@ func prefixedEntry(line string) (prefix, name, desc string, ok bool) {
 			}
 			continue
 		}
+		// Argument placeholders may sit between the name and the
+		// description gap ("wrangler d1 create <name>   Creates ...").
+		if d, ok := skipArgs(rest); ok && d != "" {
+			return strings.Join(fields[:plen], " "), fields[plen], d, true
+		}
 		if !argsOnly(strings.TrimSpace(rest)) {
 			continue
 		}
@@ -642,6 +675,28 @@ func parseEntry(line string) (names []string, desc string, indent int, ok bool) 
 	return nil, "", 0, false
 }
 
+// relaxedEntry is the known-section variant of parseEntry: it also
+// accepts a single-space separator when the description starts with an
+// uppercase letter, for cobra layouts where an overlong name overflows
+// the padded name column.
+func relaxedEntry(line string) (names []string, desc string, indent int, ok bool) {
+	trimmed := strings.TrimLeft(line, " \t")
+	indent = len(line) - len(trimmed)
+	if indent == 0 || trimmed == "" {
+		return nil, "", 0, false
+	}
+	i := strings.IndexAny(trimmed, " \t")
+	if i < 0 {
+		return nil, "", 0, false
+	}
+	first := trimmed[:i]
+	rest := strings.TrimSpace(trimmed[i:])
+	if !looksLikeName(first) || rest == "" || rest[0] < 'A' || rest[0] > 'Z' {
+		return nil, "", 0, false
+	}
+	return []string{first}, rest, indent, true
+}
+
 func parseEntryLine(trimmed string) (names []string, desc string, ok bool) {
 	// Colon form: "name: description" (aliases may follow: "a, b: ...").
 	// A colon preceded by a whitespace run of two or more sits inside an
@@ -675,7 +730,7 @@ func parseEntryLine(trimmed string) (names []string, desc string, ok bool) {
 		}
 		hadComma := strings.HasSuffix(token, ",")
 		for _, n := range strings.Split(strings.TrimSuffix(token, ","), "|") {
-			if !looksLikeName(n) {
+			if !looksLikeName(n) && !looksLikeSubPath(n) {
 				return nil, "", false
 			}
 			names = append(names, n)
@@ -731,7 +786,10 @@ func skipArgs(rest string) (desc string, ok bool) {
 		if j >= 2 {
 			return strings.TrimSpace(rest[j:]), true
 		}
-		if j == 0 || j >= len(rest) {
+		// j may be 0 after a multi-word bracket group consumed its
+		// trailing space ("[<job-id | job-name>] [--flags]"), so only
+		// bail when the line is exhausted.
+		if j >= len(rest) {
 			return "", false
 		}
 		rest = rest[j:]

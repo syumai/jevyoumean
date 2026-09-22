@@ -1,0 +1,55 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/doctl
+# args: 
+The subcommands of `doctl app` manage your App Platform apps. For documentation on app specs, see the [app spec reference](https://www.digitalocean.com/docs/app-platform/concepts/app-spec).
+
+Usage:
+  doctl apps [command]
+
+Aliases:
+  apps, app, a
+
+Available Commands:
+  cancel-event              Cancel an event
+  cancel-job-invocation     Cancel a job invocation
+  console                   Starts a console session
+  create                    Create an app
+  create-deployment         Creates a deployment
+  delete                    Deletes an app
+  dev                       [BETA] Display commands for working with App Platform local development.
+  get                       Get an app
+  get-deployment            Get a deployment
+  get-event                 Get an event
+  get-job-invocation        Get a job invocation
+  list                      Lists all apps
+  list-alerts               Lists alerts on an app
+  list-buildpacks           Lists buildpacks
+  list-deployments          List all deployments
+  list-events               List app events
+  list-instances            Get app instances
+  list-job-invocations      List all job invocations
+  list-regions              Lists available App Platform regions
+  logs                      Retrieves logs
+  propose                   Proposes an app spec
+  restart                   Restarts an app
+  spec                      Display commands for working with app specs
+  tier                      Display commands for working with app tiers
+  update                    Updates an app
+  update-alert-destinations Updates alert destinations
+  upgrade-buildpack         Upgrades app's buildpack
+
+Flags:
+  -h, --help   help for apps
+
+Global Flags:
+  -t, --access-token string   API V2 access token
+  -u, --api-url string        Override default API endpoint
+  -c, --config string         Specify a custom config file
+      --context string        Specify a custom authentication context name
+      --http-retry-max int    Set maximum number of retries for requests that fail with a 429 or 500-level error (default 5)
+      --interactive           Enable interactive behavior. Defaults to true if the terminal supports it (default false)
+  -o, --output string         Desired output format [text|json] (default "text")
+      --trace                 Show a log of network activity while performing a command
+  -v, --verbose               Enable verbose output
+
+Use "doctl apps [command] --help" for more information about a command.

@@ -1,0 +1,39 @@
+# synthetic fixture mimicking `tofu --help` output (OpenTofu is MPL-2.0;
+# format reproduced by hand, no verbatim capture — see ../NOTICE.md)
+Usage: jym-tofu [global options] <subcommand> [args]
+
+The available commands for execution are listed below.
+The primary workflow commands are given first, followed by
+less common or more advanced commands.
+
+Main commands:
+  init          Initialize a working directory
+  validate      Check whether the configuration is valid
+  plan          Preview the changes to be made
+  apply         Apply the planned changes
+  destroy       Tear down the managed infrastructure
+
+All other commands:
+  console       Evaluate expressions interactively
+  fmt           Rewrite configuration files canonically
+  force-unlock  Release a stuck state lock
+  get           Download or update modules
+  graph         Emit a dependency graph
+  import        Import existing resources into state
+  login         Store credentials for a remote host
+  logout        Forget stored credentials for a remote host
+  metadata      Inspect module metadata
+  output        Print root module output values
+  providers     List the providers this configuration requires
+  refresh       Re-read remote objects and update state
+  show          Inspect a state or plan file
+  state         Manipulate the state directly
+  taint         Flag an instance for recreation
+  test          Run module tests
+  untaint       Clear the tainted flag from an instance
+  version       Print the version
+  workspace     Manage workspaces
+
+Global options (use these before the subcommand, if any):
+  -chdir=DIR    Change directory before running the subcommand.
+  -help         Show help.

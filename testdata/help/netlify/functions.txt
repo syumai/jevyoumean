@@ -1,0 +1,38 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/netlify
+# args: 
+Manage netlify functions
+
+USAGE
+  $ netlify functions [options]
+
+OPTIONS
+  --filter <app>       For monorepos, specify the name of the application to
+                       run the command in
+  -h, --help           display help for command
+  --debug              Print debugging information
+  --auth <token>       Netlify auth token - can be used to run this command
+                       without logging in
+
+DESCRIPTION
+  The `functions` command will help you manage the functions in this project
+
+ALIASES
+  $ netlify function
+
+EXAMPLES
+  $ netlify functions:create --name function-xyz
+  $ netlify functions:build --functions build/to/directory --src source/directory
+
+COMMANDS
+  $ functions:build    Build functions locally
+  $ functions:create   Create a new function locally
+  $ functions:invoke   Trigger a function while in netlify dev with simulated
+                       data, good for testing function calls including
+                       Netlify's Event Triggered Functions
+  $ functions:list     List functions that exist locally
+  $ functions:serve    Serve functions locally
+
+
+For more information about Netlify Functions, see https://docs.netlify.com/functions/overview/
+
