@@ -11,6 +11,7 @@ yields nothing, **bogus** extracts words that are not subcommands,
 **todo** is tracked for support, **out-of-scope** will not be supported.
 
 - [x] `apt` — ok (7 parsed; dash-separated entries)
+- [x] `argocd` — ok (18 parsed)
 - **aws**
   - [x] `aws` — ok (302 parsed; nroff overstrike + o bullets)
   - [x] `aws s3` — ok (9 parsed; o bullets under AVAILABLE COMMANDS)
@@ -19,10 +20,28 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `aws s3api` — ok (94 parsed; o bullets under AVAILABLE COMMANDS)
   - [x] `aws dynamodb` — ok (52 parsed; o bullets under AVAILABLE COMMANDS)
   - [x] `aws sts` — ok (9 parsed; o bullets under AVAILABLE COMMANDS)
+  - [x] `aws lambda` — ok (59 parsed; o bullets)
+  - [x] `aws ecs` — ok (55 parsed; o bullets)
+  - [x] `aws eks` — ok (38 parsed; o bullets)
+  - [x] `aws rds` — ok (145 parsed; o bullets)
+  - [x] `aws cloudformation` — ok (69 parsed; o bullets)
+  - [x] `aws sqs` — ok (21 parsed; o bullets)
+  - [x] `aws sns` — ok (41 parsed; o bullets)
+  - [x] `aws ecr` — ok (45 parsed; o bullets)
+  - [x] `aws kms` — ok (49 parsed; o bullets)
+  - [x] `aws logs` — ok (43 parsed; o bullets)
 - **az**
   - [x] `az` — ok (100 parsed)
   - [x] `az group` — ok (8 parsed)
   - [x] `az storage` — ok (20 parsed)
+  - [x] `az vm` — ok (46 parsed; name : desc entries)
+  - [x] `az aks` — ok (35 parsed; name : desc entries)
+  - [x] `az network` — ok (36 parsed; name : desc entries)
+  - [x] `az acr` — ok (35 parsed; name : desc entries)
+  - [x] `az keyvault` — ok (28 parsed; name : desc entries)
+  - [x] `az webapp` — ok (30 parsed; name : desc entries)
+  - [x] `az sql` — ok (15 parsed; name : desc entries)
+  - [x] `az monitor` — ok (12 parsed; name : desc entries)
 - [x] `brew` — ok (9 parsed; tool-prefixed usage lines)
 - **bun**
   - [x] `bun` — ok (25 parsed)
@@ -47,6 +66,12 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `docker builder` — ok (16 parsed)
   - [x] `docker context` — ok (9 parsed)
   - [x] `docker plugin` — ok (10 parsed)
+  - [x] `docker system` — ok (4 parsed)
+  - [x] `docker manifest` — ok (5 parsed)
+- [x] `doctl` — ok (28 parsed)
+- [x] `eksctl` — ok (20 parsed)
+- [x] `flux` — ok (30 parsed)
+- [x] `flyctl` — ok (45 parsed)
 - **gcloud**
   - [x] `gcloud` — ok (fixture not committed; parses; fixture not committed (proprietary))
   - [x] `gcloud config` — ok (fixture not committed; parses; fixture not committed (proprietary); AVAILABLE PROPERTIES skipped)
@@ -67,6 +92,10 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `gh extension` — ok (8 parsed)
   - [x] `gh codespace` — ok (13 parsed)
   - [x] `gh cache` — ok (2 parsed)
+  - [x] `gh gpg-key` — ok (3 parsed)
+  - [x] `gh ssh-key` — ok (3 parsed)
+  - [x] `gh codespace/ports` — ok (2 parsed)
+  - [x] `gh repo/deploy-key` — ok (3 parsed)
 - **git**
   - [x] `git` — ok (17 parsed; help_args: help -a)
   - [x] `git remote` — ok (5 parsed; man-page COMMANDS section)
@@ -75,6 +104,7 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `git worktree` — ok (8 parsed; man-page COMMANDS section)
   - [x] `git bisect` — ok (9 parsed; man-page COMMANDS section)
   - [x] `git config` — leaf (env-var sections are skipped)
+- [x] `glab` — ok (47 parsed)
 - **go**
   - [x] `go` — ok (37 parsed)
   - [x] `go mod` — ok (8 parsed)
@@ -82,13 +112,19 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `go mod` — ok (8 parsed)
   - [x] `go tool` — ok (8 parsed; bare-name col-0 lines; help_args: bare)
 - [ ] `gradle` — out-of-scope (fixture not committed; goals defined by plugins, not in --help)
+- [x] `hatch` — ok (18 parsed)
+- [x] `hcloud` — ok (14 parsed)
 - **helm**
   - [x] `helm` — ok (26 parsed)
   - [x] `helm dependency` — ok (3 parsed; yaml example blocks skipped)
   - [x] `helm repo` — ok (5 parsed)
   - [x] `helm plugin` — ok (4 parsed)
   - [x] `helm show` — ok (5 parsed)
+  - [x] `helm search` — ok (2 parsed)
+- [x] `helmfile` — ok (23 parsed)
 - [ ] `jq` — out-of-scope (fixture not committed; no subcommand concept)
+- [x] `k9s` — ok (4 parsed)
+- [x] `kind` — ok (9 parsed)
 - **kubectl**
   - [x] `kubectl` — ok (42 parsed)
   - [x] `kubectl config` — ok (15 parsed)
@@ -96,33 +132,62 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `kubectl set` — ok (6 parsed)
   - [x] `kubectl rollout` — ok (6 parsed)
   - [x] `kubectl api-resources` — leaf (leaf command, no subcommands)
+  - [x] `kubectl certificate` — ok (2 parsed)
+  - [x] `kubectl top` — ok (2 parsed)
+  - [x] `kubectl auth` — ok (3 parsed)
+- [x] `kustomize` — ok (9 parsed)
+- [x] `linkerd` — ok (9 parsed)
 - [ ] `make` — out-of-scope (fixture not committed; no subcommand concept)
+- [x] `meson` — ok (14 parsed)
+- [x] `minikube` — ok (31 parsed)
 - **mise**
   - [x] `mise` — ok (67 parsed)
   - [x] `mise tasks` — ok (9 parsed)
   - [x] `mise plugins` — ok (8 parsed)
+  - [x] `mise settings` — ok (6 parsed)
+  - [x] `mise cache` — ok (5 parsed)
 - [ ] `mvn` — out-of-scope (goals defined by plugins, not in --help)
+- [x] `netlify` — ok (27 parsed; $ sigil entries)
 - **npm**
   - [x] `npm` — ok (15 parsed; comma inventory format)
   - [x] `npm cache` — ok (4 parsed; 2-token prefixed synopsis lines)
+- [x] `pdm` — ok (17 parsed)
 - **pip**
   - [x] `pip` — ok (16 parsed)
   - [x] `pip install` — leaf (leaf command, no subcommands)
-- [x] `pnpm` — ok (92 parsed)
-- [x] `poetry` — ok (20 parsed; help_args: list)
+- [x] `pipx` — ok (31 parsed)
+- **pnpm**
+  - [x] `pnpm` — ok (92 parsed)
+  - [x] `pnpm store` — ok (5 parsed)
+  - [ ] `pnpm env` — empty (deprecated; help does not list subcommands)
+- **poetry**
+  - [x] `poetry` — ok (20 parsed; help_args: list)
+  - [x] `poetry env` — ok (5 parsed; namespaced name: desc entries)
+  - [x] `poetry self` — ok (7 parsed; namespaced name: desc entries)
+  - [x] `poetry source` — ok (3 parsed; namespaced name: desc entries)
+  - [x] `poetry cache` — ok (2 parsed; namespaced name: desc entries)
+- [x] `pulumi` — ok (34 parsed)
 - [ ] `python3` — out-of-scope (fixture not committed; no subcommand concept)
+- [x] `railway` — ok (60 parsed)
 - **rustup**
   - [x] `rustup` — ok (18 parsed)
   - [x] `rustup toolchain` — ok (5 parsed)
   - [x] `rustup component` — ok (4 parsed)
   - [x] `rustup target` — ok (4 parsed)
+  - [x] `rustup override` — ok (4 parsed)
+  - [x] `rustup self` — ok (4 parsed)
+- [x] `rye` — ok (24 parsed)
+- [x] `skaffold` — ok (17 parsed)
+- [x] `sops` — ok (15 parsed)
 - [ ] `ssh` — out-of-scope (fixture not committed; no subcommand concept)
+- [x] `stripe` — ok (32 parsed)
 - [ ] `sudo` — out-of-scope (fixture not committed; no subcommand concept)
 - [x] `systemctl` — ok (13 parsed; [ARG...] placeholders skipped)
 - [x] `tar` — leaf (option-value sections are skipped)
 - **terraform**
   - [x] `terraform` — ok (fixture not committed; parses; fixture not committed (BUSL))
   - [x] `terraform state` — ok (fixture not committed; parses; fixture not committed (BUSL))
+- [x] `tilt` — ok (28 parsed)
 - [x] `tmux` — ok (86 parsed; col-0 name (alias) entries; help_args: list-commands)
 - **uv**
   - [x] `uv` — ok (23 parsed)
@@ -130,10 +195,15 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `uv python` — ok (8 parsed)
   - [x] `uv pip` — ok (9 parsed)
   - [x] `uv venv` — leaf (leaf command, no subcommands)
+  - [x] `uv cache` — ok (4 parsed)
+  - [x] `uv self` — ok (2 parsed)
+- [x] `vercel` — ok (66 parsed)
+- [x] `wrangler` — ok (33 parsed)
 - [x] `yarn` — ok (27 parsed; tool-prefixed usage lines)
 
 ## Totals
 
-- ok: 84
+- ok: 150
 - leaf: 11
+- empty: 1
 - out-of-scope: 8

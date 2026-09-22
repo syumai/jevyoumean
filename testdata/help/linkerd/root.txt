@@ -1,0 +1,39 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/linkerd
+# args: 
+linkerd manages the Linkerd service mesh.
+
+Usage:
+  linkerd [command]
+
+Available Commands:
+  authz        List authorizations for a resource
+  check        Check the Linkerd installation for potential problems
+  completion   Output shell completion code for the specified shell (bash, zsh or fish)
+  diagnostics  Commands used to diagnose Linkerd components
+  help         Help about any command
+  identity     Display the certificate(s) of one or more selected pod(s)
+  inject       Add the Linkerd proxy to a Kubernetes config
+  install      Output Kubernetes configs to install Linkerd
+  install-cni  Output Kubernetes configs to install Linkerd CNI
+  multicluster Manages the multicluster setup for Linkerd
+  profile      Output service profile config for Kubernetes
+  prune        Output extraneous Kubernetes resources in the linkerd control plane
+  uninject     Remove the Linkerd proxy from a Kubernetes config
+  uninstall    Output Kubernetes resources to uninstall Linkerd control plane
+  upgrade      Output Kubernetes configs to upgrade an existing Linkerd control plane
+  version      Print the client and server version information
+  viz          viz manages the linkerd-viz extension of Linkerd service mesh
+
+Flags:
+      --api-addr string            Override kubeconfig and communicate directly with the control plane at host:port (mostly for testing)
+      --as string                  Username to impersonate for Kubernetes operations
+      --as-group stringArray       Group to impersonate for Kubernetes operations
+      --cni-namespace string       Namespace in which the Linkerd CNI plugin is installed (default "linkerd-cni")
+      --context string             Name of the kubeconfig context to use
+  -h, --help                       help for linkerd
+      --kubeconfig string          Path to the kubeconfig file to use for CLI requests
+  -L, --linkerd-namespace string   Namespace in which Linkerd is installed ($LINKERD_NAMESPACE) (default "linkerd")
+      --verbose                    Turn on debug logging
+
+Use "linkerd [command] --help" for more information about a command.

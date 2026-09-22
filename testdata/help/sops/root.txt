@@ -1,0 +1,147 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/sops
+# args: 
+NAME:
+   sops - sops - encrypted file editor with AWS KMS, GCP KMS, HuaweiCloud KMS, Azure Key Vault, age, and GPG support
+
+USAGE:
+   sops is an editor of encrypted files that supports AWS KMS, GCP, HuaweiCloud KMS, AZKV,
+  PGP, and Age
+
+   To encrypt or decrypt a document with AWS KMS, specify the KMS ARN
+   in the -k flag or in the SOPS_KMS_ARN environment variable.
+   (you need valid credentials in ~/.aws/credentials or in your env)
+
+   To encrypt or decrypt a document with GCP KMS, specify the
+   GCP KMS resource ID in the --gcp-kms flag or in the SOPS_GCP_KMS_IDS
+   environment variable.
+   (You need to setup Google application default credentials. See
+    https://developers.google.com/identity/protocols/application-default-credentials)
+
+   To encrypt or decrypt a document with HuaweiCloud KMS, specify the
+   HuaweiCloud KMS key ID (format: region:key-uuid) in the --hckms flag or in the
+   SOPS_HUAWEICLOUD_KMS_IDS environment variable.
+   (You need to setup HuaweiCloud credentials via environment variables:
+    HUAWEICLOUD_SDK_AK, HUAWEICLOUD_SDK_SK, HUAWEICLOUD_SDK_PROJECT_ID, or
+    use credentials file at ~/.huaweicloud/credentials)
+
+   To encrypt or decrypt a document with HashiCorp Vault's Transit Secret
+   Engine, specify the Vault key URI name in the --hc-vault-transit flag
+   or in the SOPS_VAULT_URIS environment variable (for example
+   https://vault.example.org:8200/v1/transit/keys/dev, where
+   'https://vault.example.org:8200' is the vault server, 'transit' the
+   enginePath, and 'dev' is the name of the key).
+   (You need to enable the Transit Secrets Engine in Vault. See
+    https://www.vaultproject.io/docs/secrets/transit/index.html)
+
+   To encrypt or decrypt a document with Azure Key Vault, specify the
+   Azure Key Vault key URL in the --azure-kv flag or in the
+   SOPS_AZURE_KEYVAULT_URL environment variable.
+   (Authentication is based on environment variables, see
+    https://docs.microsoft.com/en-us/go/azure/azure-sdk-go-authorization#use-environment-based-authentication.
+    The user/sp needs the key/encrypt and key/decrypt permissions.)
+
+   To encrypt or decrypt using age, specify the recipient in the -a flag,
+   or in the SOPS_AGE_RECIPIENTS environment variable.
+
+   To encrypt or decrypt using PGP, specify the PGP fingerprint in the
+   -p flag or in the SOPS_PGP_FP environment variable.
+
+   To use multiple KMS or PGP keys, separate them by commas. For example:
+       $ sops -p "10F2...0A, 85D...B3F21" file.yaml
+
+   The -p, -k, --gcp-kms, --hckms, --hc-vault-transit, and --azure-kv flags are only
+   used to encrypt new documents. Editing or decrypting existing documents
+   can be done with "sops file" or "sops decrypt file" respectively. The KMS and
+   PGP keys listed in the encrypted documents are used then. To manage master
+   keys in existing documents, use the "add-{kms,pgp,gcp-kms,hckms,azure-kv,hc-vault-transit}"
+   and "rm-{kms,pgp,gcp-kms,hckms,azure-kv,hc-vault-transit}" flags with --rotate
+   or the updatekeys command.
+
+   To use a different GPG binary than the one in your PATH, set SOPS_GPG_EXEC.
+
+   To select a different editor than the default (vim), set SOPS_EDITOR or
+   EDITOR.
+
+   Note that flags must always be provided before the filename to operate on.
+   Otherwise, they will be ignored.
+
+   For more information, see the README at https://github.com/getsops/sops
+
+VERSION:
+   3.13.3
+
+AUTHOR:
+   CNCF Maintainers
+
+COMMANDS:
+   completion  Generate shell completion scripts
+   exec-env    execute a command with decrypted values inserted into the environment
+   exec-file   execute a command with the decrypted contents as a temporary file
+   publish     Publish sops file or directory to a configured destination
+   keyservice  start a SOPS key service server
+   filestatus  check the status of the file, returning encryption status
+   groups      modify the groups on a SOPS file
+   updatekeys  update the keys of SOPS files using the config file
+   decrypt     decrypt a file, and output the results to stdout. If no filename is provided, stdin will be used.
+   encrypt     encrypt a file, and output the results to stdout. If no filename is provided, stdin will be used.
+   rotate      generate a new data encryption key and reencrypt all values with the new key
+   edit        edit an encrypted file
+   set         set a specific key or branch in the input document. value must be a JSON encoded string, for example '/path/to/file ["somekey"][0] {"somevalue":true}', or a path if --value-file is used, or omitted if --value-stdin is used
+   unset       unset a specific key or branch in the input document.
+   help, h     Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --decrypt, -d                            decrypt a file and output the result to stdout
+   --encrypt, -e                            encrypt a file and output the result to stdout
+   --rotate, -r                             generate a new data encryption key and reencrypt all values with the new key
+   --disable-version-check                  do not check whether the current version is latest during --version [$SOPS_DISABLE_VERSION_CHECK]
+   --check-for-updates                      do check whether the current version is latest during --version
+   --kms value, -k value                    comma separated list of KMS ARNs [$SOPS_KMS_ARN]
+   --aws-profile value                      The AWS profile to use for requests to AWS
+   --gcp-kms value                          comma separated list of GCP KMS resource IDs [$SOPS_GCP_KMS_IDS]
+   --hckms value                            comma separated list of HuaweiCloud KMS key IDs (format: region:key-uuid) [$SOPS_HUAWEICLOUD_KMS_IDS]
+   --azure-kv value                         comma separated list of Azure Key Vault URLs [$SOPS_AZURE_KEYVAULT_URLS]
+   --hc-vault-transit value                 comma separated list of vault's key URI (e.g. 'https://vault.example.org:8200/v1/transit/keys/dev') [$SOPS_VAULT_URIS]
+   --pgp value, -p value                    comma separated list of PGP fingerprints [$SOPS_PGP_FP]
+   --age value, -a value                    comma separated list of age recipients [$SOPS_AGE_RECIPIENTS]
+   --in-place, -i                           write output back to the same file instead of stdout
+   --extract value                          extract a specific key or branch from the input document. Decrypt mode only. Example: --extract '["somekey"][0]'
+   --input-type value                       currently json, yaml, dotenv, ini and binary are supported. If not set, sops will use the file's extension to determine the type
+   --output-type value                      currently json, yaml, dotenv, ini and binary are supported. If not set, sops will use the input file's extension to determine the output format
+   --show-master-keys, -s                   display master encryption keys in the file during editing
+   --add-gcp-kms value                      add the provided comma-separated list of GCP KMS key resource IDs to the list of master keys on the given file
+   --rm-gcp-kms value                       remove the provided comma-separated list of GCP KMS key resource IDs from the list of master keys on the given file
+   --add-hckms value                        add the provided comma-separated list of HuaweiCloud KMS key IDs (format: region:key-uuid) to the list of master keys on the given file
+   --rm-hckms value                         remove the provided comma-separated list of HuaweiCloud KMS key IDs (format: region:key-uuid) from the list of master keys on the given file
+   --add-azure-kv value                     add the provided comma-separated list of Azure Key Vault key URLs to the list of master keys on the given file
+   --rm-azure-kv value                      remove the provided comma-separated list of Azure Key Vault key URLs from the list of master keys on the given file
+   --add-kms value                          add the provided comma-separated list of KMS ARNs to the list of master keys on the given file
+   --rm-kms value                           remove the provided comma-separated list of KMS ARNs from the list of master keys on the given file
+   --add-hc-vault-transit value             add the provided comma-separated list of Vault's URI key to the list of master keys on the given file ( eg. https://vault.example.org:8200/v1/transit/keys/dev)
+   --rm-hc-vault-transit value              remove the provided comma-separated list of Vault's URI key from the list of master keys on the given file ( eg. https://vault.example.org:8200/v1/transit/keys/dev)
+   --add-age value                          add the provided comma-separated list of age recipients fingerprints to the list of master keys on the given file
+   --rm-age value                           remove the provided comma-separated list of age recipients from the list of master keys on the given file
+   --add-pgp value                          add the provided comma-separated list of PGP fingerprints to the list of master keys on the given file
+   --rm-pgp value                           remove the provided comma-separated list of PGP fingerprints from the list of master keys on the given file
+   --ignore-mac                             ignore Message Authentication Code during decryption
+   --mac-only-encrypted                     compute MAC only over values which end up encrypted
+   --unencrypted-suffix value               override the unencrypted key suffix.
+   --encrypted-suffix value                 override the encrypted key suffix. When empty, all keys will be encrypted, unless otherwise marked with unencrypted-suffix.
+   --unencrypted-regex value                set the unencrypted key regex. When specified, only keys matching the regex will be left unencrypted.
+   --encrypted-regex value                  set the encrypted key regex. When specified, only keys matching the regex will be encrypted.
+   --unencrypted-comment-regex value        set the unencrypted comment suffix. When specified, only keys that have comment matching the regex will be left unencrypted.
+   --encrypted-comment-regex value          set the encrypted comment suffix. When specified, only keys that have comment matching the regex will be encrypted.
+   --config value                           path to sops' config file. If set, sops will not search for the config file recursively. [$SOPS_CONFIG]
+   --encryption-context value               comma separated list of KMS encryption context key:value pairs
+   --set value                              set a specific key or branch in the input document. value must be a json encoded string. (edit mode only). eg. --set '["somekey"][0] {"somevalue":true}'
+   --shamir-secret-sharing-threshold value  the number of master keys required to retrieve the data key with shamir (default: 0)
+   --indent value                           the number of spaces to indent YAML or JSON encoded file (default: 0)
+   --verbose                                Enable verbose logging output
+   --output value                           Save the output after encryption or decryption to the file specified
+   --filename-override value                Use this filename instead of the provided argument for loading configuration, and for determining input type and output type
+   --decryption-order value                 comma separated list of decryption key types [$SOPS_DECRYPTION_ORDER]
+   --enable-local-keyservice                use local key service [$SOPS_ENABLE_LOCAL_KEYSERVICE]
+   --keyservice value                       Specify the key services to use in addition to the local one. Can be specified more than once. Syntax: protocol://address. Example: tcp://myserver.com:5000 [$SOPS_KEYSERVICE]
+   --help, -h                               show help
+   --version, -v                            print the version

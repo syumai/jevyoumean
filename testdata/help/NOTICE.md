@@ -40,6 +40,33 @@ code from these projects.
 | az | Azure CLI (`Azure/azure-cli`) | MIT |
 | brew | Homebrew (`Homebrew/brew`) | BSD-2-Clause |
 | mvn | Apache Maven | Apache-2.0 |
+| doctl | DigitalOcean CLI (`digitalocean/doctl`) | Apache-2.0 |
+| flyctl | flyctl (`superfly/flyctl`) | Apache-2.0 |
+| stripe | Stripe CLI (`stripe/stripe-cli`) | Apache-2.0 |
+| glab | GitLab CLI (`gitlab-org/cli`) | MIT |
+| hcloud | Hetzner Cloud CLI (`hetznercloud/cli`) | MIT |
+| eksctl | eksctl (`eksctl-io/eksctl`) | Apache-2.0 |
+| kind | kind (`kubernetes-sigs/kind`) | Apache-2.0 |
+| k9s | k9s (`derailed/k9s`) | Apache-2.0 |
+| minikube | minikube (`kubernetes/minikube`) | Apache-2.0 |
+| kustomize | kustomize (`kubernetes-sigs/kustomize`) | Apache-2.0 |
+| helmfile | helmfile (`helmfile/helmfile`) | MIT |
+| sops | SOPS (`getsops/sops`) | MPL-2.0 |
+| argocd | Argo CD CLI (`argoproj/argo-cd`) | Apache-2.0 |
+| tilt | Tilt (`tilt-dev/tilt`) | MIT |
+| skaffold | Skaffold (`GoogleContainerTools/skaffold`) | Apache-2.0 |
+| pulumi | Pulumi CLI (`pulumi/pulumi`) | Apache-2.0 |
+| linkerd | Linkerd CLI (`linkerd/linkerd2`) | Apache-2.0 |
+| flux | Flux CLI (`fluxcd/flux2`) | Apache-2.0 |
+| vercel | Vercel CLI (`vercel/vercel`) | Apache-2.0 |
+| netlify | Netlify CLI (`netlify/cli`) | MIT |
+| railway | Railway CLI (`railwayapp/cli`) | MIT |
+| wrangler | Wrangler (`cloudflare/workers-sdk`) | MIT/Apache-2.0 |
+| pipx | pipx (`pypa/pipx`) | MIT |
+| hatch | Hatch (`pypa/hatch`) | MIT |
+| pdm | PDM (`pdm-project/pdm`) | MIT |
+| meson | Meson (`mesonbuild/meson`) | Apache-2.0 |
+| rye | Rye (`astral-sh/rye`) | MIT |
 
 ## Synthetic fixtures (format only, not verbatim)
 

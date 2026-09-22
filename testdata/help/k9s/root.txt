@@ -1,0 +1,45 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/k9s
+# args: 
+K9s is a CLI to view and manage your Kubernetes clusters.
+
+Usage:
+  k9s [flags]
+  k9s [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  info        List K9s configurations info
+  version     Print version/build info
+
+Flags:
+  -A, --all-namespaces                 Launch K9s in all namespaces
+      --as string                      Username to impersonate for the operation
+      --as-group stringArray           Group to impersonate for the operation
+      --certificate-authority string   Path to a cert file for the certificate authority
+      --client-certificate string      Path to a client certificate file for TLS
+      --client-key string              Path to a client key file for TLS
+      --cluster string                 The name of the kubeconfig cluster to use
+  -c, --command string                 Overrides the default resource to load when the application launches
+      --context string                 The name of the kubeconfig context to use
+      --crumbsless                     Turn K9s crumbs off
+      --headless                       Turn K9s header off
+  -h, --help                           help for k9s
+      --insecure-skip-tls-verify       If true, the server's caCertFile will not be checked for validity
+      --invert                         Invert skin (dark to light, light to dark), preserving colors
+      --kubeconfig string              Path to the kubeconfig file to use for CLI requests
+      --logFile string                 Specify the log file (default "/home/ubuntu/.local/state/k9s/k9s.log")
+  -l, --logLevel string                Specify a log level (error, warn, info, debug) (default "info")
+      --logoless                       Turn K9s logo off
+  -n, --namespace string               If present, the namespace scope for this CLI request
+      --readonly                       Sets readOnly mode by overriding readOnly configuration setting
+  -r, --refresh float32                Specify the default refresh rate as a float (sec) (default 2)
+      --request-timeout string         The length of time to wait before giving up on a single server request
+      --screen-dump-dir string         Sets a path to a dir for a screen dumps
+      --splashless                     Turn K9s splash screen off
+      --token string                   Bearer token for authentication to the API server
+      --user string                    The name of the kubeconfig user to use
+      --write                          Sets write mode by overriding the readOnly configuration setting
+
+Use "k9s [command] --help" for more information about a command.

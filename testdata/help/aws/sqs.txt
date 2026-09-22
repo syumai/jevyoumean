@@ -1,0 +1,104 @@
+# captured 2026-09-22
+# exe: /usr/bin/aws
+# args: 
+<string>:: (ERROR/3) Anonymous hyperlink mismatch: 1 references but 0 targets.
+See "backrefs" attribute for IDs.
+SQS()                                                                    SQS()
+
+
+
+NNAAMMEE
+       sqs -
+
+DDEESSCCRRIIPPTTIIOONN
+       Welcome to the _A_m_a_z_o_n _S_Q_S _A_P_I _R_e_f_e_r_e_n_c_e .
+
+       Amazon SQS is a reliable, highly-scalable hosted queue for storing mes-
+       sages as they travel between applications or microservices. Amazon  SQS
+       moves data between distributed application components and helps you de-
+       couple these components.
+
+       For information on the permissions  you  need  to  use  this  API,  see
+       _I_d_e_n_t_i_t_y _a_n_d _a_c_c_e_s_s _m_a_n_a_g_e_m_e_n_t in the _A_m_a_z_o_n _S_Q_S _D_e_v_e_l_o_p_e_r _G_u_i_d_e_.
+
+       You  can  use  _A_m_a_z_o_n _W_e_b _S_e_r_v_i_c_e_s _S_D_K_s to access Amazon SQS using your
+       favorite programming language. The SDKs perform tasks such as the  fol-
+       lowing automatically:
+
+       +o Cryptographically sign your service requests
+
+       +o Retry requests
+
+       +o Handle error responses
+          AAddddiittiioonnaall iinnffoorrmmaattiioonn
+
+       +o _A_m_a_z_o_n _S_Q_S _P_r_o_d_u_c_t _P_a_g_e
+
+       +o _A_m_a_z_o_n _S_Q_S _D_e_v_e_l_o_p_e_r _G_u_i_d_e
+
+         +o _M_a_k_i_n_g _A_P_I _R_e_q_u_e_s_t_s
+
+         +o _A_m_a_z_o_n _S_Q_S _M_e_s_s_a_g_e _A_t_t_r_i_b_u_t_e_s
+
+         +o _A_m_a_z_o_n _S_Q_S _D_e_a_d_-_L_e_t_t_e_r _Q_u_e_u_e_s
+
+       +o
+
+         `Amazon SQS in the *Command Line Interface* http://docs.aws.amazon.com/cli/latest/reference/sqs/index.html`__
+
+
+       +o _A_m_a_z_o_n _W_e_b _S_e_r_v_i_c_e_s _G_e_n_e_r_a_l _R_e_f_e_r_e_n_c_e
+
+         +o _R_e_g_i_o_n_s _a_n_d _E_n_d_p_o_i_n_t_s
+
+AAVVAAIILLAABBLLEE CCOOMMMMAANNDDSS
+       +o add-permission
+
+       +o change-message-visibility
+
+       +o change-message-visibility-batch
+
+       +o create-queue
+
+       +o delete-message
+
+       +o delete-message-batch
+
+       +o delete-queue
+
+       +o get-queue-attributes
+
+       +o get-queue-url
+
+       +o help
+
+       +o list-dead-letter-source-queues
+
+       +o list-queue-tags
+
+       +o list-queues
+
+       +o purge-queue
+
+       +o receive-message
+
+       +o remove-permission
+
+       +o send-message
+
+       +o send-message-batch
+
+       +o set-queue-attributes
+
+       +o tag-queue
+
+       +o untag-queue
+
+DDOOCCUUTTIILLSS SSYYSSTTEEMM MMEESSSSAAGGEESS
+       System Message: ERROR/3 (<string>:)
+              Anonymous  hyperlink  mismatch: 1 references but 0 targets.  See
+              "backrefs" attribute for IDs.
+
+
+
+                                                                         SQS()

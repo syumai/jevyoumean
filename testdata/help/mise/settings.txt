@@ -1,0 +1,57 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/mise
+# args: 
+Manage settings
+
+Usage: mise settings [FLAGS] [SETTING] [VALUE] [SUBCOMMAND]
+
+Commands:
+  add    Append a value to an array setting
+  get    Show the effective value of a setting
+  ls     List configured settings and their sources [aliases: list]
+  set    Add/update a setting [aliases: create]
+  unset  Clear a setting [aliases: rm, remove, delete, del]
+  help   Print this message or the help of the given subcommand(s)
+
+Arguments:
+  [SETTING]  Name of setting
+  [VALUE]    Setting value to set
+
+Flags:
+  -a, --all            List all settings
+  -J, --json           Output in JSON format
+  -l, --local          Use the local config file instead of the global one
+  -T, --toml           Output in TOML format
+      --json-extended  Output in JSON format with sources
+  -h, --help           Print help
+
+Global flags:
+  -C, --cd <DIR>       Change directory before running command
+  -E, --env <ENV>      Set the environment for loading `mise.<ENV>.toml`
+  -j, --jobs <JOBS>    How many jobs to run in parallel; values below 1 are
+                       treated as 1 [default: 8]
+                       [env: MISE_JOBS]
+  -q, --quiet          Suppress non-error messages
+                       [env: MISE_QUIET]
+  -v, --verbose        Show extra output (use -vv for even more)
+  -y, --yes            Answer yes to all confirmation prompts
+      --raw            Read/write directly to stdin/stdout/stderr instead of by
+                       line
+      --locked         Require lockfile URLs to be present during installation
+
+                       Fails if tools don't have pre-resolved URLs in the
+                       lockfile for the current platform.
+                       This prevents API calls to GitHub, aqua registry, etc.
+                       Can also be enabled via MISE_LOCKED=1 or
+                       settings.locked=true
+      --silent         Suppress all task output and mise non-error messages
+
+Examples:
+    list explicitly configured settings
+    $ mise settings
+    get the value of the setting "always_keep_download"
+    $ mise settings always_keep_download
+    set the value of the setting "always_keep_download" to "true"
+    $ mise settings always_keep_download=true
+    set the value of the setting "node.mirror_url" to "https://npmmirror.com/mirrors/node/"
+    $ mise settings node.mirror_url https://npmmirror.com/mirrors/node/

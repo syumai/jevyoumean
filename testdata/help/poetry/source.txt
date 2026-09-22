@@ -1,0 +1,11 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/poetry
+# args: 
+The requested command does not exist in the source namespace.
+
+Did you mean one of these perhaps?
+    source add: Add source configuration for project.
+    source remove: Remove source configured for the project.
+    source show: Show information about sources configured for the project.
+
+Documentation: https://python-poetry.org/docs/cli/#source

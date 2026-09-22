@@ -1,0 +1,16 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/poetry
+# args: 
+The requested command does not exist in the self namespace.
+
+Did you mean one of these perhaps?
+    self add: Add additional packages to Poetry's runtime environment.
+    self install: Install locked packages (incl. addons) required by this Poetry installation.
+    self lock: Lock the Poetry installation's system requirements.
+    self remove: Remove additional packages from Poetry's runtime environment.
+    self show plugins: Shows information about the currently installed plugins.
+    self show: Show packages from Poetry's runtime environment.
+    self sync: Sync Poetry's own environment according to the locked packages (incl. addons) required by this Poetry installation.
+    self update: Updates Poetry to the latest version.
+
+Documentation: https://python-poetry.org/docs/cli/#self

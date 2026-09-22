@@ -1,0 +1,115 @@
+# captured 2026-09-22
+# exe: /usr/bin/aws
+# args: 
+SNS()                                                                    SNS()
+
+
+
+NNAAMMEE
+       sns -
+
+DDEESSCCRRIIPPTTIIOONN
+       Amazon  Simple  Notification Service (Amazon SNS) is a web service that
+       enables you to build distributed web-enabled applications. Applications
+       can  use  Amazon  SNS to easily push real-time notification messages to
+       interested subscribers over multiple delivery protocols. For  more  in-
+       formation  about this product see the _A_m_a_z_o_n _S_N_S _p_r_o_d_u_c_t _p_a_g_e . For de-
+       tailed information about Amazon SNS features and their  associated  API
+       calls, see the _A_m_a_z_o_n _S_N_S _D_e_v_e_l_o_p_e_r _G_u_i_d_e .
+
+       For  information  on  the  permissions  you  need  to use this API, see
+       _I_d_e_n_t_i_t_y _a_n_d _a_c_c_e_s_s _m_a_n_a_g_e_m_e_n_t _i_n _A_m_a_z_o_n _S_N_S in the _A_m_a_z_o_n  _S_N_S  _D_e_v_e_l_-
+       _o_p_e_r _G_u_i_d_e_.
+
+       We  also  provide  SDKs  that enable you to access Amazon SNS from your
+       preferred programming language. The SDKs contain functionality that au-
+       tomatically takes care of tasks such as: cryptographically signing your
+       service requests, retrying requests, and handling error responses.  For
+       a list of available SDKs, go to _T_o_o_l_s _f_o_r _A_m_a_z_o_n _W_e_b _S_e_r_v_i_c_e_s .
+
+AAVVAAIILLAABBLLEE CCOOMMMMAANNDDSS
+       +o add-permission
+
+       +o check-if-phone-number-is-opted-out
+
+       +o confirm-subscription
+
+       +o create-platform-application
+
+       +o create-platform-endpoint
+
+       +o create-sms-sandbox-phone-number
+
+       +o create-topic
+
+       +o delete-endpoint
+
+       +o delete-platform-application
+
+       +o delete-sms-sandbox-phone-number
+
+       +o delete-topic
+
+       +o get-endpoint-attributes
+
+       +o get-platform-application-attributes
+
+       +o get-sms-attributes
+
+       +o get-sms-sandbox-account-status
+
+       +o get-subscription-attributes
+
+       +o get-topic-attributes
+
+       +o help
+
+       +o list-endpoints-by-platform-application
+
+       +o list-origination-numbers
+
+       +o list-phone-numbers-opted-out
+
+       +o list-platform-applications
+
+       +o list-sms-sandbox-phone-numbers
+
+       +o list-subscriptions
+
+       +o list-subscriptions-by-topic
+
+       +o list-tags-for-resource
+
+       +o list-topics
+
+       +o opt-in-phone-number
+
+       +o publish
+
+       +o publish-batch
+
+       +o remove-permission
+
+       +o set-endpoint-attributes
+
+       +o set-platform-application-attributes
+
+       +o set-sms-attributes
+
+       +o set-subscription-attributes
+
+       +o set-topic-attributes
+
+       +o subscribe
+
+       +o tag-resource
+
+       +o unsubscribe
+
+       +o untag-resource
+
+       +o verify-sms-sandbox-phone-number
+
+
+
+                                                                         SNS()

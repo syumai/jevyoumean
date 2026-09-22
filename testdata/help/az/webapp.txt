@@ -1,0 +1,58 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/az
+# args: 
+
+Group
+    az webapp : Manage web apps.
+
+Subgroups:
+    auth                     : Manage webapp authentication and authorization. To use v2 auth
+                               commands, run "az extension add --name authV2" to add the authV2 CLI
+                               extension.
+    config                   : Configure a web app.
+    connection               : Commands to manage webapp connections.
+    cors                     : Manage Cross-Origin Resource Sharing (CORS).
+    deleted        [Preview] : Manage deleted web apps.
+    deployment               : Manage web app deployments.
+    hybrid-connection        : Methods that list, add and remove hybrid-connections from webapps.
+    identity                 : Manage web app's managed identity.
+    log                      : Manage web app logs.
+    sitecontainers           : Manage linux web apps sitecontainers.
+    traffic-routing          : Manage traffic routing for web apps.
+    troubleshoot   [Preview] : Diagnose common Linux web app problems.
+    vnet-integration         : Methods that list, add, and remove virtual network integrations from
+                               a webapp.
+    webjob                   : Allows management operations for webjobs on a web app.
+
+Commands:
+    browse                   : Open a web app in a browser. This is not supported in Azure Cloud
+                               Shell.
+    create                   : Create a web app.
+    create-remote-connection : Creates a remote connection using a tcp tunnel to your web app.
+    delete                   : Delete a web app.
+    deploy                   : Deploys a provided artifact to Azure Web Apps.
+    exec           [Preview] : Open an interactive shell session or run a command in a Linux web app
+                               container.
+    list                     : List web apps.
+    list-instances           : List all scaled out instances of a web app or web app slot.
+    list-runtimes            : List available built-in stacks which can be used for web apps.
+    restart                  : Restart a web app.
+    show                     : Get the details of a web app.
+    ssh            [Preview] : SSH command establishes a ssh session to the web container and
+                               developer would get a shell terminal remotely.
+    start                    : Start a web app.
+    stop                     : Stop a web app.
+    up          [Deprecated] : Create a webapp and deploy code from a local workspace to the app.
+                               The command is required to run from the folder where the code is
+                               present. Current support includes Node, Python, .NET Core and
+                               ASP.NET. Node, Python apps are created as Linux apps. .Net Core,
+                               ASP.NET, and static HTML apps are created as Windows apps. Append the
+                               html flag to deploy as a static HTML app. Each time the command is
+                               successfully run, default argument values for resource group, sku,
+                               location, plan, and name are saved for the current directory. These
+                               defaults are then used for any arguments not provided on subsequent
+                               runs of the command in the same directory.  Use 'az configure' to
+                               manage defaults. Run this command with the --debug parameter to see
+                               the API calls and parameters values being used.
+    update                   : Update an existing web app.
+

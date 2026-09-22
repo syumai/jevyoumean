@@ -1,0 +1,73 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pdm
+# args: 
+Usage: pdm [-h] [-V] [-c CONFIG] [-v | -q] [--no-cache] [-I]
+ [--pep582 [SHELL]] [-n]
+ ...
+
+    ____  ____  __  ___
+   / __ \/ __ \/  |/  /
+  / /_/ / / / / /|_/ /
+ / ____/ /_/ / /  / /
+/_/   /_____/_/  /_/
+
+Options:
+  -h, --help            Show this help message and exit.
+  -V, --version         Show the version and exit
+  -c CONFIG, --config CONFIG
+                        Specify another config file path [env var:
+                        PDM_CONFIG_FILE]
+  -v, --verbose         Use `-v` for detailed output and `-vv` for more
+                        detailed
+  -q, --quiet           Suppress output
+  --no-cache            Disable the cache for the current command. [env var:
+                        PDM_NO_CACHE]
+  -I, --ignore-python   Ignore the Python path saved in .pdm-python. [env var:
+                        PDM_IGNORE_SAVED_PYTHON]
+  --pep582 [SHELL]      Print the command line to be eval'd by the shell for
+                        PEP 582
+  -n, --non-interactive
+                        Don't show interactive prompts but use defaults. [env
+                        var: PDM_NON_INTERACTIVE]
+
+Commands:
+  add                   Add requirements, update the lockfile, and install the
+                        target group
+  build                 Build artifacts for distribution
+  cache                 Control the caches of PDM
+  completion            Generate completion scripts for the given shell
+  config                Display the current configuration
+  export                Export the locked packages set to other formats
+  fix                   Fix the project problems according to the latest
+                        version of PDM
+  import                Import project metadata from other formats
+  info                  Show the project information
+  init                  Initialize a pyproject.toml for PDM.
+                        Built-in templates:
+                        - default: `pdm init`, A simple template with a basic
+                        structure.
+                        - minimal: `pdm init minimal`, A minimal template with
+                        only `pyproject.toml`.
+  install               Check the lockfile, resolve if needed, and install
+                        dependencies
+  list                  List packages installed in the current working set
+  lock                  Resolve dependencies and write the lockfile without
+                        installing packages
+  new                   Create a new Python project at <project_path>
+  outdated              Check for outdated packages and list the latest
+                        versions on indexes.
+  publish               Build and publish the project to PyPI
+  python (py)           Manage installed Python interpreters
+  remove                Remove packages from pyproject.toml
+  run                   Run commands or scripts with local packages loaded
+  search                Search for PyPI packages
+  self (plugin)         Manage the PDM program itself (previously known as
+                        plugin)
+  show                  Show the package information
+  sync                  Install selected locked packages without updating the
+                        lockfile
+  update                Update locked dependency versions and install them
+  use                   Use the given python version or path as base
+                        interpreter. If not found, PDM will try to install
+                        one.
+  venv                  Virtualenv management
