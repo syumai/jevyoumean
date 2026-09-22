@@ -234,3 +234,67 @@ func TestRefreshKeepsOutsideFiles(t *testing.T) {
 		t.Fatalf("--refresh deleted a file outside the cache: %v", err)
 	}
 }
+
+// Generated bash/zsh functions route selected commands through jym. Debug
+// output proves that fakecli did not run directly; the non-TTY gate then
+// makes the wrapped execution deterministic and network-free.
+func TestShellIntegrationRoutesThroughJym(t *testing.T) {
+	for _, shell := range []string{"bash", "zsh"} {
+		shellPath, err := exec.LookPath(shell)
+		if err != nil {
+			t.Run(shell, func(t *testing.T) { t.Skipf("%s not installed", shell) })
+			continue
+		}
+		t.Run(shell, func(t *testing.T) {
+			jym, fakecli := buildBinaries(t)
+			env := append(testEnv(t, ""), "JYM_DEBUG=1")
+			flags := []string{"--noprofile", "--norc", "-c"}
+			if shell == "zsh" {
+				flags = []string{"-dfc"}
+			}
+			script := `eval "$("$1" --shell-integration "$2" fakecli)"; fakecli "two words"`
+			args := append(flags, script, "jym-shell-test", jym, shell)
+			cmd := exec.Command(shellPath, args...)
+			cmd.Env = env
+			out, err := cmd.CombinedOutput()
+			if err != nil {
+				t.Fatalf("shell integration failed: %v\n%s", err, out)
+			}
+			if !strings.Contains(string(out), "[jym] executable: "+fakecli) {
+				t.Fatalf("fakecli did not route through jym:\n%s", out)
+			}
+			if !strings.Contains(string(out), "ran: two words") {
+				t.Fatalf("arguments did not reach fakecli:\n%s", out)
+			}
+		})
+	}
+}
+
+func TestAllShellIntegrationRoutesExternalCommand(t *testing.T) {
+	for _, shell := range []string{"bash", "zsh"} {
+		shellPath, err := exec.LookPath(shell)
+		if err != nil {
+			t.Run(shell, func(t *testing.T) { t.Skipf("%s not installed", shell) })
+			continue
+		}
+		t.Run(shell, func(t *testing.T) {
+			jym, fakecli := buildBinaries(t)
+			env := append(testEnv(t, ""), "JYM_DEBUG=1")
+			flags := []string{"--noprofile", "--norc", "-c"}
+			if shell == "zsh" {
+				flags = []string{"-dfc"}
+			}
+			script := `eval "$("$1" --shell-integration "$2" --all)"; fakecli all-mode`
+			args := append(flags, script, "jym-shell-test", jym, shell)
+			cmd := exec.Command(shellPath, args...)
+			cmd.Env = env
+			out, err := cmd.CombinedOutput()
+			if err != nil {
+				t.Fatalf("all integration failed: %v\n%s", err, out)
+			}
+			if !strings.Contains(string(out), "[jym] executable: "+fakecli) {
+				t.Fatalf("fakecli did not route through --all integration:\n%s", out)
+			}
+		})
+	}
+}

@@ -43,7 +43,7 @@ type invocation struct {
 	debug   bool
 	explain bool
 	refresh bool
-	sub     string   // jym's own operation: "help", "version", "setup", "doctor", "cache-clear", "print-mise", "completion"
+	sub     string   // jym's own operation: "help", "version", "setup", "doctor", "cache-clear", "print-mise", "completion", "shell-integration"
 	subArgs []string // arguments to sub
 	wrapped []string // target command argv
 }
@@ -85,6 +85,12 @@ func parseArgs(args []string) (invocation, error) {
 			}
 			inv.sub, inv.subArgs = "completion", args[i+1:i+2]
 			return inv, nil
+		case "--shell-integration":
+			if i+1 >= len(args) {
+				return inv, errors.New("--shell-integration requires a shell: bash or zsh")
+			}
+			inv.sub, inv.subArgs = "shell-integration", args[i+1:]
+			return inv, nil
 		case "-h", "--help":
 			inv.sub = "help"
 			return inv, nil
@@ -124,6 +130,8 @@ func run(args []string) int {
 		return printMise(inv.subArgs)
 	case "completion":
 		return printCompletion(inv.subArgs[0])
+	case "shell-integration":
+		return printShellIntegration(inv.subArgs)
 	}
 	if len(inv.wrapped) == 0 {
 		usage()
@@ -146,6 +154,10 @@ Flags:
   --cache-clear            Remove the whole help cache
   --print-mise <cmd>...    Print a [shell_alias] snippet for mise.toml
   --completion <shell>     Print a completion script (bash, zsh, fish)
+  --shell-integration <shell> <cmd>...
+                           Wrap selected commands in bash or zsh
+  --shell-integration <shell> --all
+                           DANGEROUS: wrap every external command on PATH
   --doctor                 Diagnose key, API reachability, cache and TTY
   --debug                  Print debug output to stderr (also JYM_DEBUG=1)
   --help                   Show this help

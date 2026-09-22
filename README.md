@@ -54,6 +54,34 @@ loop).
 mise shell aliases only apply in `mise activate`d interactive shells —
 which is exactly where `jym` intervenes anyway.
 
+### Bash and zsh integration
+
+To wrap selected commands without mise, add one of these lines to
+`.bashrc` or `.zshrc` respectively:
+
+```sh
+eval "$(jym --shell-integration bash git gh kubectl)"
+eval "$(jym --shell-integration zsh git gh kubectl)"
+```
+
+The generated shell functions preserve argument boundaries, redirections
+and exit codes. An explicitly selected command replaces an alias with the
+same name. Use `command git ...` to bypass a wrapper temporarily.
+
+Experimental and dangerous: `--all` wraps every external executable
+currently visible on `PATH`:
+
+```sh
+eval "$(jym --shell-integration zsh --all)"
+```
+
+Shell builtins, keywords, existing aliases/functions, and `jym` itself are
+not wrapped. PATH changes after shell startup are not picked up until the
+integration is evaluated again. This mode can misinterpret ordinary
+arguments as subcommands (for example, a filename passed to `rm` or
+`bash`), add startup overhead, and cause prompts in many commands. It is
+not recommended as a default setup.
+
 ## Flags
 
 | Flag                       | Action                                                        |
@@ -64,6 +92,8 @@ which is exactly where `jym` intervenes anyway.
 | `--cache-clear`            | Remove the whole help cache                                   |
 | `--print-mise <cmd>...`    | Print a `[shell_alias]` snippet for mise.toml                 |
 | `--completion <shell>`     | Print a delegating completion script (bash, zsh, fish)        |
+| `--shell-integration <shell> <cmd>...` | Wrap selected commands in bash or zsh            |
+| `--shell-integration <shell> --all` | **Dangerous:** wrap all external commands on PATH |
 | `--doctor`                 | Diagnose key, API reachability, cache and TTY state           |
 | `--debug`                  | Debug output on stderr (also `JYM_DEBUG=1`)                   |
 | `--version`, `--help`      |                                                               |
