@@ -99,6 +99,12 @@ type buildError struct{ src, out string }
 
 func (e *buildError) Error() string { return "go build " + e.src + ": " + e.out }
 
+// containsFold reports whether s contains sub, ignoring case — Windows
+// paths disagree on case depending on how they were resolved.
+func containsFold(s, sub string) bool {
+	return strings.Contains(strings.ToLower(s), strings.ToLower(sub))
+}
+
 // testEnv returns an isolated environment: private XDG dirs and the
 // fake binary on PATH. A non-empty apiURL also wires up the stub
 // endpoint and a test key.
@@ -260,7 +266,9 @@ func TestShellIntegrationRoutesThroughJym(t *testing.T) {
 			if err != nil {
 				t.Fatalf("shell integration failed: %v\n%s", err, out)
 			}
-			if !strings.Contains(string(out), "[jym] executable: "+fakecli) {
+			// Windows resolves through PATHEXT, which reports .EXE in
+			// uppercase, so compare the path case-insensitively.
+			if !containsFold(string(out), "[jym] executable: "+fakecli) {
 				t.Fatalf("fakecli did not route through jym:\n%s", out)
 			}
 			if !strings.Contains(string(out), "ran: two words") {
@@ -292,7 +300,7 @@ func TestAllShellIntegrationRoutesExternalCommand(t *testing.T) {
 			if err != nil {
 				t.Fatalf("all integration failed: %v\n%s", err, out)
 			}
-			if !strings.Contains(string(out), "[jym] executable: "+fakecli) {
+			if !containsFold(string(out), "[jym] executable: "+fakecli) {
 				t.Fatalf("fakecli did not route through --all integration:\n%s", out)
 			}
 		})
