@@ -1,0 +1,39 @@
+# captured 2026-09-22
+# exe: /usr/bin/aws
+# args: 
+STS()                                                                    STS()
+
+
+
+NNAAMMEE
+       sts -
+
+DDEESSCCRRIIPPTTIIOONN
+       Security  Token  Service  (STS)  enables you to request temporary, lim-
+       ited-privilege credentials for Identity  and  Access  Management  (IAM)
+       users  or for users that you authenticate (federated users). This guide
+       provides descriptions of the STS API. For more information about  using
+       this service, see _T_e_m_p_o_r_a_r_y _S_e_c_u_r_i_t_y _C_r_e_d_e_n_t_i_a_l_s .
+
+AAVVAAIILLAABBLLEE CCOOMMMMAANNDDSS
+       +o assume-role
+
+       +o assume-role-with-saml
+
+       +o assume-role-with-web-identity
+
+       +o decode-authorization-message
+
+       +o get-access-key-info
+
+       +o get-caller-identity
+
+       +o get-federation-token
+
+       +o get-session-token
+
+       +o help
+
+
+
+                                                                         STS()

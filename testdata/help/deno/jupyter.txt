@@ -1,0 +1,14 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.deno/bin/deno
+# args: 
+Deno kernel for Jupyter notebooks
+
+Usage: deno jupyter [OPTIONS]
+
+Options:
+      --install           Install a kernelspec
+  -n, --name <VALUE>      Set a name for the kernel (defaults to 'deno'). Useful when maintaing multiple Deno kernels.
+  -d, --display <VALUE>   Set a display name for the kernel (defaults to 'Deno'). Useful when maintaing multiple Deno kernels.
+      --kernel            Start the kernel
+      --conn <VALUE>      Path to JSON file describing connection parameters, provided by Jupyter
+      --force             Force installation of a kernel, overwriting previously existing kernelspec

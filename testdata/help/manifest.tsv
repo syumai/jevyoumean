@@ -18,44 +18,63 @@ docker	image	capture	ok	build,ls,pull,push,rm,tag	-	-
 docker	container	capture	ok	ls,exec,start,stop,rm	-	-
 docker	network	capture	ok	connect,create,disconnect,inspect,ls,prune,rm	-	-
 docker	volume	capture	ok	create,inspect,ls,prune,rm	-	-
+docker	builder	capture	ok	bake,build,create,inspect,ls,prune,rm,use	-	-
+docker	context	capture	ok	create,export,import,inspect,ls,rm,show,update,use	-	-
+docker	plugin	capture	ok	create,disable,enable,inspect,install,ls,push,rm,set,upgrade	-	-
 gh	-	capture	ok	auth,pr,issue,repo,run,release,browse	-	-
 gh	pr	capture	ok	create,list,checkout,merge,view,close	A,pull,request	prose headings rejected
 gh	repo	capture	ok	create,list,fork,clone,view,delete	A,repository	prose headings rejected
 gh	auth	capture	ok	login,logout,refresh,status,token	-	-
 gh	issue	capture	ok	create,list,status,close,comment,edit,view	-	-
 gh	run	capture	ok	cancel,delete,download,list,rerun,view,watch	-	-
+gh	workflow	capture	ok	disable,enable,list,run,view	-	-
+gh	release	capture	ok	create,list,delete,download,edit,upload,view	-	-
+gh	extension	capture	ok	browse,create,exec,install,list,remove,search,upgrade	-	-
 go	-	capture	ok	build,test,run,mod,get,install,vet,work	-	-
 go	mod	capture	ok	download,edit,graph,init,tidy,vendor,verify,why	-	-
 go	work	capture	ok	edit,init,sync,use,vendor	-	-
 cargo	-	capture	ok	build,check,run,test,new,install,publish	-	-
 cargo	install	capture	leaf	-	-	leaf command, no subcommands
 npm	-	synthetic	ok	access,ci,config,init,install,uninstall	-	comma inventory format
-npm	cache	local	empty	-	-	npm-prefixed synopsis lines unsupported
+npm	cache	synthetic	ok	add,ls,clean,verify	-	2-token prefixed synopsis lines
 pnpm	-	capture	ok	add,install,remove,run,update,outdated,publish,dlx,create	-	-
 yarn	-	capture	ok	add,install,remove,run,config,why,dlx,init	-	tool-prefixed usage lines
 pip	-	capture	ok	install,download,uninstall,freeze,list,show	-	-
 pip	install	capture	leaf	-	Install,packages,from	leaf command, no subcommands
 uv	-	capture	ok	auth,run,init,add,remove,sync,lock,export,tool,python,pip,venv	-	-
+uv	tool	capture	ok	run,install,upgrade,list,uninstall	-	-
+uv	python	capture	ok	list,install,upgrade,find,pin,uninstall	-	-
+uv	pip	capture	ok	compile,sync,install,uninstall,freeze,list,show,tree,check	-	-
 poetry	-	capture	ok	about,add,init,install,new,run,update,version,list	-	help_args: list
 aws	-	capture	ok	s3,ec2,iam	The,services.	nroff overstrike + o bullets
 aws	s3	capture	ok	ls,cp,mv,sync,mb,rb,presign,website	This,There,must	o bullets under AVAILABLE COMMANDS
 aws	ec2	capture	ok	describe-instances,run-instances	eliminates,sources	o bullets under AVAILABLE COMMANDS
 aws	iam	capture	ok	list-users,create-role,get-policy,attach-role-policy,delete-user	-	o bullets under AVAILABLE COMMANDS
-gcloud	-	local	todo	auth,config,compute,container,functions	-	not captured
+aws	s3api	capture	ok	create-bucket,delete-bucket,get-object,list-buckets,list-objects-v2,put-object	-	o bullets under AVAILABLE COMMANDS
+aws	sts	capture	ok	assume-role,get-caller-identity,get-session-token	-	o bullets under AVAILABLE COMMANDS
+gcloud	-	local	ok	auth,config,compute,container,functions	-	parses; fixture not committed (proprietary)
+gcloud	config	local	bogus	get,list,set,unset	core,json,disable_color	config properties leak as commands
 az	-	capture	ok	account,aks,acr,configure,find,storage,group,vm	-	-
 kubectl	-	capture	ok	get,apply,describe,delete,logs,exec,create,rollout	-	-
 kubectl	config	capture	ok	get-contexts,use-context,set-context,view,current-context	-	-
 kubectl	rollout	capture	ok	history,pause,restart,resume,status,undo	-	-
 helm	-	capture	ok	install,list,upgrade,uninstall,repo,search,status	-	-
+helm	dependency	capture	bogus	build,list,update	dependency,dep,dependencies,version,repository	Chart.yaml example fields leak as commands
 helm	repo	capture	ok	add,index,list,remove,update	-	-
+helm	plugin	capture	ok	install,list,uninstall,update	-	-
 terraform	-	local	ok	init,plan,apply,destroy,fmt,validate	-	parses; fixture not committed (BUSL)
 terraform	state	local	ok	list,mv,rm,show,pull	-	parses; fixture not committed (BUSL)
 brew	-	capture	ok	search,install,list,create,edit,help,upgrade,uninstall,info	-	tool-prefixed usage lines
 mise	-	capture	ok	use,install,ls,exec,run,uninstall,shell,which	-	-
+mise	tasks	capture	ok	add,deps,edit,graph,info,ls,run	-	-
 rustup	-	capture	ok	toolchain,component,update,show,default,target	-	-
+rustup	toolchain	capture	ok	list,install,uninstall,link	-	-
+rustup	component	capture	ok	list,add,remove	-	-
 deno	-	capture	ok	run,test,fmt,lint,install,task,eval,cache,check,doc	-	-
+deno	jupyter	capture	leaf	-	-	leaf command, no subcommands
 bun	-	capture	ok	install,add,remove,run,test,update	-	-
-tmux	-	capture	empty	-	-	"list-commands" name (alias) form unsupported; help_args: list-commands
+bun	pm	capture	ok	scan,pack,bin,ls,cache,migrate,pkg,hash,whoami	-	2-token prefixed entries with gap desc
+tmux	-	capture	ok	attach-session,new-session,kill-session,list-sessions,send-keys,split-window,source-file	-	col-0 name (alias) entries; help_args: list-commands
 gradle	-	local	out-of-scope	-	-	goals defined by plugins, not in --help
 mvn	-	capture	out-of-scope	-	-	goals defined by plugins, not in --help
 systemctl	-	synthetic	ok	is-system-running,daemon-reload,daemon-reexec,poweroff,reboot,default,start,stop,status,enable,disable,list-units,show	-	[ARG...] placeholders skipped

@@ -123,15 +123,17 @@ func Parse(output string) []Command {
 	seen, sectionSeen := map[string]bool{}, map[string]bool{}
 	inSection := false
 	tentative := false
+	flatMode := false
 	sawKnownHeader := false
 	entryIndent := -1
-	prefixSeen := map[string]map[string]bool{}
+	prefixSeen := map[string]map[string]string{}
 	var prefixOrder []string
 
 	startSection := func(tent bool) {
 		pending = nil
 		sectionSeen = map[string]bool{}
 		inSection, tentative = true, tent
+		flatMode = false
 		if !tent {
 			sawKnownHeader = true
 		}
@@ -158,14 +160,16 @@ func Parse(output string) []Command {
 		// name before every subcommand in usage-style listings. Lines
 		// are collected wherever they appear; a prefix group only
 		// counts when the same leading token yields two or more
-		// distinct names, so indented prose cannot inject bogus names.
-		if indentation(line) != 0 {
-			if f0, f1, ok := prefixedEntry(line); ok {
+		// distinct names, so prose cannot inject bogus names.
+		if strings.TrimSpace(line) != "" {
+			if f0, f1, fd, ok := prefixedEntry(line); ok {
 				if prefixSeen[f0] == nil {
-					prefixSeen[f0] = map[string]bool{}
+					prefixSeen[f0] = map[string]string{}
 					prefixOrder = append(prefixOrder, f0)
 				}
-				prefixSeen[f0][f1] = true
+				if _, ok := prefixSeen[f0][f1]; !ok || fd != "" {
+					prefixSeen[f0][f1] = fd
+				}
 			}
 		}
 		if isSectionHeader(line) {
@@ -180,6 +184,20 @@ func Parse(output string) []Command {
 			continue
 		}
 		if indentation(line) == 0 {
+			// Unindented "name (alias) args" entries — listings like
+			// `tmux list-commands` put entries at column zero where
+			// they would otherwise read as headers. A tentative flat
+			// section still needs two entries to commit.
+			if names, ok := flatEntry(line); ok {
+				if !flatMode {
+					flush()
+					startSection(true)
+					flatMode = true
+				}
+				pending = appendCommand(pending, sectionSeen, names, "")
+				continue
+			}
+			flatMode = false
 			// Every other non-indented line is a tentative header.
 			flush()
 			if s := strings.ToLower(strings.TrimSpace(line)); s != "" &&
@@ -225,14 +243,31 @@ func Parse(output string) []Command {
 	// Prefix-form listings (brew, yarn) count as a result when the same
 	// tool-name prefix introduces two or more distinct names. This also
 	// rescues outputs whose only listing sits inside a skipped or empty
-	// section.
+	// section. Two-token prefixes ("npm cache", "bun pm") are used only
+	// when no one-token group qualified — "yarn config get X" inside a
+	// root listing must not fabricate a top-level "get" command.
 	if len(cmds) == 0 {
+		oneToken, twoToken := false, false
 		for _, f0 := range prefixOrder {
 			if len(prefixSeen[f0]) < 2 {
 				continue
 			}
-			for name := range prefixSeen[f0] {
-				cmds = appendCommand(cmds, seen, []string{name}, "")
+			if len(strings.Fields(f0)) == 1 {
+				oneToken = true
+			} else {
+				twoToken = true
+			}
+		}
+		depth := 1
+		if !oneToken && twoToken {
+			depth = 2
+		}
+		for _, f0 := range prefixOrder {
+			if len(prefixSeen[f0]) < 2 || len(strings.Fields(f0)) != depth {
+				continue
+			}
+			for name, d := range prefixSeen[f0] {
+				cmds = appendCommand(cmds, seen, []string{name}, d)
 			}
 		}
 	}
@@ -303,25 +338,154 @@ func parseLoose(output string) []Command {
 	return cmds
 }
 
+// flatEntry recognizes unindented listing lines of the form
+// "name (alias) [flags] args" used by `tmux list-commands` and similar
+// usage dumps: a leading name, an optional parenthesized alias list,
+// then argument placeholders. Bare lowercase positionals ("command",
+// "match-string") count only after a structured arg appeared, so prose
+// lines cannot pass. Returns names (name first, then aliases).
+func flatEntry(line string) (names []string, ok bool) {
+	trimmed := strings.TrimSpace(line)
+	i := strings.IndexAny(trimmed, " \t")
+	if i < 0 {
+		return nil, false
+	}
+	if !looksLikeName(trimmed[:i]) {
+		return nil, false
+	}
+	names = append(names, trimmed[:i])
+	rest := strings.TrimSpace(trimmed[i:])
+	structured := false
+	if strings.HasPrefix(rest, "(") {
+		e := strings.Index(rest, ")")
+		if e < 0 {
+			return nil, false
+		}
+		for _, a := range strings.Fields(rest[1:e]) {
+			if !looksLikeName(a) {
+				return nil, false
+			}
+			names = append(names, a)
+		}
+		rest = strings.TrimSpace(rest[e+1:])
+		structured = true
+	}
+	for rest != "" {
+		var token string
+		if j := strings.IndexAny(rest, " \t"); j < 0 {
+			token, rest = rest, ""
+		} else {
+			token, rest = rest[:j], strings.TrimSpace(rest[j:])
+		}
+		if token == "" {
+			continue
+		}
+		switch {
+		case token[0] == '[' || token[0] == '<':
+			close := "]"
+			if token[0] == '<' {
+				close = ">"
+			}
+			for !strings.Contains(token, close) {
+				k := strings.IndexAny(rest, " \t")
+				if k < 0 {
+					if !strings.Contains(rest, close) {
+						return nil, false
+					}
+					token += rest
+					rest = ""
+					break
+				}
+				token += rest[:k+1]
+				rest = strings.TrimSpace(rest[k+1:])
+			}
+			structured = true
+		case token == "..." || token[0] == '-' || isPlaceholder(token):
+			structured = true
+		case structured && isLowerWord(token):
+		default:
+			return nil, false
+		}
+	}
+	if !structured {
+		return nil, false
+	}
+	return names, true
+}
+
+// isLowerWord reports whether s is a bare lowercase word used for
+// positional argument names ("command", "match-string").
+func isLowerWord(s string) bool {
+	if s == "" {
+		return false
+	}
+	for i := 0; i < len(s); i++ {
+		c := s[i]
+		if !((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') ||
+			c == '-' || c == '_' || c == '.') {
+			return false
+		}
+	}
+	return true
+}
+
 // prefixedEntry recognizes usage-style lines of the form
-// "tool subcommand ARG...": the first token repeats the tool's own name,
-// the second is the actual subcommand, and everything after it is
-// argument placeholders, flags or brackets. Returns the prefix token
-// and the subcommand name; the caller decides whether the prefix is
-// trusted.
-func prefixedEntry(line string) (prefix, name string, ok bool) {
+// "tool subcommand ARG...": the leading tokens repeat the tool's own
+// invocation path ("brew install X", "npm cache add X") and everything
+// after the name is argument placeholders, flags or brackets. Returns
+// the prefix and the subcommand name; the caller decides whether the
+// prefix is trusted. One- and two-token prefixes are tried.
+func prefixedEntry(line string) (prefix, name, desc string, ok bool) {
 	fields := strings.Fields(line)
-	if len(fields) < 3 ||
-		!looksLikeName(fields[0]) || !looksLikeName(fields[1]) {
-		return "", "", false
+	trimmed := strings.TrimSpace(line)
+	for plen := 1; plen <= 2; plen++ {
+		if len(fields) <= plen {
+			continue
+		}
+		// A one-token prefix needs at least one arg token after the
+		// name; a two-token prefix already carries the path so a bare
+		// name ("npm cache verify") counts too.
+		if plen == 1 && len(fields) < 3 {
+			continue
+		}
+		idx := 0
+		valid := true
+		for i := 0; i <= plen; i++ {
+			if !looksLikeName(fields[i]) {
+				valid = false
+				break
+			}
+			j := strings.Index(trimmed[idx:], fields[i])
+			if j < 0 {
+				valid = false
+				break
+			}
+			idx += j + len(fields[i])
+		}
+		if !valid {
+			continue
+		}
+		rest := trimmed[idx:]
+		// "tool sub   description" — a whitespace run of two or more
+		// after the name opens the description column ("bun pm scan
+		//                 scan all packages ...").
+		j := 0
+		for j < len(rest) && (rest[j] == ' ' || rest[j] == '\t') {
+			j++
+		}
+		if j >= 2 {
+			d := strings.TrimSpace(rest[j:])
+			if d != "" {
+				return strings.Join(fields[:plen], " "), fields[plen], d, true
+			}
+			continue
+		}
+		if !argsOnly(strings.TrimSpace(rest)) {
+			continue
+		}
+		return strings.Join(fields[:plen], " "), fields[plen], "", true
 	}
-	rest := strings.TrimSpace(line)
-	rest = strings.TrimSpace(rest[len(fields[0]):])
-	rest = strings.TrimSpace(rest[len(fields[1]):])
-	if !argsOnly(rest) {
-		return "", "", false
-	}
-	return fields[0], fields[1], true
+	return "", "", "", false
 }
 
 // argsOnly reports whether s consists only of argument-like tokens:
@@ -422,10 +586,12 @@ func parseEntryLine(trimmed string) (names []string, desc string, ok bool) {
 	// Colon form: "name: description" (aliases may follow: "a, b: ...").
 	// A colon preceded by a whitespace run of two or more sits inside an
 	// already-separated description ("change   Record a change intent:
-	// ..."), so the whitespace form takes precedence there.
+	// ..."), so the whitespace form takes precedence there. The colon
+	// must be followed by actual text: a bare "key:" line is YAML-style
+	// example data, not a command entry.
 	if i := strings.IndexByte(trimmed, ':'); i > 0 &&
-		(i+1 == len(trimmed) || trimmed[i+1] == ' ' || trimmed[i+1] == '\t') &&
-		!hasGap(trimmed[:i]) {
+		i+1 < len(trimmed) && (trimmed[i+1] == ' ' || trimmed[i+1] == '\t') &&
+		strings.TrimSpace(trimmed[i+1:]) != "" && !hasGap(trimmed[:i]) {
 		if ns := splitNames(trimmed[:i]); len(ns) > 0 {
 			// Space-separated words before a colon are a prose
 			// heading ("Install packages from:"), not an alias list.
@@ -521,7 +687,27 @@ func skipArgs(rest string) (desc string, ok bool) {
 		if token == ":" {
 			return strings.TrimSpace(rest), true
 		}
-		if !isPlaceholder(token) {
+		if token[0] == '[' || token[0] == '<' {
+			// Bracket groups may contain spaces
+			// ("[-c working-directory]"): consume to the close.
+			close := "]"
+			if token[0] == '<' {
+				close = ">"
+			}
+			for !strings.Contains(token, close) {
+				k := strings.IndexAny(rest, " \t")
+				if k < 0 {
+					if !strings.Contains(rest, close) {
+						return "", false
+					}
+					token += rest
+					rest = ""
+					break
+				}
+				token += rest[:k+1]
+				rest = rest[k+1:]
+			}
+		} else if !isPlaceholder(token) {
 			return "", false
 		}
 		if rest == "" {
