@@ -1,0 +1,22 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/kind
+# args: 
+Gets one of [clusters, nodes, kubeconfig]
+
+Usage:
+  kind get [flags]
+  kind get [command]
+
+Available Commands:
+  clusters    Lists existing kind clusters by their name
+  kubeconfig  Prints cluster kubeconfig
+  nodes       Lists existing kind nodes by their name
+
+Flags:
+  -h, --help   help for get
+
+Global Flags:
+  -q, --quiet             silence all stderr output
+  -v, --verbosity int32   info log verbosity, higher value produces more output
+
+Use "kind get [command] --help" for more information about a command.

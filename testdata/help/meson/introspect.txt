@@ -1,0 +1,42 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/meson
+# args: 
+usage: meson introspect [-h] [--ast] [--benchmarks] [--buildoptions]
+                        [--buildsystem-files] [--compilers] [--dependencies]
+                        [--scan-dependencies] [--installed] [--install-plan]
+                        [--machines] [--projectinfo] [--targets] [--tests]
+                        [--backend {ninja,none,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,vs2026,xcode}]
+                        [-a] [-i] [-f]
+                        [builddir]
+
+positional arguments:
+  builddir                              The build directory
+
+options:
+  -h, --help                            show this help message and exit
+  --ast                                 Dump the AST of the meson file.
+  --benchmarks                          List all benchmarks.
+  --buildoptions                        List all build options.
+  --buildsystem-files                   List files that make up the build
+                                        system.
+  --compilers                           List used compilers.
+  --dependencies                        List external dependencies.
+  --scan-dependencies                   Scan for dependencies used in the
+                                        meson.build file.
+  --installed                           List all installed files and
+                                        directories.
+  --install-plan                        List all installed files and directories
+                                        with their details.
+  --machines                            Information about host, build, and
+                                        target machines.
+  --projectinfo                         Information about projects.
+  --targets                             List top level targets.
+  --tests                               List all unit tests.
+  --backend {ninja,none,vs,vs2010,vs2012,vs2013,vs2015,vs2017,vs2019,vs2022,vs2026,xcode}
+                                        The backend to use for the
+                                        --buildoptions introspection.
+  -a, --all                             Print all available information.
+  -i, --indent                          Enable pretty printed JSON.
+  -f, --force-object-output             Always use the new JSON format for
+                                        multiple entries (even for 0 and 1
+                                        introspection commands)

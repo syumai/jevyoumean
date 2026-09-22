@@ -1,0 +1,51 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/goreleaser
+# args: 
+
+  Release engineering, simplified.                                                                                      
+                                                                                                                        
+  GoReleaser is a release automation tool, built with love and care by @caarlos0 and many contributors.                 
+                                                                                                                        
+  Complete documentation is available at https://goreleaser.com                                                         
+         
+  USAGE  
+         
+    goreleaser [command] [--flags]  
+            
+  EXAMPLES  
+            
+    # Initialize your project:      
+    goreleaser init                 
+                                    
+    # Verify your configuration:    
+    goreleaser check                
+                                    
+    # Verify dependencies:          
+    goreleaser healthcheck          
+                                    
+    # Build the binaries only:      
+    goreleaser build                
+                                    
+    # Run a snapshot release:       
+    goreleaser release --snapshot   
+                                    
+    # Run a complete release:       
+    goreleaser release              
+            
+  COMMANDS  
+            
+    build [--flags]                        Builds the current project
+    check [configuration files] [--flags]  Checks if configuration is valid
+    completion [command]                   Generate the autocompletion script for the specified shell
+    healthcheck [--flags]                  Checks if needed tools are installed
+    help [command]                         Help about any command
+    init [--flags]                         Generates a .goreleaser.yaml file
+    jsonschema [--flags]                   Outputs goreleaser's JSON schema
+    release [--flags]                      Releases the current project
+         
+  FLAGS  
+         
+    -h --help                              Help for goreleaser
+    --verbose                              Enable verbose mode
+    -v --version                           Version for goreleaser
+

@@ -1,0 +1,64 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/chezmoi
+# args: 
+Description
+  List all managed entries in the destination directory under all paths in
+  alphabetical order. When no paths are supplied, list all managed entries in
+  the destination directory in alphabetical order.
+
+Usage:
+  chezmoi managed [path]... [flags]
+
+Aliases:
+  managed, list
+
+Examples:
+  chezmoi managed
+  chezmoi managed --include=files
+  chezmoi managed --include=files,symlinks
+  chezmoi managed -i dirs
+  chezmoi managed -i dirs,files
+  chezmoi managed -i files ~/.config
+  chezmoi managed --exclude=encrypted --path-style=source-relative
+
+Flags:
+  -x, --exclude types                                                      Exclude entry types (default none)
+  -f, --format <none>|json|yaml                                            Format (default json)
+  -h, --help                                                               help for managed
+  -i, --include types                                                      Include entry types (default all)
+  -0, --nul-path-separator                                                 Use the NUL character as a path separator
+  -p, --path-style absolute|all|relative|source-absolute|source-relative   Path style (default relative)
+  -t, --tree                                                               Print paths as a tree
+
+Global Flags:
+      --age-recipient string                           Override age recipient
+      --age-recipient-file string                      Override age recipient
+      --cache path                                     Set cache directory (default /home/ubuntu/.cache/chezmoi)
+      --color bool|auto                                Colorize output (default auto)
+  -c, --config path                                    Set config file
+      --config-format <none>|json|toml|yaml            Set config file format
+      --debug                                          Include debug information in output
+  -D, --destination path                               Set destination directory (default /home/ubuntu)
+  -n, --dry-run                                        Do not make any modifications to the destination directory
+      --error-on-conflict                              Error on conflict
+      --force                                          Make all changes without prompting
+      --interactive                                    Prompt for all changes
+  -k, --keep-going                                     Keep going as far as possible after an error
+      --less-interactive                               Prompt for changed or pre-existing targets
+      --mode file|symlink                              Mode (default file)
+      --no-pager                                       Do not use the pager
+      --no-tty                                         Do not attempt to get a TTY for prompts
+  -o, --output path                                    Write output to path instead of stdout
+      --override-data string                           Override data
+      --override-data-file path                        Override data with file
+      --persistent-state path                          Set persistent state file
+      --progress bool|auto                             Display progress bars (default auto)
+  -R, --refresh-externals always|auto|never[=always]   Refresh external cache (default auto)
+      --skip-secrets                                   Skip all templates containing secrets
+  -S, --source path                                    Set source directory (default /home/ubuntu/.local/share/chezmoi)
+      --source-path                                    Specify targets by source path
+      --use-builtin-age bool|auto                      Use builtin age (default auto)
+      --use-builtin-diff                               Use builtin diff
+      --use-builtin-git bool|auto                      Use builtin git (default auto)
+  -v, --verbose                                        Make output more verbose
+  -W, --working-tree path                              Set working tree directory

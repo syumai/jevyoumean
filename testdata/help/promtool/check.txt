@@ -1,0 +1,55 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/promtool
+# args: 
+usage: promtool check [<flags>] <command> [<args> ...]
+
+Check the resources for validity.
+
+
+Flags:
+  -h, --[no-]help                Show context-sensitive help (also try
+                                 --help-long and --help-man).
+      --[no-]version             Show application version.
+      --[no-]experimental        Enable experimental commands.
+      --enable-feature= ...      Comma separated feature names to enable.
+                                 Valid options: promql-experimental-functions,
+                                 promql-delayed-name-removal,
+                                 promql-extended-range-selectors. See
+                                 https://prometheus.io/docs/prometheus/latest/feature_flags/
+                                 for more details
+      --query.lookback-delta=5m  The server's maximum query lookback duration.
+
+Subcommands:
+check service-discovery [<flags>] <config-file> <job>
+    Perform service discovery for the given job name and report the results,
+    including relabeling.
+
+check config [<flags>] <config-files>...
+    Check if the config files are valid or not.
+
+check web-config <web-config-files>...
+    Check if the web config files are valid or not.
+
+check healthy [<flags>]
+    Check if the Prometheus server is healthy.
+
+check ready [<flags>]
+    Check if the Prometheus server is ready.
+
+check rules [<flags>] [<rule-files>...]
+    Check if the rule files are valid or not.
+
+check metrics [<flags>]
+    Pass Prometheus metrics over stdin to lint them for consistency and
+    correctness, and optionally perform cardinality analysis.
+
+    examples:
+
+    $ cat metrics.prom | promtool check metrics
+
+    $ curl -s http://localhost:9090/metrics | promtool check metrics --extended
+
+    $ curl -s http://localhost:9100/metrics | promtool check metrics --extended
+    --lint=none
+
+

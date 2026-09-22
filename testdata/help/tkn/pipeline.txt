@@ -1,0 +1,31 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/tkn
+# args: 
+Manage pipelines
+
+Usage:
+tkn pipeline [flags]
+tkn pipeline [command]
+
+
+Aliases:
+  pipeline, p, pipelines
+
+Available Commands:
+  delete      Delete Pipelines in a namespace
+  describe    Describes a Pipeline in a namespace
+  export      Export Pipeline
+  list        Lists Pipelines in a namespace
+  logs        Show Pipeline logs
+  sign*       Sign Tekton Pipeline (experimental)
+  start       Start Pipelines
+  verify*     Verify Tekton Pipeline (experimental)
+
+Flags:
+  -c, --context string      name of the kubeconfig context to use (default: kubectl config current-context)
+  -h, --help                help for pipeline
+  -k, --kubeconfig string   kubectl config file (default: $HOME/.kube/config)
+  -n, --namespace string    namespace to use (default: from $KUBECONFIG)
+  -C, --no-color            disable coloring (default: false)
+
+Use "tkn pipeline [command] --help" for more information about a command.

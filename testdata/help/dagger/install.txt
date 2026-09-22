@@ -1,0 +1,48 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/dagger
+# args: 
+Install another module as a dependency to the current module.
+
+[1mUSAGE[0m
+  dagger install [options] <module>
+
+[1mALIASES[0m
+  install, use
+
+[1mEXAMPLES[0m
+  dagger install github.com/shykes/daggerverse/hello@v0.3.0
+
+[1mOPTIONS[0m
+      --allow-llm strings   List of URLs of remote modules allowed to
+                            access LLM APIs, or 'all' to bypass
+                            restrictions for the entire session
+      --compat string       Engine API version to target (default "latest")
+      --eager-runtime       load module runtime eagerly
+  -m, --mod string          Module reference to load, either a local path
+                            or a remote git repo (defaults to current
+                            directory)
+  -n, --name string         Name to use for the dependency in the module.
+                            Defaults to the name of the module being
+                            installed.
+
+[1mINHERITED OPTIONS[0m
+  -y, --auto-apply                   Automatically apply changes when a
+                                     changeset is returned
+  -d, --debug                        Show debug logs and full verbosity
+  -i, --interactive                  Spawn a terminal on container exec
+                                     failure
+      --interactive-command string   Change the default command for
+                                     interactive mode (default "/bin/sh")
+      --lock string                  Lock lookup mode (disabled, live,
+                                     pinned, frozen). Defaults to disabled.
+  -E, --no-exit                      Leave the TUI running after completion
+      --progress string              Progress output format (auto, plain,
+                                     tty, dots, logs) (default "auto")
+  -q, --quiet count                  Reduce verbosity (show progress, but
+                                     clean up at the end)
+  -s, --silent                       Do not show progress at all
+  -v, --verbose count                Increase verbosity (use -vv or -vvv
+                                     for more)
+  -w, --web                          Open trace URL in a web browser
+      --x-release string             Run an experimental release from a
+                                     Dagger git ref

@@ -1,0 +1,16 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/az
+# args: 
+
+Group
+    az extension : Manage and update CLI extensions.
+
+Commands:
+    add            : Add an extension.
+    list           : List the installed extensions.
+    list-available : List publicly available extensions.
+    list-versions  : List available versions for an extension.
+    remove         : Remove an extension.
+    show           : Show an extension.
+    update         : Update an extension.
+

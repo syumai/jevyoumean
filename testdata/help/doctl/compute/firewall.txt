@@ -1,0 +1,45 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/doctl
+# args: 
+The sub-commands of `doctl compute firewall` manage DigitalOcean cloud firewalls.
+
+Cloud firewalls allow you to restrict network access to and from a Droplet by defining which ports accept inbound or outbound connections. With these commands, you can list, create, or delete Cloud firewalls, as well as modify access rules. 
+
+Note: Cloud firewalls are not internal Droplet firewalls on Droplets, such as UFW or FirewallD.
+
+A firewall's `inbound_rules` and `outbound_rules` attributes contain arrays of objects as their values. These objects contain the standard attributes of their associated types, which can be found below.
+
+Inbound access rules specify the protocol (TCP, UDP, or ICMP), ports, and sources for inbound traffic that will be allowed through the Firewall to the target Droplets. The `ports` attribute may contain a single port, a range of ports (e.g. `8000-9000`), or `all` to allow traffic on all ports for the specified protocol. The `sources` attribute will contain an object specifying a whitelist of sources from which traffic will be accepted.
+
+Usage:
+  doctl compute firewall [command]
+
+Available Commands:
+  add-droplets    Add Droplets to a cloud firewall
+  add-rules       Add inbound or outbound rules to a cloud firewall
+  add-tags        Add tags to a cloud firewall
+  create          Create a new cloud firewall
+  delete          Permanently delete a cloud firewall
+  get             Retrieve information about a cloud firewall
+  list            List the cloud firewalls on your account
+  list-by-droplet List firewalls by Droplet
+  remove-droplets Remove Droplets from a cloud firewall
+  remove-rules    Remove inbound or outbound rules from a cloud firewall
+  remove-tags     Remove tags from a cloud firewall
+  update          Update a cloud firewall's configuration
+
+Flags:
+  -h, --help   help for firewall
+
+Global Flags:
+  -t, --access-token string   API V2 access token
+  -u, --api-url string        Override default API endpoint
+  -c, --config string         Specify a custom config file
+      --context string        Specify a custom authentication context name
+      --http-retry-max int    Set maximum number of retries for requests that fail with a 429 or 500-level error (default 5)
+      --interactive           Enable interactive behavior. Defaults to true if the terminal supports it (default false)
+  -o, --output string         Desired output format [text|json] (default "text")
+      --trace                 Show a log of network activity while performing a command
+  -v, --verbose               Enable verbose output
+
+Use "doctl compute firewall [command] --help" for more information about a command.

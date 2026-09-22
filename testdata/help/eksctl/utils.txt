@@ -1,0 +1,43 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/eksctl
+# args: 
+Various utils
+
+Usage: eksctl utils [flags]
+
+Commands:
+  eksctl utils associate-iam-oidc-provider     Setup IAM OIDC provider for a cluster to enable IAM roles for pods
+  eksctl utils describe-addon-configuration    Output the configuration JSON schema for an addon
+  eksctl utils describe-addon-versions         describe addon versions supported
+  eksctl utils describe-cluster-versions       Describe Supported Kubernetes Versions
+  eksctl utils describe-stacks                 Describe CloudFormation stack for a given cluster
+  eksctl utils enable-secrets-encryption       Enable secrets encryption
+  eksctl utils install-vpc-controllers         Install Windows VPC controller to support running Windows workloads
+  eksctl utils migrate-to-access-entry         Migrates aws-auth to API authentication mode for the cluster
+  eksctl utils migrate-to-pod-identity         Migrates all IRSA related config for a cluster to an equivalent pod identity associations config
+  eksctl utils nodegroup-health                Get nodegroup health for a managed node
+  eksctl utils schema                          Output the ClusterConfig JSON Schema
+  eksctl utils set-public-access-cidrs         Update public access CIDRs
+  eksctl utils update-authentication-mode      Updates the authentication mode for a cluster
+  eksctl utils update-aws-node                 Update aws-node add-on to latest released version
+  eksctl utils update-cluster-endpoints        Update Kubernetes API endpoint access configuration
+  eksctl utils update-cluster-logging          Update cluster logging configuration
+  eksctl utils update-cluster-vpc-config       Update Kubernetes API endpoint access configuration and public access CIDRs
+  eksctl utils update-control-plane-component-config  update control plane component config
+  eksctl utils update-coredns                  Update coredns add-on to ensure image matches the standard Amazon EKS version
+  eksctl utils update-kube-proxy               Update kube-proxy add-on to ensure image matches Kubernetes control plane version
+  eksctl utils update-legacy-subnet-settings   Update the configuration of the cluster's public subnets with MapPublicIpOnLaunch enabled
+  eksctl utils update-zonal-shift-config       update zonal shift config
+  eksctl utils write-kubeconfig                Write kubeconfig file for a given cluster
+
+Common flags:
+  -C, --color string   toggle colorized logs (valid options: true, false, fabulous) (default "true")
+  -d, --dumpLogs       dump logs to disk on failure if set to true
+  -h, --help           help for this command
+  -v, --verbose int    set log level, use 0 to silence, 4 for debugging and 5 for debugging with AWS debug logging (default 3)
+
+Use 'eksctl utils [command] --help' for more information about a command.
+
+
+For detailed docs go to https://eksctl.io/
+

@@ -1,0 +1,59 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/mise
+# args: 
+List registry shorthand names and their backends
+
+The registry maps short names to installation backends. For example, `node`
+uses the built-in Node backend. A tool may have multiple candidates; explicit
+backend syntax and configuration can override registry selection.
+
+This is not a list of every tool mise can install. Use an explicit identifier
+such as `github:owner/repo` for a supported source without a registry shorthand.
+
+Usage: mise registry [FLAGS] [NAME]
+
+Arguments:
+  [NAME]  Show only the specified tool's full name
+
+Flags:
+  -b, --backend <BACKEND>  Show only tools for this backend
+      --hide-aliased       Hide aliased tools
+  -J, --json               Output in JSON format
+      --security           Include security features for each tool's backends in
+                           JSON output
+
+                           Requires --json. Security info is de-duplicated
+                           across all of a tool's backends. This can add
+                           noticeable time for large listings since each
+                           backend's security info is resolved individually.
+  -h, --help               Print help
+
+Global flags:
+  -C, --cd <DIR>           Change directory before running command
+  -E, --env <ENV>          Set the environment for loading `mise.<ENV>.toml`
+  -j, --jobs <JOBS>        How many jobs to run in parallel; values below 1 are
+                           treated as 1 [default: 8]
+                           [env: MISE_JOBS]
+  -q, --quiet              Suppress non-error messages
+                           [env: MISE_QUIET]
+  -v, --verbose            Show extra output (use -vv for even more)
+  -y, --yes                Answer yes to all confirmation prompts
+      --raw                Read/write directly to stdin/stdout/stderr instead of
+                           by line
+      --locked             Require lockfile URLs to be present during
+                           installation
+
+                           Fails if tools don't have pre-resolved URLs in the
+                           lockfile for the current platform.
+                           This prevents API calls to GitHub, aqua registry,
+                           etc.
+                           Can also be enabled via MISE_LOCKED=1 or
+                           settings.locked=true
+      --silent             Suppress all task output and mise non-error messages
+
+Examples:
+    List the registry, then inspect node. The second command prints `core:node`.
+    $ mise registry
+mise registry node
+    $ mise registry --backend aqua
+mise registry --json

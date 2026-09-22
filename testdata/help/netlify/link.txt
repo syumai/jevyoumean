@@ -1,0 +1,30 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/netlify
+# args: 
+Link a local repo or project folder to an existing project on Netlify
+
+USAGE
+  $ netlify link [options]
+
+OPTIONS
+  --filter <app>               For monorepos, specify the name of the
+                               application to run the command in
+  --git-remote-name <name>     Name of Git remote to use. e.g. "origin"
+  --git-remote-url <name>      URL of the repository (or Github `owner/repo`)
+                               to link to
+  -h, --help                   display help for command
+  --id <id>                    ID of project to link to
+  --name <name>                Name of project to link to
+  --debug                      Print debugging information
+  --auth <token>               Netlify auth token - can be used to run this
+                               command without logging in
+
+EXAMPLES
+  $ netlify link
+  $ netlify link --id 123-123-123-123
+  $ netlify link --name my-project-name
+  $ netlify link --git-remote-url https://github.com/vibecoder/my-unicorn.git
+
+
+For more information about linking projects, see https://docs.netlify.com/cli/get-started/#link-and-unlink-sites
+

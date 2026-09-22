@@ -1,0 +1,70 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/dagger
+# args: 
+A tool to run composable workflows in containers
+
+[1mUSAGE[0m
+  dagger [options] [subcommand | file...]
+
+[1mDAGGER CLOUD COMMANDS[0m
+  login         Log in to Dagger Cloud
+  logout        Log out from Dagger Cloud
+
+[1mDAGGER MODULE COMMANDS[0m
+  call          Call one or more functions, interconnected into a pipeline
+  config        Get or set module configuration
+  core          Call a core function
+  develop       Prepare a local module for development
+  functions     List available functions
+  init          Initialize a new module
+  install       Install a dependency
+  uninstall     Uninstall a dependency
+  update        Update a module's dependencies
+
+[1mEXECUTION COMMANDS[0m
+  query         Send API queries to a dagger engine
+  run           Run a command in a Dagger session
+
+[1mADDITIONAL COMMANDS[0m
+  completion    Generate the autocompletion script for the specified shell
+  help          Help about any command
+  lock          Manage workspace lockfiles
+  toolchain     Manage toolchains
+  version       Print dagger version
+
+[1mOPTIONS[0m
+      --allow-llm strings            List of URLs of remote modules
+                                     allowed to access LLM APIs, or 'all'
+                                     to bypass restrictions for the
+                                     entire session
+  -y, --auto-apply                   Automatically apply changes when a
+                                     changeset is returned
+  -c, --command string               Execute a dagger shell command
+  -d, --debug                        Show debug logs and full verbosity
+      --eager-runtime                load module runtime eagerly
+  -i, --interactive                  Spawn a terminal on container exec
+                                     failure
+      --interactive-command string   Change the default command for
+                                     interactive mode (default "/bin/sh")
+      --lock string                  Lock lookup mode (disabled, live,
+                                     pinned, frozen). Defaults to disabled.
+  -m, --mod string                   Module reference to load, either a
+                                     local path or a remote git repo
+                                     (defaults to current directory)
+      --model string                 LLM model to use (e.g.,
+                                     'claude-sonnet-4-5', 'gpt-4.1')
+  -E, --no-exit                      Leave the TUI running after completion
+  -M, --no-mod                       Don't automatically load a module
+                                     (mutually exclusive with --mod)
+      --progress string              Progress output format (auto, plain,
+                                     tty, dots, logs) (default "auto")
+  -q, --quiet count                  Reduce verbosity (show progress, but
+                                     clean up at the end)
+  -s, --silent                       Do not show progress at all
+  -v, --verbose count                Increase verbosity (use -vv or -vvv
+                                     for more)
+  -w, --web                          Open trace URL in a web browser
+      --x-release string             Run an experimental release from a
+                                     Dagger git ref
+
+Use "dagger [command] --help" for more information about a command.

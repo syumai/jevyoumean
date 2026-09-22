@@ -1,0 +1,41 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/doctl
+# args: 
+A Droplet is a DigitalOcean virtual machine. Use the subcommands of `doctl compute droplet` to create, manage, and retrieve information about Droplets.
+
+Usage:
+  doctl compute droplet [command]
+
+Aliases:
+  droplet, d
+
+Available Commands:
+  1-click         Display commands that pertain to Droplet 1-click applications
+  actions         List Droplet actions
+  backup-policies Display commands for Droplet's backup policies.
+  backups         List Droplet backups
+  create          Create a new Droplet
+  delete          Permanently delete a Droplet
+  get             Retrieve information about a Droplet
+  kernels         List available Droplet kernels
+  list            List Droplets on your account
+  neighbors       List a Droplet's neighbors on your account
+  snapshots       List all snapshots for a Droplet
+  tag             Add a tag to a Droplet
+  untag           Remove a tag from a Droplet
+
+Flags:
+  -h, --help   help for droplet
+
+Global Flags:
+  -t, --access-token string   API V2 access token
+  -u, --api-url string        Override default API endpoint
+  -c, --config string         Specify a custom config file
+      --context string        Specify a custom authentication context name
+      --http-retry-max int    Set maximum number of retries for requests that fail with a 429 or 500-level error (default 5)
+      --interactive           Enable interactive behavior. Defaults to true if the terminal supports it (default false)
+  -o, --output string         Desired output format [text|json] (default "text")
+      --trace                 Show a log of network activity while performing a command
+  -v, --verbose               Enable verbose output
+
+Use "doctl compute droplet [command] --help" for more information about a command.

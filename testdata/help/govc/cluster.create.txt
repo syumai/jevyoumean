@@ -1,0 +1,32 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/govc
+# args: 
+Usage: /home/ubuntu/.local/bin/govc cluster.create [OPTIONS] CLUSTER
+
+Create CLUSTER in datacenter.
+
+The cluster is added to the folder specified by the 'folder' flag. If not given,
+this defaults to the host folder in the specified or default datacenter.
+
+Examples:
+  govc cluster.create ClusterA
+  govc cluster.create -folder /dc2/test-folder ClusterB
+
+Options:
+  -cert=                 Certificate [GOVC_CERTIFICATE]
+  -dc=                   Datacenter [GOVC_DATACENTER]
+  -debug=false           Store debug logs [GOVC_DEBUG]
+  -dump=false            Enable Go output
+  -folder=               Inventory folder [GOVC_FOLDER]
+  -json=false            Enable JSON output
+  -k=false               Skip verification of server certificate [GOVC_INSECURE]
+  -key=                  Private key [GOVC_PRIVATE_KEY]
+  -persist-session=true  Persist session to disk [GOVC_PERSIST_SESSION]
+  -tls-ca-certs=         TLS CA certificates file [GOVC_TLS_CA_CERTS]
+  -tls-known-hosts=      TLS known hosts file [GOVC_TLS_KNOWN_HOSTS]
+  -trace=false           Write SOAP/REST traffic to stderr
+  -u=                    ESX or vCenter URL [GOVC_URL]
+  -verbose=false         Write request/response data to stderr
+  -vim-namespace=vim25   Vim namespace [GOVC_VIM_NAMESPACE]
+  -vim-version=9.1.0.0   Vim version [GOVC_VIM_VERSION]
+  -xml=false             Enable XML output

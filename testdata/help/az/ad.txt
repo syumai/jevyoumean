@@ -1,0 +1,15 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/az
+# args: 
+
+Group
+    az ad : Manage Microsoft Entra ID (formerly known as Azure Active Directory, Azure AD, AAD)
+    entities needed for Azure role-based access control (Azure RBAC) through Microsoft Graph API.
+
+Subgroups:
+    app            : Manage Microsoft Entra applications.
+    group          : Manage Microsoft Entra groups.
+    signed-in-user : Show graph information about current signed-in user in CLI.
+    sp             : Manage Microsoft Entra service principals.
+    user           : Manage Microsoft Entra users.
+

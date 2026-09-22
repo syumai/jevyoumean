@@ -1,0 +1,10 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/k9s
+# args: 
+List K9s configurations info
+
+Usage:
+  k9s info [flags]
+
+Flags:
+  -h, --help   help for info

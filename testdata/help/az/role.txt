@@ -1,0 +1,12 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/az
+# args: 
+
+Group
+    az role : Manage Azure role-based access control (Azure RBAC).
+
+Subgroups:
+    assignment      : Manage role assignments.
+    definition      : Manage role definitions.
+    deny-assignment : Manage deny assignments.
+

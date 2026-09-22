@@ -1,0 +1,25 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/rancher
+# args: 
+Operations on clusters
+
+Usage:
+   rancher clusters command [command options] [arguments...]
+
+Commands:
+     ls                  List clusters
+     create              Creates a new empty cluster
+     import              Import an existing Kubernetes cluster into a Rancher cluster
+     add-node            Outputs the docker command needed to add a node to an existing Rancher custom cluster
+     delete, rm          Delete a cluster
+     export              Export a cluster
+     kubeconfig, kf      Return the kube config used to access the cluster
+     add-member-role     Add a member to the cluster
+     delete-member-role  Delete a member from the cluster
+     list-roles          List all available roles for a cluster
+     list-members        List current members of the cluster
+     help, h             Shows a list of commands or help for one command
+
+Options:
+   --help, -h  show help
+   

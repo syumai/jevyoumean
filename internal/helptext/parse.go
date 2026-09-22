@@ -226,6 +226,15 @@ func Parse(output string) []Command {
 				continue
 			}
 			flatMode = false
+			// cosign puts its commands unindented under a known
+			// header — while a recognized section is open, a col-0
+			// line is still an entry if it parses as one.
+			if inSection && !tentative {
+				if names, desc, ok := parseEntryLine(strings.TrimSpace(line)); ok {
+					pending = appendCommand(pending, sectionSeen, names, desc)
+					continue
+				}
+			}
 			// Every other non-indented line is a tentative header.
 			flush()
 			if s := strings.ToLower(strings.TrimSpace(line)); s != "" &&

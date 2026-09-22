@@ -1,0 +1,33 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/doctl
+# args: 
+The commands under `doctl vpcs` are for managing your VPC networks.
+
+With the VPC commands, you can list, create, or delete VPCs, and manage their configuration details.
+
+Usage:
+  doctl vpcs [command]
+
+Available Commands:
+  create      Create a new VPC network
+  delete      Permanently delete a VPC network
+  get         Retrieve a VPC network
+  list        List VPC networks
+  peerings    Display commands that manage VPC Peerings
+  update      Update a VPC network's configuration
+
+Flags:
+  -h, --help   help for vpcs
+
+Global Flags:
+  -t, --access-token string   API V2 access token
+  -u, --api-url string        Override default API endpoint
+  -c, --config string         Specify a custom config file
+      --context string        Specify a custom authentication context name
+      --http-retry-max int    Set maximum number of retries for requests that fail with a 429 or 500-level error (default 5)
+      --interactive           Enable interactive behavior. Defaults to true if the terminal supports it (default false)
+  -o, --output string         Desired output format [text|json] (default "text")
+      --trace                 Show a log of network activity while performing a command
+  -v, --verbose               Enable verbose output
+
+Use "doctl vpcs [command] --help" for more information about a command.

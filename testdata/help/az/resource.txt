@@ -1,0 +1,24 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/az
+# args: 
+
+Group
+    az resource : Manage Azure resources.
+
+Subgroups:
+    link          : Manage links between resources.
+    lock          : Manage Azure resource level locks.
+
+Commands:
+    create        : Create a resource.
+    delete        : Delete a resource.
+    invoke-action : Invoke an action on the resource.
+    list          : List resources.
+    move          : Move resources from one resource group to another (can be under different
+                    subscription).
+    patch         : Update a resource by PATCH request.
+    show          : Get the details of a resource.
+    tag           : Tag a resource.
+    update        : Update a resource by PUT request.
+    wait          : Place the CLI in a waiting state until a condition of a resources is met.
+

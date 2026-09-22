@@ -1,0 +1,33 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/supabase
+# args: 
+DESCRIPTION
+  Generate the autocompletion script for supabase for the specified shell.
+See each sub-command's help for details on how to use the generated script.
+
+USAGE
+  supabase completion <subcommand> [flags]
+
+GLOBAL FLAGS
+  --help, -h                                                          Show help information
+  --version, -v                                                       Show version information
+  --wizard                                                            Start wizard mode for a command
+  --completions <bash|zsh|fish|sh>                                    Print shell completion script (choices: bash, zsh, fish, sh)
+  --log-level <all|trace|debug|info|warn|warning|error|fatal|none>    Sets the minimum log level (choices: all, trace, debug, info, warn, warning, error, fatal, none)
+  --output-format choice                                              Output format: text (default), json, or stream-json (NDJSON) (choices: text, json, stream-json)
+  --output, -o choice                                                 output format of status variables (choices: env, pretty, json, toml, yaml, table, csv)
+  --profile string                                                    use a specific profile for connecting to Supabase API
+  --debug                                                             output debug logs to stderr
+  --workdir string                                                    path to a Supabase project directory
+  --experimental                                                      enable experimental features
+  --network-id string                                                 use the specified docker network instead of a generated one
+  --yes                                                               answer yes to all prompts
+  --dns-resolver choice                                               lookup domain names using the specified resolver (choices: native, https)
+  --create-ticket                                                     create a support ticket for any CLI error
+  --agent choice                                                      Override agent detection: yes, no, or auto (default auto) (choices: auto, yes, no)
+
+SUBCOMMANDS
+  bash          Generate the autocompletion script for bash
+  fish          Generate the autocompletion script for fish
+  powershell    Generate the autocompletion script for powershell
+  zsh           Generate the autocompletion script for zsh

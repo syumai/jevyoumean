@@ -1,0 +1,16 @@
+# synthetic fixture mimicking npm-config help (npm is Artistic-2.0;
+# format reproduced by hand, no verbatim capture — see ../NOTICE.md)
+Sets the config fields
+
+Usage:
+jym-npm config set <key> <value>
+jym-npm config get [<key>]
+jym-npm config delete <key>
+jym-npm config list
+jym-npm config edit
+jym-npm config fix
+
+Options:
+[--global]
+
+Run "jym-npm help config" for more info

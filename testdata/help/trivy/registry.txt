@@ -1,0 +1,27 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/trivy
+# args: 
+Manage registry authentication
+
+Usage:
+  trivy registry [command]
+
+Available Commands:
+  login       Log in to a registry
+  logout      Log out of a registry
+
+Flags:
+  -h, --help   help for registry
+
+Global Flags:
+      --cacert string             Path to PEM-encoded CA certificate file
+      --cache-dir string          cache directory (default "/home/ubuntu/.cache/trivy")
+  -c, --config string             config path (default "trivy.yaml")
+  -d, --debug                     debug mode
+      --generate-default-config   write the default config to trivy-default.yaml
+      --insecure                  allow insecure server connections
+  -q, --quiet                     suppress progress bar and log output
+      --timeout duration          timeout (default 5m0s)
+  -v, --version                   show version
+
+Use "trivy registry [command] --help" for more information about a command.
