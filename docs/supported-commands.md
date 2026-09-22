@@ -10,86 +10,84 @@ has no documented subcommands (empty is correct), **empty** currently
 yields nothing, **bogus** extracts words that are not subcommands,
 **todo** is tracked for support, **out-of-scope** will not be supported.
 
-- [ ] `apt` — empty (dash-separated entries not recognized)
+- [x] `apt` — ok (7 parsed; dash-separated entries)
 - **aws**
-  - [ ] `aws` — bogus (2 parsed; prose parsed as commands)
-  - [ ] `aws s3` — bogus (26 parsed; prose parsed as commands)
-  - [ ] `aws ec2` — bogus (3 parsed; prose parsed as commands)
-  - [ ] `aws iam` — todo (fixture not committed; not captured)
-- [ ] `az` — todo (fixture not committed; not captured)
-- [ ] `brew` — todo (fixture not committed; not captured)
-- [ ] `bun` — todo (fixture not committed; not captured)
+  - [x] `aws` — ok (302 parsed; nroff overstrike + o bullets)
+  - [x] `aws s3` — ok (9 parsed; o bullets under AVAILABLE COMMANDS)
+  - [x] `aws ec2` — ok (520 parsed; o bullets under AVAILABLE COMMANDS)
+  - [x] `aws iam` — ok (160 parsed; o bullets under AVAILABLE COMMANDS)
+- [x] `az` — ok (100 parsed)
+- [x] `brew` — ok (9 parsed; tool-prefixed usage lines)
+- [x] `bun` — ok (25 parsed)
 - **cargo**
   - [x] `cargo` — ok (16 parsed)
   - [x] `cargo install` — leaf (leaf command, no subcommands)
 - [ ] `curl` — out-of-scope (fixture not committed; no subcommand concept)
-- [ ] `deno` — todo (fixture not committed; not captured)
+- [x] `deno` — ok (48 parsed)
 - **docker**
   - [x] `docker` — ok (43 parsed)
   - [x] `docker compose` — ok (35 parsed)
   - [x] `docker image` — ok (12 parsed)
   - [x] `docker container` — ok (25 parsed)
-  - [ ] `docker network` — todo (fixture not committed; not captured)
-  - [ ] `docker volume` — todo (fixture not committed; not captured)
+  - [x] `docker network` — ok (7 parsed)
+  - [x] `docker volume` — ok (5 parsed)
 - [ ] `gcloud` — todo (fixture not committed; not captured)
 - **gh**
   - [x] `gh` — ok (36 parsed)
-  - [x] `gh pr` — partial (31 parsed; prose commas create junk names)
-  - [x] `gh repo` — partial (30 parsed; prose commas create junk names)
+  - [x] `gh pr` — ok (17 parsed; prose headings rejected)
+  - [x] `gh repo` — ok (16 parsed; prose headings rejected)
   - [x] `gh auth` — ok (7 parsed)
-  - [ ] `gh issue` — todo (fixture not committed; not captured)
-  - [ ] `gh run` — todo (fixture not committed; not captured)
+  - [x] `gh issue` — ok (15 parsed)
+  - [x] `gh run` — ok (7 parsed)
 - **git**
   - [x] `git` — ok (17 parsed; help_args: help -a)
-  - [ ] `git remote` — empty (man-page COMMANDS section broken by prose line)
-  - [ ] `git stash` — empty (man-page COMMANDS section broken by prose line)
-  - [ ] `git submodule` — empty (fixture not committed; not captured)
-  - [ ] `git worktree` — empty (fixture not committed; not captured)
-  - [ ] `git bisect` — empty (fixture not committed; not captured)
-  - [ ] `git config` — bogus (2 parsed; env vars parsed as subcommands)
+  - [x] `git remote` — ok (5 parsed; man-page COMMANDS section)
+  - [x] `git stash` — ok (7 parsed; man-page COMMANDS section)
+  - [x] `git submodule` — ok (7 parsed; man-page COMMANDS section)
+  - [x] `git worktree` — ok (8 parsed; man-page COMMANDS section)
+  - [x] `git bisect` — ok (9 parsed; man-page COMMANDS section)
+  - [x] `git config` — leaf (env-var sections are skipped)
 - **go**
-  - [x] `go` — ok (19 parsed)
+  - [x] `go` — ok (37 parsed)
   - [x] `go mod` — ok (8 parsed)
-  - [ ] `go work` — todo (fixture not committed; not captured)
-- [ ] `gradle` — todo (fixture not committed; not captured)
+  - [x] `go work` — ok (5 parsed)
+- [ ] `gradle` — out-of-scope (fixture not committed; goals defined by plugins, not in --help)
 - **helm**
-  - [ ] `helm` — todo (fixture not committed; not captured)
-  - [ ] `helm repo` — todo (fixture not committed; not captured)
+  - [x] `helm` — ok (26 parsed)
+  - [x] `helm repo` — ok (5 parsed)
 - [ ] `jq` — out-of-scope (fixture not committed; no subcommand concept)
 - **kubectl**
-  - [ ] `kubectl` — todo (fixture not committed; not captured)
-  - [ ] `kubectl config` — todo (fixture not committed; not captured)
-  - [ ] `kubectl rollout` — todo (fixture not committed; not captured)
+  - [x] `kubectl` — ok (42 parsed)
+  - [x] `kubectl config` — ok (15 parsed)
+  - [x] `kubectl rollout` — ok (6 parsed)
 - [ ] `make` — out-of-scope (fixture not committed; no subcommand concept)
-- [ ] `mise` — todo (fixture not committed; not captured)
-- [ ] `mvn` — todo (fixture not committed; not captured)
+- [x] `mise` — ok (66 parsed)
+- [ ] `mvn` — out-of-scope (goals defined by plugins, not in --help)
 - **npm**
   - [x] `npm` — ok (15 parsed; comma inventory format)
-  - [ ] `npm cache` — todo (fixture not committed; not captured)
+  - [ ] `npm cache` — empty (fixture not committed; npm-prefixed synopsis lines unsupported)
 - **pip**
   - [x] `pip` — ok (16 parsed)
-  - [ ] `pip install` — bogus (3 parsed; description prose parsed as commands)
-- [ ] `pnpm` — todo (fixture not committed; not captured)
-- [ ] `poetry` — todo (fixture not committed; not captured)
+  - [x] `pip install` — leaf (leaf command, no subcommands)
+- [x] `pnpm` — ok (92 parsed)
+- [x] `poetry` — ok (20 parsed; help_args: list)
 - [ ] `python3` — out-of-scope (fixture not committed; no subcommand concept)
-- [ ] `rustup` — todo (fixture not committed; not captured)
+- [x] `rustup` — ok (18 parsed)
 - [ ] `ssh` — out-of-scope (fixture not committed; no subcommand concept)
 - [ ] `sudo` — out-of-scope (fixture not committed; no subcommand concept)
-- [x] `systemctl` — partial (6 parsed; entries with [ARG...] placeholders are skipped)
-- [ ] `tar` — bogus (5 parsed; option-value keywords parsed as commands)
+- [x] `systemctl` — ok (13 parsed; [ARG...] placeholders skipped)
+- [x] `tar` — leaf (option-value sections are skipped)
 - **terraform**
-  - [ ] `terraform` — todo (fixture not committed; not captured)
-  - [ ] `terraform state` — todo (fixture not committed; not captured)
-- [ ] `tmux` — todo (fixture not committed; not captured)
-- [ ] `uv` — todo (fixture not committed; not captured)
-- [ ] `yarn` — todo (fixture not committed; not captured)
+  - [x] `terraform` — ok (fixture not committed; parses; fixture not committed (BUSL))
+  - [x] `terraform state` — ok (fixture not committed; parses; fixture not committed (BUSL))
+- [ ] `tmux` — empty ("list-commands" name (alias) form unsupported; help_args: list-commands)
+- [x] `uv` — ok (23 parsed)
+- [x] `yarn` — ok (27 parsed; tool-prefixed usage lines)
 
 ## Totals
 
-- ok: 12
-- partial: 3
-- leaf: 1
-- empty: 6
-- bogus: 6
-- todo: 28
-- out-of-scope: 6
+- ok: 47
+- leaf: 4
+- empty: 2
+- todo: 1
+- out-of-scope: 8

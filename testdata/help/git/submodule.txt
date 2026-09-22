@@ -1,0 +1,42 @@
+# synthetic fixture mimicking a git man page (git is GPL-2.0; format
+# reproduced by hand, no verbatim capture — see ../NOTICE.md)
+JYM-GIT-SUBMODULE(1)            Git Manual            JYM-GIT-SUBMODULE(1)
+
+NAME
+       jym-git-submodule - Initialize, update or inspect submodules
+
+SYNOPSIS
+       jym-git submodule [--quiet] [--cached]
+       jym-git submodule [--quiet] add [<options>] [--] <repository> [<path>]
+       jym-git submodule [--quiet] update [<options>] [--] [<path>...]
+
+DESCRIPTION
+       Inspects, updates and manages submodules.
+
+COMMANDS
+       With no arguments, shows the status of the existing submodules.
+       Several subcommands are available.
+
+       add
+           Add the given repository as a submodule at the given path.
+
+       status
+           Show the status of the submodules.
+
+       init
+           Initialize the submodules recorded in the index.
+
+       deinit
+           Unregister the given submodules.
+
+       update
+           Update the registered submodules to match the superproject.
+
+       foreach
+           Evaluates a shell command in each checked out submodule.
+
+       sync
+           Synchronizes submodules' remote URL configuration.
+
+SEE ALSO
+       jym-git-subtree(1)

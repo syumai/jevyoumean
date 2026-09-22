@@ -6,61 +6,61 @@
 #         synthetic (hand-written, for GPL/LGPL/Artistic CLIs), local (not committed)
 # status: ok | partial | leaf | empty | bogus | todo | out-of-scope
 git	-	synthetic	ok	add,branch,checkout,commit,rm,status,switch	-	help_args: help -a
-git	remote	synthetic	empty	add,rename,remove,show,prune	-	man-page COMMANDS section broken by prose line
-git	stash	synthetic	empty	push,list,show,pop,apply,drop,clear	-	man-page COMMANDS section broken by prose line
-git	submodule	local	empty	-	-	not captured
-git	worktree	local	empty	-	-	not captured
-git	bisect	local	empty	-	-	not captured
-git	config	synthetic	bogus	-	GIT_CONFIG_GLOBAL,GIT_CONFIG_SYSTEM	env vars parsed as subcommands
+git	remote	synthetic	ok	add,rename,remove,show,prune	-	man-page COMMANDS section
+git	stash	synthetic	ok	push,list,show,pop,apply,drop,clear	-	man-page COMMANDS section
+git	submodule	synthetic	ok	add,status,init,deinit,update,foreach,sync	-	man-page COMMANDS section
+git	worktree	synthetic	ok	add,list,lock,move,prune,remove,repair,unlock	-	man-page COMMANDS section
+git	bisect	synthetic	ok	start,bad,good,skip,reset,visualize,replay,log,run	-	man-page COMMANDS section
+git	config	synthetic	leaf	-	GIT_CONFIG_GLOBAL,GIT_CONFIG_SYSTEM	env-var sections are skipped
 docker	-	capture	ok	run,ps,images,login,version,info	-	-
 docker	compose	capture	ok	up,down,ps,logs,exec,build	-	-
 docker	image	capture	ok	build,ls,pull,push,rm,tag	-	-
 docker	container	capture	ok	ls,exec,start,stop,rm	-	-
-docker	network	local	todo	create,ls,inspect,rm	-	not captured
-docker	volume	local	todo	create,ls,inspect,rm,prune	-	not captured
+docker	network	capture	ok	connect,create,disconnect,inspect,ls,prune,rm	-	-
+docker	volume	capture	ok	create,inspect,ls,prune,rm	-	-
 gh	-	capture	ok	auth,pr,issue,repo,run,release,browse	-	-
-gh	pr	capture	partial	create,list,checkout,merge,view,close	-	prose commas create junk names
-gh	repo	capture	partial	create,list,fork,clone,view,delete	-	prose commas create junk names
+gh	pr	capture	ok	create,list,checkout,merge,view,close	A,pull,request	prose headings rejected
+gh	repo	capture	ok	create,list,fork,clone,view,delete	A,repository	prose headings rejected
 gh	auth	capture	ok	login,logout,refresh,status,token	-	-
-gh	issue	local	todo	create,list,view,close,status	-	not captured
-gh	run	local	todo	list,view,watch,download	-	not captured
+gh	issue	capture	ok	create,list,status,close,comment,edit,view	-	-
+gh	run	capture	ok	cancel,delete,download,list,rerun,view,watch	-	-
 go	-	capture	ok	build,test,run,mod,get,install,vet,work	-	-
 go	mod	capture	ok	download,edit,graph,init,tidy,vendor,verify,why	-	-
-go	work	local	todo	init,use,sync,vendor	-	not captured
+go	work	capture	ok	edit,init,sync,use,vendor	-	-
 cargo	-	capture	ok	build,check,run,test,new,install,publish	-	-
 cargo	install	capture	leaf	-	-	leaf command, no subcommands
 npm	-	synthetic	ok	access,ci,config,init,install,uninstall	-	comma inventory format
-npm	cache	local	todo	add,ls,clean,verify	-	not captured
-pnpm	-	local	todo	install,add,remove,run	-	not captured
-yarn	-	local	todo	add,install,remove,run	-	not captured
+npm	cache	local	empty	-	-	npm-prefixed synopsis lines unsupported
+pnpm	-	capture	ok	add,install,remove,run,update,outdated,publish,dlx,create	-	-
+yarn	-	capture	ok	add,install,remove,run,config,why,dlx,init	-	tool-prefixed usage lines
 pip	-	capture	ok	install,download,uninstall,freeze,list,show	-	-
-pip	install	capture	bogus	-	Install,packages,from	description prose parsed as commands
-uv	-	local	todo	pip,venv,init,add,sync	-	not captured
-poetry	-	local	todo	init,install,add,run	-	not captured
-aws	-	capture	bogus	s3,ec2,iam	The,services.	prose parsed as commands
-aws	s3	capture	bogus	ls,cp,mv,sync,mb,rb	This,There,must	prose parsed as commands
-aws	ec2	capture	bogus	describe-instances,run-instances	eliminates,sources	prose parsed as commands
-aws	iam	local	todo	list-users,create-role,get-policy	-	not captured
+pip	install	capture	leaf	-	Install,packages,from	leaf command, no subcommands
+uv	-	capture	ok	auth,run,init,add,remove,sync,lock,export,tool,python,pip,venv	-	-
+poetry	-	capture	ok	about,add,init,install,new,run,update,version,list	-	help_args: list
+aws	-	capture	ok	s3,ec2,iam	The,services.	nroff overstrike + o bullets
+aws	s3	capture	ok	ls,cp,mv,sync,mb,rb,presign,website	This,There,must	o bullets under AVAILABLE COMMANDS
+aws	ec2	capture	ok	describe-instances,run-instances	eliminates,sources	o bullets under AVAILABLE COMMANDS
+aws	iam	capture	ok	list-users,create-role,get-policy,attach-role-policy,delete-user	-	o bullets under AVAILABLE COMMANDS
 gcloud	-	local	todo	auth,config,compute,container,functions	-	not captured
-az	-	local	todo	account,group,vm,aks,storage	-	not captured
-kubectl	-	local	todo	get,apply,describe,delete,logs,exec	-	not captured
-kubectl	config	local	todo	get-contexts,use-context,set-context	-	not captured
-kubectl	rollout	local	todo	status,restart,history,undo	-	not captured
-helm	-	local	todo	install,list,upgrade,uninstall,repo	-	not captured
-helm	repo	local	todo	add,list,update,remove	-	not captured
-terraform	-	local	todo	init,plan,apply,destroy,fmt,validate	-	not captured
-terraform	state	local	todo	list,mv,rm,show,pull	-	not captured
-brew	-	local	todo	install,uninstall,update,upgrade,list	-	not captured
-mise	-	local	todo	use,install,ls,exec,run	-	not captured
-rustup	-	local	todo	toolchain,component,update,show	-	not captured
-deno	-	local	todo	run,test,fmt,lint,install	-	not captured
-bun	-	local	todo	install,add,remove,run,test	-	not captured
-tmux	-	local	todo	new-session,attach-session,list-sessions,kill-session	-	not captured
-gradle	-	local	todo	build,test,clean,tasks	-	not captured
-mvn	-	local	todo	compile,test,package,install	-	not captured
-systemctl	-	synthetic	partial	is-system-running,daemon-reload,daemon-reexec,poweroff,reboot,default	-	entries with [ARG...] placeholders are skipped
-apt	-	synthetic	empty	list,search,show,install,remove,update,upgrade	-	dash-separated entries not recognized
-tar	-	synthetic	bogus	-	none,t,nil,never,literal	option-value keywords parsed as commands
+az	-	capture	ok	account,aks,acr,configure,find,storage,group,vm	-	-
+kubectl	-	capture	ok	get,apply,describe,delete,logs,exec,create,rollout	-	-
+kubectl	config	capture	ok	get-contexts,use-context,set-context,view,current-context	-	-
+kubectl	rollout	capture	ok	history,pause,restart,resume,status,undo	-	-
+helm	-	capture	ok	install,list,upgrade,uninstall,repo,search,status	-	-
+helm	repo	capture	ok	add,index,list,remove,update	-	-
+terraform	-	local	ok	init,plan,apply,destroy,fmt,validate	-	parses; fixture not committed (BUSL)
+terraform	state	local	ok	list,mv,rm,show,pull	-	parses; fixture not committed (BUSL)
+brew	-	capture	ok	search,install,list,create,edit,help,upgrade,uninstall,info	-	tool-prefixed usage lines
+mise	-	capture	ok	use,install,ls,exec,run,uninstall,shell,which	-	-
+rustup	-	capture	ok	toolchain,component,update,show,default,target	-	-
+deno	-	capture	ok	run,test,fmt,lint,install,task,eval,cache,check,doc	-	-
+bun	-	capture	ok	install,add,remove,run,test,update	-	-
+tmux	-	capture	empty	-	-	"list-commands" name (alias) form unsupported; help_args: list-commands
+gradle	-	local	out-of-scope	-	-	goals defined by plugins, not in --help
+mvn	-	capture	out-of-scope	-	-	goals defined by plugins, not in --help
+systemctl	-	synthetic	ok	is-system-running,daemon-reload,daemon-reexec,poweroff,reboot,default,start,stop,status,enable,disable,list-units,show	-	[ARG...] placeholders skipped
+apt	-	synthetic	ok	list,search,show,install,remove,update,upgrade	-	dash-separated entries
+tar	-	synthetic	leaf	-	none,t,nil,never,literal	option-value sections are skipped
 make	-	local	out-of-scope	-	-	no subcommand concept
 curl	-	local	out-of-scope	-	-	no subcommand concept
 jq	-	local	out-of-scope	-	-	no subcommand concept

@@ -1,0 +1,43 @@
+# synthetic fixture mimicking a git man page (git is GPL-2.0; format
+# reproduced by hand, no verbatim capture — see ../NOTICE.md)
+JYM-GIT-WORKTREE(1)             Git Manual             JYM-GIT-WORKTREE(1)
+
+NAME
+       jym-git-worktree - Manage multiple working trees
+
+SYNOPSIS
+       jym-git worktree add [-f] [<options>] <path> [<commit-ish>]
+       jym-git worktree list [<options>]
+       jym-git worktree lock [<options>] <worktree>
+       jym-git worktree remove [<options>] <worktree>
+
+DESCRIPTION
+       Manage multiple working trees attached to the same repository.
+
+COMMANDS
+       add
+           Create <path> and checkout <commit-ish> into it.
+
+       list
+           List details of each working tree.
+
+       lock
+           If a working tree is on a portable device, lock it.
+
+       move
+           Move a working tree to a new location.
+
+       prune
+           Prune working tree information in $GIT_DIR/worktrees.
+
+       remove
+           Remove a working tree.
+
+       repair
+           Repair working tree administrative files.
+
+       unlock
+           Unlock a working tree.
+
+SEE ALSO
+       jym-git-checkout(1)
