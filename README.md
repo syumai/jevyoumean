@@ -1,5 +1,10 @@
 # jevyoumean / `jym`
 
+> [!NOTE]
+> `jym` is an experimental project for exploring semantic CLI correction.
+> Suggestions can be wrong, the interface may change, and it is not intended
+> for production-critical workflows.
+
 `jym` wraps any CLI command. When you enter a subcommand the CLI does not
 document, it reads the CLI's help output and asks
 [Jev](https://typesafe.ai) — TypeSafe's System One model — which
