@@ -85,7 +85,7 @@ func looksLikeName(n string) bool {
 // in the loose fallback scan.
 var headerSkipWords = []string{
 	"option", "flag", "interface", "environment", "example",
-	"parameter", "argument", "suffix", "alias",
+	"parameter", "argument", "suffix", "alias", "propert",
 }
 
 // headerHead extracts the label portion of a candidate header: the text
@@ -196,10 +196,11 @@ func Parse(output string) []Command {
 			continue
 		}
 		if indentation(line) == 0 {
-			// Unindented "name (alias) args" entries — listings like
-			// `tmux list-commands` put entries at column zero where
-			// they would otherwise read as headers. A tentative flat
-			// section still needs two entries to commit.
+			// Unindented "name (alias) args" and bare-name entries —
+			// listings like `tmux list-commands` and `go tool` put
+			// entries at column zero where they would otherwise read
+			// as headers. A tentative flat section still needs two
+			// entries to commit.
 			if names, ok := flatEntry(line); ok {
 				if !flatMode {
 					flush()
@@ -374,6 +375,12 @@ func flatEntry(line string) (names []string, ok bool) {
 	trimmed := strings.TrimSpace(line)
 	i := strings.IndexAny(trimmed, " \t")
 	if i < 0 {
+		// Bare single-name lines — `go tool` lists one tool per
+		// line. Skippable words are rejected so bare headers like
+		// "options" still read as headers.
+		if looksLikeName(trimmed) && !isSkippableHeader(trimmed) {
+			return []string{trimmed}, true
+		}
 		return nil, false
 	}
 	if !looksLikeName(trimmed[:i]) {
