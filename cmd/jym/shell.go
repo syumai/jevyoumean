@@ -5,8 +5,11 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"runtime"
 	"sort"
 	"strings"
+
+	"github.com/syumai/jevyoumean/internal/resolve"
 )
 
 var shellCommandName = regexp.MustCompile(`^[A-Za-z0-9_][A-Za-z0-9_.+-]*$`)
@@ -112,12 +115,18 @@ func externalCommands(pathEnv string) []string {
 			continue
 		}
 		for _, entry := range entries {
-			name := entry.Name()
-			if seen[name] || name == "jym" || !shellCommandName.MatchString(name) {
+			// Windows executables carry a PATHEXT extension
+			// (fakecli.exe → fakecli); other names pass through.
+			name, ok := resolve.ExecutableName(entry.Name())
+			if !ok || seen[name] || name == "jym" || !shellCommandName.MatchString(name) {
 				continue
 			}
-			info, err := os.Stat(filepath.Join(dir, name))
-			if err != nil || !info.Mode().IsRegular() || info.Mode()&0o111 == 0 {
+			info, err := os.Stat(filepath.Join(dir, entry.Name()))
+			if err != nil || !info.Mode().IsRegular() {
+				continue
+			}
+			// The execute bit exists only on Unix.
+			if runtime.GOOS != "windows" && info.Mode()&0o111 == 0 {
 				continue
 			}
 			if selfInfo != nil && os.SameFile(info, selfInfo) {

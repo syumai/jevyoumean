@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"runtime"
 	"testing"
 	"time"
 
@@ -38,6 +39,11 @@ func TestSaveLoadRoundTrip(t *testing.T) {
 }
 
 func TestCachePermissions(t *testing.T) {
+	if runtime.GOOS == "windows" {
+		// Windows has no Unix permission bits; the modes set in Save
+		// are best-effort and os.Stat does not reflect them.
+		t.Skip("permission bits are a Unix concept")
+	}
 	c := &Cache{dir: t.TempDir()}
 	exe := fakeExe(t)
 	c.Save(&Entry{Executable: exe, Subcommands: []helptext.Command{{Name: "x"}}}, nil)

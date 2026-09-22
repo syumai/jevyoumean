@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"testing"
 )
@@ -71,12 +72,24 @@ func TestExternalCommands(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	write("alpha", 0o755)
-	write("not-executable", 0o644)
-	write("bad;name", 0o755)
-	write("jym", 0o755)
-	if err := os.Symlink(os.Args[0], filepath.Join(dir, "jym-alias")); err != nil {
-		t.Fatal(err)
+	if runtime.GOOS == "windows" {
+		// Executability on Windows comes from the PATHEXT extension.
+		write("alpha.exe", 0o755)
+		write("not-executable.txt", 0o644)
+		write("bad;name.exe", 0o755)
+		write("jym.exe", 0o755)
+		// os.Symlink needs developer mode or elevated privileges.
+		if err := os.Symlink(os.Args[0], filepath.Join(dir, "jym-alias.exe")); err != nil {
+			t.Logf("symlink skipped: %v", err)
+		}
+	} else {
+		write("alpha", 0o755)
+		write("not-executable", 0o644)
+		write("bad;name", 0o755)
+		write("jym", 0o755)
+		if err := os.Symlink(os.Args[0], filepath.Join(dir, "jym-alias")); err != nil {
+			t.Fatal(err)
+		}
 	}
 
 	got := externalCommands(dir)

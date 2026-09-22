@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strconv"
 	"strings"
 )
@@ -30,7 +31,8 @@ func Depth() int {
 func LookPath(name string) (string, error) {
 	self, _ := selfInfo()
 
-	if strings.ContainsRune(name, os.PathSeparator) {
+	if strings.ContainsRune(name, os.PathSeparator) ||
+		(runtime.GOOS == "windows" && strings.ContainsRune(name, '/')) {
 		if isExecutable(name) && !sameFile(name, self) {
 			return name, nil
 		}
@@ -40,16 +42,58 @@ func LookPath(name string) (string, error) {
 		if dir == "" {
 			dir = "."
 		}
-		cand := filepath.Join(dir, name)
-		if !isExecutable(cand) {
-			continue
+		for _, cand := range candidates(dir, name) {
+			if !isExecutable(cand) {
+				continue
+			}
+			if sameFile(cand, self) {
+				continue
+			}
+			return cand, nil
 		}
-		if sameFile(cand, self) {
-			continue
-		}
-		return cand, nil
 	}
 	return "", fmt.Errorf("%w: %s", ErrNotFound, name)
+}
+
+// candidates lists the file paths to try for name in dir. On Windows a
+// bare name needs a PATHEXT extension (fakecli → fakecli.exe).
+func candidates(dir, name string) []string {
+	if runtime.GOOS != "windows" || filepath.Ext(name) != "" {
+		return []string{filepath.Join(dir, name)}
+	}
+	out := make([]string, 0, len(pathexts())+1)
+	for _, ext := range pathexts() {
+		out = append(out, filepath.Join(dir, name+ext))
+	}
+	return out
+}
+
+// pathexts returns the executable extensions on Windows, or nil
+// elsewhere. PATHEXT wins; the cmd defaults cover the common case.
+func pathexts() []string {
+	if runtime.GOOS != "windows" {
+		return nil
+	}
+	if v := os.Getenv("PATHEXT"); v != "" {
+		return strings.Split(v, string(os.PathListSeparator))
+	}
+	return []string{".COM", ".EXE", ".BAT", ".CMD"}
+}
+
+// ExecutableName reports whether fileName can be executed directly —
+// on Windows, whether it carries a PATHEXT extension — and returns the
+// command name to invoke it by (extension stripped).
+func ExecutableName(fileName string) (string, bool) {
+	if runtime.GOOS != "windows" {
+		return fileName, true
+	}
+	ext := filepath.Ext(fileName)
+	for _, pe := range pathexts() {
+		if strings.EqualFold(ext, pe) {
+			return fileName[:len(fileName)-len(ext)], true
+		}
+	}
+	return "", false
 }
 
 func selfInfo() (os.FileInfo, bool) {
@@ -64,10 +108,16 @@ func selfInfo() (os.FileInfo, bool) {
 	return st, err == nil
 }
 
+// isExecutable reports whether path is a runnable file. Windows has no
+// execute bit — candidates() already filtered by PATHEXT, so a regular
+// file is enough.
 func isExecutable(path string) bool {
 	st, err := os.Stat(path)
-	if err != nil || st.IsDir() {
+	if err != nil || !st.Mode().IsRegular() {
 		return false
+	}
+	if runtime.GOOS == "windows" {
+		return true
 	}
 	return st.Mode()&0o111 != 0
 }
