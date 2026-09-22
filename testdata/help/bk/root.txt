@@ -1,0 +1,248 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/bk
+# args: 
+Usage: bk <command> [flags]
+
+Work with Buildkite from the command line.
+
+Flags:
+  -h, --help        Show context-sensitive help.
+  -y, --yes         Skip all confirmation prompts
+      --no-input    Disable all interactive prompts
+  -q, --quiet       Suppress progress output
+      --no-pager    Disable pager for text output
+      --debug       Enable debug output for REST API calls
+
+Commands:
+  agent install [flags]
+    Install the buildkite-agent binary locally.
+
+  agent run [flags]
+    Run an ephemeral buildkite-agent locally.
+
+  agent pause <agent-id> [flags]
+    Pause a Buildkite agent.
+
+  agent list [flags]
+    List agents.
+
+  agent resume <agent-id>
+    Resume a Buildkite agent.
+
+  agent stop [<agents> ...] [flags]
+    Stop Buildkite agents.
+
+  agent view <agent> [flags]
+    View details of an agent.
+
+  api [<endpoint>] [flags]
+    Interact with the Buildkite API
+
+  artifacts download [<artifact-id>] [flags]
+    Download artifacts from a build.
+
+  artifacts list (ls) [<build-number>] [flags]
+    List artifacts for a build or a job in a build.
+
+  auth login [flags]
+    Login to Buildkite using OAuth or an API token
+
+  auth logout [flags]
+    Logout and remove stored credentials
+
+  auth status [flags]
+    Print the current user auth status
+
+  auth switch (use) [<organization-slug>]
+    Switch to a different organization
+
+  auth token
+    Print the stored API token for the current organization
+
+  browse [<build>] [flags]
+    Open Buildkite resources in a web browser
+
+  build create (new) [flags]
+    Create a new build.
+
+  build cancel <build-number> [flags]
+    Cancel a build.
+
+  build view [<build-number>] [flags]
+    View build information.
+
+  build list (ls) [flags]
+    List builds.
+
+  build download [<build-number>] [flags]
+    Download resources for a build.
+
+  build rebuild [<build-number>] [flags]
+    Rebuild a build.
+
+  build watch [<build-number>] [flags]
+    Watch a build's progress in real-time.
+
+  cluster list (ls) [flags]
+    List clusters.
+
+  cluster view <cluster-uuid> [flags]
+    View cluster information.
+
+  cluster create --name=STRING [flags]
+    Create a new cluster.
+
+  cluster update <cluster-uuid> [flags]
+    Update a cluster.
+
+  cluster delete (rm) <cluster-uuid>
+    Delete a cluster.
+
+  maintainer list (ls) <cluster-uuid> [flags]
+    List cluster maintainers.
+
+  maintainer create <cluster-uuid> [flags]
+    Create a cluster maintainer.
+
+  maintainer delete (rm) <cluster-uuid> <maintainer-id>
+    Delete a cluster maintainer.
+
+  queue list (ls) <cluster-uuid> [flags]
+    List cluster queues.
+
+  queue view <cluster-uuid> <queue-uuid> [flags]
+    View a cluster queue.
+
+  queue create --key=STRING <cluster-uuid> [flags]
+    Create a new cluster queue.
+
+  queue update <cluster-uuid> <queue-uuid> [flags]
+    Update a cluster queue.
+
+  queue delete (rm) <cluster-uuid> <queue-uuid>
+    Delete a cluster queue.
+
+  queue pause <cluster-uuid> <queue-uuid> [flags]
+    Pause dispatch for a cluster queue.
+
+  queue resume <cluster-uuid> <queue-uuid> [flags]
+    Resume dispatch for a cluster queue.
+
+  secret list (ls) --cluster-uuid=STRING [flags]
+    List secrets for a cluster.
+
+  secret get --cluster-uuid=STRING --secret-id=STRING [flags]
+    View a cluster secret.
+
+  secret create --cluster-uuid=STRING --key=STRING [flags]
+    Create a new cluster secret.
+
+  secret update --cluster-uuid=STRING --secret-id=STRING [flags]
+    Update a cluster secret.
+
+  secret delete (rm) --cluster-uuid=STRING --secret-id=STRING
+    Delete a cluster secret.
+
+  skill add <name> [flags]
+    Install a Buildkite skill.
+
+  skill update [<name>] [flags]
+    Update an installed Buildkite skill.
+
+  skill delete (rm) <name> [flags]
+    Delete an installed Buildkite skill.
+
+  team list (ls) [flags]
+    List teams.
+
+  team view <team-uuid> [flags]
+    View team information.
+
+  team create <name> [flags]
+    Create a new team.
+
+  team update <team-uuid> [flags]
+    Update a team.
+
+  team delete (rm) <team-uuid>
+    Delete a team.
+
+  config list (ls) [flags]
+    List configuration values.
+
+  config get <key>
+    Get a configuration value.
+
+  config set <key> <value> [flags]
+    Set a configuration value.
+
+  config unset <key> [flags]
+    Remove a configuration value.
+
+  init [flags]
+    Initialize a pipeline.yaml file
+
+  job cancel <job-id> [flags]
+    Cancel a job.
+
+  job list (ls) [flags]
+    List jobs.
+
+  job log <job-id> [flags]
+    Get logs for a job.
+
+  job reprioritize (priority) <job-id> <priority> [flags]
+    Reprioritize a job.
+
+  job retry <job-id> [flags]
+    Retry a job.
+
+  job ssh <job-uuid>
+    Connect to a running hosted job over SSH.
+
+  job unblock <job-id> [flags]
+    Unblock a job.
+
+  job vnc <job-uuid>
+    Connect to a running hosted macOS job over VNC.
+
+  organization (org) list (ls) [flags]
+    List configured organizations.
+
+  pipeline copy (cp) [<pipeline>] [flags]
+    Copy an existing pipeline.
+
+  pipeline create <name> [flags]
+    Create a new pipeline.
+
+  pipeline list (ls) [flags]
+    List pipelines.
+
+  pipeline convert (migrate) --file=STRING [flags]
+    Convert a CI/CD pipeline configuration to Buildkite format.
+
+  pipeline validate [flags]
+    Validate a pipeline YAML file.
+
+  pipeline view [<pipeline>] [flags]
+    View a pipeline.
+
+  package push <registry-slug> [<std-in-arg>] [flags]
+    Push a new package to a Buildkite registry
+
+  preflight run [flags]
+    Run a build against a snapshot of the local working tree (experimental)
+
+  preflight cleanup [flags]
+    Clean up completed preflight branches (experimental)
+
+  user invite <emails> ...
+    Invite users to your organization.
+
+  update [flags]
+    Update the installed bk CLI or print update instructions
+
+  version [flags]
+    Print the version of the CLI being used
+
+Run "bk <command> --help" for more information on a command.

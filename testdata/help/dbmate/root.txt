@@ -1,0 +1,41 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/dbmate
+# args: 
+NAME:
+   dbmate - A lightweight, framework-independent database migration tool.
+
+USAGE:
+   dbmate [global options] command [command options]
+
+VERSION:
+   2.36.0
+
+COMMANDS:
+   new, n          Generate a new migration file
+   up              Create database (if necessary) and migrate to the latest version
+   create          Create database
+   drop            Drop database (if it exists)
+   migrate         Migrate to the latest version
+   rollback, down  Rollback the most recent migration
+   status          List applied and pending migrations
+   dump            Write the database schema to disk.
+                   Supports passing extra arguments to the underlying dump tool for pg/mysql
+                   example: dbmate dump -- --extra-flag
+   load            Load schema file to the database
+   wait            Wait for the database to become available
+   help, h         Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --url value, -u value                                                  specify the database URL
+   --driver value                                                         specify the driver to use (instead of deriving from the database URL scheme) [$DBMATE_DRIVER]
+   --env value, -e value                                                  specify an environment variable containing the database URL (default: "DATABASE_URL")
+   --env-file value [ --env-file value ]                                  specify a file to load environment variables from (default: ".env")
+   --migrations-dir value, -d value [ --migrations-dir value, -d value ]  specify the directory containing migration files (default: "./db/migrations") [$DBMATE_MIGRATIONS_DIR]
+   --migrations-table value                                               specify the database table to record migrations in (default: "schema_migrations") [$DBMATE_MIGRATIONS_TABLE]
+   --schema-file value, -s value                                          specify the schema file location (default: "./db/schema.sql") [$DBMATE_SCHEMA_FILE]
+   --no-dump-schema                                                       don't update the schema file on migrate/rollback (default: false) [$DBMATE_NO_DUMP_SCHEMA]
+   --wait                                                                 wait for the db to become available before executing the subsequent command (default: false) [$DBMATE_WAIT]
+   --wait-timeout value                                                   timeout for --wait flag (default: 1m0s) [$DBMATE_WAIT_TIMEOUT]
+   --wait-interval value                                                  time to wait between connection attempts for --wait flag (default: 1s) [$DBMATE_WAIT_INTERVAL]
+   --help, -h                                                             show help
+   --version, -v                                                          print the version

@@ -1,0 +1,48 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/vcluster
+# args: 
+vcluster root command
+
+Usage:
+  vcluster [command]
+
+Available Commands:
+  certs       vCluster certs subcommands
+  completion  Generate the autocompletion script for the specified shell
+  connect     Connect to a virtual cluster
+  create      Create a new virtual cluster
+  credits     Saves the OSS credits
+  debug       Debug retrieves information from vCluster
+  delete      Deletes a virtual cluster
+  describe    Describes a virtual cluster
+  disconnect  Disconnects from a vCluster platform context
+  help        Help about any command
+  list        Lists all virtual clusters
+  login       Log in to a vCluster platform instance
+  logout      Log out of a vCluster platform instance
+  node        vCluster node subcommand
+  pause       Pauses a virtual cluster
+  platform    vCluster platform subcommands
+  registry    vCluster registry subcommand
+  restore     Restores a virtual cluster from snapshot
+  resume      Resumes a virtual cluster
+  set         Set configuration
+  snapshot    Snapshot a virtual cluster (deprecated, use 'vcluster snapshot create' instead)
+  telemetry   Sets your vcluster telemetry preferences
+  token       vCluster token subcommand
+  ui          Start the web UI
+  upgrade     Upgrade the vcluster CLI to the newest version
+  use         vCluster use subcommand
+  version     Print the vCluster version
+
+Flags:
+      --config string       The vcluster CLI config to use (will be created if it does not exist) (default "/home/ubuntu/.vcluster/config.json")
+      --context string      The kubernetes config context to use
+      --debug               Prints the stack trace if an error occurs
+  -h, --help                help for vcluster
+      --log-output string   The log format to use. Can be either plain, raw or json (default "plain")
+  -n, --namespace string    The kubernetes namespace to use
+  -s, --silent              Run in silent mode and prevents any vcluster log output except panics & fatals
+  -v, --version             version for vcluster
+
+Use "vcluster [command] --help" for more information about a command.

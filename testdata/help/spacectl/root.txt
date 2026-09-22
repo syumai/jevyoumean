@@ -1,0 +1,35 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/spacectl
+# args: 
+2026/09/22 06:41:50 Warning: Unable to determine Spacelift instance type. Some commands may be unavailable until you authenticate with Spacelift.
+NAME:
+   spacectl - Programmatic access to Spacelift GraphQL API.
+
+USAGE:
+   spacectl [global options] [command [command options]]
+
+VERSION:
+   1.26.0
+
+COMMANDS:
+   profile                  Manage Spacelift profiles
+   whoami                   Print out logged-in user's information
+   version                  Print out CLI version
+   module                   Manage a Spacelift module
+   stack                    Manage a Spacelift stack
+   provider                 Manage a Terraform provider
+   run-external-dependency  Manage Spacelift Run external dependencies
+   workerpool               Manages workerpools and their workers.
+   blueprint                Manage Spacelift blueprints
+   template                 Manage Spacelift templates
+   policy                   Manage Spacelift policies
+   audit-trail              Manage Spacelift audit trail entries
+   mcp                      Manage MCP server
+   help, h                  Shows a list of commands or help for one command
+
+   GraphQL:
+     api  Call the Spacelift GraphQL API
+
+GLOBAL OPTIONS:
+   --help, -h     show help
+   --version, -v  print the version

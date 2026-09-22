@@ -1,0 +1,58 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pipenv
+# args: 
+usage: pipenv [-h] [--version] [--where] [--venv] [--py] [--envs] [--rm]
+              [--bare] [--man] [--support] [--pypi-mirror PYPI_MIRROR]
+              [--verbose] [--quiet] [--clear] [--python PYTHON]
+              [--site-packages | --no-site-packages]
+              COMMAND ...
+
+Python Development Workflow for Humans.
+
+positional arguments:
+  COMMAND
+    install             Install provided packages and add them to Pipfile.
+    remove              Remove the virtualenv for the current project.
+    upgrade             Resolve provided packages and add them to Pipfile.
+    uninstall           Uninstall a provided package and remove it from
+                        Pipfile.
+    lock                Generate Pipfile.lock.
+    shell               Spawn a shell within the virtualenv.
+    activate            Output the activation command for the virtualenv.
+    run                 Spawn a command installed into the virtualenv.
+    check               [DEPRECATED] Check for PyUp Safety security
+                        vulnerabilities.
+    audit               Audit packages for security vulnerabilities using pip-
+                        audit.
+    update              Run lock, then sync.
+    graph               Display currently-installed dependency graph
+                        information.
+    open                View a given module in your editor.
+    sync                Install all packages specified in Pipfile.lock.
+    clean               Uninstall all packages not specified in Pipfile.lock.
+    scripts             List scripts in current environment config.
+    verify              Verify the hash in Pipfile.lock is up-to-date.
+    requirements        Generate a requirements.txt from Pipfile.lock.
+    pylock              Manage PEP 751 pylock.toml files.
+
+options:
+  -h, --help            Show this message and exit.
+  --version             show program's version number and exit
+  --where               Output project home information.
+  --venv                Output virtualenv information.
+  --py                  Output Python interpreter information.
+  --envs                Output Environment Variable options.
+  --rm                  Remove the virtualenv. 
+  --bare                Minimal output.
+  --man                 Display manpage.
+  --support             Output diagnostic information for use in GitHub
+                        issues.
+  --pypi-mirror PYPI_MIRROR
+                        Specify a PyPI mirror.
+  --verbose, -v         Verbose mode.
+  --quiet, -q           Quiet mode.
+  --clear               Clears caches (pipenv, pip).
+  --python PYTHON       Specify which version of Python virtualenv should use.
+  --site-packages       Enable site-packages for the virtualenv.
+  --no-site-packages    Disable site-packages for the virtualenv.
+

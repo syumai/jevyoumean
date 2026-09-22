@@ -1,0 +1,28 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/ghq
+# args: 
+NAME:
+   ghq - Manage remote repository clones
+
+USAGE:
+   ghq [global options] [command [command options]]
+
+VERSION:
+   1.10.1 (rev:f600896)
+
+AUTHORS:
+   motemen <motemen@gmail.com>
+   Songmu <y.songmu@gmail.com>
+
+COMMANDS:
+   get, clone  Clone/sync with a remote repository
+   list        List local repositories
+   rm          Remove local repository
+   root        Show repositories' root
+   create      Create a new repository
+   migrate     Migrate existing repository to ghq-managed directory
+   help, h     Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --help, -h     show help
+   --version, -v  print the version

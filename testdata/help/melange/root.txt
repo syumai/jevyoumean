@@ -1,0 +1,32 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/melange
+# args: 
+Usage:
+  melange [command]
+
+Available Commands:
+  build           Build a package from a YAML configuration file
+  bump            Update a Melange YAML file to reflect a new package version
+  compile         Compile a YAML configuration file
+  completion      Generate completion script
+  help            Help about any command
+  index           Creates a repository index from a list of package files
+  initramfs       Build a base initramfs for the QEMU runner
+  keygen          Generate a key for package signing
+  license-check   Gather and check licensing data
+  lint            EXPERIMENTAL COMMAND - Lints an APK, checking for problems and errors
+  package-version Report the target package for a YAML configuration file
+  query           Query a Melange YAML file for information
+  scan            Scan an existing APK to regenerate .PKGINFO
+  sign            Sign an APK package
+  sign-index      Sign an APK index
+  source          Manage melange source code
+  test            Test a package with a YAML configuration file
+  update-cache    Update a source artifact cache
+  version         Prints the version
+
+Flags:
+  -h, --help               help for melange
+      --log-level string   log level (e.g. debug, info, warn, error) (default "INFO")
+
+Use "melange [command] --help" for more information about a command.

@@ -1,0 +1,155 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/kopia
+# args: 
+
+usage: kopia [<flags>] <command> [<args> ...]
+Kopia - Fast And Secure Open-Source Backup
+
+Flags:
+      --[no-]help             Show context-sensitive help (also try --help-long
+                              and --help-man).
+      --[no-]version          Show application version.
+      --log-file=LOG-FILE     Override log file.
+      --[no-]disable-file-logging  
+                              Disable file-based logging.
+      --[no-]disable-content-log  
+                              Disable creation of content logs.
+      --log-dir="/home/ubuntu/.cache/kopia"  
+                              Directory where log files should be written.
+                              ($KOPIA_LOG_DIR)
+      --log-level=info        Console log level
+      --file-log-level=debug  File log level
+      --[no-]help-full        Show help for all commands, including hidden
+      --config-file="repository.config"  
+                              Specify the config file to use
+                              ($KOPIA_CONFIG_PATH)
+  -p, --password=PASSWORD     Repository password. ($KOPIA_PASSWORD)
+      --[no-]persist-credentials  
+                              Persist credentials
+                              ($KOPIA_PERSIST_CREDENTIALS_ON_CONNECT)
+      --[no-]use-keyring      Use Gnome Keyring for storing repository password.
+                              ($KOPIA_USE_KEYRING)
+      --[no-]progress         Enable progress output
+
+Commands (use --help-full to list all commands):
+
+  help [<command>...]
+  benchmark
+    compression --data-file=DATA-FILE [<flags>]
+    crypto [<flags>]
+    splitter [<flags>]
+    hashing [<flags>]
+    encryption [<flags>]
+    ecc [<flags>]
+  diff [<flags>] <object-path1> <object-path2>
+  list [<flags>] <object-path>
+  notification
+    profile
+      configure
+        email --profile-name=PROFILE-NAME [<flags>]
+        pushover --profile-name=PROFILE-NAME [<flags>]
+        webhook --profile-name=PROFILE-NAME [<flags>]
+      delete --profile-name=PROFILE-NAME
+      test --profile-name=PROFILE-NAME
+      list [<flags>]
+      show --profile-name=PROFILE-NAME [<flags>]
+    template
+      list [<flags>]
+      set [<flags>] <template>
+      show [<flags>] <template>
+      remove <template>
+  server
+    start [<flags>]
+    acl
+      add --user=USER --target=TARGET --access=ACCESS [<flags>]
+      delete [<flags>] [<id>...]
+      enable [<flags>]
+      list [<flags>]
+    users
+      add [<flags>] <username>
+      set [<flags>] <username>
+      delete <username>
+      hash-password [<flags>]
+      info <username>
+      list [<flags>]
+    status [<flags>]
+    refresh [<flags>]
+    flush [<flags>]
+    shutdown [<flags>]
+    snapshot [<flags>] [<source>]
+    cancel [<flags>] [<source>]
+    pause [<flags>] [<source>]
+    resume [<flags>] [<source>]
+    throttle
+      get [<flags>]
+      set [<flags>]
+  restore [<flags>] <sources>...
+  show <object-path>
+  snapshot
+    copy-history [<flags>] <source> [<destination>]
+    move-history [<flags>] <source> [<destination>]
+    create [<flags>] [<source>...]
+    delete [<flags>] <id>...
+    estimate [<flags>] <source>
+    expire [<flags>] [<path>...]
+    fix
+      invalid-files [<flags>]
+      remove-files [<flags>]
+    list [<flags>] [<source>]
+    migrate --source-config=SOURCE-CONFIG [<flags>]
+    pin [<flags>] <id>...
+    restore [<flags>] <sources>...
+    verify [<flags>] [<snapshot-ids>...]
+  policy
+    edit [<flags>] [<target>...]
+    list [<flags>]
+    delete [<flags>] [<target>...]
+    set [<flags>] [<target>...]
+    show [<flags>] [<target>...]
+    export [<flags>] [<target>...]
+    import [<flags>] [<target>...]
+  mount [<flags>] [<path>] [<mountPoint>]
+  repository
+    connect [<flags>]
+      server --url=URL [<flags>]
+      azure --container=CONTAINER --storage-account=STORAGE-ACCOUNT [<flags>]
+      b2 --bucket=BUCKET --key-id=KEY-ID --key=KEY [<flags>]
+      filesystem --path=PATH [<flags>]
+      from-config [<flags>]
+      gcs --bucket=BUCKET [<flags>]
+      gdrive --folder-id=FOLDER-ID [<flags>]
+      rclone --remote-path=REMOTE-PATH [<flags>]
+      s3 --bucket=BUCKET --access-key=ACCESS-KEY --secret-access-key=SECRET-ACCESS-KEY [<flags>]
+      sftp --path=PATH --host=HOST --username=USERNAME [<flags>]
+      webdav --url=URL [<flags>]
+    create [<flags>]
+      azure --container=CONTAINER --storage-account=STORAGE-ACCOUNT [<flags>]
+      b2 --bucket=BUCKET --key-id=KEY-ID --key=KEY [<flags>]
+      filesystem --path=PATH [<flags>]
+      from-config [<flags>]
+      gcs --bucket=BUCKET [<flags>]
+      gdrive --folder-id=FOLDER-ID [<flags>]
+      rclone --remote-path=REMOTE-PATH [<flags>]
+      s3 --bucket=BUCKET --access-key=ACCESS-KEY --secret-access-key=SECRET-ACCESS-KEY [<flags>]
+      sftp --path=PATH --host=HOST --username=USERNAME [<flags>]
+      webdav --url=URL [<flags>]
+    disconnect
+    set-client [<flags>]
+    set-parameters [<flags>]
+    status [<flags>]
+    sync-to [<flags>]
+      azure --container=CONTAINER --storage-account=STORAGE-ACCOUNT [<flags>]
+      b2 --bucket=BUCKET --key-id=KEY-ID --key=KEY [<flags>]
+      filesystem --path=PATH [<flags>]
+      from-config [<flags>]
+      gcs --bucket=BUCKET [<flags>]
+      gdrive --folder-id=FOLDER-ID [<flags>]
+      rclone --remote-path=REMOTE-PATH [<flags>]
+      s3 --bucket=BUCKET --access-key=ACCESS-KEY --secret-access-key=SECRET-ACCESS-KEY [<flags>]
+      sftp --path=PATH --host=HOST --username=USERNAME [<flags>]
+      webdav --url=URL [<flags>]
+    throttle
+      get [<flags>]
+      set [<flags>]
+    change-password [<flags>]
+    validate-provider [<flags>]

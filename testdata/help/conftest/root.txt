@@ -1,0 +1,27 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/conftest
+# args: 
+Test your configuration files using Open Policy Agent
+
+Usage:
+  conftest [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  doc         Generate documentation
+  fmt         Format Rego files
+  help        Help about any command
+  parse       Print out structured data from your input files
+  plugin      Manage conftest plugins
+  pull        Download individual policies
+  push        Push OPA bundles to an OCI registry
+  reformat    Reformat conftest JSON output to different formats
+  test        Test your configuration files using Open Policy Agent
+  verify      Verify Rego unit tests
+
+Flags:
+  -c, --config-file string   path to configuration file
+  -h, --help                 help for conftest
+  -v, --version              version for conftest
+
+Use "conftest [command] --help" for more information about a command.

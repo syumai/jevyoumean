@@ -1,0 +1,34 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/devbox
+# args: 
+Instant, easy, predictable development environments
+
+Usage:
+  devbox [flags]
+  devbox [command]
+
+Available Commands:
+  add         Add a new package to your devbox
+  completion  Generate the autocompletion script for the specified shell
+  create      Initialize a directory as a devbox project using a template
+  generate    Generate supporting files for your project
+  global      Manage global devbox packages
+  help        Help about any command
+  info        Display package info
+  init        Initialize a directory as a devbox project
+  install     Install all packages mentioned in devbox.json
+  list        List installed packages
+  rm          Remove a package from your devbox
+  run         Run a script or command in a shell with access to your packages
+  search      Search for nix packages
+  services    Interact with devbox services.
+  shell       Start a new shell with access to your packages
+  shellenv    Print shell commands that create a Devbox Environment in the shell
+  update      Update packages in your devbox
+  version     Print version information
+
+Flags:
+  -h, --help    help for devbox
+  -q, --quiet   suppresses logs
+
+Use "devbox [command] --help" for more information about a command.

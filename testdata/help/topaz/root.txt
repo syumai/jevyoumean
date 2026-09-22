@@ -1,0 +1,32 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/topaz
+# args: 
+Usage: topaz <command> [flags]
+
+Topaz CLI
+
+Commands:
+  start              start topaz instance (daemon mode)
+  stop               stop topaz instance
+  restart            restart topaz instance
+  status             status of topaz daemon process
+  config             configure topaz instance
+  run                start topaz instance (console mode)
+  templates          template commands
+  console            open topaz console in the browser
+  directory (ds)     directory service commands
+  authorizer (az)    authorizer service commands
+  access (ac)        access service commands
+  certs              certificate management
+  install            install topaz container
+  uninstall          uninstall topaz container
+  update             update topaz container version
+  version            version information
+
+Flags:
+  -h, --help         Show context-sensitive help.
+  -N, --no-check     disable local container status check ($TOPAZ_NO_CHECK)
+      --no-color     disable colored terminal output ($TOPAZ_NO_COLOR)
+  -v, --verbosity    log level
+
+Run "topaz <command> --help" for more information on a command.

@@ -1,0 +1,28 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/rbac-tool
+# args: 
+rbac-tool
+
+Usage:
+  rbac-tool [command]
+
+Available Commands:
+  analysis        Analyze RBAC permissions and highlight overly permissive principals, risky permissions, etc.
+  auditgen        Generate RBAC policy from Kubernetes audit events
+  bash-completion Generate bash completion. source <(rbac-tool bash-completion)
+  completion      Generate the autocompletion script for the specified shell
+  generate        Generate Role or ClusterRole and reduce the use of wildcards
+  help            Help about any command
+  lookup          RBAC Lookup by subject (user/group/serviceaccount) name
+  policy-rules    RBAC List Policy Rules For subject (user/group/serviceaccount) name
+  show            Generate ClusterRole with all available permissions from the target cluster
+  version         Print rbac-tool version
+  visualize       A RBAC visualizer
+  who-can         Shows which subjects have RBAC permissions to perform an action
+  whoami          Shows the subject for the current context with which one authenticates with the cluster
+
+Flags:
+  -h, --help      help for rbac-tool
+  -v, --v Level   number for the log level verbosity
+
+Use "rbac-tool [command] --help" for more information about a command.

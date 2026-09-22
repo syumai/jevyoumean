@@ -1,0 +1,51 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/ocm
+# args: 
+Command line tool for api.openshift.com.
+
+Usage:
+  ocm [command]
+
+Available Commands:
+  account     Get information about users.
+  cluster     Get information about clusters
+  completion  Generate completion scripts for various shells
+  config      get or set configuration variables
+  create      Create a resource from stdin
+  delete      Send a DELETE request
+  describe    Show details of a specific resource
+  edit        Edit a resource from stdin
+  fail        Failure resource
+  gcp         Manage GCP resources.
+  get         Send a GET request
+  help        Help about any command
+  hibernate   Hibernate a specific resource (currently only supported for clusters)
+  list        List all resources of a specific type
+  login       Log in
+  logout      Log out
+  patch       Send a PATCH request
+  plugin      Get information about plugins
+  pop         Fetch resource
+  post        Send a POST request
+  push        Push resource
+  resume      Resumes a hibernating resource (currently only supported for clusters)
+  success     Success resource
+  token       Generates a token
+  version     Prints the version
+  whoami      Prints user information
+
+Flags:
+      --alsologtostderr                   log to standard error as well as files
+      --debug                             Enable debug mode.
+  -h, --help                              help for ocm
+      --log_backtrace_at traceLocations   when logging hits line file:N, emit a stack trace
+      --log_dir string                    If non-empty, write log files in this directory
+      --log_link string                   If non-empty, add symbolic links in this directory to the log files
+      --logbuflevel int                   Buffer log messages logged at this level or lower (-1 means don't buffer; 0 means buffer INFO only; ...). Has limited applicability on non-prod platforms.
+      --logtostderr                       log to standard error instead of files (default true)
+      --opaque-token                      Treat the access token as an opaque (non-JWT) token. Can also be enabled by setting the OCM_OPAQUE_TOKEN environment variable.
+      --stderrthreshold severityFlag      logs at or above this threshold go to stderr (default 2)
+  -v, --v Level                           log level for V logs
+      --vmodule vModuleFlag               comma-separated list of pattern=N settings for file-filtered logging
+
+Use "ocm [command] --help" for more information about a command.

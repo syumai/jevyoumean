@@ -1,0 +1,26 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/ko
+# args: 
+Rapidly iterate with Go, Containers, and Kubernetes.
+
+Usage:
+  ko [flags]
+  ko [command]
+
+Available Commands:
+  apply       Apply the input files with image references resolved to built/pushed image digests.
+  build       Build and publish container images from the given importpaths.
+  completion  Generate the autocompletion script for the specified shell
+  create      Create the input files with image references resolved to built/pushed image digests.
+  delete      See "kubectl help delete" for detailed usage.
+  help        Help about any command
+  login       Log in to a registry
+  resolve     Print the input files with image references resolved to built/pushed image digests.
+  run         A variant of `kubectl run` that containerizes IMPORTPATH first.
+  version     Print ko version.
+
+Flags:
+  -h, --help      help for ko
+  -v, --verbose   Enable debug logs
+
+Use "ko [command] --help" for more information about a command.

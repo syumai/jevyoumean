@@ -1,0 +1,33 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pre-commit
+# args: 
+usage: pre-commit [-h] [-V]
+                  {autoupdate,clean,gc,hazmat,init-templatedir,install,install-hooks,migrate-config,run,sample-config,try-repo,uninstall,validate-config,validate-manifest,help,hook-impl}
+                  ...
+
+positional arguments:
+  {autoupdate,clean,gc,hazmat,init-templatedir,install,install-hooks,migrate-config,run,sample-config,try-repo,uninstall,validate-config,validate-manifest,help,hook-impl}
+    autoupdate          Auto-update pre-commit config to the latest repos'
+                        versions.
+    clean               Clean out pre-commit files.
+    gc                  Clean unused cached repos.
+    hazmat              Composable tools for rare use in hook `entry`.
+    init-templatedir    Install hook script in a directory intended for use
+                        with `git config init.templateDir`.
+    install             Install the pre-commit script.
+    install-hooks       Install hook environments for all environments in the
+                        config file. You may find `pre-commit install
+                        --install-hooks` more useful.
+    migrate-config      Migrate list configuration to new map configuration.
+    run                 Run hooks.
+    sample-config       Produce a sample .pre-commit-config.yaml file
+    try-repo            Try the hooks in a repository, useful for developing
+                        new hooks.
+    uninstall           Uninstall the pre-commit script.
+    validate-config     Validate .pre-commit-config.yaml files
+    validate-manifest   Validate .pre-commit-hooks.yaml files
+    help                Show help for a specific command.
+
+options:
+  -h, --help            show this help message and exit
+  -V, --version         show program's version number and exit

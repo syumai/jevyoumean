@@ -1,0 +1,78 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pscale
+# args: 
+pscale is a CLI for communicating with PlanetScale's API.
+
+Agents and automation should start with:
+
+  pscale --skill
+  pscale auth check --format json
+
+Usage:
+  pscale [flags]
+  pscale [command]
+
+MySQL, Postgres, and Neki database commands:
+  backup            Manage branch backups, backup policies, and restores
+  branch            Create, delete, diff, and manage branches
+  database          Create, read, update, delete, and dump/restore databases
+  insights          Query performance insights and schema recommendations for a database
+  inspect           Run read-only diagnostic checks against a database branch
+  logs              Query logs for a PostgreSQL or Neki branch
+  metrics           Query historical and current metrics for a database branch
+  role              Manage database roles for a Postgres or Neki database branch
+  shell             Open a shell instance to a database and branch
+  sql               Execute a SQL query without an interactive shell
+  webhook           Create, list, and manage webhooks
+
+Vitess/MySQL-specific commands:
+  connect           Create a secure connection to a database and branch for a local client
+  deploy-request    Create, review, diff, revert, and manage deploy requests
+  keyspace          List, show, and manage keyspaces
+  maintenance       List and show maintenance schedules for a database
+  password          Create, list, update, and delete branch passwords
+  workflow          Manage the workflows for PlanetScale databases
+
+PostgreSQL-specific commands:
+  import            Import external databases into PlanetScale Postgres
+  pgbouncer         Manage dedicated PgBouncers for a Postgres branch
+  read-only-replica Manage read-only replicas for a Postgres branch
+  traffic-control   Manage Database Traffic Control™ for a Postgres database branch
+
+Platform & account management:
+  agent-guide       Show guidance for AI agents and automation
+  api               Performs authenticated calls against the PlanetScale API. Useful for scripting.
+  audit-log         List audit logs and download authentication-attempt exports
+  auth              Login and logout via the PlanetScale API
+  billing           Manage organization billing
+  completion        Generate completion script for your shell
+  org               Manage organizations
+  ping              Ping public PlanetScale database endpoints
+  region            List regions
+  service-token     Create, list, and manage access for service tokens
+  signup            Signup for a new PlanetScale account
+  size              Lists the sizes for various components within PlanetScale
+
+Additional Commands:
+  help              Help about any command
+
+Flags:
+      --api-token string          The API token to use for authenticating against the PlanetScale API.
+      --api-url string            The base URL for the PlanetScale API. (default "https://api.planetscale.com/")
+      --config string             Config file (default is $HOME/.config/planetscale/pscale.yml)
+      --debug                     Enable debug mode
+  -f, --format string             Show output in a specific format. Possible values: [human, json, csv] (default "human")
+  -h, --help                      help for pscale
+      --no-color                  Disable color output
+      --service-token string      Service Token for authenticating.
+      --service-token-id string   The Service Token ID for authenticating.
+      --skill                     Print the agent skill file and exit
+      --version                   Show pscale version
+
+Additional help topics:
+  pscale agents            How AI agents and automation should use pscale
+
+Use "pscale [command] --help" for more information about a command.
+
+Agents: run "pscale --skill" to print the installable agent skill, "pscale agent-guide --format json" for machine-readable guidance, or "pscale help agents" to read the full guide.
+

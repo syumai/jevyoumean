@@ -1,0 +1,33 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/granted
+# args: 
+NAME:
+   granted - https://granted.dev
+
+USAGE:
+   granted [global options] command [command options] [arguments...]
+
+VERSION:
+   0.39.0
+
+COMMANDS:
+   browser             View the web browser that Granted uses to open cloud consoles
+   settings            Manage Granted settings
+   completion          Add autocomplete to your granted cli installation
+   token               Deprecated: Use 'sso-tokens' instead
+   sso-tokens          Manage AWS SSO tokens
+   uninstall           Remove all Granted configuration
+   sso                 Manage your local AWS configuration file from information available in AWS SSO
+   credentials         Manage secure IAM credentials
+   credential-process  Exports AWS session credentials for use with AWS CLI credential_process
+   registry            Manage Profile Registries
+   console             Generate an AWS console URL using credentials in the environment or with a credential process.
+   cache               Manage your cached credentials that are stored in secure storage
+   doctor              Run diagnostics locally to help debug common issues relating to granted and aws
+   help, h             Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --verbose                Log debug messages (default: false)
+   --aws-config-file value  
+   --help, -h               show help
+   --version, -v            print the version

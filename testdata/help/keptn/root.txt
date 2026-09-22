@@ -1,0 +1,38 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/keptn
+# args: 
+The CLI allows interaction with a Keptn installation to manage Keptn, to trigger workflows, and to get details.
+
+Usage:
+  keptn [command]
+
+Available Commands:
+  abort        Aborts the execution of a sequence
+  add-resource Adds a local resource to a service within your project in the specified stage
+  auth         Authenticates the Keptn CLI against a Keptn installation
+  completion   Generate completion script
+  configure    Configures one of the specified parts of Keptn
+  create       Creates a new project, service or secret
+  delete       Deletes a project
+  generate     Generates the markdown CLI documentation or a support archive
+  get          Displays an event or Keptn entities such as project, stage, or service
+  help         Help about any command
+  pause        Pauses the execution of a sequence
+  resume       Resumes the execution of a sequence
+  send         Sends an event to Keptn
+  set          Sets flags of the CLI configuration
+  status       Checks the status of the CLI
+  trigger      Triggers the execution of an action in keptn
+  update       Updates an existing Keptn project
+  version      Shows the version of Keptn and Keptn CLI
+
+Flags:
+      --config-file string   Specify custom Keptn Config file path (default: ~/.keptn/config)
+  -h, --help                 help
+      --mock                 Disables communication to a Keptn endpoint
+  -n, --namespace string     Specify the namespace where Keptn should be installed, used and uninstalled (default "keptn")
+  -q, --quiet                Suppresses debug and info messages
+  -v, --verbose              Enables verbose logging to print debug messages
+  -y, --yes                  Assume yes for all user prompts
+
+Use "keptn [command] --help" for more information about a command.

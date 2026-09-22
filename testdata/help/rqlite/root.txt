@@ -1,0 +1,43 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/rqlite
+# args: 
+Options:
+
+  -h, --help
+      display help information
+
+  -a, --alternatives
+      comma separated list of 'host:port' pairs to use as fallback
+
+  -s, --scheme[=http]
+      protocol scheme (http or https)
+
+  -H, --host[=127.0.0.1]
+      rqlited host address
+
+  -p, --port[=4001]
+      rqlited host port
+
+  -P, --prefix[=/]
+      rqlited HTTP URL prefix
+
+  -i, --insecure[=false]
+      do not verify rqlited HTTPS certificate
+
+  -c, --ca-cert
+      path to trusted X.509 root CA certificate
+
+  -d, --client-cert
+      path to client X.509 certificate for mutual TLS
+
+  -k, --client-key
+      path to client X.509 key for mutual TLS
+
+  -u, --user
+      set basic auth credentials in form username:password
+
+  -v, --version
+      display CLI version
+
+  -t, --http-timeout[=30s]
+      set timeout on HTTP requests

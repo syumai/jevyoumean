@@ -1,0 +1,42 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/crane
+# args: 
+Crane is a tool for managing container images
+
+Usage:
+  crane [flags]
+  crane [command]
+
+Available Commands:
+  append      Append contents of a tarball to a remote image
+  auth        Log in or access credentials
+  blob        Read a blob from the registry
+  catalog     List the repos in a registry
+  completion  Generate the autocompletion script for the specified shell
+  config      Get the config of an image
+  copy        Efficiently copy a remote image from src to dst while retaining the digest value
+  delete      Delete an image reference from its registry
+  digest      Get the digest of an image
+  export      Export filesystem of a container image as a tarball
+  flatten     Flatten an image's layers into a single layer
+  help        Help about any command
+  index       Modify an image index.
+  ls          List the tags in a repo
+  manifest    Get the manifest of an image
+  mutate      Modify image labels and annotations. The container must be pushed to a registry, and the manifest is updated there.
+  pull        Pull remote images by reference and store their contents locally
+  push        Push local image contents to a remote registry
+  rebase      Rebase an image onto a new base image
+  registry    
+  tag         Efficiently tag a remote image
+  validate    Validate that an image is well-formed
+  version     Print the version
+
+Flags:
+      --allow-nondistributable-artifacts   Allow pushing non-distributable (foreign) layers
+  -h, --help                               help for crane
+      --insecure                           Allow image references to be fetched without TLS
+      --platform platform                  Specifies the platform in the form os/arch[/variant][:osversion] (e.g. linux/amd64). (default all)
+  -v, --verbose                            Enable debug logs
+
+Use "crane [command] --help" for more information about a command.

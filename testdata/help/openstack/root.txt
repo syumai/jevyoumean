@@ -1,0 +1,1353 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/openstack
+# args: 
+usage: openstack [--version] [-v | -q] [--log-file LOG_FILE] [-h] [--debug]
+                 [--os-cloud <cloud-config-name>]
+                 [--os-region-name <auth-region-name>]
+                 [--os-cacert <ca-bundle-file>] [--os-cert <certificate-file>]
+                 [--os-key <key-file>] [--verify | --insecure]
+                 [--os-default-domain <auth-domain>]
+                 [--os-interface <interface>]
+                 [--os-service-provider <service_provider>]
+                 [--os-remote-project-name <remote_project_name> | --os-remote-project-id <remote_project_id>]
+                 [--os-remote-project-domain-name <remote_project_domain_name> | --os-remote-project-domain-id <remote_project_domain_id>]
+                 [--timing] [--os-beta-command]
+                 [--os-compute-api-version <compute-api-version>]
+                 [--os-identity-api-version <identity-api-version>]
+                 [--os-image-api-version <image-api-version>]
+                 [--os-network-api-version <network-api-version>]
+                 [--os-object-api-version <object-api-version>]
+                 [--os-volume-api-version <volume-api-version>]
+                 [--os-share-api-version <shared-file-system-api-version>]
+                 [--os-endpoint-override <endpoint-override>]
+                 [--os-auth-type <auth-type>] [--os-username <auth-username>]
+                 [--os-password <auth-password>]
+                 [--os-endpoint <auth-endpoint>]
+                 [--os-auth-url <auth-auth-url>]
+                 [--os-system-scope <auth-system-scope>]
+                 [--os-domain-id <auth-domain-id>]
+                 [--os-domain-name <auth-domain-name>]
+                 [--os-project-id <auth-project-id>]
+                 [--os-project-name <auth-project-name>]
+                 [--os-project-domain-id <auth-project-domain-id>]
+                 [--os-project-domain-name <auth-project-domain-name>]
+                 [--os-trust-id <auth-trust-id>]
+                 [--os-default-domain-id <auth-default-domain-id>]
+                 [--os-default-domain-name <auth-default-domain-name>]
+                 [--os-token <auth-token>]
+                 [--os-auth-methods <auth-auth-methods>]
+                 [--os-user-id <auth-user-id>]
+                 [--os-user-domain-id <auth-user-domain-id>]
+                 [--os-user-domain-name <auth-user-domain-name>]
+                 [--os-passcode <auth-passcode>]
+                 [--os-identity-provider <auth-identity-provider>]
+                 [--os-protocol <auth-protocol>]
+                 [--os-client-id <auth-client-id>]
+                 [--os-client-secret <auth-client-secret>]
+                 [--os-openid-scope <auth-openid-scope>]
+                 [--os-access-token-endpoint <auth-access-token-endpoint>]
+                 [--os-discovery-endpoint <auth-discovery-endpoint>]
+                 [--os-access-token-type <auth-access-token-type>]
+                 [--os-redirect-uri <auth-redirect-uri>]
+                 [--os-code <auth-code>]
+                 [--os-oauth2-endpoint <auth-oauth2-endpoint>]
+                 [--os-oauth2-client-id <auth-oauth2-client-id>]
+                 [--os-oauth2-client-secret <auth-oauth2-client-secret>]
+                 [--os-redirect-host <auth-redirect-host>]
+                 [--os-redirect-port <auth-redirect-port>]
+                 [--os-login-timeout <auth-login-timeout>]
+                 [--os-access-token <auth-access-token>]
+                 [--os-idp-otp-key <auth-idp-otp-key>]
+                 [--os-device-authorization-endpoint <auth-device-authorization-endpoint>]
+                 [--os-code-challenge-method <auth-code-challenge-method>]
+                 [--os-application-credential-secret <auth-application-credential-secret>]
+                 [--os-application-credential-id <auth-application-credential-id>]
+                 [--os-application-credential-name <auth-application-credential-name>]
+
+Command-line interface to the OpenStack APIs
+
+options:
+  --version             show program's version number and exit
+  -v, --verbose         Increase verbosity of output. Can be repeated.
+  -q, --quiet           Suppress output except warnings and errors.
+  --log-file LOG_FILE   Specify a file to log output. Disabled by default.
+  -h, --help            Show help message and exit.
+  --debug               Show tracebacks on errors.
+  --os-cloud <cloud-config-name>
+                        Cloud name in clouds.yaml (Env: OS_CLOUD)
+  --os-region-name <auth-region-name>
+                        Authentication region name (Env: OS_REGION_NAME)
+  --os-cacert <ca-bundle-file>
+                        CA certificate bundle file (Env: OS_CACERT)
+  --os-cert <certificate-file>
+                        Client certificate bundle file (Env: OS_CERT)
+  --os-key <key-file>   Client certificate key file (Env: OS_KEY)
+  --verify              Verify server certificate (default)
+  --insecure            Disable server certificate verification
+  --os-default-domain <auth-domain>
+                        Default domain ID, default=default. (Env:
+                        OS_DEFAULT_DOMAIN)
+  --os-interface <interface>
+                        Select an interface type. Valid interface types:
+                        [admin, public, internal]. default=public, (Env:
+                        OS_INTERFACE)
+  --os-service-provider <service_provider>
+                        Authenticate with and perform the command on a service
+                        provider using Keystone-to-keystone federation. Must
+                        also specify the remote project option.
+  --os-remote-project-name <remote_project_name>
+                        Project name when authenticating to a service provider
+                        if using Keystone-to-Keystone federation.
+  --os-remote-project-id <remote_project_id>
+                        Project ID when authenticating to a service provider
+                        if using Keystone-to-Keystone federation.
+  --os-remote-project-domain-name <remote_project_domain_name>
+                        Domain name of the project when authenticating to a
+                        service provider if using Keystone-to-Keystone
+                        federation.
+  --os-remote-project-domain-id <remote_project_domain_id>
+                        Domain ID of the project when authenticating to a
+                        service provider if using Keystone-to-Keystone
+                        federation.
+  --timing              Print API call timing info
+  --os-beta-command     Enable beta commands which are subject to change
+  --os-compute-api-version <compute-api-version>
+                        Compute API version, default=2.1 (Env:
+                        OS_COMPUTE_API_VERSION)
+  --os-identity-api-version <identity-api-version>
+                        Identity API version, default=3 (Env:
+                        OS_IDENTITY_API_VERSION)
+  --os-image-api-version <image-api-version>
+                        Image API version, default=2 (Env:
+                        OS_IMAGE_API_VERSION)
+  --os-network-api-version <network-api-version>
+                        Network API version, default=2.0 (Env:
+                        OS_NETWORK_API_VERSION)
+  --os-object-api-version <object-api-version>
+                        Object API version, default=1 (Env:
+                        OS_OBJECT_API_VERSION)
+  --os-volume-api-version <volume-api-version>
+                        Volume API version, default=3 (Env:
+                        OS_VOLUME_API_VERSION)
+  --os-share-api-version <shared-file-system-api-version>
+                        Shared File System API version, default=2.98 (version
+                        supported by both the client and the server) (Env:
+                        OS_SHARE_API_VERSION)
+  --os-endpoint-override <endpoint-override>
+                        Use this API endpoint instead of the Service Catalog.
+                        Defaults to
+                        env[OS_SHARED_FILE_SYSTEM_ENDPOINT_OVERRIDE].
+  --os-auth-type <auth-type>
+                        Select an authentication type. Available types:
+                        http_basic, token, v3multifactor, admin_token, none,
+                        password, v3totp, v3token, v3password, v3oidcauthcode,
+                        v3tokenlessauth, v2token, v3oauth2clientcredential,
+                        v2password, v3websso, v3oauth2mtlsclientcredential,
+                        v3oidcaccesstoken, v3oidcpassword,
+                        v3oidcclientcredentials, v3oidcdeviceauthz,
+                        v3applicationcredential. Default: selected based on
+                        --os-username/--os-token (Env: OS_AUTH_TYPE)
+  --os-username <auth-username>
+                        With http_basic: Username With password: Username With
+                        v3totp: User's username With v3password: User's
+                        username With v2password: Username to login with With
+                        v3websso: Optional label used only to keep cached
+                        tokens for different SSO accounts apart. It is not
+                        used to authenticate; the identity is chosen in the
+                        browser. Set a distinct value per account, or leave it
+                        unset if only one account is used. With
+                        v3oidcpassword: Username With v3applicationcredential:
+                        User's username (Env: OS_USERNAME)
+  --os-password <auth-password>
+                        With http_basic: User's password With password: User's
+                        password With v3password: User's password With
+                        v2password: Password to use With v3oidcpassword:
+                        Password (Env: OS_PASSWORD)
+  --os-endpoint <auth-endpoint>
+                        With http_basic: The endpoint that will always be used
+                        With admin_token: The endpoint that will always be
+                        used With none: The endpoint that will always be used
+                        (Env: OS_ENDPOINT)
+  --os-auth-url <auth-auth-url>
+                        With token: Authentication URL With v3multifactor:
+                        Authentication URL With password: Authentication URL
+                        With v3totp: Authentication URL With v3token:
+                        Authentication URL With v3password: Authentication URL
+                        With v3oidcauthcode: Authentication URL With
+                        v3tokenlessauth: Authentication URL With v2token:
+                        Authentication URL With v3oauth2clientcredential:
+                        Authentication URL With v2password: Authentication URL
+                        With v3websso: Authentication URL With
+                        v3oauth2mtlsclientcredential: Authentication URL With
+                        v3oidcaccesstoken: Authentication URL With
+                        v3oidcpassword: Authentication URL With
+                        v3oidcclientcredentials: Authentication URL With
+                        v3oidcdeviceauthz: Authentication URL With
+                        v3applicationcredential: Authentication URL (Env:
+                        OS_AUTH_URL)
+  --os-system-scope <auth-system-scope>
+                        With token: Scope for system operations With
+                        v3multifactor: Scope for system operations With
+                        password: Scope for system operations With v3totp:
+                        Scope for system operations With v3token: Scope for
+                        system operations With v3password: Scope for system
+                        operations With v3oidcauthcode: Scope for system
+                        operations With v3oauth2clientcredential: Scope for
+                        system operations With v3websso: Scope for system
+                        operations With v3oauth2mtlsclientcredential: Scope
+                        for system operations With v3oidcaccesstoken: Scope
+                        for system operations With v3oidcpassword: Scope for
+                        system operations With v3oidcclientcredentials: Scope
+                        for system operations With v3oidcdeviceauthz: Scope
+                        for system operations With v3applicationcredential:
+                        Scope for system operations (Env: OS_SYSTEM_SCOPE)
+  --os-domain-id <auth-domain-id>
+                        With token: Domain ID to scope to With v3multifactor:
+                        Domain ID to scope to With password: Domain ID to
+                        scope to With v3totp: Domain ID to scope to With
+                        v3token: Domain ID to scope to With v3password: Domain
+                        ID to scope to With v3oidcauthcode: Domain ID to scope
+                        to With v3tokenlessauth: Domain ID to scope to With
+                        v3oauth2clientcredential: Domain ID to scope to With
+                        v3websso: Domain ID to scope to With
+                        v3oauth2mtlsclientcredential: Domain ID to scope to
+                        With v3oidcaccesstoken: Domain ID to scope to With
+                        v3oidcpassword: Domain ID to scope to With
+                        v3oidcclientcredentials: Domain ID to scope to With
+                        v3oidcdeviceauthz: Domain ID to scope to With
+                        v3applicationcredential: Domain ID to scope to (Env:
+                        OS_DOMAIN_ID)
+  --os-domain-name <auth-domain-name>
+                        With token: Domain name to scope to With
+                        v3multifactor: Domain name to scope to With password:
+                        Domain name to scope to With v3totp: Domain name to
+                        scope to With v3token: Domain name to scope to With
+                        v3password: Domain name to scope to With
+                        v3oidcauthcode: Domain name to scope to With
+                        v3tokenlessauth: Domain name to scope to With
+                        v3oauth2clientcredential: Domain name to scope to With
+                        v3websso: Domain name to scope to With
+                        v3oauth2mtlsclientcredential: Domain name to scope to
+                        With v3oidcaccesstoken: Domain name to scope to With
+                        v3oidcpassword: Domain name to scope to With
+                        v3oidcclientcredentials: Domain name to scope to With
+                        v3oidcdeviceauthz: Domain name to scope to With
+                        v3applicationcredential: Domain name to scope to (Env:
+                        OS_DOMAIN_NAME)
+  --os-project-id <auth-project-id>
+                        With token: Project ID to scope to With v3multifactor:
+                        Project ID to scope to With password: Project ID to
+                        scope to With v3totp: Project ID to scope to With
+                        v3token: Project ID to scope to With v3password:
+                        Project ID to scope to With v3oidcauthcode: Project ID
+                        to scope to With v3tokenlessauth: Project ID to scope
+                        to With v3oauth2clientcredential: Project ID to scope
+                        to With v3websso: Project ID to scope to With
+                        v3oauth2mtlsclientcredential: Project ID to scope to
+                        With v3oidcaccesstoken: Project ID to scope to With
+                        v3oidcpassword: Project ID to scope to With
+                        v3oidcclientcredentials: Project ID to scope to With
+                        v3oidcdeviceauthz: Project ID to scope to With
+                        v3applicationcredential: Project ID to scope to (Env:
+                        OS_PROJECT_ID)
+  --os-project-name <auth-project-name>
+                        With token: Project name to scope to With
+                        v3multifactor: Project name to scope to With password:
+                        Project name to scope to With v3totp: Project name to
+                        scope to With v3token: Project name to scope to With
+                        v3password: Project name to scope to With
+                        v3oidcauthcode: Project name to scope to With
+                        v3tokenlessauth: Project name to scope to With
+                        v3oauth2clientcredential: Project name to scope to
+                        With v3websso: Project name to scope to With
+                        v3oauth2mtlsclientcredential: Project name to scope to
+                        With v3oidcaccesstoken: Project name to scope to With
+                        v3oidcpassword: Project name to scope to With
+                        v3oidcclientcredentials: Project name to scope to With
+                        v3oidcdeviceauthz: Project name to scope to With
+                        v3applicationcredential: Project name to scope to
+                        (Env: OS_PROJECT_NAME)
+  --os-project-domain-id <auth-project-domain-id>
+                        With token: Domain ID containing project With
+                        v3multifactor: Domain ID containing project With
+                        password: Domain ID containing project With v3totp:
+                        Domain ID containing project With v3token: Domain ID
+                        containing project With v3password: Domain ID
+                        containing project With v3oidcauthcode: Domain ID
+                        containing project With v3tokenlessauth: Domain ID
+                        containing project With v3oauth2clientcredential:
+                        Domain ID containing project With v3websso: Domain ID
+                        containing project With v3oauth2mtlsclientcredential:
+                        Domain ID containing project With v3oidcaccesstoken:
+                        Domain ID containing project With v3oidcpassword:
+                        Domain ID containing project With
+                        v3oidcclientcredentials: Domain ID containing project
+                        With v3oidcdeviceauthz: Domain ID containing project
+                        With v3applicationcredential: Domain ID containing
+                        project (Env: OS_PROJECT_DOMAIN_ID)
+  --os-project-domain-name <auth-project-domain-name>
+                        With token: Domain name containing project With
+                        v3multifactor: Domain name containing project With
+                        password: Domain name containing project With v3totp:
+                        Domain name containing project With v3token: Domain
+                        name containing project With v3password: Domain name
+                        containing project With v3oidcauthcode: Domain name
+                        containing project With v3tokenlessauth: Domain name
+                        containing project With v3oauth2clientcredential:
+                        Domain name containing project With v3websso: Domain
+                        name containing project With
+                        v3oauth2mtlsclientcredential: Domain name containing
+                        project With v3oidcaccesstoken: Domain name containing
+                        project With v3oidcpassword: Domain name containing
+                        project With v3oidcclientcredentials: Domain name
+                        containing project With v3oidcdeviceauthz: Domain name
+                        containing project With v3applicationcredential:
+                        Domain name containing project (Env:
+                        OS_PROJECT_DOMAIN_NAME)
+  --os-trust-id <auth-trust-id>
+                        With token: ID of the trust to use as a trustee use
+                        With v3multifactor: ID of the trust to use as a
+                        trustee use With password: ID of the trust to use as a
+                        trustee use With v3totp: ID of the trust to use as a
+                        trustee use With v3token: ID of the trust to use as a
+                        trustee use With v3password: ID of the trust to use as
+                        a trustee use With v3oidcauthcode: ID of the trust to
+                        use as a trustee use With v2token: ID of the trust to
+                        use as a trustee use With v3oauth2clientcredential: ID
+                        of the trust to use as a trustee use With v2password:
+                        ID of the trust to use as a trustee use With v3websso:
+                        ID of the trust to use as a trustee use With
+                        v3oauth2mtlsclientcredential: ID of the trust to use
+                        as a trustee use With v3oidcaccesstoken: ID of the
+                        trust to use as a trustee use With v3oidcpassword: ID
+                        of the trust to use as a trustee use With
+                        v3oidcclientcredentials: ID of the trust to use as a
+                        trustee use With v3oidcdeviceauthz: ID of the trust to
+                        use as a trustee use With v3applicationcredential: ID
+                        of the trust to use as a trustee use (Env:
+                        OS_TRUST_ID)
+  --os-default-domain-id <auth-default-domain-id>
+                        With token: Optional domain ID to use with v3 and v2
+                        parameters. It will be used for both the user and
+                        project domain in v3 and ignored in v2 authentication.
+                        With password: Optional domain ID to use with v3 and
+                        v2 parameters. It will be used for both the user and
+                        project domain in v3 and ignored in v2 authentication.
+                        (Env: OS_DEFAULT_DOMAIN_ID)
+  --os-default-domain-name <auth-default-domain-name>
+                        With token: Optional domain name to use with v3 API
+                        and v2 parameters. It will be used for both the user
+                        and project domain in v3 and ignored in v2
+                        authentication. With password: Optional domain name to
+                        use with v3 API and v2 parameters. It will be used for
+                        both the user and project domain in v3 and ignored in
+                        v2 authentication. (Env: OS_DEFAULT_DOMAIN_NAME)
+  --os-token <auth-token>
+                        With token: Token to authenticate with With
+                        admin_token: The token that will always be used With
+                        v3token: Token to authenticate with With v2token:
+                        Token (Env: OS_TOKEN)
+  --os-auth-methods <auth-auth-methods>
+                        With v3multifactor: Methods to authenticate with.
+                        (Env: OS_AUTH_METHODS)
+  --os-user-id <auth-user-id>
+                        With password: User id With v3totp: User's user ID
+                        With v3password: User's user ID With v2password: User
+                        ID to login with With v3applicationcredential: User's
+                        user ID (Env: OS_USER_ID)
+  --os-user-domain-id <auth-user-domain-id>
+                        With password: User's domain id With v3totp: User's
+                        domain ID With v3password: User's domain ID With
+                        v3applicationcredential: User's domain ID (Env:
+                        OS_USER_DOMAIN_ID)
+  --os-user-domain-name <auth-user-domain-name>
+                        With password: User's domain name With v3totp: User's
+                        domain name With v3password: User's domain name With
+                        v3applicationcredential: User's domain name (Env:
+                        OS_USER_DOMAIN_NAME)
+  --os-passcode <auth-passcode>
+                        With v3totp: User's TOTP passcode (Env: OS_PASSCODE)
+  --os-identity-provider <auth-identity-provider>
+                        With v3oidcauthcode: Identity Provider's name With
+                        v3websso: Identity Provider's name With
+                        v3oidcaccesstoken: Identity Provider's name With
+                        v3oidcpassword: Identity Provider's name With
+                        v3oidcclientcredentials: Identity Provider's name With
+                        v3oidcdeviceauthz: Identity Provider's name (Env:
+                        OS_IDENTITY_PROVIDER)
+  --os-protocol <auth-protocol>
+                        With v3oidcauthcode: Protocol for federated plugin
+                        With v3websso: Protocol for federated plugin With
+                        v3oidcaccesstoken: Protocol for federated plugin With
+                        v3oidcpassword: Protocol for federated plugin With
+                        v3oidcclientcredentials: Protocol for federated plugin
+                        With v3oidcdeviceauthz: Protocol for federated plugin
+                        (Env: OS_PROTOCOL)
+  --os-client-id <auth-client-id>
+                        With v3oidcauthcode: OAuth 2.0 Client ID With
+                        v3oidcpassword: OAuth 2.0 Client ID With
+                        v3oidcclientcredentials: OAuth 2.0 Client ID With
+                        v3oidcdeviceauthz: OAuth 2.0 Client ID (Env:
+                        OS_CLIENT_ID)
+  --os-client-secret <auth-client-secret>
+                        With v3oidcauthcode: OAuth 2.0 Client Secret With
+                        v3oidcpassword: OAuth 2.0 Client Secret With
+                        v3oidcclientcredentials: OAuth 2.0 Client Secret With
+                        v3oidcdeviceauthz: OAuth 2.0 Client Secret (Env:
+                        OS_CLIENT_SECRET)
+  --os-openid-scope <auth-openid-scope>
+                        With v3oidcauthcode: OpenID Connect scope that is
+                        requested from authorization server. Note that the
+                        OpenID Connect specification states that "openid" must
+                        be always specified. With v3oidcpassword: OpenID
+                        Connect scope that is requested from authorization
+                        server. Note that the OpenID Connect specification
+                        states that "openid" must be always specified. With
+                        v3oidcclientcredentials: OpenID Connect scope that is
+                        requested from authorization server. Note that the
+                        OpenID Connect specification states that "openid" must
+                        be always specified. With v3oidcdeviceauthz: OpenID
+                        Connect scope that is requested from authorization
+                        server. Note that the OpenID Connect specification
+                        states that "openid" must be always specified. (Env:
+                        OS_OPENID_SCOPE)
+  --os-access-token-endpoint <auth-access-token-endpoint>
+                        With v3oidcauthcode: OpenID Connect Provider Token
+                        Endpoint. Note that if a discovery document is being
+                        passed this option will override the endpoint provided
+                        by the server in the discovery document. With
+                        v3oidcpassword: OpenID Connect Provider Token
+                        Endpoint. Note that if a discovery document is being
+                        passed this option will override the endpoint provided
+                        by the server in the discovery document. With
+                        v3oidcclientcredentials: OpenID Connect Provider Token
+                        Endpoint. Note that if a discovery document is being
+                        passed this option will override the endpoint provided
+                        by the server in the discovery document. With
+                        v3oidcdeviceauthz: OpenID Connect Provider Token
+                        Endpoint. Note that if a discovery document is being
+                        passed this option will override the endpoint provided
+                        by the server in the discovery document. (Env:
+                        OS_ACCESS_TOKEN_ENDPOINT)
+  --os-discovery-endpoint <auth-discovery-endpoint>
+                        With v3oidcauthcode: OpenID Connect Discovery Document
+                        URL. The discovery document will be used to obtain the
+                        values of the access token endpoint and the
+                        authentication endpoint. This URL should look like
+                        https://idp.example.org/.well-known/openid-
+                        configuration With v3oidcpassword: OpenID Connect
+                        Discovery Document URL. The discovery document will be
+                        used to obtain the values of the access token endpoint
+                        and the authentication endpoint. This URL should look
+                        like https://idp.example.org/.well-known/openid-
+                        configuration With v3oidcclientcredentials: OpenID
+                        Connect Discovery Document URL. The discovery document
+                        will be used to obtain the values of the access token
+                        endpoint and the authentication endpoint. This URL
+                        should look like https://idp.example.org/.well-
+                        known/openid-configuration With v3oidcdeviceauthz:
+                        OpenID Connect Discovery Document URL. The discovery
+                        document will be used to obtain the values of the
+                        access token endpoint and the authentication endpoint.
+                        This URL should look like
+                        https://idp.example.org/.well-known/openid-
+                        configuration (Env: OS_DISCOVERY_ENDPOINT)
+  --os-access-token-type <auth-access-token-type>
+                        With v3oidcauthcode: OAuth 2.0 Authorization Server
+                        Introspection token type, it is used to decide which
+                        type of token will be used when processing token
+                        introspection. Valid values are: "access_token" or
+                        "id_token" With v3oidcpassword: OAuth 2.0
+                        Authorization Server Introspection token type, it is
+                        used to decide which type of token will be used when
+                        processing token introspection. Valid values are:
+                        "access_token" or "id_token" With
+                        v3oidcclientcredentials: OAuth 2.0 Authorization
+                        Server Introspection token type, it is used to decide
+                        which type of token will be used when processing token
+                        introspection. Valid values are: "access_token" or
+                        "id_token" With v3oidcdeviceauthz: OAuth 2.0
+                        Authorization Server Introspection token type, it is
+                        used to decide which type of token will be used when
+                        processing token introspection. Valid values are:
+                        "access_token" or "id_token" (Env:
+                        OS_ACCESS_TOKEN_TYPE)
+  --os-redirect-uri <auth-redirect-uri>
+                        With v3oidcauthcode: OpenID Connect Redirect URL (Env:
+                        OS_REDIRECT_URI)
+  --os-code <auth-code>
+                        With v3oidcauthcode: OAuth 2.0 Authorization Code
+                        (Env: OS_CODE)
+  --os-oauth2-endpoint <auth-oauth2-endpoint>
+                        With v3oauth2clientcredential: Endpoint for OAuth2.0
+                        With v3oauth2mtlsclientcredential: Endpoint for
+                        OAuth2.0 Mutual-TLS Authorization (Env:
+                        OS_OAUTH2_ENDPOINT)
+  --os-oauth2-client-id <auth-oauth2-client-id>
+                        With v3oauth2clientcredential: Client id for OAuth2.0
+                        With v3oauth2mtlsclientcredential: Client credential
+                        ID for OAuth2.0 Mutual-TLS Authorization (Env:
+                        OS_OAUTH2_CLIENT_ID)
+  --os-oauth2-client-secret <auth-oauth2-client-secret>
+                        With v3oauth2clientcredential: Client secret for
+                        OAuth2.0 (Env: OS_OAUTH2_CLIENT_SECRET)
+  --os-redirect-host <auth-redirect-host>
+                        With v3websso: Host the callback server listens on.
+                        This must be a loopback address. (Env:
+                        OS_REDIRECT_HOST)
+  --os-redirect-port <auth-redirect-port>
+                        With v3websso: Port the callback server listens on.
+                        The resulting callback URL, http://<redirect-
+                        host>:<redirect-port>/auth/websso/, must be listed in
+                        the identity service's [federation] trusted_dashboard
+                        option. (Env: OS_REDIRECT_PORT)
+  --os-login-timeout <auth-login-timeout>
+                        With v3websso: Seconds to wait for the user to finish
+                        authenticating in the browser before giving up. Raise
+                        it when a first login or MFA prompt is likely to take
+                        longer than the default. (Env: OS_LOGIN_TIMEOUT)
+  --os-access-token <auth-access-token>
+                        With v3oidcaccesstoken: OAuth 2.0 Access Token (Env:
+                        OS_ACCESS_TOKEN)
+  --os-idp-otp-key <auth-idp-otp-key>
+                        With v3oidcpassword: A key to be used in the Identity
+                        Provider access token endpoint to pass the OTP value.
+                        E.g. totp (Env: OS_IDP_OTP_KEY)
+  --os-device-authorization-endpoint <auth-device-authorization-endpoint>
+                        With v3oidcdeviceauthz: OAuth 2.0 Device Authorization
+                        Endpoint. Note that if a discovery document is being
+                        passed this option will override the endpoint provided
+                        by the server in the discovery document. (Env:
+                        OS_DEVICE_AUTHORIZATION_ENDPOINT)
+  --os-code-challenge-method <auth-code-challenge-method>
+                        With v3oidcdeviceauthz: PKCE Challenge Method (RFC
+                        7636) (Env: OS_CODE_CHALLENGE_METHOD)
+  --os-application-credential-secret <auth-application-credential-secret>
+                        With v3applicationcredential: Application credential
+                        auth secret (Env: OS_APPLICATION_CREDENTIAL_SECRET)
+  --os-application-credential-id <auth-application-credential-id>
+                        With v3applicationcredential: Application credential
+                        ID (Env: OS_APPLICATION_CREDENTIAL_ID)
+  --os-application-credential-name <auth-application-credential-name>
+                        With v3applicationcredential: Application credential
+                        name (Env: OS_APPLICATION_CREDENTIAL_NAME)
+
+Commands:
+  access rule delete  Delete access rule(s)
+  access rule list  List access rules
+  access rule show  Display access rule details
+  access token create  Create an access token
+  address group create  Create a new Address Group
+  address group delete  Delete address group(s)
+  address group list  List address groups
+  address group set  Set address group properties
+  address group show  Display address group details
+  address group unset  Unset address group properties
+  address scope create  Create a new Address Scope
+  address scope delete  Delete address scope(s)
+  address scope list  List address scopes
+  address scope set  Set address scope properties
+  address scope show  Display address scope details
+  aggregate add host  Add host to aggregate
+  aggregate cache image  Request image caching for aggregate
+  aggregate create  Create a new aggregate
+  aggregate delete  Delete existing aggregate(s)
+  aggregate list  List all aggregates
+  aggregate remove host  Remove host from aggregate
+  aggregate set  Set aggregate properties
+  aggregate show  Display aggregate details
+  aggregate unset  Unset aggregate properties
+  application credential create  Create new application credential
+  application credential delete  Delete application credentials(s)
+  application credential list  List application credentials
+  application credential show  Display application credential details
+  availability zone list  List availability zones and their status
+  bgp dragent add speaker  Add a BGP speaker to a dynamic routing agent
+  bgp dragent list  List dynamic routing agents
+  bgp dragent remove speaker  Removes a BGP speaker from a dynamic routing agent
+  bgp peer create  Create a BGP peer
+  bgp peer delete  Delete a BGP peer
+  bgp peer list  List BGP peers
+  bgp peer set   Update a BGP peer
+  bgp peer show  Show information for a BGP peer
+  bgp speaker add network  Add a network to a BGP speaker
+  bgp speaker add peer  Add a peer to a BGP speaker
+  bgp speaker create  Create a BGP speaker
+  bgp speaker delete  Delete a BGP speaker
+  bgp speaker list  List BGP speakers
+  bgp speaker list advertised routes  List routes advertised
+  bgp speaker remove network  Remove a network from a BGP speaker
+  bgp speaker remove peer  Remove a peer from a BGP speaker
+  bgp speaker set  Set BGP speaker properties
+  bgp speaker show  Show a BGP speaker
+  bgpvpn create  Create BGP VPN resource
+  bgpvpn delete  Delete BGP VPN resource(s)
+  bgpvpn list    List BGP VPN resources
+  bgpvpn network association create  Create a BGP VPN network association
+  bgpvpn network association delete  Delete a BGP VPN network association(s) for a given BGP VPN
+  bgpvpn network association list  List BGP VPN network associations for a given BGP VPN
+  bgpvpn network association show  Show information of a given BGP VPN network association
+  bgpvpn port association create  Create a BGP VPN port association
+  bgpvpn port association delete  Delete a BGP VPN port association(s) for a given BGP VPN
+  bgpvpn port association list  List BGP VPN port associations for a given BGP VPN
+  bgpvpn port association set  Set BGP VPN port association properties
+  bgpvpn port association show  Show information of a given BGP VPN port association
+  bgpvpn port association unset  Unset BGP VPN port association properties
+  bgpvpn router association create  Create a BGP VPN router association
+  bgpvpn router association delete  Delete a BGP VPN router association(s) for a given BGP VPN
+  bgpvpn router association list  List BGP VPN router associations for a given BGP VPN
+  bgpvpn router association set  Set BGP VPN router association properties
+  bgpvpn router association show  Show information of a given BGP VPN router association
+  bgpvpn router association unset  Unset BGP VPN router association properties
+  bgpvpn set     Set BGP VPN properties
+  bgpvpn show    Show information of a given BGP VPN
+  bgpvpn unset   Unset BGP VPN properties
+  block storage cleanup  Do block storage cleanup
+  block storage cluster list  List block storage clusters
+  block storage cluster set  Set block storage cluster properties
+  block storage cluster show  Show detailed information for a block storage cluster
+  block storage log level list  List log levels of block storage service
+  block storage log level set  Set log level of block storage service
+  block storage resource filter list  List block storage resource filters
+  block storage resource filter show  Show filters for a block storage resource type
+  block storage snapshot manageable list  List manageable snapshots
+  block storage volume manageable list  List manageable volumes
+  cached image clear  Clear all images from cache, queue or both
+  cached image delete  Delete image(s) from cache
+  cached image list  Get Cache State
+  cached image queue  Queue image(s) for caching
+  catalog list   List services in the service catalog
+  catalog show   Display service catalog details
+  command list   List recognized commands by group
+  complete       print bash completion command (cliff)
+  compute agent create  Create compute agent
+  compute agent delete  Delete compute agent(s)
+  compute agent list  List compute agents
+  compute agent set  Set compute agent properties
+  compute service delete  Delete compute service(s)
+  compute service list  List compute services
+  compute service set  Set compute service properties
+  configuration show  Display configuration details
+  consistency group add volume  Add volume(s) to consistency group
+  consistency group create  Create new consistency group
+  consistency group delete  Delete consistency group(s)
+  consistency group list  List consistency groups
+  consistency group remove volume  Remove volume(s) from consistency group
+  consistency group set  Set consistency group properties
+  consistency group show  Display consistency group details
+  consistency group snapshot create  Create new consistency group snapshot
+  consistency group snapshot delete  Delete consistency group snapshot(s)
+  consistency group snapshot list  List consistency group snapshots
+  consistency group snapshot show  Display consistency group snapshot details
+  console connection show  Show server's remote console connection information
+  console log show  Show server's console output
+  console url show  Show server's remote console URL
+  consumer create  Create new consumer
+  consumer delete  Delete consumer(s)
+  consumer list  List consumers
+  consumer set   Set consumer properties
+  consumer show  Display consumer details
+  container create  Create new container
+  container delete  Delete container
+  container list  List containers
+  container save  Save container contents locally
+  container set  Set container properties
+  container show  Display container details
+  container unset  Unset container properties
+  credential create  Create new credential
+  credential delete  Delete credential(s)
+  credential list  List credentials
+  credential set  Set credential properties
+  credential show  Display credential details
+  default security group rule create  Add a new security group rule to the default security group template
+  default security group rule delete  Remove security group rule(s) from the default security group template
+  default security group rule list  List security group rules used for new default security groups
+  default security group rule show  Show a security group rule used for new default security groups
+  domain create  Create new domain
+  domain delete  Delete domain(s)
+  domain list    List domains
+  domain set     Set domain properties
+  domain show    Display domain details
+  ec2 credentials create  Create EC2 credentials
+  ec2 credentials delete  Delete EC2 credentials
+  ec2 credentials list  List EC2 credentials
+  ec2 credentials show  Display EC2 credentials details
+  endpoint add project  Associate a project to an endpoint
+  endpoint create  Create new endpoint
+  endpoint delete  Delete endpoint(s)
+  endpoint group add project  Add a project to an endpoint group
+  endpoint group create  Create new endpoint group
+  endpoint group delete  Delete endpoint group(s)
+  endpoint group list  List endpoint groups
+  endpoint group remove project  Remove project from endpoint group
+  endpoint group set  Set endpoint group properties
+  endpoint group show  Display endpoint group details
+  endpoint list  List endpoints
+  endpoint remove project  Dissociate a project from an endpoint
+  endpoint set   Set endpoint properties
+  endpoint show  Display endpoint details
+  extension list  List API extensions
+  extension show  Show API extension
+  federation domain list  List accessible domains
+  federation project list  List accessible projects
+  federation protocol create  Create new federation protocol
+  federation protocol delete  Delete federation protocol(s)
+  federation protocol list  List federation protocols
+  federation protocol set  Set federation protocol properties
+  federation protocol show  Display federation protocol details
+  firewall group create  Create a new firewall group
+  firewall group delete  Delete firewall group(s)
+  firewall group list  List firewall groups
+  firewall group policy add rule  Insert a rule into a given firewall policy
+  firewall group policy create  Create a new firewall policy
+  firewall group policy delete  Delete firewall policy(s)
+  firewall group policy list  List firewall policies
+  firewall group policy remove rule  Remove a rule from a given firewall policy
+  firewall group policy set  Set firewall policy properties
+  firewall group policy show  Display firewall policy details
+  firewall group policy unset  Unset firewall policy properties
+  firewall group rule create  Create a new firewall rule
+  firewall group rule delete  Delete firewall rule(s)
+  firewall group rule list  List firewall rules that belong to a given tenant
+  firewall group rule set  Set firewall rule properties
+  firewall group rule show  Display firewall rule details
+  firewall group rule unset  Unset firewall rule properties
+  firewall group set  Set firewall group properties
+  firewall group show  Display firewall group details
+  firewall group unset  Unset firewall group properties
+  flavor create  Create new flavor
+  flavor delete  Delete flavor(s)
+  flavor list    List flavors
+  flavor set     Set flavor properties
+  flavor show    Display flavor details
+  flavor unset   Unset flavor properties
+  floating ip create  Create floating IP
+  floating ip delete  Delete floating IP(s)
+  floating ip list  List floating IP(s)
+  floating ip port forwarding create  Create floating IP port forwarding
+  floating ip port forwarding delete  Delete floating IP port forwarding
+  floating ip port forwarding list  List floating IP port forwarding
+  floating ip port forwarding set  Set floating IP Port Forwarding Properties
+  floating ip port forwarding show  Display floating IP Port Forwarding details
+  floating ip set  Set floating IP Properties
+  floating ip show  Display floating IP details
+  floating ip unset  Unset floating IP Properties
+  group add user  Add user to group
+  group contains user  Check user membership in group
+  group create   Create new group
+  group delete   Delete group(s)
+  group list     List groups
+  group remove user  Remove user from group
+  group set      Set group properties
+  group show     Display group details
+  help           print detailed help for another command (cliff)
+  host list      DEPRECATED: List hosts
+  host set       DEPRECATED: Set host properties
+  host show      DEPRECATED: Display host details
+  hypervisor list  List hypervisors
+  hypervisor show  Display hypervisor details
+  hypervisor stats show  Display hypervisor stats details
+  identity provider create  Create new identity provider
+  identity provider delete  Delete identity provider(s)
+  identity provider list  List identity providers
+  identity provider set  Set identity provider properties
+  identity provider show  Display identity provider details
+  image add project  Associate project with image
+  image create   Create/upload an image
+  image delete   Delete image(s)
+  image import   Initiate the image import process
+  image import info  Show available import methods
+  image list     List available images
+  image member get  Show a particular project associated with image
+  image member list  List projects associated with image
+  image metadef namespace create  Create a metadef namespace
+  image metadef namespace delete  Delete metadef namespace
+  image metadef namespace list  List metadef namespaces
+  image metadef namespace set  Set metadef namespace properties
+  image metadef namespace show  Show a metadef namespace
+  image metadef namespace unset  Unset metadef namespace tags
+  image metadef object create  Create a metadef object
+  image metadef object delete  Delete metadata definitions object(s)
+  image metadef object list  List metadef objects inside a specific namespace
+  image metadef object property show  Describe a specific metadata definitions property inside an object
+  image metadef object show  Show a particular metadef object
+  image metadef object update  Update a metadef object
+  image metadef property create  Create a metadef property
+  image metadef property delete  Delete metadef propert(ies)
+  image metadef property list  List metadef properties
+  image metadef property set  Update metadef namespace property
+  image metadef property show  Show a particular metadef property
+  image metadef resource type association create  Create metadef resource type association
+  image metadef resource type association delete  Delete metadef resource type association
+  image metadef resource type association list  List metadef resource type associations
+  image metadef resource type list  List metadef resource types
+  image remove project  Disassociate project with image
+  image save     Save an image locally
+  image set      Set image properties
+  image show     Display image details
+  image stage    Upload data for a specific image to staging
+  image stores list  Get available backends (only valid with Multi-Backend support)
+  image task list  List tasks
+  image task show  Display task details
+  image unset    Unset image tags and properties
+  implied role create  Creates an association between prior and implied roles
+  implied role delete  Deletes an association between prior and implied roles
+  implied role list  List implied roles
+  ip availability list  List IP availability for network
+  ip availability show  Show network IP availability details
+  keypair create  Create new public or private key for server ssh access
+  keypair delete  Delete public or private key(s)
+  keypair list   List key fingerprints
+  keypair show   Display key details
+  limit create   Create a limit
+  limit delete   Delete a limit
+  limit list     List limits
+  limit set      Update information about a limit
+  limit show     Display limit details
+  limits show    Show compute and block storage limits
+  local ip association create  Create Local IP Association
+  local ip association delete  Delete Local IP association(s)
+  local ip association list  List Local IP Associations
+  local ip create  Create Local IP
+  local ip delete  Delete Local IP(s)
+  local ip list  List Local IPs
+  local ip set   Set Local IP properties
+  local ip show  Display Local IP details
+  mapping create  Create new mapping
+  mapping delete  Delete mapping(s)
+  mapping list   List mappings
+  mapping set    Set mapping properties
+  mapping show   Display mapping details
+  module list    List module versions
+  network agent add network  Add network to an agent
+  network agent add router  Add router to an agent
+  network agent delete  Delete network agent(s)
+  network agent list  List network agents
+  network agent remove network  Remove network from an agent
+  network agent remove router  Remove router from an agent
+  network agent router set  Set properties of a router associated to an agent
+  network agent set  Set network agent properties
+  network agent show  Display network agent details
+  network auto allocated topology create  Create the  auto allocated topology for project
+  network auto allocated topology delete  Delete auto allocated topology for project
+  network create  Create new network
+  network delete  Delete network(s)
+  network flavor add profile  Add a service profile to a network flavor
+  network flavor create  Create new network flavor
+  network flavor delete  Delete network flavors
+  network flavor list  List network flavors
+  network flavor profile create  Create new network flavor profile
+  network flavor profile delete  Delete network flavor profile
+  network flavor profile list  List network flavor profile(s)
+  network flavor profile set  Set network flavor profile properties
+  network flavor profile show  Display network flavor profile details
+  network flavor remove profile  Remove service profile from network flavor
+  network flavor set  Set network flavor properties
+  network flavor show  Display network flavor details
+  network l3 conntrack helper create  Create a new L3 conntrack helper
+  network l3 conntrack helper delete  Delete L3 conntrack helper
+  network l3 conntrack helper list  List L3 conntrack helpers
+  network l3 conntrack helper set  Set L3 conntrack helper properties
+  network l3 conntrack helper show  Display L3 conntrack helper details
+  network list   List networks
+  network meter create  Create network meter
+  network meter delete  Delete network meter
+  network meter list  List network meters
+  network meter rule create  Create a new meter rule
+  network meter rule delete  Delete meter rule(s)
+  network meter rule list  List meter rules
+  network meter rule show  Display meter rules details
+  network meter show  Show network meter
+  network qos policy create  Create a QoS policy
+  network qos policy delete  Delete Qos Policy(s)
+  network qos policy list  List QoS policies
+  network qos policy set  Set QoS policy properties
+  network qos policy show  Display QoS policy details
+  network qos rule create  Create new Network QoS rule
+  network qos rule delete  Delete Network QoS rule
+  network qos rule list  List Network QoS rules
+  network qos rule set  Set Network QoS rule properties
+  network qos rule show  Display Network QoS rule details
+  network qos rule type list  List QoS rule types
+  network qos rule type show  Show details about supported QoS rule type
+  network rbac create  Create network RBAC policy
+  network rbac delete  Delete network RBAC policy(s)
+  network rbac list  List network RBAC policies
+  network rbac set  Set network RBAC policy properties
+  network rbac show  Display network RBAC policy details
+  network segment create  Create new network segment
+  network segment delete  Delete network segment(s)
+  network segment list  List network segments
+  network segment range create  Create new network segment range
+  network segment range delete  Delete network segment range(s)
+  network segment range list  List network segment ranges
+  network segment range set  Set network segment range properties
+  network segment range show  Display network segment range details
+  network segment set  Set network segment properties
+  network segment show  Display network segment details
+  network service provider list  List Service Providers
+  network set    Set network properties
+  network show   Show network details
+  network subport list  List all subports for a given network trunk
+  network trunk create  Create a network trunk for a given project
+  network trunk delete  Delete a given network trunk
+  network trunk list  List all network trunks
+  network trunk set  Set network trunk properties
+  network trunk show  Show information of a given network trunk
+  network trunk subport add  Add a subport to a given network trunk
+  network trunk subport list  List all subports for a given network trunk
+  network trunk subport remove  Remove subport(s) from a given network trunk
+  network trunk unset  Unset subports from a given network trunk
+  network unset  Unset network properties
+  object create  Upload object to container
+  object delete  Delete object from container
+  object list    List objects
+  object save    Save object locally
+  object set     Set object properties
+  object show    Display object details
+  object store account set  Set account properties
+  object store account show  Display account details
+  object store account unset  Unset account properties
+  object unset   Unset object properties
+  policy create  Create new policy
+  policy delete  Delete policy(s)
+  policy list    List policies
+  policy set     Set policy properties
+  policy show    Display policy details
+  port create    Create a new port
+  port delete    Delete port(s)
+  port list      List ports
+  port set       Set port properties
+  port show      Display port details
+  port unset     Unset port properties
+  project cleanup  Clean resources associated with a project
+  project create  Create new project
+  project delete  Delete project(s). This command will remove specified existing project(s) if an active user is authorized to do this. If there are resources managed by other services (for example, Nova, Neutron, Cinder) associated with specified project(s), delete operation will proceed regardless
+  project list   List projects
+  project set    Set project properties
+  project show   Display project details
+  quota delete   Delete configured quota for a project and revert to defaults
+  quota list     List quotas for all projects with non-default quota values
+  quota set      Set quotas for project or class
+  quota show     Show quotas for project or class
+  region create  Create new region
+  region delete  Delete region(s)
+  region list    List regions
+  region set     Set region properties
+  region show    Display region details
+  registered limit create  Create a registered limit
+  registered limit delete  Delete a registered limit
+  registered limit list  List registered limits
+  registered limit set  Update information about a registered limit
+  registered limit show  Display registered limit details
+  request token authorize  Authorize a request token
+  request token create  Create a request token
+  role add       Adds a role assignment to a user or group on the system, a domain, or a project
+  role assignment list  List role assignments
+  role create    Create new role
+  role delete    Delete role(s)
+  role list      List roles
+  role remove    Removes a role assignment from system/domain/project : user/group
+  role set       Set role properties
+  role show      Display role details
+  router add gateway  Add router gateway
+  router add port  Add a port to a router
+  router add route  Add extra static routes to a router's routing table
+  router add subnet  Add a subnet to a router
+  router create  Create a new router
+  router delete  Delete router(s)
+  router list    List routers
+  router ndp proxy create  Create NDP proxy
+  router ndp proxy delete  Delete NDP proxy
+  router ndp proxy list  List NDP proxies
+  router ndp proxy set  Set NDP proxy properties
+  router ndp proxy show  Display NDP proxy details
+  router remove gateway  Remove router gateway
+  router remove port  Remove a port from a router
+  router remove route  Remove extra static routes from a router's routing table
+  router remove subnet  Remove a subnet from a router
+  router set     Set router properties
+  router show    Display router details
+  router unset   Unset router properties
+  security group create  Create a new security group
+  security group default statefulness create  Create a default statefulness setting for security groups
+  security group default statefulness delete  Delete security group default statefulness setting(s)
+  security group default statefulness list  List security group default statefulness settings
+  security group default statefulness set  Update a security group default statefulness setting
+  security group default statefulness show  Show a security group default statefulness setting
+  security group delete  Delete security group(s)
+  security group list  List security groups
+  security group rule create  Create a new security group rule
+  security group rule delete  Delete security group rule(s)
+  security group rule list  List security group rules
+  security group rule show  Display security group rule details
+  security group set  Set security group properties
+  security group show  Display security group details
+  security group unset  Unset security group properties
+  server add fixed ip  Add fixed IP address to server
+  server add floating ip  Add floating IP address to server
+  server add network  Add network to server
+  server add port  Add port to server
+  server add security group  Add security group(s) to server
+  server add share  Add a share to a server
+  server add volume  Add volume to server
+  server backup create  Create a server backup image
+  server create  Create a new server
+  server delete  Delete server(s)
+  server dump create  Create a dump file in server(s)
+  server evacuate  Evacuate a server to a different host
+  server event list  List recent events of a server
+  server event show  Show server event details
+  server group create  Create a new server group
+  server group delete  Delete existing server group(s)
+  server group list  List all server groups
+  server group show  Display server group details
+  server image create  Create a new server disk image from an existing server
+  server list    List servers
+  server lock    Lock server(s)
+  server migrate  Migrate server to different host
+  server migrate confirm  DEPRECATED: Use 'server migration confirm' instead
+  server migrate revert  DEPRECATED: Use 'server migration revert' instead
+  server migration abort  Cancel an ongoing live migration
+  server migration confirm  Confirm server migration
+  server migration force complete  Force an ongoing live migration to complete
+  server migration list  List server migrations
+  server migration revert  Revert server migration
+  server migration show  Show an in-progress live migration for a given server
+  server pause   Pause server(s)
+  server reboot  Perform a hard or soft server reboot
+  server rebuild  Rebuild server
+  server remove fixed ip  Remove fixed IP address from server
+  server remove floating ip  Remove floating IP address from server
+  server remove network  Remove all ports of a network from server
+  server remove port  Remove port from server
+  server remove security group  Remove security group from server
+  server remove share  Remove a share from a server
+  server remove volume  Remove volume from server
+  server rescue  Put server in rescue mode
+  server resize  Scale server to a new flavor
+  server resize confirm  Confirm server resize
+  server resize revert  Revert server resize
+  server restore  Restore server(s)
+  server resume  Resume server(s)
+  server set     Set server properties
+  server share list  List all the shares attached to a server
+  server share show  Show detail of a share attachment to a server
+  server shelve  Shelve and optionally offload server(s)
+  server show    Show server details
+  server ssh     SSH to server
+  server start   Start server(s)
+  server stop    Stop server(s)
+  server suspend  Suspend server(s)
+  server unlock  Unlock server(s)
+  server unpause  Unpause server(s)
+  server unrescue  Restore server from rescue mode
+  server unset   Unset server properties and tags
+  server unshelve  Unshelve server(s)
+  server volume list  List all the volumes attached to a server
+  server volume set  Update a volume attachment on the server
+  server volume update  DEPRECATED: Use 'server volume set' instead
+  service create  Create new service
+  service delete  Delete service(s)
+  service list   List services
+  service provider create  Create new service provider
+  service provider delete  Delete service provider(s)
+  service provider list  List service providers
+  service provider set  Set service provider properties
+  service provider show  Display service provider details
+  service set    Set service properties
+  service show   Display service details
+  share abandon  Abandon a share (python-manilaclient)
+  share access create  Create new share access rule (python-manilaclient)
+  share access delete  Delete a share access rule (python-manilaclient)
+  share access list  List share access rule (python-manilaclient)
+  share access set  Set properties to share access rule. Available for API microversion 2.45 and higher (python-manilaclient)
+  share access show  Display a share access rule. Available for API microversion 2.45 and higher (python-manilaclient)
+  share access unset  Unset properties of share access rule. Available for API microversion 2.45 and higher (python-manilaclient)
+  share adopt    Adopt a share (python-manilaclient)
+  share availability zone list  List all availability zones (python-manilaclient)
+  share backup create  Create a backup of the given share (python-manilaclient)
+  share backup delete  Delete one or more share backups (python-manilaclient)
+  share backup list  List share backups (python-manilaclient)
+  share backup restore  Attempt to restore share backup (python-manilaclient)
+  share backup set  Set share backup properties (python-manilaclient)
+  share backup show  Show details of a backup (python-manilaclient)
+  share backup unset  Unset share backup properties (python-manilaclient)
+  share create   Create new share (python-manilaclient)
+  share delete   Delete a share (python-manilaclient)
+  share export location list  List export location of a share (python-manilaclient)
+  share export location set  Set an export location property (python-manilaclient)
+  share export location show  Show export location of a share (python-manilaclient)
+  share export location unset  Unset a share export location property (python-manilaclient)
+  share group create  Create new share group (python-manilaclient)
+  share group delete  Delete one or more share groups (python-manilaclient)
+  share group list  List share groups (python-manilaclient)
+  share group set  Explicitly set share group status (python-manilaclient)
+  share group show  Show details about a share group (python-manilaclient)
+  share group snapshot create  Create a share group snapshot of the given share group (python-manilaclient)
+  share group snapshot delete  Delete one or more share group snapshot (python-manilaclient)
+  share group snapshot list  List share group snapshots (python-manilaclient)
+  share group snapshot members list  List members of share group snapshot (python-manilaclient)
+  share group snapshot set  Set share group snapshot properties (python-manilaclient)
+  share group snapshot show  Show details about a share group snapshot (python-manilaclient)
+  share group snapshot unset  Unset a share group snapshot property (python-manilaclient)
+  share group type access create  Allow a project to access a share group type (Admin only) (python-manilaclient)
+  share group type access delete  Deny a project to access a share group type (Admin only) (python-manilaclient)
+  share group type access list  Get access list for share group type (Admin only) (python-manilaclient)
+  share group type create  Create new share group type (python-manilaclient)
+  share group type delete  Delete a share group type (python-manilaclient)
+  share group type list  List share types (python-manilaclient)
+  share group type set  Set share group type properties (python-manilaclient)
+  share group type show  Show share group types (python-manilaclient)
+  share group type unset  Unset share group type extra specs (python-manilaclient)
+  share group unset  Unset a share group property (python-manilaclient)
+  share instance delete  Forces the deletion of a share instance (python-manilaclient)
+  share instance export location list  List share instance export locations (python-manilaclient)
+  share instance export location show  Show export location for a share instance (python-manilaclient)
+  share instance list  List share instances (python-manilaclient)
+  share instance set  Explicitly reset share instance status (python-manilaclient)
+  share instance show  Show share instance (python-manilaclient)
+  share limits show  Show a list of share limits for a user (python-manilaclient)
+  share list     List shares (python-manilaclient)
+  share lock create  Lock a resource action from occurring on a resource (python-manilaclient)
+  share lock delete  Remove one or more resource locks (python-manilaclient)
+  share lock list  Lists all resource locks (python-manilaclient)
+  share lock set  Update resource lock properties (python-manilaclient)
+  share lock show  Show details about a resource lock (python-manilaclient)
+  share lock unset  Remove resource lock properties (python-manilaclient)
+  share message delete  Remove one or more messages (python-manilaclient)
+  share message list  Lists all messages (python-manilaclient)
+  share message show  Show details about a message (python-manilaclient)
+  share migration cancel  Cancels migration of a given share when copying (python-manilaclient)
+  share migration complete  Completes migration for a given share (python-manilaclient)
+  share migration show  Gets migration progress of a given share when copying (python-manilaclient)
+  share migration start  Migrates share to a new host (python-manilaclient)
+  share network create  Create a share network (python-manilaclient)
+  share network delete  Delete one or more share networks (python-manilaclient)
+  share network list  List share networks (python-manilaclient)
+  share network set  Set share network properties (python-manilaclient)
+  share network show  Show details about a share network (python-manilaclient)
+  share network subnet create  Create a share network subnet (python-manilaclient)
+  share network subnet delete  Delete a share network subnet (python-manilaclient)
+  share network subnet set  Set share network subnet properties (python-manilaclient)
+  share network subnet show  Show share network subnet (python-manilaclient)
+  share network subnet unset  Unset a share network subnet property (python-manilaclient)
+  share network unset  Unset a share network property (python-manilaclient)
+  share pool list  List all backend storage pools known to the scheduler (Admin only) (python-manilaclient)
+  share properties show  Show share properties (python-manilaclient)
+  share qos type create  Create new qos type (python-manilaclient)
+  share qos type delete  Delete a qos type (python-manilaclient)
+  share qos type list  List qos types (python-manilaclient)
+  share qos type set  Set qos type description or specs (python-manilaclient)
+  share qos type show  Display qos type details (python-manilaclient)
+  share qos type unset  Unset qos type specs (python-manilaclient)
+  share quota delete  Delete Quota (python-manilaclient)
+  share quota set  Set Quota for a project, or project/user or project/share-type or a class (python-manilaclient)
+  share quota show  Show Quota (python-manilaclient)
+  share replica create  Create a replica of the given share (python-manilaclient)
+  share replica delete  Delete one or more share replicas (python-manilaclient)
+  share replica export location list  List export locations of a share replica (python-manilaclient)
+  share replica export location show  Show details of a share replica's export location (python-manilaclient)
+  share replica list  List share replicas (python-manilaclient)
+  share replica promote  Promote specified replica to 'active' replica_state (python-manilaclient)
+  share replica resync  Attempt to update the share replica with its 'active' mirror (python-manilaclient)
+  share replica set  Explicitly set share replica status and/or replica-state and/or property (python-manilaclient)
+  share replica show  Show details about a replica (python-manilaclient)
+  share replica unset  Unset a share replica property (python-manilaclient)
+  share resize   Resize a share (python-manilaclient)
+  share restore  Restores this share or more shares from the recycle bin (python-manilaclient)
+  share revert   Revert a share to the specified snapshot (python-manilaclient)
+  share security service create  Create security service used by project (python-manilaclient)
+  share security service delete  Delete one or more security services (python-manilaclient)
+  share security service list  List security services (python-manilaclient)
+  share security service set  Set security service (python-manilaclient)
+  share security service show  Show security service (python-manilaclient)
+  share security service unset  Unset security service (python-manilaclient)
+  share server abandon  Remove one or more share server(s) (Admin only) (python-manilaclient)
+  share server adopt  Adopt share server not handled by Manila (Admin only) (python-manilaclient)
+  share server delete  Delete one or more share servers (python-manilaclient)
+  share server list  List all share servers (Admin only) (python-manilaclient)
+  share server migration cancel  Cancels migration of a given share server when copying (python-manilaclient)
+  share server migration complete  Completes migration for a given share server (python-manilaclient)
+  share server migration show  Gets migration progress of a given share server when copying (python-manilaclient)
+  share server migration start  Migrates share server to a new host (python-manilaclient)
+  share server set  Set share server properties (Admin only) (python-manilaclient)
+  share server show  Show details about a share server (Admin only) (python-manilaclient)
+  share service ensure shares  Run ensure shares in a back end (Admin only) (python-manilaclient)
+  share service list  List share services (Admin only) (python-manilaclient)
+  share service set  Enable/Disable share service (Admin only) (python-manilaclient)
+  share set      Set share properties (python-manilaclient)
+  share show     Display share details (python-manilaclient)
+  share snapshot abandon  Abandon share snapshot(s) (python-manilaclient)
+  share snapshot access create  Allow access to a snapshot (python-manilaclient)
+  share snapshot access delete  Delete access to a snapshot (python-manilaclient)
+  share snapshot access list  Show access list for a snapshot (python-manilaclient)
+  share snapshot adopt  Adopt a share snapshot (python-manilaclient)
+  share snapshot create  Create a snapshot of the given share (python-manilaclient)
+  share snapshot delete  Delete one or more share snapshots (python-manilaclient)
+  share snapshot export location list  List export locations of a given snapshot (python-manilaclient)
+  share snapshot export location show  Show export location of the share snapshot (python-manilaclient)
+  share snapshot instance export location list  List export locations from a share snapshot instance (python-manilaclient)
+  share snapshot instance export location show  Show export location of the share snapshot instance (python-manilaclient)
+  share snapshot instance list  List all share snapshot instances (python-manilaclient)
+  share snapshot instance set  Explicitly update the state of a share snapshot instance (python-manilaclient)
+  share snapshot instance show  Show details about a share snapshot instance (python-manilaclient)
+  share snapshot list  List snapshots (python-manilaclient)
+  share snapshot set  Set share snapshot properties (python-manilaclient)
+  share snapshot show  Show details about a share snapshot (python-manilaclient)
+  share snapshot unset  Unset a share snapshot property (python-manilaclient)
+  share transfer accept  Accepts a share transfer (python-manilaclient)
+  share transfer create  Create a new share transfer (python-manilaclient)
+  share transfer delete  Remove one or more transfers (python-manilaclient)
+  share transfer list  Lists all transfers (python-manilaclient)
+  share transfer show  Show details about a share transfer (python-manilaclient)
+  share type access create  Add access for share type (python-manilaclient)
+  share type access delete  Delete access from share type (python-manilaclient)
+  share type access list  Get access list for share type (python-manilaclient)
+  share type create  Create new share type (python-manilaclient)
+  share type delete  Delete a share type (python-manilaclient)
+  share type list  List share types (python-manilaclient)
+  share type set  Set share type properties (python-manilaclient)
+  share type show  Display share type details (python-manilaclient)
+  share type unset  Unset share type extra specs (python-manilaclient)
+  share unset    Unset share properties (python-manilaclient)
+  subnet create  Create a subnet
+  subnet delete  Delete subnet(s)
+  subnet list    List subnets
+  subnet pool create  Create subnet pool
+  subnet pool delete  Delete subnet pool(s)
+  subnet pool list  List subnet pools
+  subnet pool set  Set subnet pool properties
+  subnet pool show  Display subnet pool details
+  subnet pool unset  Unset subnet pool properties
+  subnet set     Set subnet properties
+  subnet show    Display subnet details
+  subnet unset   Unset subnet properties
+  tap flow create  Create a new tap flow
+  tap flow delete  Delete a tap flow
+  tap flow list  List tap flows
+  tap flow show  Show tap flow details
+  tap flow update  Update a tap flow
+  tap mirror create  Create a new tap mirror
+  tap mirror delete  Delete a tap mirror
+  tap mirror list  List tap mirrors
+  tap mirror show  Show tap mirror details
+  tap mirror update  Update a tap mirror
+  tap service create  Create a new tap service
+  tap service delete  Delete a tap service
+  tap service list  List tap services
+  tap service show  Show tap service details
+  tap service update  Update a tap service
+  token issue    Issue new token
+  token revoke   Revoke existing token
+  trust create   Create new trust
+  trust delete   Delete trust(s)
+  trust list     List trusts
+  trust show     Display trust details
+  usage list     List resource usage per project
+  usage show     Show resource usage for a single project
+  user create    Create new user
+  user delete    Delete user(s)
+  user list      List users
+  user password set  Change current user password
+  user set       Set user properties
+  user show      Display user details
+  versions show  Show available versions of services
+  volume attachment complete  Complete an attachment for a volume
+  volume attachment create  Create an attachment for a volume
+  volume attachment delete  Delete an attachment for a volume
+  volume attachment list  Lists all volume attachments
+  volume attachment set  Update an attachment for a volume
+  volume attachment show  Show detailed information for a volume attachment
+  volume backend capability show  Show capability command
+  volume backend pool list  List pool command
+  volume backup create  Create new volume backup
+  volume backup delete  Delete volume backup(s)
+  volume backup list  List volume backups
+  volume backup record export  Export volume backup details
+  volume backup record import  Import volume backup details
+  volume backup restore  Restore volume backup
+  volume backup set  Set volume backup properties
+  volume backup show  Display volume backup details
+  volume backup unset  Unset volume backup properties
+  volume create  Create new volume
+  volume delete  Delete volume(s)
+  volume group create  Create a volume group
+  volume group delete  Delete a volume group
+  volume group failover  Failover replication for a volume group
+  volume group list  Lists all volume groups
+  volume group set  Update a volume group
+  volume group show  Show detailed information for a volume group
+  volume group snapshot create  Create a volume group snapshot
+  volume group snapshot delete  Delete a volume group snapshot
+  volume group snapshot list  Lists all volume group snapshot
+  volume group snapshot show  Show detailed information for a volume group snapshot
+  volume group type create  Create a volume group type
+  volume group type delete  Delete a volume group type
+  volume group type list  Lists all volume group types
+  volume group type set  Update a volume group type
+  volume group type show  Show detailed information for a volume group type
+  volume host failover  Failover volume host to different backend
+  volume host set  Set volume host properties
+  volume list    List volumes
+  volume message delete  Delete a volume failure message
+  volume message list  List volume failure messages
+  volume message show  Show a volume failure message
+  volume migrate  Migrate volume to a new host
+  volume qos associate  Associate a QoS specification to a volume type
+  volume qos create  Create new QoS specification
+  volume qos delete  Delete QoS specification
+  volume qos disassociate  Disassociate a QoS specification from a volume type
+  volume qos list  List QoS specifications
+  volume qos set  Set QoS specification properties
+  volume qos show  Display QoS specification details
+  volume qos unset  Unset QoS specification properties
+  volume revert  Revert a volume to a snapshot
+  volume service list  List service command
+  volume service set  Set volume service properties
+  volume set     Set volume properties
+  volume show    Display volume details
+  volume snapshot create  Create new volume snapshot
+  volume snapshot delete  Delete volume snapshot(s)
+  volume snapshot list  List volume snapshots
+  volume snapshot set  Set volume snapshot properties
+  volume snapshot show  Display volume snapshot details
+  volume snapshot unset  Unset volume snapshot properties
+  volume summary  Show a summary of all volumes in this deployment
+  volume transfer request accept  Accept volume transfer request
+  volume transfer request create  Create volume transfer request
+  volume transfer request delete  Delete volume transfer request(s)
+  volume transfer request list  Lists all volume transfer requests
+  volume transfer request show  Show volume transfer request details
+  volume type create  Create new volume type
+  volume type delete  Delete volume type(s)
+  volume type list  List volume types
+  volume type set  Set volume type properties
+  volume type show  Display volume type details
+  volume type unset  Unset volume type properties
+  volume unset   Unset volume properties
+  vpn endpoint group create  Create an endpoint group
+  vpn endpoint group delete  Delete endpoint group(s)
+  vpn endpoint group list  List endpoint groups that belong to a given project
+  vpn endpoint group set  Set endpoint group properties
+  vpn endpoint group show  Display endpoint group details
+  vpn ike policy create  Create an IKE policy
+  vpn ike policy delete  Delete IKE policy (policies)
+  vpn ike policy list  List IKE policies that belong to a given project
+  vpn ike policy set  Set IKE policy properties
+  vpn ike policy show  Display IKE policy details
+  vpn ipsec policy create  Create an IPsec policy
+  vpn ipsec policy delete  Delete IPsec policy(policies)
+  vpn ipsec policy list  List IPsec policies that belong to a given project
+  vpn ipsec policy set  Set IPsec policy properties
+  vpn ipsec policy show  Display IPsec policy details
+  vpn ipsec site connection create  Create an IPsec site connection
+  vpn ipsec site connection delete  Delete IPsec site connection(s)
+  vpn ipsec site connection list  List IPsec site connections that belong to a given project
+  vpn ipsec site connection set  Set IPsec site connection properties
+  vpn ipsec site connection show  Show information of a given IPsec site connection
+  vpn service create  Create an VPN service
+  vpn service delete  Delete VPN service(s)
+  vpn service list  List VPN services that belong to a given project
+  vpn service set  Set VPN service properties
+  vpn service show  Display VPN service details

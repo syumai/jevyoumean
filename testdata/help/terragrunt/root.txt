@@ -1,0 +1,70 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/terragrunt
+# args: 
+Usage: terragrunt [global options] <command> [options]
+
+   Terragrunt is a flexible orchestration tool that allows Infrastructure as Code written in OpenTofu/Terraform to scale.
+   For documentation, see https://docs.terragrunt.com/.
+
+Main commands:
+   backend        Interact with OpenTofu/Terraform backend infrastructure.
+   exec           Execute an arbitrary command.
+   run            Run an OpenTofu/Terraform command.
+   stack          Terragrunt stack commands.
+
+Catalog commands:
+   catalog        Launch the user interface for searching and managing your module catalog.
+   scaffold       Scaffold a new Terragrunt module.
+
+Discovery commands:
+   browse         Browse Terragrunt configurations in an interactive TUI.
+   find, fd       Find relevant Terragrunt configurations.
+   list, ls       List relevant Terragrunt configurations.
+
+Configuration commands:
+   dag            Interact with the Directed Acyclic Graph (DAG).
+   hcl            Interact with HCL files.
+   info           List of commands to display Terragrunt settings.
+   render         Render the final terragrunt config, with all variables, includes, and functions resolved, in the specified format.
+
+OpenTofu shortcuts:
+   apply          Create or update infrastructure.
+   destroy        Destroy previously-created infrastructure.
+   force-unlock   Release a stuck lock on the current workspace.
+   import         Associate existing infrastructure with a OpenTofu/Terraform resource.
+   init           Prepare your working directory for other commands.
+   output         Show output values from your root module.
+   plan           Show changes required by the current configuration.
+   refresh        Update the state to match remote systems.
+   show           Show the current state or a saved plan.
+   state          Advanced state management.
+   test           Execute integration tests for OpenTofu/Terraform modules.
+   validate       Check whether the configuration is valid.
+
+Global Options:
+   --experiment value         Enables specific experiments. For a list of available experiments, see https://docs.terragrunt.com/reference/experiment-mode . [$TG_EXPERIMENT]
+   --experiment-mode          Enables experiment mode for Terragrunt. For more information, see https://docs.terragrunt.com/reference/experiment-mode . (default: false) [$TG_EXPERIMENT_MODE]
+   --log-custom-format value  Set the custom log formatting. [$TG_LOG_CUSTOM_FORMAT]
+   --log-disable              Disable logging. (default: false) [$TG_LOG_DISABLE]
+   --log-format value         Set the log format. [$TG_LOG_FORMAT]
+   --log-level value          Sets the logging level for Terragrunt. Supported levels: stderr, stdout, error, warn, info, debug, trace. (default: info) [$TG_LOG_LEVEL]
+   --log-show-abs-paths       Show absolute paths in logs. (default: false) [$TG_LOG_SHOW_ABS_PATHS]
+   --no-color                 Disable color output. (default: false) [$TG_NO_COLOR]
+   --no-tip value             Disable specific tips from being displayed. [$TG_NO_TIP]
+   --no-tips                  Disable all tips from being displayed. (default: false) [$TG_NO_TIPS]
+   --non-interactive          Assume "yes" for all prompts. (default: false) [$TG_NON_INTERACTIVE]
+   --profile-cpu value        Write a CPU profile to the given path. Requires the 'profiling' experiment. [$TG_PROFILE_CPU]
+   --profile-dir value        Directory to write profile files (cpu, mem, goroutine). Requires the 'profiling' experiment. [$TG_PROFILE_DIR]
+   --profile-goroutine value  Write a goroutine profile to the given path. Requires the 'profiling' experiment. [$TG_PROFILE_GOROUTINE]
+   --profile-mem value        Write a memory (heap) profile to the given path. Requires the 'profiling' experiment. [$TG_PROFILE_MEM]
+   --strict-control value     Enables specific strict controls. For a list of available controls, run 'terragrunt info strict'. [$TG_STRICT_CONTROL]
+   --strict-mode              Enables strict mode for Terragrunt. For more information, run 'terragrunt info strict'. (default: false) [$TG_STRICT_MODE]
+   --working-dir value        The path to the directory of Terragrunt configurations. Default is current directory. [$TG_WORKING_DIR]
+   --help, -h                 Show help. (default: false)
+   --version, -v              Show terragrunt version. (default: false)
+
+Author: Gruntwork <www.gruntwork.io> 
+
+See also:
+  Terragrunt Scale: CI/CD and Drift Management for Terragrunt, from Gruntwork.
+  https://terragrunt.com/scale

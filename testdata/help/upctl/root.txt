@@ -1,0 +1,63 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/upctl
+# args: 
+UpCloud command-line interface
+
+`upctl` provides a command-line interface to UpCloud services. It allows you to
+control your resources from the command line or any compatible interface.
+
+To be able to manage your UpCloud resources, you need to configure credentials
+for `upctl`. We recommend using API tokens. Configure credentials by using
+`upctl account login --with-token` command to save a token to system keyring, in
+`~/.config/upctl.yaml` or set the `UPCLOUD_TOKEN` environment variable.
+Alternatively, use `UPCLOUD_USERNAME` and `UPCLOUD_PASSWORD` environment
+variables. When using username and password, API access can be configured on the
+Account page of the UpCloud Hub. We recommend you to set up a sub-account
+specifically for the API usage with its own credentials, as it allows you to
+assign specific permissions for increased security.
+
+Usage:
+upctl [command]
+
+Available Commands:
+account         Manage accounts
+audit-log       Manage audit logs
+completion      Generate the autocompletion script for the specified shell
+database        Manage databases
+file-storage    Manage file storage services
+gateway         Manage gateways
+help            Help about any command
+host            Manage private cloud hosts
+ip-address      Manage IP addresses
+kubernetes      Manage Kubernetes clusters
+load-balancer   Manage load balancers
+network         Manage networks
+network-peering Manage network peerings
+object-storage  Manage managed object storage services
+partner         Manage partner resources
+router          Manage routers
+server          Manage servers
+server-group    Manage server groups
+stack           Manage stacks (EXPERIMENTAL)
+storage         Manage storages
+version         Display software information
+zone            Display zone information
+
+Options:
+  -t, --client-timeout duration   Client timeout to use in API calls.                                                                 
+                                  Default: 0s                                                                                         
+                                                                                                                                      
+  --config string                 Configuration file path.                                                                            
+                                                                                                                                      
+  --debug bool                    Print out more verbose debug logs.                                                                  
+                                  Default: false                                                                                      
+                                                                                                                                      
+  --force-colours                 Force coloured output despite detected terminal support.                                            
+                                                                                                                                      
+  --no-colours                    Disable coloured output despite detected terminal support. Colours can also be disabled by setting  
+                                  NO_COLOR environment variable.                                                                      
+                                                                                                                                      
+  -o, --output string             Output format. Valid values are `human`, `json` and `yaml`.                                         
+                                  Default: human                                                                                      
+
+Use "upctl [command] --help" for more information about a command.

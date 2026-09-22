@@ -1,0 +1,59 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/cilium
+# args: 
+CLI to install, manage, & troubleshooting Cilium clusters running Kubernetes.
+
+Cilium is a CNI for Kubernetes to provide secure network connectivity and
+load-balancing with excellent visibility using eBPF
+
+Examples:
+
+Install Cilium in current Kubernetes context
+
+  $ cilium install
+
+Check status of Cilium
+
+  $ cilium status
+
+Enable the Hubble observability layer
+
+  $ cilium hubble enable
+
+Perform a connectivity test
+
+  $ cilium connectivity test
+
+Usage:
+  cilium [flags]
+  cilium [command]
+
+Available Commands:
+  bgp          Access to BGP control plane
+  clustermesh  Multi Cluster Management
+  completion   Generate the autocompletion script for the specified shell
+  config       Manage Configuration
+  connectivity Connectivity troubleshooting
+  context      Display the configuration context
+  encryption   Cilium encryption
+  features     Report which features are enabled in Cilium agents
+  help         Help about any command
+  hubble       Hubble observability
+  install      Install Cilium in a Kubernetes cluster using Helm
+  multicast    Manage multicast groups
+  status       Display status
+  sysdump      Collects information required to troubleshoot issues with Cilium and Hubble
+  uninstall    Uninstall Cilium using Helm
+  upgrade      Upgrade a Cilium installation a Kubernetes cluster using Helm
+  version      Display detailed version information
+
+Flags:
+      --as string                  Username to impersonate for the operation. User could be a regular user or a service account in a namespace.
+      --as-group stringArray       Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+      --context string             Kubernetes configuration context
+      --helm-release-name string   Helm release name (default "cilium")
+  -h, --help                       help for cilium
+      --kubeconfig string          Path to the kubeconfig file
+  -n, --namespace string           Namespace Cilium is running in. Can also be set via CILIUM_NAMESPACE env var (default "kube-system")
+
+Use "cilium [command] --help" for more information about a command.

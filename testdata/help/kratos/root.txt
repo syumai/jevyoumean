@@ -1,0 +1,29 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/kratos
+# args: 
+
+
+Usage:
+  kratos [command]
+
+Available Commands:
+  cleanup     Various cleanup helpers
+  completion  Generate the autocompletion script for the specified shell
+  courier     Commands related to the Ory Kratos message courier
+  delete      Delete resources
+  format      Helpers for formatting code
+  get         Get resources
+  hashers     This command contains helpers around hashing
+  help        Help about any command
+  import      Import resources
+  lint        Helpers for linting code
+  list        List resources
+  remote      Helpers and management for remote Ory Kratos instances
+  serve       Run the Ory Kratos server
+  validate    Validate resources
+  version     Show the build version, build time, and git hash
+
+Flags:
+  -h, --help   help for kratos
+
+Use "kratos [command] --help" for more information about a command.

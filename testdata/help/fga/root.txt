@@ -1,0 +1,33 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/fga
+# args: 
+OpenFGA CLI
+
+Usage:
+  fga [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  mapping     Manage JSON-to-tuple mappings
+  model       Interact with Authorization Models
+  query       Run Queries
+  store       Interact with OpenFGA Stores
+  tuple       Interact with Relationship Tuples
+  version     Reports the FGA CLI version
+
+Flags:
+      --api-audience string          API Audience. Used when performing the Client Credentials flow
+      --api-scopes stringArray       API Scopes (repeat option for multiple values). Used in the Client Credentials flow
+      --api-token string             API Token. Will be sent in as a Bearer in the Authorization header
+      --api-token-issuer string      API Token Issuer. API responsible for issuing the API Token. Used in the Client Credentials flow
+      --api-url string               OpenFGA API URI e.g. https://api.fga.example:8080 (default "http://localhost:8080")
+      --client-id string             Client ID. Sent to the Token Issuer during the Client Credentials flow
+      --client-secret string         Client Secret. Sent to the Token Issuer during the Client Credentials flow
+      --config string                config file (default is $HOME/.fga.yaml)
+      --custom-headers stringArray   Custom HTTP headers in 'Header: value' format (repeat option for multiple values)
+      --debug                        Enable debug mode - can print more detailed information for debugging
+  -h, --help                         help for fga
+  -v, --version                      version for fga
+
+Use "fga [command] --help" for more information about a command.

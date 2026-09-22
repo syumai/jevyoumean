@@ -1,0 +1,24 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/keto
+# args: 
+Global and consistent permission and authorization server
+
+Usage:
+  keto [command]
+
+Available Commands:
+  check          Check whether a subject has a relation on an object
+  completion     Generate the autocompletion script for the specified shell
+  expand         Expand all subjects that have the relation on the object
+  help           Help about any command
+  migrate        Commands to migrate the database
+  relation-tuple Read and manipulate relationships
+  serve          Starts the server and serves the HTTP REST and gRPC APIs
+  status         Get the status of the upstream Keto instance
+  version        Show the build version, build time, and git hash
+
+Flags:
+  -c, --config strings   Config files to load, overwriting in the order specified. (default [/home/ubuntu/keto.yml])
+  -h, --help             help for keto
+
+Use "keto [command] --help" for more information about a command.

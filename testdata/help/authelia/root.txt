@@ -1,0 +1,44 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/authelia
+# args: 
+authelia v4.39.28
+
+An open-source authentication and authorization server providing
+two-factor authentication and single sign-on (SSO) for your
+applications via a web portal.
+
+General documentation is available at: https://www.authelia.com/
+CLI documentation is available at: https://www.authelia.com/reference/cli/authelia/authelia/
+
+Usage:
+  authelia [flags]
+  authelia [command]
+
+Examples:
+authelia --config /etc/authelia/config.yml --config /etc/authelia/access-control.yml
+authelia --config /etc/authelia/config.yml,/etc/authelia/access-control.yml
+authelia --config /etc/authelia/config/
+
+Available Commands:
+  access-control  Helpers for the access control system
+  build-info      Show the build information of Authelia
+  completion      Generate the autocompletion script for the specified shell
+  config          Perform config related actions
+  crypto          Perform cryptographic operations
+  debug           Perform debug functions
+  help            Help about any command
+  storage         Manage the Authelia storage
+
+Flags:
+  -c, --config strings                        configuration files or directories to load, for more information run 'authelia -h authelia config' (default [configuration.yml])
+      --config.experimental.filters strings   list of filters to apply to all configuration files, for more information run 'authelia -h authelia filters'
+  -h, --help                                  help for authelia
+  -v, --version                               version for authelia
+
+Additional help topics:
+  authelia config          Help for the config file/directory paths
+  authelia filters         help topic for the config filters
+  authelia hash-password   help topic for hashing passwords
+  authelia time-layouts    help topic for the various time layouts
+
+Use "authelia [command] --help" for more information about a command.

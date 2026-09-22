@@ -1,0 +1,48 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/kubectl-ai
+# args: 
+kubectl-ai is a command-line tool that allows you to interact with your Kubernetes cluster using natural language queries. It leverages large language models to understand your intent and translate it into kubectl
+
+Usage:
+  kubectl-ai [flags]
+  kubectl-ai [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  version     Print the version number of kubectl-ai
+
+Flags:
+      --alsologtostderr                    log to standard error as well as files (no effect when -logtostderr=true)
+      --custom-tools-config stringArray    path to custom tools config file or directory (default [{CONFIG}/kubectl-ai/tools.yaml,{HOME}/.config/kubectl-ai/tools.yaml])
+      --delete-session string              delete a session by ID
+      --enable-tool-use-shim               enable tool use shim
+      --external-tools                     in MCP server mode, discover and expose external MCP tools
+      --extra-prompt-paths stringArray     extra prompt template paths
+  -h, --help                               help for kubectl-ai
+      --http-port int                      port for the HTTP endpoint in MCP server mode (used with --mcp-server when --mcp-server-mode is streamable-http) (default 9080)
+      --kubeconfig string                  path to kubeconfig file
+      --list-sessions                      list all available sessions
+      --llm-provider string                language model provider (default "gemini")
+      --max-iterations int                 maximum number of iterations agent will try before giving up (default 20)
+      --mcp-client                         enable MCP client mode to connect to external MCP servers
+      --mcp-server                         run in MCP server mode
+      --mcp-server-mode string             mode of the MCP server. Supported values: stdio, streamable-http (default "stdio")
+      --model string                       language model e.g. gemini-2.0-flash-thinking-exp-01-21, gemini-2.0-flash (default "gemini-2.5-pro")
+      --new-session                        start a new persistent session
+      --prompt-template-file-path string   path to custom prompt template file
+      --quiet                              run in non-interactive mode, requires a query to be provided as a positional argument
+      --remove-workdir                     remove the temporary working directory after execution
+      --resume-session string              ID of session to resume (use 'latest' for the most recent session)
+      --sandbox string                     execute tools in a sandbox environment (k8s, seatbelt)
+      --sandbox-image string               container image to use for the sandbox (default "bitnami/kubectl:latest")
+      --session-backend string             session backend to use (memory or filesystem) (default "memory")
+      --show-tool-output                   show tool output in the terminal UI
+      --skip-permissions                   (dangerous) skip asking for confirmation before executing kubectl commands that modify resources
+      --skip-verify-ssl                    skip verifying the SSL certificate of the LLM provider
+      --trace-path string                  path to the trace file (default "/tmp/kubectl-ai-trace.txt")
+      --ui-listen-address string           address to listen for the HTML UI. (default "localhost:8888")
+      --ui-type UIType                     user interface type to use. Supported values: terminal, web, tui. (default terminal)
+  -v, --v Level                            number for the log level verbosity
+
+Use "kubectl-ai [command] --help" for more information about a command.

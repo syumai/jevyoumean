@@ -1,0 +1,37 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/okteto
+# args: 
+The Okteto Command Line Interface is a unified tool to manage Development Environments
+
+Usage:
+  okteto [command]
+
+Available Commands:
+  analytics       Enable / Disable analytics
+  build           Build and push the images defined in the 'build' section of your Okteto Manifest
+  completion      Generate the autocompletion script for the specified shell
+  context         Set the default Okteto Context
+  deploy          Deploy your Development Environment by running the commands specified in the 'deploy' section of your Okteto Manifest
+  destroy         Destroy your Development Environment
+  doctor          Generate a doctor file with all the information relevant for troubleshooting an issue. Use it when filing an issue or asking the Okteto community for help
+  down            Deactivate your Development Container, stops the file synchronization service, and restores your previous deployment configuration
+  endpoints       List the public endpoints of your Development Environment
+  exec            Execute a command inside your Development Container
+  help            Help about any command
+  kubeconfig      Download credentials for the Kubernetes cluster selected via 'okteto context'
+  logs            Fetch the logs of your Development Environment
+  namespace       Configure the default namespace of the Okteto Context
+  pipeline        Development Environments management commands
+  preview         Preview Environment management commands
+  status          Status of the file synchronization process for a given Development Container
+  test            Run tests using Remote Execution
+  up              Activate a Development Container
+  validate        Validate the Okteto Manifest file syntax
+  version         Show the current installed Okteto CLI binary version
+
+Flags:
+  -h, --help                help for okteto
+  -l, --log-level string    amount of information output (debug, info, warn, error) (default "warn")
+      --log-output string   output format for logs (tty, plain, json) (default "tty")
+
+Use "okteto [command] --help" for more information about a command.

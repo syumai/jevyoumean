@@ -1,0 +1,490 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/oci
+# args: 
+Usage: oci [OPTIONS] [COMMAND] [ARGS]...
+
+  Oracle Cloud Infrastructure command line interface, with support for Audit,
+  Block Volume, Compute, Database, IAM, Load Balancing, Networking, DNS, File
+  Storage, Email Delivery and Object Storage Services.
+
+  Most commands must specify a service, followed by a resource type and then
+  an action. For example, to list users (where $T contains the OCID of the
+  current tenant):
+
+    oci iam user list --compartment-id $T
+
+  Output is in JSON format.
+
+  For information on configuration, see
+  https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile.
+
+  Enable our interactive features to guide you through command usage:
+
+    oci -i
+
+  For information on interactive features, see
+  https://docs.oracle.com/iaas/Content/API/SDKDocs/cliusing_topic-
+  Using_Interactive_Mode.htm.
+
+Options:
+  -v, --version                   Show the version and exit.
+  --release-info                  Prints ChangeLog difference between current
+                                  installed version and latest released
+                                  version. Please visit
+                                  https://github.com/oracle/oci-
+                                  cli/blob/master/CHANGELOG.rst for more info
+  --latest-version                Prints latest released version.
+  --config-file TEXT              The path to the config file.  [default:
+                                  ~/.oci/config]
+  --profile TEXT                  The profile in the config file to load. This
+                                  profile will also be used to locate any
+                                  default parameter values which have been
+                                  specified in the OCI CLI-specific
+                                  configuration file.  [default: DEFAULT]
+  --cli-rc-file, --defaults-file TEXT
+                                  The path to the OCI CLI-specific
+                                  configuration file, containing parameter
+                                  default values and other configuration
+                                  information such as command aliases and
+                                  predefined queries.
+                                  
+                                  The --defaults-file option is deprecated and
+                                  you should use the --cli-rc-file option
+                                  instead.
+                                  
+                                  For more information about the cli
+                                  configuration file, see https://docs.oracle.
+                                  com/iaas/Content/API/SDKDocs/cliconfigure.ht
+                                  m.  [default: ~/.oci/oci_cli_rc]
+  --opc-request-id, --opc-client-request-id, --request-id TEXT
+                                  The request id to use for tracking the
+                                  request.
+  --region TEXT                   The region to make calls against.  For a
+                                  list of valid region names use the command:
+                                  "oci iam region list".
+  --endpoint TEXT                 The value to use as the service endpoint,
+                                  including any required API version path. For
+                                  example: "https://iaas.us-
+                                  phoenix-1.oracle.com/20160918". This will
+                                  override the default service endpoint / API
+                                  version path. Note: The --region parameter
+                                  is the recommended way of targeting
+                                  different regions.
+  --realm-specific-endpoint       Use a realm-specific endpoint, instead of
+                                  the default region-wide endpoint.
+                                  
+                                  Example::     oci os ns get --realm-
+                                  specific-endpoint
+                                  
+                                  With this flag, your request will be made to
+                                  a realm-specific service endpoint, such as,
+                                  "https://mynamespace.objectstorage.us-
+                                  phoenix-1.oci.customer-oci.com". Use the
+                                  --debug option to identify which endpoint is
+                                  used for your request.
+                                  
+                                  This flag has priority over the environment
+                                  variable OCI_REALM_SPECIFIC_SERVICE_ENDPOINT
+                                  _TEMPLATE_ENABLED.
+                                  
+                                  To use this flag by default, set this flag
+                                  to true in your OCI CLI-specific
+                                  configuration file. For more information,
+                                  see https://docs.oracle.com/en-
+                                  us/iaas/Content/API/SDKDocs/cliconfigure.htm
+                                  
+                                  If the flag is used for a service that does
+                                  not support such feature, the default
+                                  region-wide endpoint will be used.
+  --connection-timeout INTEGER    The value of the connection timeout in
+                                  seconds to make establish connection from
+                                  sdk to services. This will override the
+                                  default connection timeout value of 10 secs.
+  --enable-dual-stack             enable dual stack support
+                                  
+                                  Example::     oci os ns get --enable-dual-
+                                  stack
+                                  
+                                  With this flag, your request will be made to
+                                  a IPV6 supported service endpoint, such as,
+                                  "https://mynamespace.ds.objectstorage.mx-
+                                  queretaro-1.oci.customer-oci.com". Use the
+                                  --debug option to identify which endpoint is
+                                  used for your request.
+                                  
+                                  This flag has priority over the environment
+                                  variable OCI_DUAL_STACK_ENDPOINT_ENABLED.
+                                  
+                                  To use this flag by default, set this flag
+                                  to true in your OCI CLI-specific
+                                  configuration file. For more information,
+                                  see https://docs.oracle.com/iaas/Content/API
+                                  /SDKDocs/cliconfigure.htm
+                                  
+                                  If the flag is used for a service that does
+                                  not support such feature, the default
+                                  endpoint will be used.
+  --federation-endpoint TEXT      The full federation endpoint to use with
+                                  --auth instance_principal.
+                                  
+                                  Example::     oci iam region list --auth
+                                  instance_principal --federation-endpoint
+                                  https://auth.us-
+                                  ashburn-1.ds.oraclecloud.com/v1/x509
+                                  
+                                  Set this option only when you want to
+                                  explicitly choose the federation endpoint.
+                                  
+                                  If you set both the command-line option
+                                  (``--federation-endpoint``) and the
+                                  environment variable
+                                  (``OCI_CLI_FEDERATION_ENDPOINT``), the value
+                                  passed with ``--federation-endpoint`` is
+                                  used.
+                                  
+                                  If you do not set either one, the default
+                                  federation endpoint behavior is used.
+  --read-timeout INTEGER          The value of the read timeout in seconds to
+                                  wait for service calls to send response to
+                                  sdk. This will override the default read
+                                  timeout value of 60 secs.
+  --cert-bundle TEXT              The full path to a CA certificate bundle to
+                                  be used for SSL verification. This will
+                                  override the default CA certificate bundle.
+  --output [json|table]           The output format. [Default is json]
+  --query TEXT                    JMESPath query [http://jmespath.org/] to run
+                                  on the response JSON before output.
+                                  
+                                  Queries can be entered directly on the
+                                  command line or referenced from the
+                                  [OCI_CLI_COMMAND_ALIASES] section of your
+                                  configuration file by using the syntax
+                                  query://<query_name>, for example
+                                  query://get_id_and_name
+                                  
+                                  For more information, see the Using Queries
+                                  section at https://docs.oracle.com/iaas/Cont
+                                  ent/API/SDKDocs/cliusing.htm#Managing_CLI_In
+                                  put_and_Output
+  --raw-output                    If the output of a given query is a single
+                                  string value, this will return the string
+                                  without surrounding quotes
+  --auth [api_key|instance_principal|security_token|instance_obo_user|resource_principal|oke_workload_identity]
+                                  The type of auth to use for the API request.
+                                  By default the API key in your config file
+                                  will be used.  This value can also be
+                                  provided in the OCI_CLI_AUTH environment
+                                  variable.
+  --auth-purpose TEXT             The The auth purpose which can be used in
+                                  conjunction with --auth.
+  --generate-full-command-json-input
+                                  Prints out a JSON document which represents
+                                  all possible options that can be provided to
+                                  this command.
+                                  
+                                  This JSON document can be saved to a file,
+                                  modified with the appropriate option values,
+                                  and then passed back via the --from-json
+                                  option. This provides an alternative to
+                                  typing options out on the command line.
+                                  Example::     oci os bucket get
+                                  --generate_full_command_json_input_r  >
+                                  example.json     cat example.json Output::
+                                  
+                                      {       "bucketName": "string",
+                                      "fields": [         "approximateCount|ap
+                                      proximateSize|autoTiering"       ],
+                                      "ifMatch": "string",
+                                      "ifNoneMatch": "string",       "name":
+                                      "string",       "namespace": "string",
+                                      "namespaceName": "string"     }
+                                  
+                                  Edit the example.json file with correct
+                                  values and use it as below ::
+                                  
+                                      oci os bucket get --from-json
+                                      file://example.json
+  --generate-param-json-input TEXT
+                                  Complex input, such as arrays and objects,
+                                  are passed in JSON format.
+                                  
+                                  When passed the name of an option which
+                                  takes complex input, this will print out
+                                  example JSON of what needs to be passed to
+                                  that option. Example::     oci compute
+                                  instance launch
+                                  --generate_param_json_input_r agent-config >
+                                  example.json
+                                  
+                                      cat example.json Output::
+                                  
+                                      {       "areAllPluginsDisabled": true,
+                                      "isManagementDisabled": true,
+                                      "isMonitoringDisabled": true,
+                                      "pluginsConfig": [         {
+                                      "desiredState": "string",
+                                      "name": "string"         },         {
+                                      "desiredState": "string",
+                                      "name": "string"         }       ]     }
+                                  
+                                  Edit the example.json file with correct
+                                  values and use it as below ::
+                                  
+                                      oci compute instance launch --agent-
+                                      config file://example.json
+  --proxy TEXT                    If the environment the CLI runs in requires
+                                  use of a proxy server for HTTP requests, the
+                                  details of the proxy server to use.
+                                  Examples:
+                                  
+                                  http://proxy.example.org:3128/ (uses
+                                  proxy.example.org on port 3128) 
+                                  http://user:pass@proxy.example.org:3128/ (if
+                                  your proxy requires a username and password
+                                  to authenticate)
+  --no-retry                      Disable retry logic for calls to services.
+  --max-retries INTEGER           Maximum number of retry calls to be made to
+                                  the service. For most commands, 7 attempts
+                                  will be made. For operations with binary
+                                  bodies, retries are disabled
+  -d, --debug                     Show additional debug information.
+  -i, --cli-auto-prompt           Use the interactive features for
+                                  autocompletion and quick view of command
+                                  reference.
+                                  
+                                  For information on interactive features, see
+                                  https://docs.oracle.com/iaas/Content/API/SDK
+                                  Docs/cliusing_topic-
+                                  Using_Interactive_Mode.htm.
+  -?, -h, --help                  For detailed help on the individual OCI CLI
+                                  command, enter <command> --help.
+  --enable-propagation [True|False]
+                                  Enable propagation of opc-request-id
+
+Commands:
+
+
+
+    raw-request  Makes a raw request against an OCI service
+    session      Session commands for CLI
+    setup        Setup commands for CLI
+
+Analytics & AI
+
+    ai                              Language
+    ai-document                     Document Understanding
+    ai-vision                       Vision
+    analytics                       Analytics
+    bds                             Big Data Service
+    data-catalog                    Data Catalog
+    data-flow                       Data Flow
+    data-integration                Data Integration
+    data-labeling-service           Data Labeling Management
+    data-labeling-service-dataplane
+                                    Data Labeling
+    data-science                    Data Science
+    oda                             Digital Assistant Service Instance
+    speech                          Speech
+    streaming                       Streaming
+
+Billing & Cost Management
+
+    budgets                         Budgets
+    onesubscription                 OneSubscription
+    osub-billing-schedule           OneSubscription  Billing Schedule
+    osub-organization-subscription  OneSubscription Gateway  Organization's
+                                    Subscription
+    osub-subscription               OneSubscription  Subscription, Commitment
+                                    and and Rate Card Details
+    osub-usage                      OneSubscription  Usage Computation
+
+Compute
+
+    autoscaling         Autoscaling
+    compute             Compute Service
+    compute-management  Compute Management Service
+
+Databases
+
+    database-management  Database Management
+    db                   Database Service
+    mysql                MySQL Database Service
+    nosql                NoSQL Database
+
+Developer Services
+
+    adm               Application Dependency Management
+    api-gateway       API Gateway
+    artifacts         Artifacts and Container Images
+    blockchain        Blockchain Platform Control Plane
+    ce                Kubernetes Engine
+    dbtools           Database Tools
+    devops            DevOps
+    email             Email Delivery
+    fn                Functions Service
+    oce               Oracle Content and Experience
+    osp-gateway       OSP Gateway
+    resource-manager  Resource Manager
+    visual-builder    Visual Builder
+
+Governance & Administration
+
+    announce                        Announcements Service
+    capacity-management             OCI Control Center Capacity Management
+    governance-rules-control-plane  GovernanceRulesControlPlane
+    license-manager                 License Manager
+    limits                          Service Limits
+    limits-increase                 Limits Increase
+    organizations                   Organizations
+    support                         Support Management
+    usage                           Usage Proxy
+    usage-api                       Usage
+    work-requests                   Work Requests
+
+Hybrid
+
+    ocvs   Oracle Cloud VMware Solution
+    rover  RoverCloudService
+
+Identity & Security
+
+    audit                   Audit
+    bastion                 Bastion
+    certificates            Certificates Service Retrieval
+    certs-mgmt              Certificates Service Management
+    cloud-guard             Cloud Guard and Security Zones
+    iam                     Identity and Access Management Service
+    oma                     Managed Access
+    security-attribute      Security Attribute
+    threat-intelligence     Threat Intelligence
+    vault                   Vault Secret Management
+    vulnerability-scanning  Scanning
+    waf                     Web Application Firewall (WAF)
+    zpr                     Zero Trust Packet Routing Control Plane
+
+Migration
+
+    database-migration  Database Migration
+
+Networking
+
+    dns               DNS
+    lb                Load Balancing
+    network           Networking Service
+    network-firewall  Network Firewall
+    nlb               NetworkLoadBalancer
+
+Observability & Management
+
+    apm-config         Application Performance Monitoring Configuration
+    apm-control-plane  Application Performance Monitoring Control Plane
+    apm-synthetics     APM Availability Monitoring
+    apm-traces         Application Performance Monitoring Trace Explorer
+    dashboard-service  Dashboards
+    events             Events
+    health-checks      Health Checks
+    jms                Java Management Service Fleets
+    kms                Key Management
+    log-analytics      LogAnalytics
+    logging            Logging Management
+    logging-ingestion  Logging Ingestion
+    logging-search     Logging Search
+    management-agent   Management Agent
+    marketplace        Marketplace Service
+    opsi               Ops Insights
+    sch                Connector Hub
+    search             Search Service
+    service-catalog    Service Catalog
+    stack-monitoring   Stack Monitoring
+    wlms               WebLogic Management Service
+
+Oracle Database
+
+    apiaccesscontrol  Oracle  Access Control
+    data-safe         Data Safe
+    goldengate        GoldenGate
+    opctl             Operator Access Control
+
+Others
+
+    access-governance-cp         Access Governance
+    ai-data-platform             AiDataPlatform Control Plane
+    api-platform                 P Control Plane
+    appmgmt-control              Resource Discovery and Monitoring Control
+    batch                        Batch
+    ccc                          Compute Cloud@Customer
+    cloud-bridge                 Oracle Cloud Bridge
+    cloud-migrations             Oracle Cloud Migrations
+    cluster-health               ITV Control Plane - Diagnosis Store
+    container-instances          Container Instance
+    container-registry           Container Registry
+    costad                       CostAd
+    cpg                          Cluster Placement Groups
+    datacc                       Database Infrastructure Cloud@Customer Service
+    dblm                         Dblm
+    dbmulticloud                 Oracle Database MultiCloud Data Plane
+                                 Integration
+    dbtools-runtime              Database Tools Runtime
+    ddfs                         Device Data FHIR Service
+    delegate-access-control      Oracle Delegate Access Control
+    demand-signal                OCI Control Center Demand Signal
+    desktops                     Secure Desktops
+    dif                          DataIntelligences Control Plane
+    disaster-recovery            Full Stack Disaster Recovery
+    distributed-database         Globally Distributed Database
+    distributed-database-v26     Globally Distributed Database
+    em-warehouse                 EM Warehouse
+    email-data-plane             Email Delivery Submission
+    fleet-apps-management        Fleet Application Management Service
+    fleet-software-update        Exadata Fleet Update service
+    fusion-apps                  Fusion Applications Environment Management
+    gdp                          Guarded Data Pipelines
+    generative-ai                Generative AI Service Management
+    generative-ai-agent          Generative AI Agents Management
+    generative-ai-agent-runtime  Generative AI Agents Client
+    generative-ai-data           Generative AI Service NL2SQL
+    generative-ai-inference      Generative AI Service Inference
+    identity-domains             Identity Domains
+    instance-agent               Compute Instance Agent Service
+    integration                  Oracle Integration
+    iot                          Internet of Things
+    jms-java-downloads           Java Management Service Java Download
+    jms-utils                    Java Management Service Utilities
+    kafka                        Oracle Streaming with Apache Kafka (OSAK)
+    management-dashboard         ManagementDashboard
+    marketplace-private-offer    MarketplacePrivateOffer
+    marketplace-publisher        MarketplacePublisherService
+    media-services               Media Services
+    mngdmac                      OCI Managed Services for Mac
+    model-deployment             Model Deployment Data Plane
+    monitoring                   Monitoring
+    multicloud                   Oracle Multicloud
+    occ                          OCI Control Center
+    ons                          Notifications
+    opa                          Process Automation
+    opensearch                   OpenSearch Service
+    optimizer                    Cloud Advisor
+    os-management-hub            OS Management Hub
+    psa                          PrivateServiceAccess Control Plane
+    psql                         PGSQL Control Plane
+    queue                        Queue
+    recovery                     Oracle Database Autonomous Recovery Service
+    redis                        OCI Cache
+    resource-analytics           Resource Analytics
+    resource-scheduler           Resource Scheduler
+    secrets                      Vault Secret Retrieval
+    self                         SELF Service
+    service-manager-proxy        Service Manager Proxy
+    vbstudio                     VB Studio Controlplane Instance API
+    vn-monitoring                Network Monitoring
+    waa                          Web Application Acceleration (WAA)
+    waas                         Web Application Acceleration and Security
+                                 Services
+
+Storage
+
+    bv   Block Volume Service
+    fs   File Storage
+    lfs  File Storage with Lustre
+    os   Object Storage Service
+

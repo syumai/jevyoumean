@@ -1,0 +1,62 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/aws-vault
+# args: 
+usage: aws-vault [<flags>] <command> [<args> ...]
+
+A vault for securely storing and accessing AWS credentials in development
+environments.
+
+
+Flags:
+  --[no-]help                Show context-sensitive help (also try --help-long
+                             and --help-man).
+  --[no-]version             Show application version.
+  --[no-]debug               Show debugging output
+  --backend=secret-service   Secret backend to use [secret-service kwallet
+                             keyctl pass file] ($AWS_VAULT_BACKEND)
+  --prompt=PROMPT            Prompt driver to use [kdialog terminal]
+                             ($AWS_VAULT_PROMPT)
+  --keychain="aws-vault"     Name of macOS keychain to use, if it doesn't exist
+                             it will be created ($AWS_VAULT_KEYCHAIN_NAME)
+  --secret-service-collection="awsvault"  
+                             Name of secret-service collection to use,
+                             if it doesn't exist it will be created
+                             ($AWS_VAULT_SECRET_SERVICE_COLLECTION_NAME)
+  --pass-dir=PASS-DIR        Pass password store directory
+                             ($AWS_VAULT_PASS_PASSWORD_STORE_DIR)
+  --pass-cmd=PASS-CMD        Name of the pass executable ($AWS_VAULT_PASS_CMD)
+  --pass-prefix=PASS-PREFIX  Prefix to prepend to the item path stored in pass
+                             ($AWS_VAULT_PASS_PREFIX)
+  --file-dir="~/.awsvault/keys/"  
+                             Directory for the "file" password store
+                             ($AWS_VAULT_FILE_DIR)
+
+Commands:
+help [<command>...]
+    Show help.
+
+add [<flags>] <profile>
+    Add credentials to the secure keystore.
+
+remove [<flags>] <profile>
+    Remove credentials from the secure keystore.
+
+list [<flags>]
+    List profiles, along with their credentials and sessions.
+
+rotate [<flags>] <profile>
+    Rotate credentials.
+
+exec [<flags>] <profile> [<cmd>] [<args>...]
+    Execute a command with AWS credentials.
+
+export [<flags>] <profile>
+    Export AWS credentials.
+
+clear [<profile>]
+    Clear temporary credentials from the secure keystore.
+
+login [<flags>] [<profile>]
+    Generate a login link for the AWS Console.
+
+

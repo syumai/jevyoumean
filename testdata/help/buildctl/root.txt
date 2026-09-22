@@ -1,0 +1,33 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/buildctl
+# args: 
+NAME:
+   buildctl - build utility
+
+USAGE:
+   buildctl [global options] [command [command options]]
+
+VERSION:
+   v0.33.0
+
+COMMANDS:
+   du               disk usage
+   prune            clean up build cache
+   prune-histories  clean up build histories
+   build, b         build
+   debug            debug utilities
+   help, h          Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --debug                 enable debug output in logs
+   --addr string           buildkitd address (default: "unix:///run/buildkit/buildkitd.sock")
+   --log-format string     log formatter: json or text (default: "text")
+   --tlsservername string  buildkitd server name for certificate validation
+   --tlscacert string      CA certificate for validation
+   --tlscert string        client certificate
+   --tlskey string         client key
+   --tlsdir string         directory containing CA certificate, client certificate, and client key. Supported file names are (ca.pem, cert.pem, key.pem) or (ca.crt, tls.crt, tls.key)
+   --timeout int           timeout backend connection after value seconds (default: 5)
+   --wait                  block RPCs until the connection becomes available
+   --help, -h              show help
+   --version, -v           print the version

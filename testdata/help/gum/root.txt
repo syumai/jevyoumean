@@ -1,0 +1,28 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/gum
+# args: 
+Usage: gum <command> [flags]
+
+A tool for [38;5;212mglamorous[m shell scripts.
+
+Flags:
+  -h, --help       Show context-sensitive help.
+  -v, --version    Print the version number
+
+Commands:
+  choose           Choose an option from a list of choices
+  confirm          Ask a user to confirm an action
+  file             Pick a file from a folder
+  filter           Filter items from a list
+  format           Format a string using a template
+  input            Prompt for some input
+  join             Join text vertically or horizontally
+  pager            Scroll through a file
+  spin             Display spinner while running a command
+  style            Apply coloring, borders, spacing to text
+  table            Render a table of data
+  write            Prompt for long-form text
+  log              Log messages to output
+  version-check    Semver check current gum version
+
+Run "gum <command> --help" for more information on a command.

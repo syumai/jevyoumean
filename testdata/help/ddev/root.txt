@@ -1,0 +1,55 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/ddev
+# args: 
+Create and maintain a local web development environment.
+Docs: https://docs.ddev.com
+Support: https://docs.ddev.com/en/stable/users/support/
+
+Usage:
+  ddev [flags]
+  ddev [command]
+
+Available Commands:
+  add-on       A collection of commands for managing installed 3rd party add-ons
+  aliases      Shows all aliases for each command in the current context (global or project).
+  auth         A collection of authentication commands
+  clean        Removes items DDEV has created
+  completion   Generate the autocompletion script for the specified shell
+  composer     Executes a Composer command within the web container
+  config       Create or modify a DDEV project configuration in the current directory
+  delete       Remove all project information (including database) for an existing project
+  describe     Get a detailed description of a running DDEV project.
+  dotenv       Commands for managing the contents of .env files
+  exec         Execute a shell command in the container for a service. Uses the web service by default.
+  export-db    Dump a database to a file or to stdout
+  help         Help about any command
+  hostname     Manage your hostfile entries.
+  import-db    Import a SQL dump file into the project
+  import-files Pull the uploaded files directory of an existing project to the default public upload directory of your project
+  list         List projects
+  logs         Get the logs from your running services.
+  mutagen      Commands for Mutagen status and sync, etc.
+  poweroff     Completely stop all projects and containers
+  restart      Restart a project or several projects.
+  self-upgrade Explain how to upgrade DDEV (global shell host container command)
+  share        Share project on the internet via tunnel provider (ngrok, cloudflared, or custom).
+  snapshot     Create a database snapshot for one or more projects.
+  ssh          Starts a shell session in the container for a service. Uses web service by default.
+  start        Start a DDEV project.
+  stop         Stop and remove the containers of a project. Does not lose or harm anything unless you add --remove-data.
+  tui          Launch the interactive TUI dashboard
+  utility      A collection of utility and debugging commands
+  version      Print DDEV version and component versions
+  xhgui        Starts or checks status of XHGui/XHProf performance monitoring and UI
+
+Flags:
+  -h, --help          help for ddev
+  -j, --json-output   If true, user-oriented output will be in JSON format.
+      --skip-hooks    If true, any hook normally run by the command will be skipped.
+  -v, --version       version for ddev
+
+Additional help topics:
+  ddev pull         Pull files and database using a configured provider plugin.
+  ddev push         push files and database using a configured provider plugin.
+
+Use "ddev [command] --help" for more information about a command.

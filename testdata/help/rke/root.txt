@@ -1,0 +1,32 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/rke
+# args: 
+NAME:
+   rke - Rancher Kubernetes Engine, an extremely simple, lightning fast Kubernetes installer that works everywhere
+
+USAGE:
+   rke [global options] command [command options] [arguments...]
+
+VERSION:
+   v1.8.14
+
+AUTHOR:
+   Rancher Labs, Inc.
+
+COMMANDS:
+   up       Bring the cluster up
+   remove   Teardown the cluster and clean cluster nodes
+   version  Show cluster Kubernetes version
+   config   Setup cluster configuration
+   etcd     etcd snapshot save/restore operations in k8s cluster
+   cert     Certificates management for RKE cluster
+   encrypt  Manage cluster encryption provider keys
+   util     Various utilities to retrieve cluster related files and troubleshoot
+   help, h  Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --debug, -d    Debug logging
+   --quiet, -q    Quiet mode, disables logging and only critical output will be printed
+   --trace        Trace logging
+   --help, -h     show help
+   --version, -v  print the version

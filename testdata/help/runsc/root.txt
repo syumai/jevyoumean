@@ -1,0 +1,71 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/runsc
+# args: 
+Usage: runsc <flags> <subcommand> <subcommand args>
+
+runsc is the gVisor container runtime.
+
+Functionality is provided by subcommands. For help with a specific subcommand,
+use "runsc help <subcommand>".
+
+Subcommands:
+	bwrap            Bubblewrap-compatible sandboxing command.
+	checkpoint       checkpoint current state of container (experimental)
+	create           create a secure container
+	delete           delete resources held by a container
+	do               Simplistic way to execute a command inside the sandbox. It's to be used for testing only.
+	events           display container events such as OOM notifications, cpu, memory, and IO usage statistics
+	exec             execute new process inside the container
+	flags            describe all known top-level flags
+	fscheckpoint     checkpoint container filesystems (experimental)
+	help             Print help documentation.
+	kill             sends a signal to the container
+	list             list containers started by runsc with the given root
+	pause            pause suspends all processes in a container
+	port-forward     port forward to a secure container
+	ps               ps displays the processes running inside a container
+	read             read a file of the sandbox given the path
+	restore          restore a saved state of container (experimental)
+	resume           Resume unpauses a paused container
+	run              create and run a secure container
+	sandboxexec      Run a command in a sandbox with options defined in a proto.
+	spec             create a new OCI bundle specification file
+	start            start a secure container
+	state            get the state of a container
+	tar              creates tar archives from container filesystems
+	update           update container resource constraints
+	wait             wait on a process inside a container
+
+Subcommands for debug:
+	debug            shows a variety of debug information
+	profile          collects runtime profiling data from a running sandbox
+	read-control     read a cgroups control value inside the container
+	statefile        shows information about a statefile
+	symbolize        Convert synthetic instruction pointers from kcov into positions in the runsc source code. Only used when Go coverage is enabled.
+	usage            Usage shows application memory usage across various categories in bytes.
+	write-control    write a cgroups control value inside the container
+
+Subcommands for helpers:
+	cpu-features     list CPU features supported on current machine
+	features         list CPU features supported on current machine
+	install          adds a runtime to docker daemon configuration
+	mitigate         mitigate mitigates the underlying system against side channel attacks
+	nvproxy          shows information about nvproxy support
+	trace            manages trace sessions for a given sandbox
+	uninstall        removes a runtime from docker daemon configuration
+
+Subcommands for internal use only:
+	boot             launch a sandbox process
+	gofer            launch a gofer process that proxies access to container files
+	umount           umount the specified directory lazily when one byte is read from sync-fd
+
+Subcommands for metrics:
+	export-metrics   export metric data for the sandbox
+	metric-metadata  export metric metadata of metrics registered in this build, in text proto format
+	metric-server    implements Prometheus metrics HTTP endpoint
+
+Additional help topics (Use "runsc help <topic>" to see help on the topic):
+	platforms        Print a list of available platforms.
+	syscalls         Print compatibility information for syscalls.
+
+Use "runsc flags" for a list of top-level flags

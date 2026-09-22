@@ -1,0 +1,51 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/step
+# args: 
+[0;1;99mNAME[0m
+      [0;1;99mstep[0m -- plumbing for distributed systems
+
+[0;1;99mUSAGE[0m
+      [0;1;99mstep[0m [0;4;39mcommand[0m [0;4;39m[arguments][0m
+
+[0;1;99mOPTIONS[0m
+      [0;1;99m--help[0m, [0;1;99m-h[0m
+          show help
+
+      [0;1;99m--config[0m=[0;4;39mvalue[0m
+          path to the config file to use for CLI flags
+
+      [0;1;99m--version[0m, [0;1;99m-v[0m
+          print the version
+
+[0;1;99mCOMMANDS[0m
+      [0;1;99mhelp, h[0m      display help for the specified command or command group              
+      [0;1;99mbase64[0m       encodes and decodes using base64 representation                      
+      [0;1;99mpath[0m         print the configured step path and exit                              
+      [0;1;99mcertificate[0m  create, revoke, validate, bundle, and otherwise manage certificates  
+      [0;1;99mcompletion[0m   print the shell completion script                                    
+      [0;1;99mcontext[0m      manage certificate authority contexts                                
+      [0;1;99mcrl[0m          initialize and manage a certificate revocation list                  
+      [0;1;99mcrypto[0m       useful cryptographic plumbing                                        
+      [0;1;99moauth[0m        authorization and single sign-on using OAuth & OIDC                  
+      [0;1;99mversion[0m      display the current version of the cli                               
+      [0;1;99mca[0m           initialize and manage a certificate authority                        
+      [0;1;99mbeta[0m         commands that are being tested; these APIs are likely to change      
+      [0;1;99mssh[0m          create and manage ssh certificates                                   
+
+[0;1;99mONLINE[0m
+      This documentation is available online at
+      [0;1;39mhttps://smallstep.com/docs/cli[0m
+
+[0;1;99mVERSION[0m
+      Smallstep CLI/0.30.6 (linux/amd64)
+
+[0;1;99mCOPYRIGHT[0m
+      (c) 2018-2026 Smallstep Labs, Inc.
+
+[0;1;99mFEEDBACK 😍 🍻[0m
+      The [0;1;99mstep[0m utility is not instrumented for usage statistics. It does not
+      phone home. But your feedback is extremely valuable. Any information you
+      can provide regarding how you’re using [0;1;99mstep[0m helps. Please send us a
+      sentence or two, good or bad: [0;1;99mfeedback@smallstep.com[0m or ask in
+      [0;1;39mGitHub Discussions[0m.
+

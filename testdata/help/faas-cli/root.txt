@@ -1,0 +1,46 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/faas-cli
+# args: 
+
+Manage your OpenFaaS functions from the command line
+
+Usage:
+  faas-cli [flags]
+  faas-cli [command]
+
+Available Commands:
+  build          Builds OpenFaaS function containers
+  chart          Helm chart commands
+  completion     Generates shell auto completion
+  deploy         Deploy OpenFaaS functions
+  describe       Describe an OpenFaaS function
+  diff           Diff stack.yaml against deployed functions
+  generate       Generate Kubernetes CRD YAML file
+  help           Help about any command
+  invoke         Invoke an OpenFaaS function
+  list           List OpenFaaS functions
+  local-run      Start a function with docker for local testing (experimental feature)
+  login          Log in to OpenFaaS gateway
+  logout         Log out from OpenFaaS gateway
+  logs           Fetch logs for a functions
+  namespace      Manage OpenFaaS namespaces
+  new            Create a new template in the current folder with the name given as name
+  plugin         Manage plugins
+  publish        Builds and pushes multi-arch OpenFaaS container images
+  push           Push OpenFaaS functions to remote registry (Docker Hub)
+  ready          Block until the gateway or a function is ready for use
+  registry-login Generate and save the registry authentication file
+  remove         Remove deployed OpenFaaS functions
+  secret         OpenFaaS secret commands
+  store          OpenFaaS store commands
+  template       OpenFaaS template store and pull commands
+  up             Builds, pushes and deploys OpenFaaS function containers
+  version        Display the clients version information
+
+Flags:
+      --filter string   Wildcard to match with function names in YAML file
+  -h, --help            help for faas-cli
+      --regex string    Regex to match with function names in YAML file
+  -f, --yaml string     Path to YAML file describing function(s)
+
+Use "faas-cli [command] --help" for more information about a command.

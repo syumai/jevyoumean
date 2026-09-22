@@ -1,0 +1,52 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/stern
+# args: 
+Tail multiple pods and containers from Kubernetes
+
+Usage:
+  stern pod-query [flags]
+
+Flags:
+  -A, --all-namespaces                  If present, tail across all namespaces. A specific namespace is ignored even if specified with --namespace.
+      --burst int                       Maximum burst for throttle to the Kubernetes API server. Defaults to 0 (use client-go default). Ignored when --qps=-1.
+      --color string                    Force set color output. 'auto':  colorize if tty attached, 'always': always colorize, 'never': never colorize. (default "auto")
+      --completion string               Output stern command-line completion code for the specified shell. Can be 'bash', 'zsh' or 'fish'.
+      --condition string                The condition to filter on: [condition-name[=condition-value]. The default condition-value is true. Match is case-insensitive. Currently only supported with --tail=0 or --no-follow.
+      --config string                   Path to the stern config file (default "~/.config/stern/config.yaml")
+  -c, --container string                Container name when multiple containers in pod. (regular expression) (default ".*")
+      --container-colors strings        Specifies the colors used to highlight container names. Use the same format as --pod-colors. Defaults to the values of --pod-colors if omitted, and must match its length.
+      --container-state strings         Tail containers with state in running, waiting, terminated, or all. 'all' matches all container states. To specify multiple states, repeat this or set comma-separated value. (default [all])
+      --context string                  The name of the kubeconfig context to use
+  -d, --diff-container                  Display different colors for different containers.
+      --ephemeral-containers            Include or exclude ephemeral containers. (default true)
+  -e, --exclude stringArray             Log lines to exclude. (regular expression)
+  -E, --exclude-container stringArray   Container name to exclude when multiple containers in pod. (regular expression)
+      --exclude-pod stringArray         Pod name to exclude. (regular expression)
+      --field-selector string           Selector (field query) to filter on. If present, default to ".*" for the pod-query.
+  -h, --help                            help for stern
+  -H, --highlight stringArray           Log lines to highlight. (regular expression)
+  -i, --include stringArray             Log lines to include. (regular expression)
+      --init-containers                 Include or exclude init containers. (default true)
+      --kubeconfig string               Path to the kubeconfig file to use for CLI requests.
+      --max-log-requests int            Maximum number of concurrent logs to request. Defaults to 50, but 5 when specifying --no-follow (default -1)
+  -n, --namespace strings               Kubernetes namespace to use. Default to namespace configured in kubernetes context. To specify multiple namespaces, repeat this or set comma-separated value.
+      --no-follow                       Exit when all logs have been shown.
+      --node string                     Node name to filter on.
+      --only-log-lines                  Print only log lines
+  -o, --output string                   Specify predefined template. Currently support: [default, raw, json, extjson, ppextjson] (default "default")
+      --pod-colors strings              Specifies the colors used to highlight pod names. Provide colors as a comma-separated list using SGR (Select Graphic Rendition) sequences, e.g., "91,92,93,94,95,96".
+  -p, --prompt                          Toggle interactive prompt for selecting 'app.kubernetes.io/instance' label values.
+      --qps float32                     Maximum QPS to the Kubernetes API server. Defaults to 0 (use client-go default). Use -1 to disable client-side throttling.
+  -l, --selector string                 Selector (label query) to filter on. If present, default to ".*" for the pod-query.
+      --show-hidden-options             Print a list of hidden options.
+  -s, --since duration                  Return logs newer than a relative duration like 5s, 2m, or 3h. (default 48h0m0s)
+      --stdin                           Parse logs from stdin. All Kubernetes related flags are ignored when it is set.
+      --tail int                        The number of lines from the end of the logs to show. Defaults to -1, showing all logs. (default -1)
+      --template string                 Template to use for log lines, leave empty to use --output flag.
+  -T, --template-file string            Path to template to use for log lines, leave empty to use --output flag. It overrides --template option.
+  -t, --timestamps string[="default"]   Print timestamps with the specified format. One of 'default' or 'short' in the form '--timestamps=format' ('=' cannot be omitted). If specified but without value, 'default' is used.
+      --timezone string                 Set timestamps to specific timezone. (default "Local")
+      --verbosity int                   Number of the log level verbosity
+  -v, --version                         Print the version and exit.
+
+Use "stern --show-hidden-options" for a list of hidden command-line options.

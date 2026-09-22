@@ -1,0 +1,27 @@
+# synthetic fixture: format modeled on cobra-style two-column output.
+Garden CLI
+
+Usage:
+  garden [command]
+
+Commands:
+  create         Create new Garden environments or projects.
+  delete         Delete resources or data.
+  deploy         Deploy your Deploy actions.
+  exec           Executes a command in a running service.
+  get            Retrieve and output data and objects.
+  login          Log in to Garden Cloud.
+  logout         Log out of Garden Cloud.
+  logs           Retrieves the most recent logs.
+  plugins        Plugin-specific commands.
+  publish        Build and publish artifacts to a remote registry.
+  run            Perform one or more Run actions.
+  self-update    Update the Garden CLI.
+  sync           Manage synchronization to running actions.
+  test           Run all or specified Test actions in the project.
+  tools          Access tools included by providers.
+  util           Misc utility commands.
+  validate       Check your garden configuration for errors.
+
+Flags:
+  -h, --help   help for garden

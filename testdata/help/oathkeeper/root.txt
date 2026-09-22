@@ -1,0 +1,22 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/oathkeeper
+# args: 
+A cloud native Access and Identity Proxy
+
+Usage:
+  oathkeeper [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  credentials Generate RSA, ECDSA, and other keys and output them as JSON Web Keys
+  health      Commands for checking the status of an ORY Oathkeeper deployment
+  help        Help about any command
+  rules       Commands for managing rules
+  serve       Starts the HTTP/2 REST API and HTTP/2 Reverse Proxy
+  version     Display this binary's version, build time and git hash of this build
+
+Flags:
+  -c, --config strings   Path to one or more .json, .yaml, .yml, .toml config files. Values are loaded in the order provided, meaning that the last config file overwrites values from the previous config file.
+  -h, --help             help for oathkeeper
+
+Use "oathkeeper [command] --help" for more information about a command.

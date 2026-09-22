@@ -1,0 +1,56 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/ionosctl
+# args: 
+IonosCTL is a command-line interface for the IONOS CLOUD API.
+
+
+FLAGS:
+  -u, --api-url string    Override default host url (default "https://api.ionos.com")
+  -c, --config string     Configuration file used for authentication (default "/home/ubuntu/.config/ionosctl/config.yaml")
+  -D, --depth int         Level of detail for response objects (default 1)
+  -F, --filters strings   Limit results to results containing the specified filter:KEY1=VALUE1,KEY2=VALUE2
+  -f, --force             Force command to execute without user input
+  -h, --help              Print usage
+      --limit int         Maximum number of items to return per request (default 50)
+      --no-headers        Don't print table headers when table output is used
+      --offset int        Number of items to skip before starting to collect the results
+      --order-by string   Property to order the results by
+  -o, --output string     Desired output format [text|json|api-json] (default "text")
+      --query string      JMESPath query string to filter the output
+  -q, --quiet             Quiet output
+  -t, --timeout int       Timeout in seconds for --wait and other wait operations (default 600)
+  -v, --verbose count     Increase verbosity level [-v, -vv, -vvv]
+      --version           version for ionosctl
+  -w, --wait              Wait for the resource to reach AVAILABLE state after the command completes. No-op for list commands
+
+USAGE:
+  ionosctl [flags]
+
+
+Cloud Services:
+  cdn                     Manage CDN distributions
+  certmanager             Manage SSL certificates
+  compute                 Manage servers, volumes, networking, K8s, load balancers, and more
+  container-registry      Manage container registries
+  dbaas                   Manage database clusters
+  dns                     Manage DNS zones and records
+  kafka                   Manage Kafka clusters and topics
+  logging-service         Manage logging pipelines
+  monitoring              Manage monitoring pipelines
+  object-storage          Object Storage operations for contract-owned buckets
+  vm-autoscaling          Manage VM autoscaling groups and policies
+  vpn                     Manage VPN gateways
+
+Authentication & Configuration:
+  config                  Manage CLI configuration
+  login                   Authenticate and generate a config file
+  token                   Manage authentication tokens
+
+Other:
+  completion              Generate the autocompletion script for the specified shell
+  help                    Help about any command
+  man                     Generate manpages
+  shell                   Start an interactive shell
+  version                 Show the version
+
+Use "ionosctl [command] --help" for more information about a command.

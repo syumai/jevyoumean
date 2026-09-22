@@ -1,10 +1,14 @@
-# Help-parse support matrix. Single source of truth — corpus_test.go asserts
-# these statuses and docs/supported-commands.md is generated from this file.
+#         synthetic (hand-written, for GPL/LGPL/Artistic CLIs), local (not committed)
 # Columns: command, path ("-" = top level), source, status, must_include,
+# Help-parse support matrix. Single source of truth — corpus_test.go asserts
 # must_not_include, note. Lists are comma-separated; "-" means empty.
 # source: capture (real output, permissive license only — see NOTICE.md),
-#         synthetic (hand-written, for GPL/LGPL/Artistic CLIs), local (not committed)
 # status: ok | partial | leaf | empty | bogus | todo | out-of-scope
+# these statuses and docs/supported-commands.md is generated from this file.
+alembic	-	capture	ok	branches,check,current,downgrade,edit,ensure_version	-	-
+ansible-builder	-	capture	ok	create,build,introspect	-	-
+antctl	-	capture	ok	check,completion,get,help,mc,packetcapture	-	-
+apko	-	capture	ok	build,build-minirootfs,clean,completion,dot,erofs	-	-
 apt	-	synthetic	ok	list,search,show,install,remove,update,upgrade	-	dash-separated entries
 argocd	-	capture	ok	account,admin,app,appset,cluster,proj,repo	-	-
 argocd	account	capture	ok	bcrypt,can-i,delete-token,generate-token,get,get-user-info	-	-
@@ -17,6 +21,12 @@ argocd	proj	capture	ok	create,delete,get,list,role,windows	-	-
 argocd	proj role	capture	ok	add-group,add-policy,create,create-token,delete,delete-token	-	-
 argocd	proj windows	capture	ok	add,delete,disable-manual-sync,disable-sync-overrun,enable-manual-sync,enable-sync-overrun	-	-
 argocd	repo	capture	ok	add,get,list,rm	-	-
+asdf	-	capture	ok	v0.20.0,revision,150aaf0,cmd,completion,current	-	-
+atlas	-	capture	ok	config,auth,setup,projects,organizations,users	-	-
+atmos	-	capture	ok	about,ai,ansible,atlantis,auth,aws	-	-
+auth0	-	capture	ok	login,logout,tenants,apps,acul,users	-	-
+authelia	-	capture	ok	access-control,build-info,completion,config,crypto,debug	-	-
+autorestic	-	capture	ok	backup,check,completion,cron,exec,forget	-	-
 aws	-	capture	ok	accessanalyzer,account,acm,acm-pca,alexaforbusiness,amp	-	-
 aws	cloudformation	capture	ok	activate-type,batch-describe-type-configurations,cancel-update-stack,continue-update-rollback,create-change-set,create-stack	-	-
 aws	cloudfront	capture	ok	associate-alias,create-cache-policy,create-cloud-front-origin-access-identity,create-distribution,create-distribution-with-tags,create-field-level-encryption-config	-	-
@@ -36,6 +46,7 @@ aws	s3api	capture	ok	abort-multipart-upload,complete-multipart-upload,copy-objec
 aws	sns	capture	ok	add-permission,check-if-phone-number-is-opted-out,confirm-subscription,create-platform-application,create-platform-endpoint,create-sms-sandbox-phone-number	-	-
 aws	sqs	capture	ok	add-permission,change-message-visibility,change-message-visibility-batch,create-queue,delete-message,delete-message-batch	-	-
 aws	sts	capture	ok	assume-role,assume-role-with-saml,assume-role-with-web-identity,decode-authorization-message,get-access-key-info,get-caller-identity	-	-
+aws-vault	-	capture	ok	help,add,remove,list,rotate,exec	-	-
 az	-	capture	ok	account,aks,acr,configure,find,storage,group,vm	-	-
 az	account	capture	ok	lock,management-group,clear,get-access-token,list,list-locations	-	-
 az	acr	capture	ok	build,check-health,create,delete,import,list,login,show	-	name : desc entries
@@ -55,10 +66,17 @@ az	sql	capture	ok	db,dw,elastic-pool,mi,server,vm	-	name : desc entries
 az	storage	capture	ok	account,blob,container,file,queue,share,table	-	-
 az	vm	capture	ok	create,delete,list,start,stop	-	name : desc entries
 az	webapp	capture	ok	browse,config,create,delete,deployment,list,log,restart,stop	-	name : desc entries
+azd	-	capture	ok	init,up,auth,deploy,down,provision	-	-
+b2	-	capture	ok	b2,account,bucket,file,install-autocomplete,key	-	-
+bicep	-	capture	ok	build,test,build-params,format,generate-params,decompile	-	-
+bin	-	capture	ok	completion,ensure,help,install,list,pin	-	-
+bk	-	capture	ok	api,browse,init,update,version,install	-	-
+bom	-	capture	ok	completion,document,generate,help,validate,version	-	-
 borg	-	capture	ok	benchmark,break-lock,check,compact,config,create	-	-
 borg	init	capture	leaf	-	-	-
 borg	key	capture	ok	export,export-related-secrets,import,change-passphrase,migrate-to-repokey	-	-
 brew	-	capture	ok	search,install,list,create,edit,help,upgrade,uninstall,info	-	tool-prefixed usage lines
+buildctl	-	capture	ok	du,prune,prune-histories,build,debug,help	-	-
 bun	-	capture	ok	install,add,remove,run,test,update	-	-
 bun	add	capture	leaf	-	-	-
 bun	install	capture	leaf	-	-	-
@@ -70,28 +88,48 @@ bundler	-	capture	empty	-	-	-
 bundler	list	local	leaf	-	-	-
 caddy	-	capture	ok	adapt,add-package,build-info,completion,environ,file-server	-	-
 caddy	fmt	capture	leaf	-	-	-
+calicoctl	-	capture	ok	calicoctl,create,replace,apply,patch,delete	-	-
 cargo	-	capture	ok	build,check,run,test,new,install,publish	-	-
 cargo	doc	capture	leaf	-	-	leaf command, no subcommands
 cargo	install	capture	leaf	-	-	leaf command, no subcommands
+cerbosctl	-	capture	ok	decisions,audit,version,delete-files,upload-git,list-files	-	-
 certbot	-	capture	ok	certonly,renew,expiry,enhance,certificates,revoke	-	-
+cfssl	-	capture	ok	crl,sign,scan,revoke,bundle,gencert	-	-
+chalice	-	capture	ok	delete,deploy,dev,gen-policy,generate-models,generate-pipeline	-	-
+checkov	-	capture	empty	-	-	-
 chezmoi	-	capture	ok	doctor,help,license,add,apply,chattr	-	-
 chezmoi	apply	capture	leaf	-	-	-
 chezmoi	data	capture	leaf	-	-	-
 chezmoi	managed	capture	leaf	-	-	-
+cilium	-	capture	ok	bgp,clustermesh,completion,config,connectivity,context	-	-
+clusterctl	-	capture	ok	delete,generate,get,init,move,upgrade	-	-
+cmctl	-	capture	ok	approve,check,completion,convert,create,deny	-	-
 composer	-	capture	ok	about,archive,browse,check-platform-reqs,clear-cache,completion	-	-
 composer	config	capture	leaf	-	-	-
+conan	-	capture	ok	cache,config,graph,inspect,install,list	-	-
+conftest	-	capture	ok	completion,doc,fmt,help,parse,plugin	-	-
+copilot	-	capture	ok	init,docs,app,env,svc,job	-	-
 cosign	-	capture	ok	attest,attest-blob,bundle,clean,completion,download	-	-
 cosign	verify	local	leaf	-	-	-
+crane	-	capture	ok	append,auth,blob,catalog,completion,config	-	-
+crictl	-	capture	ok	attach,checkpoint,completion,config,create,events	-	-
 curl	-	local	out-of-scope	-	-	no subcommand concept
 dagger	-	capture	ok	login,logout,call,config,core,develop	-	-
 dagger	functions	capture	leaf	-	-	-
 dagger	install	capture	leaf	-	-	-
+dapr	-	capture	ok	annotate,build-info,completion,components,configurations,help	-	-
+dbmate	-	capture	ok	new,up,create,drop,migrate,rollback	-	-
 dbt	-	capture	ok	build,clean,clone,compile,debug,deps	-	-
 dbt	docs	capture	ok	generate,serve	-	-
+ddev	-	capture	ok	add-on,aliases,auth,clean,completion,composer	-	-
+deck	-	capture	ok	ai,completion,convert,diff,dump,file	-	-
 deno	-	capture	ok	run,test,fmt,lint,install,task,eval,cache,check,doc	-	-
 deno	jupyter	capture	leaf	-	-	leaf command, no subcommands
 deno	publish	capture	leaf	-	-	leaf command, no subcommands
 deno	task	capture	leaf	-	-	leaf command, no subcommands
+devbox	-	capture	ok	add,completion,create,generate,global,help	-	-
+devspace	-	capture	ok	add,analyze,attach,build,cleanup,completion	-	-
+dgraph	-	capture	ok	help,version,alpha,zero,bulk,import	-	-
 docker	-	capture	ok	run,ps,images,login,version,info	-	-
 docker	builder	capture	ok	bake,build,create,inspect,ls,prune,rm,use	-	-
 docker	buildx	capture	ok	dap,history,imagetools,policy,bake,build	-	-
@@ -113,6 +151,9 @@ doctl	databases	capture	ok	backups,configuration,connection,create,db,delete	-	-
 doctl	kubernetes	capture	ok	1-click,cluster,options	-	-
 doctl	registry	capture	ok	create,delete,docker-config,garbage-collection,get,kubernetes-manifest	-	-
 doctl	vpcs	capture	ok	create,delete,get,list,peerings,update	-	-
+dprint	-	capture	ok	init,add,fmt,check,config,file-paths	-	-
+draft	-	capture	ok	completion,create,generate-workflow,help,info,setup-gh	-	-
+egctl	-	capture	ok	completion,config,experimental,help,version	-	-
 eksctl	-	capture	ok	create,delete,get,update,upgrade	-	-
 eksctl	associate	capture	empty	-	-	-
 eksctl	create	capture	ok	cluster,addon,nodegroup,iamserviceaccount	-	-
@@ -124,6 +165,10 @@ eksctl	set	capture	empty	-	-	-
 eksctl	update	capture	ok	iamserviceaccount,nodegroup,podidentityassociation,addon,auto-mode-config,capability	-	-
 eksctl	upgrade	capture	ok	cluster,nodegroup	-	-
 eksctl	utils	capture	ok	describe-stacks,schema,update-aws-node,update-kube-proxy,update-zonal-shift-config,migrate-to-access-entry	-	-
+etcdctl	-	capture	ok	compaction,del,get,lease,put,txn	-	-
+faas-cli	-	capture	ok	build,chart,completion,deploy,describe,diff	-	-
+falcoctl	-	capture	ok	artifact,completion,driver,help,index,registry	-	-
+fga	-	capture	ok	completion,help,mapping,model,query,store	-	-
 firebase	-	capture	ok	deploy,init,login,serve,emulators,functions,hosting	-	pipe-alias namespaced names
 firebase	apps	capture	ok	apps:create,apps:list,apps:init,apps:sdkconfig,apps:android	-	-
 firebase	database	capture	ok	database:get,database:import,database:profile,database:push,database:remove,database:set	-	-
@@ -143,6 +188,10 @@ flux	logs	capture	leaf	-	-	-
 flux	reconcile	capture	ok	helmrelease,kustomization,source	-	-
 flux	tree	capture	ok	artifact,kustomization	-	-
 flyctl	-	capture	ok	apps,deploy,launch,machine,secrets,volumes	-	-
+func	-	capture	ok	create,describe,deploy,delete,list,subscribe	-	-
+gadgetctl	-	local	todo		-	help capture times out
+garden	-	synthetic	ok	create,delete,deploy,exec,get,login	-	-
+gator	-	capture	ok	bench,completion,expand,help,policy,sync	-	-
 gcloud	-	local	ok	auth,config,compute,container,functions	-	parses; fixture not committed (proprietary)
 gcloud	config	local	ok	get,list,set,unset	-	parses; fixture not committed (proprietary); AVAILABLE PROPERTIES skipped
 gh	-	capture	ok	auth,pr,issue,repo,run,release,browse	-	-
@@ -167,6 +216,7 @@ gh	secret	capture	ok	delete,list,set	-	-
 gh	ssh-key	capture	ok	add,delete,list	-	-
 gh	variable	capture	ok	delete,get,list,set	-	-
 gh	workflow	capture	ok	disable,enable,list,run,view	-	-
+ghq	-	capture	ok	get,list,rm,root,create,migrate	-	-
 git	-	synthetic	ok	add,branch,checkout,commit,rm,status,switch	-	help_args: help -a
 git	bisect	synthetic	ok	start,bad,good,skip,reset,visualize,replay,log,run	-	man-page COMMANDS section
 git	config	synthetic	leaf	-	GIT_CONFIG_GLOBAL,GIT_CONFIG_SYSTEM	env-var sections are skipped
@@ -174,6 +224,9 @@ git	remote	synthetic	ok	add,rename,remove,show,prune	-	man-page COMMANDS section
 git	stash	synthetic	ok	push,list,show,pop,apply,drop,clear	-	man-page COMMANDS section
 git	submodule	synthetic	ok	add,status,init,deinit,update,foreach,sync	-	man-page COMMANDS section
 git	worktree	synthetic	ok	add,list,lock,move,prune,remove,repair,unlock	-	man-page COMMANDS section
+git-lfs	-	capture	ok	uninstall,dedup,env,install,pull,untrack	-	-
+git-town	-	capture	ok	hack,propose,sync,append,combine,commit	-	-
+gitlab-runner	-	capture	ok	list,lint,register,reset-token,run,run-single	-	-
 glab	-	capture	ok	alias,api,auth,ci,config,issue,mr,release,repo	-	-
 glab	auth	capture	ok	login,logout,status	-	-
 glab	ci	capture	ok	artifact,cancel,lint,list,run-trig	-	-
@@ -186,12 +239,18 @@ go	-	capture	ok	build,test,run,mod,get,install,vet,work	-	-
 go	mod	capture	ok	download,edit,graph,init,tidy,vendor,verify,why	-	-
 go	tool	capture	ok	asm,cgo,compile,cover,fix,link,vet	-	bare-name col-0 lines; help_args: bare
 go	work	capture	ok	edit,init,sync,use,vendor	-	-
+goose	-	capture	ok	up,up-by-one,up-to,down,down-to,redo	-	-
 goreleaser	-	capture	ok	build,check,completion,healthcheck,help,init	-	-
 govc	-	capture	ok	about,about.cert,alarm.info,alarms,cluster.add,cluster.change	-	-
 govc	cluster.create	capture	leaf	-	-	-
 gradle	-	local	out-of-scope	-	-	goals defined by plugins, not in --help
+granted	-	capture	ok	browser,settings,completion,token,sso-tokens,uninstall	-	-
 grype	-	capture	ok	completion,config,db,explain,help,version	-	-
 grype	db	capture	ok	check,delete,diff,import,list,providers	-	-
+gscloud	-	capture	ok	completion,help,info,ip,iso-image,kubernetes	-	-
+gsutil	-	capture	ok	acl,autoclass,bucketpolicyonly,cat,compose,config	-	-
+gum	-	capture	ok	choose,confirm,file,filter,format,input	-	-
+hasura	-	local	todo		-	interactive CLI; help capture times out
 hatch	-	capture	ok	build,config,dep,env,new,publish,run,test	-	-
 hatch	build	capture	leaf	-	-	-
 hatch	config	capture	ok	explore,find,restore,set,show,update	-	-
@@ -218,20 +277,42 @@ helm	show	capture	ok	all,chart,crds,readme,values	-	-
 helmfile	-	capture	ok	apply,build,deps,destroy,diff,lint,sync,template	-	-
 helmfile	cache	capture	ok	cleanup,info	-	-
 helmfile	repos	capture	leaf	-	-	-
+hub	-	capture	ok	clone,init,add,mv,restore,rm	-	-
+hubble	-	capture	ok	completion,config,help,list,observe,status	-	-
 hugo	-	capture	ok	build,completion,config,convert,env,gen	-	-
 hugo	config	capture	ok	mounts	-	-
 hugo	mod	capture	ok	clean,get,graph,init,npm,tidy	-	-
 hugo	new	capture	leaf	-	-	-
+hydra	-	capture	ok	completion,create,delete,get,help,import	-	-
+ignite	-	capture	ok	image,kernel,vm,attach,completion,cp	-	-
+infracost	-	capture	ok	auth,breakdown,comment,completion,configure,diff	-	-
+ionosctl	-	capture	ok	cdn,certmanager,compute,container-registry,dbaas,dns	-	-
 istioctl	-	capture	ok	admin,analyze,install,proxy-config,uninstall,upgrade,waypoint	-	single-space long-name entries
 istioctl	proxy-config	capture	ok	all,bootstrap,cluster,ecds,endpoint,listener	-	-
 istioctl	tag	capture	ok	generate,list,remove,set	-	-
 istioctl	waypoint	capture	ok	apply,delete,generate,list,status	-	-
 jq	-	local	out-of-scope	-	-	no subcommand concept
 just	-	capture	empty		-	-
+jx	-	capture	ok	dashboard,namespace,upgrade,version,add,get	-	-
+k0s	-	capture	ok	airgap,api,backup,completion,config,controller	-	-
+k3d	-	capture	ok	cluster,completion,config,help,image,kubeconfig	-	-
+k8sgpt	-	capture	ok	analyze,auth,cache,completion,custom-analyzer,dump	-	-
 k9s	-	capture	ok	completion,info	-	-
 k9s	info	capture	leaf	-	-	-
+keptn	-	capture	ok	abort,add-resource,auth,completion,configure,create	-	-
+keto	-	capture	ok	check,completion,expand,help,migrate,relation-tuple	-	-
 kind	-	capture	ok	build,create,delete,export,get,load	-	-
 kind	get	capture	ok	clusters,kubeconfig,nodes	-	-
+kn	-	capture	ok	service,revision,route,domain,container,source	-	-
+ko	-	capture	ok	apply,build,completion,create,delete,help	-	-
+kopia	-	capture	ok	help,benchmark,diff,list,notification,server	-	-
+kops	-	capture	ok	completion,create,delete,distrust,edit,export	-	-
+kratos	-	capture	ok	cleanup,completion,courier,delete,format,get	-	-
+kube-bench	-	capture	ok	completion,help,run,version	-	-
+kube-capacity	-	capture	ok	completion,help,version	-	-
+kube-score	-	capture	empty	-	-	-
+kubeaudit	-	capture	ok	all,apparmor,asat,autofix,capabilities,completion	-	-
+kubecm	-	capture	ok	add,alias,clear,cloud,completion,create	-	-
 kubectl	-	capture	ok	get,apply,describe,delete,logs,exec,create,rollout	-	-
 kubectl	api-resources	capture	leaf	-	-	leaf command, no subcommands
 kubectl	auth	capture	ok	can-i,reconcile,whoami	-	-
@@ -242,15 +323,29 @@ kubectl	label	capture	leaf	-	-	-
 kubectl	rollout	capture	ok	history,pause,restart,resume,status,undo	-	-
 kubectl	set	capture	ok	env,image,resources,selector,serviceaccount,subject	-	-
 kubectl	top	capture	ok	node,pod	-	-
+kubectl-ai	-	capture	ok	completion,help,version	-	-
+kubectl-argo-rollouts	-	capture	ok	abort,completion,create,dashboard,get,help	-	-
 kubectl-krew	-	capture	ok	help,index,info,install,list,search	-	-
 kubectl-krew	index	capture	ok	add,list,remove	-	-
+kubectl-who-can	-	capture	ok	pods,pods.metrics.k8s.io	-	-
+kubectx	-	capture	empty	-	-	-
+kubefwd	-	capture	ok	mcp,version,completion,help,services	-	-
+kubeone	-	capture	ok	addons,apply,certificates,completion,config,document	-	-
+kubescape	-	capture	ok	completion,config,decrypt,diff,download,fix	-	-
+kubeseal	-	capture	empty	-	-	-
 kustomize	-	capture	ok	build,cfg,create,edit,fn,localize	-	-
 kustomize	cfg	capture	ok	cat,count,grep,tree	-	-
 kustomize	edit	capture	ok	add,nameprefix,namesuffix	-	-
+kyverno	-	capture	ok	apply,completion,create,docs,help,jp	-	-
+lab	-	capture	ok	ci,clone,completion,fork,help,issue	-	-
+lego	-	capture	ok	run,certificates,accounts,archives,dnshelp,migrate	-	-
 linkerd	-	capture	ok	authz,check,diagnostics,inject,install	-	-
 linkerd	viz	capture	ok	allow-scrapes,authz,check,dashboard,edges,install	-	-
 linode-cli	-	local	todo	-	-	crashes without API token; fixture not committed
+litecli	-	capture	empty	-	-	-
+litefs	-	capture	ok	export,import,mount,run,version	-	-
 make	-	local	out-of-scope	-	-	no subcommand concept
+melange	-	capture	ok	build,bump,compile,completion,help,index	-	-
 meson	-	capture	ok	setup,configure,dist,install,test,compile	-	-
 meson	compile	capture	leaf	-	-	-
 meson	dist	capture	leaf	-	-	-
@@ -259,6 +354,8 @@ meson	setup	capture	leaf	-	-	-
 meson	subprojects	capture	ok	update,checkout,download,foreach,purge,packagefiles	-	-
 meson	test	capture	leaf	-	-	-
 meson	wrap	capture	ok	list,search,install,update,status,promote	-	-
+micromamba	-	capture	ok	shell,create,install,update,self-update,repoquery	-	-
+migrate	-	capture	ok	create,goto,up,down,drop,force	-	-
 minikube	-	capture	ok	start,status,stop,delete,dashboard,addons,service,tunnel	-	-
 minikube	addons	capture	ok	configure,disable,enable,images,list,open	-	-
 minikube	config	capture	ok	defaults,get,set,unset,view	-	-
@@ -267,6 +364,7 @@ minikube	node	capture	ok	add,delete,list,start,stop	-	-
 minikube	profile	capture	ok	list	-	-
 minikube	service	capture	ok	list	-	-
 minikube	tunnel	capture	leaf	-	-	-
+mirrord	-	capture	ok	container,exec,dump,completions,operator,port-forward	-	-
 mise	-	capture	ok	use,install,ls,exec,run,uninstall,shell,which	-	-
 mise	cache	capture	ok	clear,path,prune	-	-
 mise	plugins	capture	ok	install,link,ls,ls-remote,uninstall,update	-	-
@@ -275,7 +373,12 @@ mise	settings	capture	ok	get,ls,set,unset	-	-
 mise	tasks	capture	ok	add,deps,edit,graph,info,ls,run	-	-
 mkdocs	-	capture	ok	build,get-deps,gh-deploy,new,serve	-	-
 mkdocs	gh-deploy	capture	leaf	-	-	-
+molecule	-	capture	ok	verbose,env_file,check,cleanup,converge,create	-	-
+mongosh	-	capture	empty	-	-	-
 mvn	-	capture	out-of-scope	-	-	goals defined by plugins, not in --help
+mycli	-	capture	empty	-	-	-
+nats	-	capture	ok	account,audit,auth,backup,bench,consumer	-	-
+nerdctl	-	capture	ok	apparmor,builder,checkpoint,container,image,ipfs	-	-
 netlify	-	capture	ok	deploy,dev,env,functions,init,link,sites	-	$ sigil entries
 netlify	deploy	capture	leaf	-	-	-
 netlify	env	capture	ok	env:get,env:list,env:set,env:unset	-	namespaced a:b entries
@@ -283,9 +386,22 @@ netlify	functions	capture	ok	functions:build,functions:create,functions:invoke,f
 netlify	link	capture	leaf	-	-	-
 netlify	open	capture	ok	open:admin,open:site	-	-
 netlify	sites	capture	ok	sites:create,sites:delete,sites:list,sites:search	-	-
+nfpm	-	capture	ok	completion,help,init,jsonschema,package	-	-
+nitric	-	capture	ok	add,build,completion,debug,down,help	-	-
+notation	-	capture	ok	certificate,completion,help,inspect,key,list	-	-
 npm	-	synthetic	ok	access,ci,config,init,install,uninstall	-	comma inventory format
 npm	cache	synthetic	ok	add,ls,clean,verify	-	2-token prefixed synopsis lines
 npm	config	synthetic	ok	set,get,delete,list,edit,fix	-	-
+nsc	-	capture	ok	add,completion,delete,describe,edit,env	-	-
+nuctl	-	capture	ok	beta,build,completion,create,delete,deploy	-	-
+oathkeeper	-	capture	ok	completion,credentials,health,help,rules,serve	-	-
+oci	-	capture	ok	raw-request,session,setup,ai,ai-document,ai-vision	-	-
+ocm	-	capture	ok	account,cluster,completion,config,create,delete	-	-
+okteto	-	capture	ok	analytics,build,completion,context,deploy,destroy	-	-
+opa	-	capture	ok	bench,build,capabilities,check,completion,deps	-	-
+openstack	-	capture	ok	complete,help,set,show,unset,create	-	-
+oras	-	capture	ok	attach,backup,blob,completion,cp,discover	-	-
+osv-scanner	-	capture	ok	scan,fix,experimental-mcp	-	-
 pack	-	capture	ok	build,builder,buildpack,extension,inspect,stack,rebase,sbom	-	-
 pdm	-	capture	ok	add,build,install,lock,outdated,publish	-	-
 pdm	cache	capture	ok	clear,remove,list,info	-	-
@@ -297,11 +413,14 @@ pdm	python	capture	ok	list,remove,install,link,find	-	-
 pdm	venv	capture	ok	create,list,remove,activate,purge	-	-
 pip	-	capture	ok	install,download,uninstall,freeze,list,show	-	-
 pip	install	capture	leaf	-	Install,packages,from	leaf command, no subcommands
+pipenv	-	capture	ok	install,remove,upgrade,uninstall,lock,shell	-	-
 pipx	-	capture	ok	install,inject,list,run,uninstall,upgrade	-	-
 pipx	list	capture	leaf	-	-	-
+pixi	-	capture	ok	add,auth,clean,completion,config,exec	-	-
 pnpm	-	capture	ok	add,install,remove,run,update,outdated,publish,dlx,create	-	-
 pnpm	env	capture	empty	-	-	deprecated; help does not list subcommands
 pnpm	store	capture	ok	status,add,prune,path	-	-
+pocketbase	-	capture	ok	migrate,serve,superuser,update	-	-
 podman	-	capture	ok	attach,auto-update,build,commit,container,cp	-	-
 podman	container	capture	ok	attach,checkpoint,cleanup,commit,cp,create	-	-
 podman	image	capture	ok	build,diff,exists,history,import,inspect	-	-
@@ -317,12 +436,16 @@ poetry	env	capture	ok	activate,info,list,remove,use	-	namespaced name: desc entr
 poetry	plugin	capture	empty	-	-	-
 poetry	self	capture	ok	add,install,lock,remove,show,sync,update	-	namespaced name: desc entries
 poetry	source	capture	ok	add,remove,show	-	namespaced name: desc entries
+popeye	-	capture	ok	completion,help,info,version	-	-
+porter	-	capture	ok	bundles,credentials,mcp,archive,build,copy	-	-
+pre-commit	-	capture	ok	autoupdate,clean,gc,hazmat,init-templatedir,install	-	-
 promtool	-	capture	ok	web-config,healthy,ready,rules,metrics,service-discovery	-	-
 promtool	check	capture	ok	ready,rules,metrics,service-discovery,config,web-config	-	-
 promtool	promql	capture	ok	set,delete	-	-
 promtool	query	capture	ok	analyze,instant,range,series,labels	-	-
 promtool	test	capture	empty		-	-
 promtool	tsdb	capture	ok	analyze,list,dump,dump-openmetrics	-	-
+pscale	-	capture	ok	backup,branch,database,insights,inspect,logs	-	-
 pulumi	-	capture	ok	new,config,stack,up,destroy,preview,login,org	-	-
 pulumi	config	capture	ok	get,refresh,remove,set	-	-
 pulumi	env	capture	ok	clone,diff,edit,get,init,list	-	-
@@ -330,6 +453,7 @@ pulumi	org	capture	ok	audit-log,get-default,member,role,search,set-default	-	-
 pulumi	plugin	capture	ok	install,list,remove,run	-	-
 pulumi	stack	capture	ok	export,graph,history,list,output,select,tag	-	-
 pulumi	state	capture	ok	get,move,promote,protect,remove,rename	-	-
+pyenv	-	capture	ok	activate,binary,commands,deactivate,doctor,exec	-	-
 python3	-	local	out-of-scope	-	-	no subcommand concept
 railway	-	capture	ok	add,deploy,down,init,link,logs,up,variable	-	-
 railway	environment	capture	ok	link,new,delete,edit,list	-	-
@@ -338,12 +462,20 @@ railway	variable	capture	ok	list,set,delete,edit,help	-	-
 railway	volume	capture	ok	list,add,delete,update,detach,files	-	-
 rancher	-	capture	ok	clusters,context,inspect,kubectl,login,machines	-	-
 rancher	clusters	capture	ok	ls,create,import,add-node,delete,export	-	-
+rbac-tool	-	capture	ok	analysis,auditgen,bash-completion,completion,generate,help	-	-
 rclone	-	capture	ok	about,archive,authorize,backend,bisync,cat	-	-
 rclone	backend	capture	empty	-	-	-
 rclone	config	capture	ok	create,delete,disconnect,dump,edit,encryption	-	-
+rekor-cli	-	capture	ok	completion,get,help,loginfo,logproof,search	-	-
 restic	-	capture	ok	backup,cache,cat,check,copy,diff	-	-
 restic	key	capture	ok	add,list,passwd,remove	-	-
 restic	snapshots	capture	leaf	-	-	-
+rke	-	capture	ok	up,remove,version,config,etcd,cert	-	-
+rosa	-	capture	ok	completion,config,create,delete,describe,download	-	-
+rqlite	-	capture	ok	address,port	-	-
+ruff	-	capture	ok	check,rule,config,linter,clean,format	-	-
+runsc	-	capture	ok	bwrap,checkpoint,create,delete,do,events	-	-
+rustic	-	capture	ok	backup,cat,config,completions,check,copy	-	-
 rustup	-	capture	ok	toolchain,component,update,show,default,target	-	-
 rustup	component	capture	ok	list,add,remove	-	-
 rustup	override	capture	ok	list,set,unset	-	-
@@ -358,12 +490,20 @@ rye	self	capture	ok	completion,update,uninstall,help	-	-
 rye	sync	capture	leaf	-	-	-
 rye	toolchain	capture	ok	fetch,list,register,remove	-	-
 rye	tools	capture	ok	install,uninstall,list	-	-
+saml2aws	-	capture	ok	help,configure,login,exec,console,list-roles	-	-
+scw	-	capture	ok	inference,annotations,autoscaling,datalab,domain,environmental-footprint	-	-
+sealos	-	local	todo		-	SEALOS Sustainable Use License — inspect locally, do not commit output
 skaffold	-	capture	ok	run,dev,debug,build,test,deploy,render,verify	-	-
 sops	-	synthetic	ok	decrypt,encrypt,edit,set,unset,rotate,updatekeys	-	-
 sops	exec-env	local	leaf	-	-	-
+spacectl	-	capture	ok	profile,whoami,version,module,stack,provider	-	-
+sqlc	-	capture	ok	compile,completion,createdb,diff,generate,help	-	-
 ssh	-	local	out-of-scope	-	-	no subcommand concept
+stackit	-	capture	ok	affinity-group,auth,beta,completion,config,curl	-	-
 starship	-	capture	ok	bug-report,completions,config,explain,init,module	-	-
 starship	preset	capture	leaf	-	-	-
+step	-	capture	ok	help,base64,path,certificate,completion,context	-	-
+stern	-	capture	empty	-	-	-
 stripe	-	capture	ok	listen,trigger,charges,customers,payment_intents	-	-
 stripe	balance	capture	leaf	-	-	-
 stripe	charges	capture	ok	capture,create,list,retrieve,search,update	-	-
@@ -385,11 +525,15 @@ supabase	projects	capture	ok	list,create,api-keys,delete	-	-
 supabase	start	capture	leaf	-	-	-
 syft	-	capture	ok	attest,cataloger,completion,config,convert,help	-	-
 syft	scan	capture	leaf	-	-	-
+symfony	-	synthetic	ok	book,book:check-requirements,book:checkout,cloud,cloud:clear-cache,cloud:console	-	-
 systemctl	-	synthetic	ok	is-system-running,daemon-reload,daemon-reexec,poweroff,reboot,default,start,stop,status,enable,disable,list-units,show	-	[ARG...] placeholders skipped
 tar	-	synthetic	leaf	-	none,t,nil,never,literal	option-value sections are skipped
 task	-	capture	empty		-	-
 terraform	-	local	ok	init,plan,apply,destroy,fmt,validate	-	parses; fixture not committed (BUSL)
 terraform	state	local	ok	list,mv,rm,show,pull	-	parses; fixture not committed (BUSL)
+terragrunt	-	capture	ok	backend,exec,run,stack,catalog,scaffold	-	-
+terramate	-	synthetic	ok	create,fmt,list,run,generate,script	-	-
+terrascan	-	capture	ok	init,scan,server,version	-	-
 tilt	-	capture	ok	apply,ci,create,delete,describe,down,up	-	-
 tkn	-	capture	ok	clustertriggerbinding,customrun,eventlistener,hub,pipeline,pipelinerun	-	-
 tkn	hub	capture	ok	check-upgrade,downgrade,get,info,install,reinstall	-	-
@@ -398,10 +542,16 @@ tmux	-	capture	ok	attach-session,new-session,kill-session,list-sessions,send-key
 tofu	-	synthetic	ok	init,validate,plan,apply,destroy,workspace,state	-	-
 tofu	state	synthetic	ok	list,mv,pull,push,replace-provider,rm,show	-	-
 tofu	workspace	synthetic	ok	delete,list,new,select,show	-	-
+topaz	-	capture	ok	start,stop,restart,status,config,run	-	-
+tox	-	capture	ok	run,r,run-parallel,p,depends,de	-	-
 traefik	-	capture	ok	healthcheck,version	-	-
 trivy	-	capture	ok	config,filesystem,image,kubernetes,repository,rootfs	-	-
 trivy	registry	capture	ok	login,logout	-	-
 trivy	server	capture	leaf	-	-	-
+turso	-	capture	ok	auth,config,db,dev,group,help	-	-
+twine	-	capture	ok	check,upload,register	-	-
+ubi	-	capture	empty	-	-	-
+upctl	-	capture	ok	account,audit-log,completion,database,file-storage,gateway	-	-
 uv	-	capture	ok	auth,run,init,add,remove,sync,lock,export,tool,python,pip,venv	-	-
 uv	cache	capture	ok	clean,prune,dir,size	-	-
 uv	pip	capture	ok	compile,sync,install,uninstall,freeze,list,show,tree,check	-	-
@@ -409,6 +559,7 @@ uv	python	capture	ok	list,install,upgrade,find,pin,uninstall	-	-
 uv	self	capture	ok	update,version	-	-
 uv	tool	capture	ok	run,install,upgrade,list,uninstall	-	-
 uv	venv	capture	leaf	-	-	leaf command, no subcommands
+vcluster	-	capture	ok	certs,completion,connect,create,credits,debug	-	-
 velero	-	capture	ok	backup,backup-location,bug,client,completion,create	-	-
 velero	backup	capture	ok	create,delete,describe,download,get,logs	-	-
 velero	backup-location	capture	ok	create,delete,get,set	-	-
@@ -433,6 +584,8 @@ volta	-	capture	ok	fetch,install,uninstall,pin,list,completions	-	-
 volta	list	capture	leaf	-	-	-
 vultr-cli	-	capture	ok	account,apps,backups,bare-metal,billing,block-storage	-	-
 vultr-cli	instance	capture	ok	app,backup,bandwidth,create,delete,get	-	-
+woodpecker-cli	-	capture	ok	admin,context,exec,info,lint,org	-	-
+wp	-	capture	ok	cache,cap,cli,comment,config,core	-	-
 wrangler	-	capture	ok	login,containers,pages,vectorize,tunnel,deployments,whoami	-	-
 wrangler	d1	capture	ok	create,delete,execute,export,list,migrations,time-travel	-	-
 wrangler	hyperdrive	capture	ok	delete,get,list,planetscale,update,create	-	-
@@ -450,8 +603,10 @@ wrangler	r2 object	capture	ok	get,put,delete	-	-
 wrangler	vectorize	capture	ok	create,delete,get,list,query,insert	-	-
 wrangler	versions	capture	ok	list,upload,deploy,secret,view	-	-
 yarn	-	capture	ok	add,install,remove,run,config,why,dlx,init	-	tool-prefixed usage lines
+zed	-	capture	ok	backup,completion,context,help,import,mcp	-	-
 zellij	-	capture	ok	options,setup,web,action,list-sessions,list-aliases	-	-
 zellij	action	capture	ok	write,write-chars,paste,send-keys,resize,focus-next-pane	-	-
 zellij	setup	capture	leaf	-	-	-
 zellij	web	capture	leaf	-	-	-
+zitadel	-	synthetic	ok	completion,help,init,keys,mirror,ready	-	-
 zola	-	synthetic	ok	init,build,serve,check,completion,help	-	-

@@ -10,6 +10,10 @@ has no documented subcommands (empty is correct), **empty** currently
 yields nothing, **bogus** extracts words that are not subcommands,
 **todo** is tracked for support, **out-of-scope** will not be supported.
 
+- [x] `alembic` — ok (15 parsed)
+- [x] `ansible-builder` — ok (3 parsed)
+- [x] `antctl` — ok (12 parsed)
+- [x] `apko` — ok (13 parsed)
 - [x] `apt` — ok (7 parsed; dash-separated entries)
 - **argocd**
   - [x] `argocd` — ok (18 parsed)
@@ -17,12 +21,18 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `argocd admin` — ok (11 parsed)
   - [x] `argocd admin notifications` — ok (2 parsed)
   - [x] `argocd app` — ok (24 parsed)
-  - [x] `argocd cluster` — ok (4 parsed)
+  - [x] `argocd cluster` — ok (5 parsed)
   - [x] `argocd ctx` — leaf
   - [x] `argocd proj` — ok (23 parsed)
   - [x] `argocd proj role` — ok (11 parsed)
   - [x] `argocd proj windows` — ok (8 parsed)
   - [x] `argocd repo` — ok (4 parsed)
+- [x] `asdf` — ok (22 parsed)
+- [x] `atlas` — ok (37 parsed)
+- [x] `atmos` — ok (44 parsed)
+- [x] `auth0` — ok (12 parsed)
+- [x] `authelia` — ok (11 parsed)
+- [x] `autorestic` — ok (13 parsed)
 - **aws**
   - [x] `aws` — ok (302 parsed)
   - [x] `aws cloudformation` — ok (69 parsed)
@@ -43,6 +53,7 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `aws sns` — ok (41 parsed)
   - [x] `aws sqs` — ok (21 parsed)
   - [x] `aws sts` — ok (9 parsed)
+- [x] `aws-vault` — ok (9 parsed)
 - **az**
   - [x] `az` — ok (101 parsed)
   - [x] `az account` — ok (8 parsed)
@@ -63,11 +74,18 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `az storage` — ok (20 parsed)
   - [x] `az vm` — ok (46 parsed; name : desc entries)
   - [x] `az webapp` — ok (31 parsed; name : desc entries)
+- [x] `azd` — ok (27 parsed)
+- [x] `b2` — ok (12 parsed)
+- [x] `bicep` — ok (17 parsed)
+- [x] `bin` — ok (10 parsed)
+- [x] `bk` — ok (31 parsed)
+- [x] `bom` — ok (6 parsed)
 - **borg**
   - [x] `borg` — ok (25 parsed)
   - [x] `borg init` — leaf
   - [x] `borg key` — ok (5 parsed)
 - [x] `brew` — ok (9 parsed; tool-prefixed usage lines)
+- [x] `buildctl` — ok (6 parsed)
 - **bun**
   - [x] `bun` — ok (25 parsed)
   - [x] `bun add` — leaf
@@ -82,37 +100,57 @@ yields nothing, **bogus** extracts words that are not subcommands,
 - **caddy**
   - [x] `caddy` — ok (24 parsed)
   - [x] `caddy fmt` — leaf
+- [x] `calicoctl` — ok (14 parsed)
 - **cargo**
   - [x] `cargo` — ok (16 parsed)
   - [x] `cargo doc` — leaf (leaf command, no subcommands)
   - [x] `cargo install` — leaf (leaf command, no subcommands)
+- [x] `cerbosctl` — ok (10 parsed)
 - [x] `certbot` — ok (12 parsed)
+- [x] `cfssl` — ok (19 parsed)
+- [x] `chalice` — ok (13 parsed)
+- [ ] `checkov` — empty
 - **chezmoi**
   - [x] `chezmoi` — ok (47 parsed)
   - [x] `chezmoi apply` — leaf
   - [x] `chezmoi data` — leaf
   - [x] `chezmoi managed` — leaf
+- [x] `cilium` — ok (17 parsed)
+- [x] `clusterctl` — ok (13 parsed)
+- [x] `cmctl` — ok (13 parsed)
 - **composer**
   - [x] `composer` — ok (31 parsed)
   - [x] `composer config` — leaf
+- [x] `conan` — ok (23 parsed)
+- [x] `conftest` — ok (11 parsed)
+- [x] `copilot` — ok (14 parsed)
 - **cosign**
   - [x] `cosign` — ok (25 parsed)
   - [x] `cosign verify` — leaf (fixture not committed)
+- [x] `crane` — ok (23 parsed)
+- [x] `crictl` — ok (35 parsed)
 - [ ] `curl` — out-of-scope (fixture not committed; no subcommand concept)
 - **dagger**
   - [x] `dagger` — ok (18 parsed)
   - [x] `dagger functions` — leaf
   - [x] `dagger install` — leaf
+- [x] `dapr` — ok (21 parsed)
+- [x] `dbmate` — ok (12 parsed)
 - **dbt**
   - [x] `dbt` — ok (18 parsed)
   - [x] `dbt docs` — ok (2 parsed)
+- [x] `ddev` — ok (33 parsed)
+- [x] `deck` — ok (14 parsed)
 - **deno**
   - [x] `deno` — ok (48 parsed)
   - [x] `deno jupyter` — leaf (leaf command, no subcommands)
   - [x] `deno publish` — leaf (leaf command, no subcommands)
   - [x] `deno task` — leaf (leaf command, no subcommands)
+- [x] `devbox` — ok (18 parsed)
+- [x] `devspace` — ok (28 parsed)
+- [x] `dgraph` — ok (17 parsed)
 - **docker**
-  - [x] `docker` — ok (43 parsed)
+  - [x] `docker` — ok (51 parsed)
   - [x] `docker builder` — ok (16 parsed)
   - [x] `docker buildx` — ok (16 parsed)
   - [x] `docker compose` — ok (35 parsed)
@@ -134,6 +172,9 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `doctl kubernetes` — ok (3 parsed)
   - [x] `doctl registry` — ok (10 parsed)
   - [x] `doctl vpcs` — ok (6 parsed)
+- [x] `dprint` — ok (14 parsed)
+- [x] `draft` — ok (9 parsed)
+- [x] `egctl` — ok (5 parsed)
 - **eksctl**
   - [x] `eksctl` — ok (20 parsed)
   - [ ] `eksctl associate` — empty
@@ -146,6 +187,10 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `eksctl update` — ok (7 parsed)
   - [x] `eksctl upgrade` — ok (2 parsed)
   - [x] `eksctl utils` — ok (23 parsed)
+- [x] `etcdctl` — ok (25 parsed)
+- [x] `faas-cli` — ok (27 parsed)
+- [x] `falcoctl` — ok (7 parsed)
+- [x] `fga` — ok (8 parsed)
 - **firebase**
   - [x] `firebase` — ok (29 parsed; pipe-alias namespaced names)
   - [x] `firebase apps` — ok (5 parsed)
@@ -167,6 +212,10 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `flux reconcile` — ok (5 parsed)
   - [x] `flux tree` — ok (2 parsed)
 - [x] `flyctl` — ok (45 parsed)
+- [x] `func` — ok (18 parsed)
+- [ ] `gadgetctl` — todo (fixture not committed; help capture times out)
+- [x] `garden` — ok (17 parsed)
+- [x] `gator` — ok (9 parsed)
 - **gcloud**
   - [x] `gcloud` — ok (fixture not committed; parses; fixture not committed (proprietary))
   - [x] `gcloud config` — ok (fixture not committed; parses; fixture not committed (proprietary); AVAILABLE PROPERTIES skipped)
@@ -193,6 +242,7 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `gh ssh-key` — ok (3 parsed)
   - [x] `gh variable` — ok (4 parsed)
   - [x] `gh workflow` — ok (5 parsed)
+- [x] `ghq` — ok (7 parsed)
 - **git**
   - [x] `git` — ok (17 parsed; help_args: help -a)
   - [x] `git bisect` — ok (9 parsed; man-page COMMANDS section)
@@ -201,6 +251,9 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `git stash` — ok (7 parsed; man-page COMMANDS section)
   - [x] `git submodule` — ok (7 parsed; man-page COMMANDS section)
   - [x] `git worktree` — ok (8 parsed; man-page COMMANDS section)
+- [x] `git-lfs` — ok (33 parsed)
+- [x] `git-town` — ok (31 parsed)
+- [x] `gitlab-runner` — ok (27 parsed)
 - **glab**
   - [x] `glab` — ok (47 parsed)
   - [x] `glab auth` — ok (6 parsed)
@@ -215,14 +268,20 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `go mod` — ok (8 parsed)
   - [x] `go tool` — ok (8 parsed; bare-name col-0 lines; help_args: bare)
   - [x] `go work` — ok (5 parsed)
+- [x] `goose` — ok (12 parsed)
 - [x] `goreleaser` — ok (8 parsed)
 - **govc**
   - [x] `govc` — ok (408 parsed)
   - [x] `govc cluster.create` — leaf
 - [ ] `gradle` — out-of-scope (fixture not committed; goals defined by plugins, not in --help)
+- [x] `granted` — ok (14 parsed)
 - **grype**
   - [x] `grype` — ok (6 parsed)
   - [x] `grype db` — ok (9 parsed)
+- [x] `gscloud` — ok (16 parsed)
+- [x] `gsutil` — ok (53 parsed)
+- [x] `gum` — ok (14 parsed)
+- [ ] `hasura` — todo (fixture not committed; interactive CLI; help capture times out)
 - **hatch**
   - [x] `hatch` — ok (18 parsed)
   - [x] `hatch build` — leaf
@@ -253,11 +312,17 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `helmfile` — ok (24 parsed)
   - [x] `helmfile cache` — ok (2 parsed)
   - [x] `helmfile repos` — leaf
+- [x] `hub` — ok (35 parsed)
+- [x] `hubble` — ok (7 parsed)
 - **hugo**
   - [x] `hugo` — ok (13 parsed)
   - [x] `hugo config` — ok (1 parsed)
   - [x] `hugo mod` — ok (8 parsed)
   - [x] `hugo new` — leaf
+- [x] `hydra` — ok (14 parsed)
+- [x] `ignite` — ok (21 parsed)
+- [x] `infracost` — ok (10 parsed)
+- [x] `ionosctl` — ok (20 parsed)
 - **istioctl**
   - [x] `istioctl` — ok (22 parsed; single-space long-name entries)
   - [x] `istioctl proxy-config` — ok (10 parsed)
@@ -265,12 +330,28 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `istioctl waypoint` — ok (5 parsed)
 - [ ] `jq` — out-of-scope (fixture not committed; no subcommand concept)
 - [ ] `just` — empty
+- [x] `jx` — ok (23 parsed)
+- [x] `k0s` — ok (23 parsed)
+- [x] `k3d` — ok (9 parsed)
+- [x] `k8sgpt` — ok (12 parsed)
 - **k9s**
   - [x] `k9s` — ok (4 parsed)
   - [x] `k9s info` — leaf
+- [x] `keptn` — ok (18 parsed)
+- [x] `keto` — ok (9 parsed)
 - **kind**
   - [x] `kind` — ok (9 parsed)
   - [x] `kind get` — ok (3 parsed)
+- [x] `kn` — ok (15 parsed)
+- [x] `ko` — ok (10 parsed)
+- [x] `kopia` — ok (12 parsed)
+- [x] `kops` — ok (18 parsed)
+- [x] `kratos` — ok (15 parsed)
+- [x] `kube-bench` — ok (4 parsed)
+- [x] `kube-capacity` — ok (3 parsed)
+- [ ] `kube-score` — empty
+- [x] `kubeaudit` — ok (19 parsed)
+- [x] `kubecm` — ok (17 parsed)
 - **kubectl**
   - [x] `kubectl` — ok (42 parsed)
   - [x] `kubectl api-resources` — leaf (leaf command, no subcommands)
@@ -282,20 +363,34 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `kubectl rollout` — ok (6 parsed)
   - [x] `kubectl set` — ok (6 parsed)
   - [x] `kubectl top` — ok (2 parsed)
+- [x] `kubectl-ai` — ok (3 parsed)
+- [x] `kubectl-argo-rollouts` — ok (18 parsed)
 - **kubectl-krew**
   - [x] `kubectl-krew` — ok (10 parsed)
   - [x] `kubectl-krew index` — ok (3 parsed)
+- [x] `kubectl-who-can` — ok (2 parsed)
+- [ ] `kubectx` — empty
+- [x] `kubefwd` — ok (5 parsed)
+- [x] `kubeone` — ok (18 parsed)
+- [x] `kubescape` — ok (17 parsed)
+- [ ] `kubeseal` — empty
 - **kustomize**
   - [x] `kustomize` — ok (15 parsed)
   - [x] `kustomize cfg` — ok (4 parsed)
-  - [x] `kustomize edit` — ok (3 parsed)
+  - [x] `kustomize edit` — ok (6 parsed)
+- [x] `kyverno` — ok (9 parsed)
+- [x] `lab` — ok (13 parsed)
+- [x] `lego` — ok (7 parsed)
 - **linkerd**
   - [x] `linkerd` — ok (17 parsed)
   - [x] `linkerd viz` — ok (16 parsed)
 - [ ] `linode-cli` — todo (fixture not committed; crashes without API token; fixture not committed)
+- [ ] `litecli` — empty
+- [x] `litefs` — ok (5 parsed)
 - [ ] `make` — out-of-scope (fixture not committed; no subcommand concept)
+- [x] `melange` — ok (19 parsed)
 - **meson**
-  - [x] `meson` — ok (14 parsed)
+  - [x] `meson` — ok (17 parsed)
   - [x] `meson compile` — leaf
   - [x] `meson dist` — leaf
   - [x] `meson introspect` — leaf
@@ -303,6 +398,8 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `meson subprojects` — ok (6 parsed)
   - [x] `meson test` — leaf
   - [x] `meson wrap` — ok (8 parsed)
+- [x] `micromamba` — ok (20 parsed)
+- [x] `migrate` — ok (7 parsed)
 - **minikube**
   - [x] `minikube` — ok (31 parsed)
   - [x] `minikube addons` — ok (6 parsed)
@@ -312,6 +409,7 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `minikube profile` — ok (1 parsed)
   - [x] `minikube service` — ok (1 parsed)
   - [x] `minikube tunnel` — leaf
+- [x] `mirrord` — ok (24 parsed)
 - **mise**
   - [x] `mise` — ok (64 parsed)
   - [x] `mise cache` — ok (5 parsed)
@@ -322,7 +420,12 @@ yields nothing, **bogus** extracts words that are not subcommands,
 - **mkdocs**
   - [x] `mkdocs` — ok (5 parsed)
   - [x] `mkdocs gh-deploy` — leaf
+- [x] `molecule` — ok (20 parsed)
+- [ ] `mongosh` — empty
 - [ ] `mvn` — out-of-scope (goals defined by plugins, not in --help)
+- [ ] `mycli` — empty
+- [x] `nats` — ok (24 parsed)
+- [x] `nerdctl` — ok (55 parsed)
 - **netlify**
   - [x] `netlify` — ok (26 parsed; $ sigil entries)
   - [x] `netlify deploy` — leaf
@@ -331,13 +434,26 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `netlify link` — leaf
   - [x] `netlify open` — ok (2 parsed)
   - [x] `netlify sites` — ok (4 parsed)
+- [x] `nfpm` — ok (5 parsed)
+- [x] `nitric` — ok (13 parsed)
+- [x] `notation` — ok (13 parsed)
 - **npm**
   - [x] `npm` — ok (15 parsed; comma inventory format)
   - [x] `npm cache` — ok (4 parsed; 2-token prefixed synopsis lines)
   - [x] `npm config` — ok (6 parsed)
+- [x] `nsc` — ok (23 parsed)
+- [x] `nuctl` — ok (14 parsed)
+- [x] `oathkeeper` — ok (7 parsed)
+- [x] `oci` — ok (174 parsed)
+- [x] `ocm` — ok (26 parsed)
+- [x] `okteto` — ok (21 parsed)
+- [x] `opa` — ok (16 parsed)
+- [x] `openstack` — ok (39 parsed)
+- [x] `oras` — ok (17 parsed)
+- [x] `osv-scanner` — ok (3 parsed)
 - [x] `pack` — ok (13 parsed)
 - **pdm**
-  - [x] `pdm` — ok (16 parsed)
+  - [x] `pdm` — ok (26 parsed)
   - [x] `pdm cache` — ok (4 parsed)
   - [x] `pdm config` — leaf
   - [x] `pdm export` — leaf
@@ -348,13 +464,16 @@ yields nothing, **bogus** extracts words that are not subcommands,
 - **pip**
   - [x] `pip` — ok (16 parsed)
   - [x] `pip install` — leaf (leaf command, no subcommands)
+- [x] `pipenv` — ok (19 parsed)
 - **pipx**
   - [x] `pipx` — ok (30 parsed)
   - [x] `pipx list` — leaf
+- [x] `pixi` — ok (28 parsed)
 - **pnpm**
   - [x] `pnpm` — ok (92 parsed)
   - [ ] `pnpm env` — empty (deprecated; help does not list subcommands)
   - [x] `pnpm store` — ok (5 parsed)
+- [x] `pocketbase` — ok (4 parsed)
 - **podman**
   - [x] `podman` — ok (58 parsed)
   - [x] `podman container` — ok (33 parsed)
@@ -366,19 +485,23 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `podman system` — ok (8 parsed)
   - [x] `podman volume` — ok (8 parsed)
 - **poetry**
-  - [x] `poetry` — ok (26 parsed; help_args: list)
+  - [x] `poetry` — ok (31 parsed; help_args: list)
   - [x] `poetry cache` — ok (2 parsed; namespaced name: desc entries)
   - [x] `poetry env` — ok (5 parsed; namespaced name: desc entries)
   - [ ] `poetry plugin` — empty
   - [x] `poetry self` — ok (7 parsed; namespaced name: desc entries)
   - [x] `poetry source` — ok (3 parsed; namespaced name: desc entries)
+- [x] `popeye` — ok (4 parsed)
+- [x] `porter` — ok (22 parsed)
+- [x] `pre-commit` — ok (16 parsed)
 - **promtool**
-  - [x] `promtool` — ok (17 parsed)
+  - [x] `promtool` — ok (18 parsed)
   - [x] `promtool check` — ok (7 parsed)
   - [x] `promtool promql` — ok (2 parsed)
   - [x] `promtool query` — ok (5 parsed)
   - [ ] `promtool test` — empty
   - [x] `promtool tsdb` — ok (4 parsed)
+- [x] `pscale` — ok (34 parsed)
 - **pulumi**
   - [x] `pulumi` — ok (34 parsed)
   - [x] `pulumi config` — ok (8 parsed)
@@ -387,6 +510,7 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `pulumi plugin` — ok (5 parsed)
   - [x] `pulumi stack` — ok (18 parsed)
   - [x] `pulumi state` — ok (11 parsed)
+- [x] `pyenv` — ok (32 parsed)
 - [ ] `python3` — out-of-scope (fixture not committed; no subcommand concept)
 - **railway**
   - [x] `railway` — ok (60 parsed)
@@ -397,14 +521,22 @@ yields nothing, **bogus** extracts words that are not subcommands,
 - **rancher**
   - [x] `rancher` — ok (17 parsed)
   - [x] `rancher clusters` — ok (12 parsed)
+- [x] `rbac-tool` — ok (13 parsed)
 - **rclone**
   - [x] `rclone` — ok (56 parsed)
   - [ ] `rclone backend` — empty
   - [x] `rclone config` — ok (18 parsed)
+- [x] `rekor-cli` — ok (9 parsed)
 - **restic**
   - [x] `restic` — ok (28 parsed)
   - [x] `restic key` — ok (4 parsed)
   - [x] `restic snapshots` — leaf
+- [x] `rke` — ok (9 parsed)
+- [x] `rosa` — ok (25 parsed)
+- [x] `rqlite` — ok (2 parsed)
+- [x] `ruff` — ok (10 parsed)
+- [x] `runsc` — ok (48 parsed)
+- [x] `rustic` — ok (28 parsed)
 - **rustup**
   - [x] `rustup` — ok (18 parsed)
   - [x] `rustup component` — ok (4 parsed)
@@ -421,16 +553,24 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `rye sync` — leaf
   - [x] `rye toolchain` — ok (5 parsed)
   - [x] `rye tools` — ok (4 parsed)
+- [x] `saml2aws` — ok (7 parsed)
+- [x] `scw` — ok (59 parsed)
+- [ ] `sealos` — todo (fixture not committed; SEALOS Sustainable Use License — inspect locally, do not commit output)
 - [x] `skaffold` — ok (17 parsed)
 - **sops**
   - [x] `sops` — ok (15 parsed)
   - [x] `sops exec-env` — leaf (fixture not committed)
+- [x] `spacectl` — ok (14 parsed)
+- [x] `sqlc` — ok (12 parsed)
 - [ ] `ssh` — out-of-scope (fixture not committed; no subcommand concept)
+- [x] `stackit` — ok (37 parsed)
 - **starship**
   - [x] `starship` — ok (14 parsed)
   - [x] `starship preset` — leaf
+- [x] `step` — ok (13 parsed)
+- [ ] `stern` — empty
 - **stripe**
-  - [x] `stripe` — ok (32 parsed)
+  - [x] `stripe` — ok (33 parsed)
   - [x] `stripe balance` — leaf
   - [x] `stripe charges` — ok (6 parsed)
   - [x] `stripe customers` — ok (2 parsed)
@@ -440,7 +580,7 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `stripe subscriptions` — ok (2 parsed)
 - [ ] `sudo` — out-of-scope (fixture not committed; no subcommand concept)
 - **supabase**
-  - [x] `supabase` — ok (16 parsed)
+  - [x] `supabase` — ok (35 parsed)
   - [x] `supabase branches` — ok (7 parsed)
   - [x] `supabase completion` — ok (4 parsed)
   - [x] `supabase db` — ok (10 parsed)
@@ -453,27 +593,37 @@ yields nothing, **bogus** extracts words that are not subcommands,
 - **syft**
   - [x] `syft` — ok (9 parsed)
   - [x] `syft scan` — leaf
+- [x] `symfony` — ok (15 parsed)
 - [x] `systemctl` — ok (13 parsed; [ARG...] placeholders skipped)
 - [x] `tar` — leaf (option-value sections are skipped)
 - [ ] `task` — empty
 - **terraform**
   - [x] `terraform` — ok (fixture not committed; parses; fixture not committed (BUSL))
   - [x] `terraform state` — ok (fixture not committed; parses; fixture not committed (BUSL))
+- [x] `terragrunt` — ok (25 parsed)
+- [x] `terramate` — ok (12 parsed)
+- [x] `terrascan` — ok (4 parsed)
 - [x] `tilt` — ok (31 parsed)
 - **tkn**
   - [x] `tkn` — ok (12 parsed)
   - [x] `tkn hub` — ok (8 parsed)
-  - [x] `tkn pipeline` — ok (5 parsed)
+  - [x] `tkn pipeline` — ok (6 parsed)
 - [x] `tmux` — ok (86 parsed; col-0 name (alias) entries; help_args: list-commands)
 - **tofu**
   - [x] `tofu` — ok (24 parsed)
   - [x] `tofu state` — ok (7 parsed)
   - [x] `tofu workspace` — ok (5 parsed)
+- [x] `topaz` — ok (16 parsed)
+- [x] `tox` — ok (20 parsed)
 - [x] `traefik` — ok (2 parsed)
 - **trivy**
   - [x] `trivy` — ok (18 parsed)
   - [x] `trivy registry` — ok (2 parsed)
   - [x] `trivy server` — leaf
+- [x] `turso` — ok (11 parsed)
+- [x] `twine` — ok (3 parsed)
+- [ ] `ubi` — empty
+- [x] `upctl` — ok (12 parsed)
 - **uv**
   - [x] `uv` — ok (23 parsed)
   - [x] `uv cache` — ok (4 parsed)
@@ -482,6 +632,7 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `uv self` — ok (2 parsed)
   - [x] `uv tool` — ok (8 parsed)
   - [x] `uv venv` — leaf (leaf command, no subcommands)
+- [x] `vcluster` — ok (27 parsed)
 - **velero**
   - [x] `velero` — ok (19 parsed)
   - [x] `velero backup` — ok (6 parsed)
@@ -510,6 +661,8 @@ yields nothing, **bogus** extracts words that are not subcommands,
 - **vultr-cli**
   - [x] `vultr-cli` — ok (31 parsed)
   - [x] `vultr-cli instance` — ok (23 parsed)
+- [x] `woodpecker-cli` — ok (12 parsed)
+- [x] `wp` — ok (40 parsed)
 - **wrangler**
   - [x] `wrangler` — ok (43 parsed)
   - [x] `wrangler d1` — ok (9 parsed)
@@ -528,17 +681,19 @@ yields nothing, **bogus** extracts words that are not subcommands,
   - [x] `wrangler vectorize` — ok (14 parsed)
   - [x] `wrangler versions` — ok (5 parsed)
 - [x] `yarn` — ok (28 parsed; tool-prefixed usage lines)
+- [x] `zed` — ok (12 parsed)
 - **zellij**
   - [x] `zellij` — ok (18 parsed)
   - [x] `zellij action` — ok (79 parsed)
   - [x] `zellij setup` — leaf
   - [x] `zellij web` — leaf
+- [x] `zitadel` — ok (10 parsed)
 - [x] `zola` — ok (6 parsed)
 
 ## Totals
 
-- ok: 362
+- ok: 505
 - leaf: 69
-- empty: 10
-- todo: 1
+- empty: 19
+- todo: 4
 - out-of-scope: 8

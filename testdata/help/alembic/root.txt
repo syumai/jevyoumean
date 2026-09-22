@@ -1,0 +1,44 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/alembic
+# args: 
+usage: alembic [-h] [--version] [-c CONFIG] [-n NAME] [-x X] [--raiseerr] [-q]
+               {branches,check,current,downgrade,edit,ensure_version,heads,history,init,list_templates,merge,revision,show,stamp,upgrade}
+               ...
+
+positional arguments:
+  {branches,check,current,downgrade,edit,ensure_version,heads,history,init,list_templates,merge,revision,show,stamp,upgrade}
+    branches            Show current branch points.
+    check               Check if revision command with autogenerate has
+                        pending upgrade ops.
+    current             Display the current revision for a database.
+    downgrade           Revert to a previous version.
+    edit                Edit revision script(s) using $EDITOR.
+    ensure_version      Create the alembic version table if it doesn't exist
+                        already .
+    heads               Show current available heads in the script directory.
+    history             List changeset scripts in chronological order.
+    init                Initialize a new scripts directory.
+    list_templates      List available templates.
+    merge               Merge two revisions together. Creates a new migration
+                        file.
+    revision            Create a new revision file.
+    show                Show the revision(s) denoted by the given symbol.
+    stamp               'stamp' the revision table with the given revision;
+                        don't run any migrations.
+    upgrade             Upgrade to a later version.
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  -c CONFIG, --config CONFIG
+                        Alternate config file; defaults to value of
+                        ALEMBIC_CONFIG environment variable, or "alembic.ini".
+                        May also refer to pyproject.toml file. May be
+                        specified twice to reference both files separately
+  -n NAME, --name NAME  Name of section in .ini file to use for Alembic config
+                        (only applies to configparser config, not toml)
+  -x X                  Additional arguments consumed by custom env.py
+                        scripts, e.g. -x setting1=somesetting -x
+                        setting2=somesetting
+  --raiseerr            Raise a full stack trace on error
+  -q, --quiet           Do not log to std output.

@@ -1,0 +1,109 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/cerbosctl
+# args: 
+Usage: cerbosctl <command> [flags]
+
+A CLI for managing Cerbos
+
+The Cerbos Admin API must be enabled in order for these commands to work.
+The Admin API requires credentials. They can be provided using a netrc file,
+environment variables or command-line arguments.
+
+Environment variables
+
+  - CERBOS_SERVER: gRPC address of the Cerbos server
+  - CERBOS_USERNAME: Admin username
+  - CERBOS_PASSWORD: Admin password
+
+When more than one method is used to provide credentials, the precedence from
+lowest to highest is: netrc < environment < command line.
+
+Examples
+
+    # Connect to a TLS enabled server while skipping certificate verification and launch the decisions viewer
+    cerbosctl --server=localhost:3593 --username=user --password=password --insecure decisions
+
+    # Connect to a non-TLS server and launch the decisions viewer
+    cerbosctl --server=localhost:3593 --username=user --password=password --plaintext decisions
+
+Flags:
+  -h, --help                       Show context-sensitive help.
+      --server="localhost:3593"    Address of the Cerbos server ($CERBOS_SERVER)
+      --username=STRING            Admin username ($CERBOS_USERNAME)
+      --password=STRING            Admin password ($CERBOS_PASSWORD)
+      --ca-cert=STRING             Path to the CA certificate for verifying
+                                   server identity
+      --client-cert=STRING         Path to the TLS client certificate
+      --client-key=STRING          Path to the TLS client key
+      --insecure                   Skip validating server certificate
+      --plaintext                  Use plaintext protocol without TLS
+
+Commands:
+  get derived_roles (derived_role,dr) [<id> ...] [flags]
+
+  get export_constants (ec) [<id> ...] [flags]
+
+  get export_variables (ev) [<id> ...] [flags]
+
+  get principal_policies (principal_policy,pp) [<id> ...] [flags]
+
+  get resource_policies (resource_policy,rp) [<id> ...] [flags]
+
+  get role_policies (role_policy,rlp) [<id> ...] [flags]
+
+  get schemas (schema,s) [<id> ...] [flags]
+
+  hub auth [flags]
+
+  hub store upload-git --store-id=STRING [flags]
+    Upload files from a local git repository to the store
+
+  hub store list-files --store-id=STRING [flags]
+    List store files
+
+  hub store download --store-id=STRING <output-path> [flags]
+    Download the entire store
+
+  hub store get-files --store-id=STRING --output-path=STRING <files> ... [flags]
+    Download files from the store
+
+  hub store replace-files --store-id=STRING <path> [flags]
+    Overwrite the store with the given set of files
+
+  hub store add-files --store-id=STRING <paths> ... [flags]
+    Add files to the store
+
+  hub store delete-files --store-id=STRING <paths> ... [flags]
+    Delete files from the store
+
+  inspect policies (p) [<id> ...] [flags]
+    Inspect policies in the store
+
+  store export (e) <path>
+
+  store reload (r) [flags]
+
+  store revisions purge (p) [flags]
+
+  delete policy (policies,p) <id> ...
+
+  delete schema (schemas,s) <id> ...
+
+  disable policy (policies,p) <id> ...
+
+  enable policy (policies,p) <id> ...
+
+  put policy (policies,p) <paths> ... [flags]
+
+  put schema (schemas,s) <paths> ... [flags]
+
+  decisions [flags]
+    Interactive decision log viewer
+
+  audit [flags]
+    View audit logs
+
+  version [flags]
+    Show cerbosctl and PDP version
+
+Run "cerbosctl <command> --help" for more information on a command.

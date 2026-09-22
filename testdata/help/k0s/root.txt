@@ -1,0 +1,37 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/k0s
+# args: 
+k0s - The zero friction Kubernetes - https://k0sproject.io
+
+Usage:
+  k0s [command]
+
+Available Commands:
+  airgap              Tooling for airgapped installations
+  api                 Run the controller API
+  backup              Back-Up k0s configuration. Must be run as root (or with sudo)
+  completion          Generate completion script
+  config              Configuration related sub-commands
+  controller          Run controller
+  ctr                 containerd CLI
+  docs                Generate k0s command documentation
+  etcd                Manage etcd cluster
+  help                Help about any command
+  install             Install k0s on a brand-new system. Must be run as root (or with sudo)
+  keepalived-config   Keepalived configuration related sub-commands
+  kubeconfig          Create a kubeconfig file for a specified user
+  kubectl             kubectl controls the Kubernetes cluster manager
+  reset               Uninstall k0s. Must be run with elevated privileges
+  restore             restore k0s state from given backup archive. Use '-' as filename to read from stdin. Must be run as root (or with sudo)
+  start               Start the k0s service configured on this host. Must be run as root (or with sudo)
+  status              Get k0s instance status information
+  stop                Stop the k0s service configured on this host. Must be run as root (or with sudo)
+  sysinfo             Display system information
+  token               Manage join tokens
+  version             Print the k0s version
+  worker              Run worker
+
+Flags:
+  -h, --help   help for k0s
+
+Use "k0s [command] --help" for more information about a command.

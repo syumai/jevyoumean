@@ -1,0 +1,31 @@
+# captured 2026-09-22
+# exe: /home/ubuntu/.local/bin/pocketbase
+# args: 
+pocketbase CLI
+
+Usage:
+  pocketbase [command]
+
+Available Commands:
+  migrate     Executes app DB migration scripts
+  serve       Starts the web server (default to 127.0.0.1:8090 if no domain is specified)
+  superuser   Manage superusers
+  update      Automatically updates the current app executable with the latest available version
+
+Flags:
+      --automigrate            enable/disable auto migrations (default true)
+      --dev                    enable dev mode, aka. printing logs and sql statements to the console
+      --dir string             the PocketBase data directory (default "/home/ubuntu/.local/bin/pb_data")
+      --encryptionEnv string   the env variable whose value of 32 characters will be used 
+                               as encryption key for the app settings (default none)
+  -h, --help                   help for pocketbase
+      --hooksDir string        the directory with the JS app hooks
+      --hooksPool int          the total prewarm goja.Runtime instances for the JS app hooks execution (default 15)
+      --hooksWatch             auto restart the app on pb_hooks file change; it has no effect on Windows (default true)
+      --indexFallback          fallback the request to index.html on missing static path, e.g. when pretty urls are used with SPA (default true)
+      --migrationsDir string   the directory with the user defined migrations
+      --publicDir string       the directory to serve static files (default "/home/ubuntu/.local/bin/pb_public")
+      --queryTimeout int       the default SELECT queries timeout in seconds (default 30)
+  -v, --version                version for pocketbase
+
+Use "pocketbase [command] --help" for more information about a command.
