@@ -32,7 +32,7 @@ func serve(t *testing.T, answerFn func(map[string]Question) map[string]answer, c
 		if r.TLS == nil {
 			t.Error("expected HTTPS request")
 		}
-		if r.Header.Get("Authorization") != "Bearer test-key" {
+		if r.Header.Get("Authorization") != "Bearer example-key" {
 			t.Errorf("missing bearer token")
 		}
 		body, _ := io.ReadAll(r.Body)
@@ -48,7 +48,7 @@ func serve(t *testing.T, answerFn func(map[string]Question) map[string]answer, c
 			"answers": answerFn(req.Questions),
 		})
 	}))
-	return &Client{APIKey: "test-key", HTTPClient: srv.Client()}
+	return &Client{APIKey: "example-key", HTTPClient: srv.Client()}
 }
 
 func choiceAns(choice string, confidence float64, probs map[string]float64) answer {
